@@ -1,2 +1,0 @@
-url=http://uat.ims.client.sstech.us/login
-driver=chrome

@@ -46,7 +46,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 	public void ClientsMedical() throws InterruptedException, IOException {
 
 		driver = openBrowser("chrome");
-		driver.get("http://uat.ims.client.sstech.us/login");
+		//driver.get("http://uat.ims.client.sstech.us/login");
 
 
 
@@ -74,12 +74,13 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		vi.createAppointmentFromClient();
 
- 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointmentbooked"));
-//		logger.addScreenCaptureFromPath(takeScreenshotForStep("end"),"end of test");
+ 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
 
 	}
 	@AfterTest
-	public void closeTest() {
+	public void closeTest() throws IOException {
+		String methodName = BaseClass.getMethodName();
+		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 		extent.close();
 		extent.flush();
 	}

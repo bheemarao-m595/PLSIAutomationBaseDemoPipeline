@@ -1,12 +1,14 @@
 package com.base;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -36,28 +38,26 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass
 {
-   public static 	ExtentHtmlReporter htmlReporter;
-
-	 public  static WebDriver driver = null;
- public ExtentReports extent;
-	ExtentTest logger;
+    public static 	ExtentHtmlReporter htmlReporter;
+	public  static WebDriver driver = null;
+    public ExtentReports extent;
 	public static XSSFWorkbook workbook = null;
-	public XSSFSheet sheet = null;    
 	public ExcelUtils data;
-	public static String browserType = "chrome";
-//	public DriverManager dm = new DriverManager();
+	static String methodName = "";
 
 	public static  Map<String,String> datasheet = new HashMap<>();
 
-	public String getMethodName() {
+	public static  String getMethodName() {
+
 		return methodName;
 	}
 
 	public void setMethodName(String methodName) {
+
 		this.methodName = methodName;
 	}
 
-	static String methodName = "";
+
 	
 	
 	@BeforeSuite
@@ -86,26 +86,27 @@ public class BaseClass
 	}
 	
 	
-	public WebDriver openBrowser(String browserType) {
+	public WebDriver openBrowser(String browserType) throws IOException {
 
 		String basePath = System.getProperty("user.dir") + "\\src\\test\\resources\\drivers\\";
-		if(browserType.toLowerCase().equals("firefox")) {
-	      //   System.setProperty("webdriver.gecko.driver", basePath+"geckodriver.exe");
-	         WebDriverManager.firefoxdriver().setup();
-	         driver = new FirefoxDriver();
-		}else if(browserType.toLowerCase().equals("chrome")) {
-			//WebDriverManager.chromedriver().setup();
+		String proppath = System.getProperty("user.dir") + "\\src\\main\\resources\\Application.properties";
+		FileInputStream fin = new FileInputStream(proppath);
+		Properties prop = new Properties();
 
-			System.out.println(basePath);
-	       //  System.setProperty("webdriver.chrome.driver", "C:\\Users\\Johnraju.chinnam.SSTECH\\Downloads\\chromedriver_win32 (2)\\chromedriver.exe");
-	         System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
-	         ChromeOptions opt  = new ChromeOptions();
-			 opt.addArguments("--incognito");
-			 driver = new ChromeDriver(opt);
+		prop.load(fin);
+		if(browserType.toLowerCase().equals("firefox")) {
+			System.setProperty("webdriver.gecko.driver", basePath+"geckodriver.exe");
+			driver = new FirefoxDriver();
+		}else if(prop.get("driver").equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
+			ChromeOptions opt  = new ChromeOptions();
+			opt.addArguments("--incognito");
+			driver = new ChromeDriver(opt);
+			driver.get(prop.getProperty("url"));
 
 
 		}else {
-	         throw new IllegalArgumentException("The Browser Type is Undefined");
+			throw new IllegalArgumentException("The Browser Type is Undefined");
 		}
 		
 		return driver;
