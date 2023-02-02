@@ -9,10 +9,10 @@
 	<!--  parallel = "classes" thread-count = "2" -->
 		<parameter name="browser" value="chrome" />
 		<classes>
-		 <class name="com.tests.VG_Clients_MedicalTests">
+		 <class name="com.tests.TestingReports">
 			<methods>
-<!--				<include name="testLogin"/>-->
-				<include name="ClientsMedical"/>
+				<include name="testLogin"/>
+<!--				<include name="testreport"/>-->
 			</methods>
 		 </class>
 

@@ -15,7 +15,6 @@ public class NewAppointmentPage {
             wd = d;
             PageFactory.initElements(d,this);
 
-
     }
 
     @FindBy(name= "appointments.0.SurgeryAppointment")
@@ -56,7 +55,7 @@ public class NewAppointmentPage {
         client.click();
     }
 
-    public  void fecilityClick(){
+    public  void facilityClick(){
 
         Facility.click();
     }
@@ -69,5 +68,10 @@ public class NewAppointmentPage {
     public  void clickNewAppointment(){
 
         newAppointment.click();
+    }
+    public void clickAppointment(String date){
+
+        appointmentDate.click();
+        appointmentDate.sendKeys(date);
     }
 }

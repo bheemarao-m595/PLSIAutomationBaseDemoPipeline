@@ -1,6 +1,7 @@
 package com.pom;
 
 import com.base.BaseClass;
+import com.utils.CommonUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.xml.validation.Validator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RequestAppointmentPage {
 
@@ -36,19 +39,19 @@ public class RequestAppointmentPage {
     private WebElement EndTime;
 
 
-    @FindBy(id= "react-select-3-input")
+    @FindBy(xpath= "//label[@id='typo_apptform_client']/../following-sibling::div//input")
     private WebElement client;
 
-    @FindBy(id= "react-select-4-input")
+    @FindBy(xpath= "//label[@id='typo_apptform_facility']/../following-sibling::div//input")
     private WebElement Facility;
 
-    @FindBy(id= "react-select-5-input")
+    @FindBy(xpath= "//label[@id='typo_apptform_appttype']/../following-sibling::div//input")
     private WebElement AppointmentType;
 
-    @FindBy(id= "react-select-6-input")
+    @FindBy(xpath= "//label[@id='typo_apptform_building']/../following-sibling::div//input")
     private WebElement Building;
 
-    @FindBy(xpath= "//input[@id='react-select-6-input']")
+    @FindBy(xpath= "//label[@id='typo_apptform_dept_clinic']/../following-sibling::div//input")
     private WebElement Department;
 
     @FindBy(xpath= "//input[@name='patientMrn']")
@@ -113,6 +116,13 @@ public class RequestAppointmentPage {
 
     }
 
+    public static Map<String,String> fieldXpath = new HashMap<>();
+
+    public String getWebElementOfField(String label){
+
+
+  return  "";
+    }
 
     public void createAppointmentFromClient() throws InterruptedException {
 
@@ -141,7 +151,8 @@ public class RequestAppointmentPage {
         AppointmentType.sendKeys(BaseClass.datasheet.get("Appointment Type"));
         AppointmentType.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-
+        FirstName.sendKeys(CommonUtils.getRandomStringOfLength(5));
+        System.out.println("hi");
 
 
     }

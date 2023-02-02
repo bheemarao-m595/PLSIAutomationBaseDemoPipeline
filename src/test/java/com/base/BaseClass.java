@@ -44,6 +44,7 @@ public class BaseClass
 	public static XSSFWorkbook workbook = null;
 	public ExcelUtils data;
 	static String methodName = "";
+   public  static 	ExtentTest logger = null;
 
 	public static  Map<String,String> datasheet = new HashMap<>();
 
@@ -191,6 +192,14 @@ public class BaseClass
 			ee.printStackTrace();
 		}
 		return DestFile.getAbsolutePath();
+	}
+
+	@AfterSuite
+	public  void tearDown(){
+
+		extent.close();
+		extent.flush();
+		//driver.close();
 	}
 
 
