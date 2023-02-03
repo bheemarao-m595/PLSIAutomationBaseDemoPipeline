@@ -3,10 +3,17 @@ package com.listeners;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
+import com.utils.ExcelUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 public class ListenerTest implements ITestListener {
 
@@ -52,12 +59,30 @@ public class ListenerTest implements ITestListener {
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 
-		String s4 =result.getMethod().getMethodName();
-
+		String methodName =result.getMethod().getMethodName();
+		String moduleName = BaseClass.getModuleName();
 		BaseClass b = new BaseClass();
-		b.setMethodName(s4);
+		b.setMethodName(methodName);
 
+		Properties prop = new Properties();
+		String proppath = System.getProperty("user.dir") + "\\src\\main\\resources\\Application.properties";
 
+		try {
+			FileInputStream fin = new FileInputStream(proppath);
+			prop.load(fin);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		XSSFWorkbook wb;
+		String testDataFilePath = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\" +prop.get("testDataFile");
+		ExcelUtils data = new ExcelUtils();
+		try {
+			wb = data.getWorkbook(testDataFilePath);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+       if(wb  != null)
+		BaseClass.datasheet = data.getMapDataForRowName(wb,moduleName,methodName);
 
 
 	}

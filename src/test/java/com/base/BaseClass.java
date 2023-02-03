@@ -22,13 +22,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-	import com.aventstack.extentreports.ExtentReports;
+import org.testng.annotations.*;
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
@@ -40,10 +35,20 @@ public class BaseClass
 {
     public static 	ExtentHtmlReporter htmlReporter;
 	public  static WebDriver driver = null;
-    public ExtentReports extent;
+    public static ExtentReports extent;
 	public static XSSFWorkbook workbook = null;
 	public ExcelUtils data;
 	static String methodName = "";
+
+	public static String getModuleName() {
+		return moduleName;
+	}
+
+	public static void setModuleName(String moduleName) {
+		BaseClass.moduleName = moduleName;
+	}
+
+	static String moduleName = "";
    public  static 	ExtentTest logger = null;
 
 	public static  Map<String,String> datasheet = new HashMap<>();
@@ -58,27 +63,31 @@ public class BaseClass
 		this.methodName = methodName;
 	}
 
-
-	
 	
 	@BeforeSuite
 	public void start() throws IOException {
+
+		String basePath = System.getProperty("user.dir") + "\\src\\test\\resources\\drivers\\";
+		String proppath = System.getProperty("user.dir") + "\\src\\main\\resources\\Application.properties";
+		FileInputStream fin = new FileInputStream(proppath);
+		Properties prop = new Properties();
+		prop.load(fin);
+
 		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
 		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
 		System.out.println("report path : " + reportPath);
 		htmlReporter = new ExtentHtmlReporter(reportPath);
-       extent = new ExtentReports();
+        extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
-		extent.setSystemInfo("Host Name", "PLSI");
-		extent.setSystemInfo("Environment", "Automation Testing");
-		extent.setSystemInfo("User Name", "John ch");
+		extent.setSystemInfo("Host Name", prop.getProperty("application"));
+		extent.setSystemInfo("Environment", prop.getProperty("environment"));
+		extent.setSystemInfo("User Name", prop.getProperty("author"));
 		data = new ExcelUtils();
-		String fp = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\PLSI_Automation_Data.xlsx";
-		XSSFWorkbook wb = data.getWorkbook(fp);
-//		String path = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\Project.xlsx";
-//		workbook = data.getWorkbook(path);
-		datasheet = data.getMapDataForRowName(wb,"ClientMedical","CreateNew");
-	   System.out.println(datasheet.size());
+
+		String testDataFile =  prop.getProperty("testDataFile");
+		String fp = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\" + testDataFile;
+		//XSSFWorkbook wb = data.getWorkbook(fp);
+		//datasheet = data.getMapDataForRowName(wb,"ClientMedical","CreateNew");
 	}
 		
 	
@@ -103,6 +112,7 @@ public class BaseClass
 			ChromeOptions opt  = new ChromeOptions();
 			opt.addArguments("--incognito");
 			driver = new ChromeDriver(opt);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			driver.get(prop.getProperty("url"));
 
 
@@ -197,10 +207,10 @@ public class BaseClass
 	@AfterSuite
 	public  void tearDown(){
 
-		extent.close();
 		extent.flush();
 		//driver.close();
 	}
+
 
 
 }

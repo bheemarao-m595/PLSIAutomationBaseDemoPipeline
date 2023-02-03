@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -29,17 +30,21 @@ public class SV_SetAppointmentTest extends BaseClass
 	public void addScheduleAppointment() throws Throwable
 	{
 
-		logger = extent.createTest("Login as an PLSI scheduler");
+		 try {
+			 logger = extent.createTest("Login as an PLSI scheduler");
 
-		LoginPage lo = new LoginPage(driver);
-		lo.enterUserName(datasheet.get("UserName"));
-		lo.enterPassword(datasheet.get("Password"));
-		lo.clickLogin();
+			 LoginPage lo = new LoginPage(driver);
+			 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
 
-		NewAppointmentPage nap = new NewAppointmentPage(driver);
-		nap.clickNewAppointment();
-		nap.clickAppointment(datasheet.get("AppointmentstartDate"));
+			 NewAppointmentPage nap = new NewAppointmentPage(driver);
+			 nap.clickNewAppointment();
+			 nap.addScheduleAppointment();
+		 }catch (Exception e){
+
+			 e.printStackTrace();
+			 Assert.assertFalse(true, "got exception at ");
+		 }
 
 
 	} 

@@ -6,8 +6,7 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 	<test name="Test" parallel = "none" thread-count = "1" >
-	<!--  parallel = "classes" thread-count = "2" -->
-		<parameter name="browser" value="chrome" />
+		<parameter name="Module" value="ClientMedical" />
 		<classes>
 		 <class name="com.tests.TestingReports">
 			<methods>

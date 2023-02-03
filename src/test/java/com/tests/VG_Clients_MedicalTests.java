@@ -23,22 +23,6 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 	XSSFSheet sheet = null;
 
-	//	@Parameters({ "browser", "URL" })
-	/*@BeforeTest
-	public void init(String browser, String URL) throws IOException {
-		driver = openBrowser(browser);
-		UI = new SeleniumUIUtils(driver);
-		driver.get(URL);
-		driver.manage().window().maximize();
-		sheet = readSheet("ClientMedical");
-	}
-*/
-	@BeforeMethod
-	public void Setup() {
-		System.out.println("Before test");
-		// data.readExcelDataToArray(sheet);
-
-	}
 
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is showing only todays appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
@@ -48,15 +32,15 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
-//		CommonUtils.getRandomStringOfLength(5);
-
 		System.out.println("starting");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
-		lo.enterUserName(datasheet.get("UserName"));
-		lo.enterUserName(datasheet.get("Password"));
+		//lo.enterUserName(datasheet.get("UserName"));
+		//lo.enterUserName(datasheet.get("Password"));
+
+		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 		Thread.sleep(5000);
-		lo.clickLogin();
+
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		logger.log(Status.PASS, "Login CLicked");
 		Thread.sleep(5000);

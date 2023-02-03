@@ -3,11 +3,11 @@ package com.tests;
 import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.NewAppointmentPage;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import com.aventstack.extentreports.Status;
 
 import java.io.IOException;
@@ -20,6 +20,7 @@ public class TestingReports  extends BaseClass {
 
 //    ExtentTest logger = null;
 
+//    static Logger log = Logger.getLogger(BaseClass.class.getName());
 
     @Test(enabled = true)
     public  void testreport() throws IOException {
@@ -46,8 +47,6 @@ public class TestingReports  extends BaseClass {
        }
 
         eu.getMapDataForALlrows(workbook,"Login");
-        extent.flush();
-
 
 
         }
@@ -59,26 +58,26 @@ public class TestingReports  extends BaseClass {
         driver = openBrowser("chrome");
 
          System.out.println("starting");
-         logger = extent.createTest(getMethodName() + " started");
+         logger = extent.createTest(  " started");
 
          driver.manage().window().maximize();
 
          LoginPage lp = new LoginPage(driver);
-         lp.enterUserName(datasheet.get("UserName"));
-         lp.enterPassword(datasheet.get("Password"));
+
+         lp.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
          Thread.sleep(5000);
-         lp.clickLogin();
          logger.log(Status.PASS, "Login Done");
          logger.addScreenCaptureFromPath(takeScreenshotForStep("login"));
 
          Thread.sleep(4000);
          NewAppointmentPage na = new NewAppointmentPage(driver);
          na.clickNewAppointment();
+         na.addScheduleAppointment();
+
          logger.log(Status.PASS, "New Appointment clicked");
          logger.addScreenCaptureFromPath(takeScreenshotForStep("new"));
 
-         Assert.assertEquals(1,3);
-
+ extent.flush();
         }
 
         @AfterMethod
@@ -88,8 +87,13 @@ public class TestingReports  extends BaseClass {
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
         }
 
+    @BeforeTest
+    @Parameters({"Module"})
+    public void readModule(String moduleName){
+
+        BaseClass.setModuleName(moduleName);
 
 
-
+    }
 
 }

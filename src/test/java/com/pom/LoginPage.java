@@ -49,7 +49,10 @@ public class LoginPage {
         pwd.sendKeys(password);
     }
 
-    public  void clickLogin() throws InterruptedException {
+    public  void doLogin(String user, String pwd) throws InterruptedException {
+
+        enterUserName(user);
+        enterPassword(pwd);
 
         WebDriver d = BaseClass.driver;
         JavascriptExecutor js = (JavascriptExecutor)d;

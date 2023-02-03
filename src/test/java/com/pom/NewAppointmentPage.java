@@ -1,10 +1,14 @@
 package com.pom;
 
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static com.base.BaseClass.datasheet;
+import static com.base.BaseClass.logger;
 
 public class NewAppointmentPage {
 
@@ -22,6 +26,9 @@ public class NewAppointmentPage {
 
     @FindBy(name= "appointments.0.aptDate")
     private WebElement appointmentDate;
+
+    @FindBy(name= "appointments.0.aptStartTime")
+    private WebElement appointmentStartTime;
 
     @FindBy(name= "appointments.0.aptEndTime")
     private WebElement appointmentEndTime;
@@ -67,11 +74,37 @@ public class NewAppointmentPage {
 
     public  void clickNewAppointment(){
 
-        newAppointment.click();
+        try {
+            newAppointment.click();
+        }catch (Exception e){
+            logger.log(Status.INFO,"Got error ");
+            throw  e;
+        }
+
     }
-    public void clickAppointment(String date){
+    public void addScheduleAppointment() throws InterruptedException {
 
         appointmentDate.click();
-        appointmentDate.sendKeys(date);
+        appointmentDate.sendKeys(BaseClass.datasheet.get("Appointment Date"));
+        Thread.sleep(2000);
+        appointmentStartTime.click();
+        appointmentStartTime.sendKeys(BaseClass.datasheet.get("Appointment Start Time"));
+        Thread.sleep(2000);
+        appointmentEndTime.click();
+        appointmentEndTime.sendKeys(BaseClass.datasheet.get("Appointment End Time"));
+        Thread.sleep(2000);
+        Tbd_Checkbox.click();
+        Thread.sleep(2000);
+        client.click();
+        Thread.sleep(2000);
+        client.sendKeys(datasheet.get("Client"));
+
+        client.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        Facility.click();
+        Facility.sendKeys(datasheet.get("Facility"));
+        client.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+
     }
 }
