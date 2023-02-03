@@ -8,12 +8,18 @@
 	<test name="Test" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="ClientMedical" />
 		<classes>
-		 <class name="com.tests.TestingReports">
+		<!-- <class name="com.tests.TestingReports">
 			<methods>
 				<include name="testLogin"/>
-<!--				<include name="testreport"/>-->
+&lt;!&ndash;				<include name="testreport"/>&ndash;&gt;
 			</methods>
-		 </class>
+		 </class>-->
+
+			<class name="com.tests.VG_Clients_MedicalTests">
+				<methods>
+					<include name="ClientsMedical"/>
+				</methods>
+			</class>
 
 		</classes>
 	</test>

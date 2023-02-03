@@ -93,7 +93,6 @@ public class TestingReports  extends BaseClass {
 
         BaseClass.setModuleName(moduleName);
 
-
     }
 
 }

@@ -9,9 +9,7 @@ import com.pom.RequestAppointmentPage;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.base.BaseClass;
 
@@ -63,6 +61,14 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		String methodName = BaseClass.getMethodName();
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
+
+	}
+
+	@BeforeTest
+	@Parameters({"Module"})
+	public void readModule(String moduleName){
+
+		BaseClass.setModuleName(moduleName);
 
 	}
 }
