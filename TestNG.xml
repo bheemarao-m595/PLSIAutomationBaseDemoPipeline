@@ -6,21 +6,14 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 	<test name="Test" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="ClientMedical" />
+		<parameter name="Module" value="New appointment" />
 		<classes>
-		<!-- <class name="com.tests.TestingReports">
-			<methods>
-				<include name="testLogin"/>
-&lt;!&ndash;				<include name="testreport"/>&ndash;&gt;
-			</methods>
-		 </class>-->
 
-			<class name="com.tests.VG_Clients_MedicalTests">
+			<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
-					<include name="ClientsMedical"/>
+					<include name="addScheduleAppointment"/>
 				</methods>
 			</class>
-
 		</classes>
 	</test>
 </suite>

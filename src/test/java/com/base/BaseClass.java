@@ -204,6 +204,16 @@ public class BaseClass
 		return DestFile.getAbsolutePath();
 	}
 
+	public String takeScreenshotForStep(String step, WebElement el){
+		File SrcFile, DestFile = null;
+		try {      String basePath = System.getProperty("user.dir")+"\\ScreenShots\\";
+			SrcFile =  el.getScreenshotAs(OutputType.FILE);
+			DestFile=new File(basePath+step+".png");
+			FileUtils.copyFile(SrcFile, DestFile);   }
+	catch(Exception ee) {
+		ee.printStackTrace();
+	}   return DestFile.getAbsolutePath();}
+
 	@AfterSuite
 	public  void tearDown(){
 
