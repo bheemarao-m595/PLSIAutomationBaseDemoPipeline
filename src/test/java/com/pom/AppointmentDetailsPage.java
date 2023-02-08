@@ -50,18 +50,22 @@ public class AppointmentDetailsPage {
     private WebElement close;
 
     public  WebElement get_appointmentId(){
+
         return appointmentId;
     }
 
    public  void clickTabInterpreterMatching(){
+
         tabInterpreterMatching.click();
     }
 
     public  void clickButtonFindInterpreters(){
+
         buttonFindInterpreters.click();
     }
 
     public  WebElement get_interpreterListTableBody(){
+
         return interpreterListTableBody;
     }
 
@@ -77,10 +81,12 @@ public class AppointmentDetailsPage {
 
     }
     public List<WebElement> get_interpreterListTableEmailCol(){
+
         return  wd.findElements(By.xpath("//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-12 MuiGrid-grid-lg-12 css-1y5l420']//table//tr/td[2]"));
     }
 
     public  void clickClose(){
+
         close.click();
     }
 

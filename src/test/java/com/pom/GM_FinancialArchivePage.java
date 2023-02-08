@@ -25,7 +25,7 @@ public class GM_FinancialArchivePage {
     @FindBy (xpath = "//table[@class='MuiTable-root css-jiyur0']//th[5]")
     private WebElement headerStatus;
 
-    @FindBy (xpath = "//table[@class='MuiTable-root css-jiyur0']//th[6")
+    @FindBy (xpath = "//table[@class='MuiTable-root css-jiyur0']//th[6]")
     private WebElement headerInterpreter;
 
     @FindBy (xpath = "//table[@class='MuiTable-root css-jiyur0']//th[7]")

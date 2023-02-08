@@ -1,6 +1,7 @@
 package com.tests;
 import java.io.IOException;
 
+import com.pom.DashBoardPage;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -102,6 +103,33 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         }
     }
 
+    @Test(description = "This TC will perform valid login and update the patient preferences")
+    public void editPreference() throws Throwable
+    {
+        logger = extent.createTest("Editing Preferences");
+        try {
+
+            driver  = openBrowser();
+            driver.manage().window().maximize();
+            LoginPage lo = new LoginPage(driver);
+            lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
+            logger.addScreenCaptureFromPath(takeScreenshotForStep("UpdatePatient"));
+            logger.log(Status.PASS, "Login Clicked");
+            InterpreterPage InP = new InterpreterPage(driver);
+            DashBoardPage dbp = new DashBoardPage(driver);
+            InP.clickUrgent();
+            logger.log(Status.PASS, "Clicked on Interpreter");
+            dbp.updatePatientName();
+            logger.log(Status.PASS, "preference updated");
+
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+            Assert.assertFalse(true, "got exception at preference ");
+        }
+    }
+
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
@@ -123,5 +151,12 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
     }
 
+    @AfterTest
+    public void closingTheBrowser(){
+
+        driver.close();
     }
+
+
+}
 

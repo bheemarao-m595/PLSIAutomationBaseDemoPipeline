@@ -28,7 +28,6 @@ public class GM_FinanceArchiveTest extends BaseClass{
     public void Setup() throws IOException {
         driver = openBrowser();
         driver.manage().window().maximize();
-        System.out.println("Before test");
 
     }
 
@@ -37,7 +36,6 @@ public class GM_FinanceArchiveTest extends BaseClass{
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
 
-        System.out.println("starting");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
@@ -87,7 +85,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
         boolean isSelected =  FA.navigateFinancialArchivePage();
@@ -121,7 +119,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
         try {
             FA.navigateFinancialReviewPage();
@@ -158,7 +156,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
         boolean isSelected =  FA.navigateFinancialArchivePage();
@@ -184,12 +182,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
         }
-
-
     }
-
-
-
 
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
@@ -207,6 +200,12 @@ public class GM_FinanceArchiveTest extends BaseClass{
     public void readModule(String moduleName){
 
         BaseClass.setModuleName(moduleName);
-
     }
+
+    @AfterTest
+    public void closingTheBrowser(){
+
+        driver.close();
+    }
+
 }

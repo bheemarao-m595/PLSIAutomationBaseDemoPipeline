@@ -17,8 +17,7 @@ public class SV_SetAppointmentTest extends BaseClass
 	@BeforeTest
 	@Parameters({"Module"})
 	public void readModule(String moduleName) throws IOException {
-		driver=openBrowser();
-		driver.manage().window().maximize();
+
 
 		BaseClass.setModuleName(moduleName);
 
@@ -29,6 +28,8 @@ public class SV_SetAppointmentTest extends BaseClass
 	{
 
 		try {
+			driver=openBrowser();
+			driver.manage().window().maximize();
 			logger = extent.createTest("Login as an PLSI scheduler");
 
 			LoginPage lo = new LoginPage(driver);
@@ -50,12 +51,17 @@ public class SV_SetAppointmentTest extends BaseClass
 
 	}
 
-
 	@AfterMethod
 	public void captureResult(ITestResult result) throws IOException {
 
 		String methodName = BaseClass.getMethodName();
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
+	}
+
+	@AfterTest
+	public void closingTheBrowser(){
+
+		driver.close();
 	}
 
 

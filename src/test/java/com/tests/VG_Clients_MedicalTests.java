@@ -23,9 +23,6 @@ public class VG_Clients_MedicalTests extends BaseClass {
 	ExtentTest logger = null;
 
 
-	XSSFSheet sheet = null;
-
-
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
@@ -34,22 +31,15 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
-		System.out.println("starting");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
-		//lo.enterUserName(datasheet.get("UserName"));
-		//lo.enterUserName(datasheet.get("Password"));
-
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
-		Thread.sleep(5000);
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		logger.log(Status.PASS, "Login CLicked");
-		Thread.sleep(5000);
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		vi.createAppointmentFromClient("Medical");
-
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
 
@@ -61,32 +51,17 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
-		System.out.println("starting");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
-
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
-		Thread.sleep(5000);
-
 
 		DashBoardPage db = new DashBoardPage(driver);
 
+		logger.log(Status.PASS, "Login Clicked");
 
-
-		WebElement appId = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"Confirmed");
-
-		appId.click();
-
-		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
-		logger.log(Status.PASS, "Login CLicked");
-		Thread.sleep(5000);
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
-		System.out.println("hi");
-		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
+		logger.addScreenCaptureFromPath(takeScreenshotForStep("Nonmedical"));
 		vi.createAppointmentFromClient("nonmedical");
-
-
-		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
 
 	}
 
@@ -108,4 +83,11 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 		BaseClass.setModuleName(moduleName);
 	}
+
+	@AfterTest
+	public void closingTheBrowser(){
+
+		driver.close();
+	}
+
 }

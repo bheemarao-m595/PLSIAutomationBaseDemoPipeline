@@ -124,13 +124,12 @@ public class VG_RequestAppointmentPage {
 
     public String getWebElementOfField(String label){
 
-
-  return  "";
+     return  "";
     }
-//@Test(priority = 1)
+
     public void     createAppointmentFromClient(String type) throws InterruptedException {
 
-        Thread.sleep(6000);
+        BaseClass.waitforElementToMakeClickable(clients);
         clients.click();
         Thread.sleep(4000);
         requestAppointment.click();
@@ -151,7 +150,6 @@ public class VG_RequestAppointmentPage {
         Thread.sleep(3000);
         Facility.sendKeys(datasheet.get("Facility"));
         Facility.sendKeys(Keys.TAB);
-        System.out.println("k");
         Thread.sleep(3000);
         AppointmentType.click();
         Thread.sleep(2000);

@@ -62,8 +62,20 @@ public class DashBoardPage {
     @FindBy(css= ".MuiBox-root.css-8kdvm0")
     private WebElement filter;
 
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr[1]/td[7]")
+    private WebElement PatientConsumer;
 
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant preferences']")
+    private WebElement preference;
 
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant comments']")
+    private WebElement requester;
+
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant notes']")
+    private WebElement scheduler_notes;
+
+    @FindBy(xpath= "//button[text()=' Save']")
+    private WebElement Save;
 
 
     public DashBoardPage(WebDriver d){
@@ -73,6 +85,15 @@ public class DashBoardPage {
 
     }
 
+    public  void updatePatientName()  {
+
+        PatientConsumer.click();
+        preference.sendKeys("Test Data");
+        requester.sendKeys("Test Data");
+        scheduler_notes.sendKeys("Test Data");
+        Save.click();
+
+    }
 
     public  void clickSearchInHomePage(String keyword){
 

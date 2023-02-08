@@ -30,11 +30,7 @@ public class InterpreterPage {
     @FindBy(xpath= "//*[local-name()='svg' and @data-testid='ReplayIcon']/*[local-name()='path']")
     private WebElement rescindOfferbutton;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr[1]/td[7]")
-    private WebElement PatientConsumer;
 
-    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant preferences']")
-    private WebElement preference;
 
     @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant comments']")
     private WebElement requester;
@@ -122,14 +118,7 @@ public class InterpreterPage {
         BaseClass.goToElementVisibleArea(AcceptTab);
         AcceptTab.click();
     }
-    public  void updatePatientName()  {
-        PatientConsumer.click();
-        preference.sendKeys("Test Data");
-        requester.sendKeys("Test Data");
-        scheduler_notes.sendKeys("Test Data");
-        Save.click();
 
-    }
 
 }
 
