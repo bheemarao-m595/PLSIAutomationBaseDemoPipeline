@@ -40,7 +40,7 @@ public class CommonUtils {
 		StringBuffer bf = new StringBuffer();
 
 
-		for(int i=0;i<5;i++){
+		for(int i=0;i<n;i++){
 
 			Random r = new Random();
 		 int charAt =	r.nextInt(25);
@@ -48,6 +48,63 @@ public class CommonUtils {
 		}
 		return  bf.toString();
 
+	}
+
+	public  static  String getActualHeaderStringFromDashBoardTable(DashBoardHeaders dbh){
+
+        String actualHeader = "";
+		switch (dbh) {
+			case VIEW:
+				actualHeader = "VIEW";
+				break;
+			case DATE:
+				actualHeader = "DATE";
+				break;
+			case START:
+				actualHeader = "START";
+				break;
+			case END:
+				actualHeader = "END";
+				break;
+			case CHECKINDURATION:
+				actualHeader = "CHECK IN DURATION";
+				break;
+			case MRN_RN:
+				actualHeader = "MRN/RN";
+				break;
+			case  PATIENT_CONSUMER:
+				actualHeader = "PATIENT/ CONSUMER";
+				break;
+			case REQUESTED_LANGUAGE:
+				actualHeader = "REQUESTED LANGUAGE";
+				break;
+			case STATUS:
+				actualHeader = "STATUS";
+				break;
+			case INTERPRETER:
+				actualHeader ="INTERPRETER";
+				break;
+			case  CLIENT:
+				actualHeader = "CLIENT";
+				break;
+			case  FACILITY:
+				actualHeader = "FACILITY";
+				break;
+			case BUILDING:
+				actualHeader = "BUILDING";
+				break;
+			case CLINIC_DEPARTMENT:
+				actualHeader = "CLINIC / DEPARTMENT";
+				break;
+			case  APPT_TYPE:
+				actualHeader = "APPT TYPE";
+				break;
+			case  ACTIONS:
+				actualHeader  = "ACTIONS";
+				break;
+
+		}
+		return actualHeader;
 	}
 
 

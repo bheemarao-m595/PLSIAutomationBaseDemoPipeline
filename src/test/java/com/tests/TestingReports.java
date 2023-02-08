@@ -55,7 +55,7 @@ public class TestingReports  extends BaseClass {
      @Test
         public void testLogin() throws InterruptedException, IOException {
 
-        driver = openBrowser("chrome");
+        driver = openBrowser();
 
          System.out.println("starting");
          logger = extent.createTest(  " started");

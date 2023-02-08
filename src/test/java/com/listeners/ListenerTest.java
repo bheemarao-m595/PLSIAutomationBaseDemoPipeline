@@ -43,7 +43,7 @@ public class ListenerTest implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
 		String t =result.getThrowable().getMessage();
-//         BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
+         BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
 
 
 

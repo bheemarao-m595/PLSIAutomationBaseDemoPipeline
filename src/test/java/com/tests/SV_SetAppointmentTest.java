@@ -1,29 +1,23 @@
 package com.tests;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.WebDriver;
+import com.pom.DashBoardPage;
+import com.utils.DashBoardHeaders;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.NewAppointmentPage;
-import com.utils.SeleniumUIUtils;
 
 public class SV_SetAppointmentTest extends BaseClass
 {
 	@BeforeTest
 	@Parameters({"Module"})
 	public void readModule(String moduleName) throws IOException {
-		driver=openBrowser("chrome");
+		driver=openBrowser();
 		driver.manage().window().maximize();
 
 		BaseClass.setModuleName(moduleName);
@@ -40,10 +34,12 @@ public class SV_SetAppointmentTest extends BaseClass
 			LoginPage lo = new LoginPage(driver);
 			lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-
+			DashBoardPage db = new DashBoardPage(driver);
 			NewAppointmentPage nap = new NewAppointmentPage(driver);
+			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
 			nap.addScheduleAppointment();
-			// String methodName = BaseClass.getMethodName();
+		WebElement newAppointment =	db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
+		System.out.println(newAppointment.getText());
 			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
 		}catch (Exception e){
 

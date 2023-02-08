@@ -2,6 +2,7 @@ package com.pom;
 
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
+import com.utils.CommonUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,31 @@ public class NewAppointmentPage {
         PageFactory.initElements(d,this);
 
     }
+
+
+    @FindBy(css= "input[placeholder='Search...']")
+    private WebElement Search;
+
+    @FindBy(css= "/html/body/div/div[3]/div/div/div[2]/table/tbody/tr/td[1]")
+    private WebElement selectView;
+
+    @FindBy(css= "//img[@class='MuiBox-root css-1vwda0p']")
+    private WebElement editAppo;
+
+    @FindBy(css= "//input[@name='AppointmentstartTime']")
+    private WebElement appointmentstarttime1;
+
+    @FindBy(xpath= "//input[@name='AppointmentEndTime']")
+    private WebElement appointmentendtime1;
+
+    @FindBy(xpath= "//input[@id='react-select-17-input']")
+    private WebElement Client1;
+
+    @FindBy(css= "#react-select-22-input")
+    private WebElement Requestedlanguage1;
+
+    @FindBy(xpath= "//button[@type='submit']")
+    private WebElement savebutton;
 
     @FindBy(id = "btn_new_appt")
     private WebElement newAppointment;
@@ -93,15 +119,15 @@ public class NewAppointmentPage {
 
         Thread.sleep(3000);
         appointmentDate.click();
-        appointmentDate.sendKeys(BaseClass.datasheet.get("Appointment Date"));
+        appointmentDate.sendKeys(datasheet.get("Appointment Date"));
 
         Thread.sleep(2000);
         appointmentStartTime.click();
-        appointmentStartTime.sendKeys(BaseClass.datasheet.get("App Start time"));
+        appointmentStartTime.sendKeys(datasheet.get("App Start time"));
 
         Thread.sleep(2000);
         appointmentEndTime.click();
-        appointmentEndTime.sendKeys(BaseClass.datasheet.get("App End Time"));
+        appointmentEndTime.sendKeys(datasheet.get("App End Time"));
 
         Thread.sleep(2000);
         Tbd_Checkbox.click();
@@ -135,19 +161,19 @@ public class NewAppointmentPage {
         // building.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         patient_Mrn.click();
-        patient_Mrn.sendKeys(BaseClass.datasheet.get("Patient MRN"));
+        patient_Mrn.sendKeys(datasheet.get("Patient MRN"));
 
         Thread.sleep(2000);
         patient_FName.click();
-        patient_FName.sendKeys(BaseClass.datasheet.get("First Name"));
+        patient_FName.sendKeys(datasheet.get("First Name"));
 
         Thread.sleep(2000);
         patient_LName.click();
-        patient_LName.sendKeys(BaseClass.datasheet.get("Last Name"));
+        patient_LName.sendKeys(datasheet.get("Last Name")+ CommonUtils.getRandomStringOfLength(3));
 
         Thread.sleep(2000);
         patient_Dob.click();
-        patient_Dob.sendKeys(BaseClass.datasheet.get("DOB"));
+        patient_Dob.sendKeys(datasheet.get("DOB"));
 
 
         Thread.sleep(3000);
@@ -158,9 +184,25 @@ public class NewAppointmentPage {
 
         Thread.sleep(2000);
         setAppointment.click();
-        System.out.println("Create the appointment");
-
-
+        Thread.sleep(4000);
 
     }
+
+
+    public void clickEdit(){
+        editAppo.click();
+
+    }
+
+    public  void editAppointment(){
+
+        appointmentstarttime1.click();
+        appointmentendtime1.sendKeys(BaseClass.datasheet.get(""));
+
+        appointmentendtime1.click();
+        appointmentendtime1.sendKeys(BaseClass.datasheet.get(""));
+        savebutton.click();
+
+    }
+
 }

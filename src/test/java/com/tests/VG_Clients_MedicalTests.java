@@ -7,6 +7,7 @@ import com.aventstack.extentreports.Status;
 import com.pom.DashBoardPage;
 import com.pom.LoginPage;
 import com.pom.VG_RequestAppointmentPage;
+import com.utils.DashBoardHeaders;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +29,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
-		driver = openBrowser("chrome");
+		driver = openBrowser();
 
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
@@ -46,7 +47,6 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		logger.log(Status.PASS, "Login CLicked");
 		Thread.sleep(5000);
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
-		System.out.println("hi");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		vi.createAppointmentFromClient("Medical");
 
@@ -57,8 +57,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 	@Test(description = "This TC will perform valid login and verified that all NonMedical appoinmets will create and serach")
 	public void ClientsnonMedical() throws InterruptedException, IOException {
 
-		driver = openBrowser("chrome");
-
+		driver = openBrowser();
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
@@ -74,7 +73,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 
 
-		WebElement appId = db.getWebElementOfHeader("STATUS","New");
+		WebElement appId = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"Confirmed");
 
 		appId.click();
 

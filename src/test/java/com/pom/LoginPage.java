@@ -7,12 +7,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class LoginPage {
 
 
 
     WebDriver wd;
+
+    @FindBy(xpath= "//span[text()='logout']")
+    private WebElement logOut;
+
     @FindBy(id= "form_auth_signin_logininfo_email")
     private WebElement user;
 
@@ -22,9 +31,8 @@ public class LoginPage {
     @FindBy(id= "btn_auth_signinbasic")
     private WebElement login;
 
-
     @CacheLookup
-    @FindBy(name="SubmitLogin")
+    @FindBy(xpath="//*[text()='logout']/ancestor::button")
     WebElement logoutBtn;
 
     public LoginPage(WebDriver d){
@@ -60,5 +68,28 @@ public class LoginPage {
 
         Thread.sleep(3000);
         login.click();
+       Assert.assertTrue(waitForLoginComplete(),"Login Failed");
+
     }
+
+    public void click_logOut(){
+
+        logOut.click();
+    }
+
+    public boolean waitForLoginComplete(){
+        boolean  successlogin = true;
+
+        try {
+            WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+
+            wait.until(ExpectedConditions.visibilityOf(logoutBtn));
+        }catch (Exception e){
+            e.printStackTrace();
+            successlogin = false;
+        }
+        return  successlogin;
+    }
+
+
 }

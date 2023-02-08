@@ -16,4 +16,52 @@
 			</class>
 		</classes>
 	</test>
+
+	<!--<test name="Test" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="Finance-Admin" />
+		<classes>
+
+			<class name="com.tests.GM_FinanceArchiveTest">
+				<methods>
+					<include name="approveFinancialArchivePendingAppointment"/>
+				</methods>
+			</class>
+		</classes>
+	</test>-->
+
+	<!--<test name="Test" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="ClientMedical" />
+		<classes>
+
+			<class name="com.tests.VG_Clients_MedicalTests">
+				<methods>
+					<include name="ClientsnonMedical"/>
+				</methods>
+			</class>
+		</classes>
+	</test>-->
+
+	<!--<test name="Test" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="Interpreter_Offer" />
+		<classes>
+
+			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
+				<methods>
+					<include name="rescindOfferedToInterpreter"/>
+				</methods>
+			</class>
+		</classes>
+	</test>-->
+
+<!--	<test name="Test" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="Reject-Accept app" />
+		<classes>
+
+			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
+				<methods>
+					<include name="rejectAppointment"/>
+				</methods>
+			</class>
+		</classes>
+	</test>-->
 </suite>

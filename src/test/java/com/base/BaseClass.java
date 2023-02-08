@@ -5,10 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -16,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -84,10 +82,6 @@ public class BaseClass
 		extent.setSystemInfo("User Name", prop.getProperty("author"));
 		data = new ExcelUtils();
 
-		String testDataFile =  prop.getProperty("testDataFile");
-		String fp = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\" + testDataFile;
-		//XSSFWorkbook wb = data.getWorkbook(fp);
-		//datasheet = data.getMapDataForRowName(wb,"ClientMedical","CreateNew");
 	}
 		
 	
@@ -96,7 +90,7 @@ public class BaseClass
 	}
 	
 	
-	public WebDriver openBrowser(String browserType) throws IOException {
+	public WebDriver openBrowser() throws IOException {
 
 		String basePath = System.getProperty("user.dir") + "\\src\\test\\resources\\drivers\\";
 		String proppath = System.getProperty("user.dir") + "\\src\\main\\resources\\Application.properties";
@@ -104,7 +98,7 @@ public class BaseClass
 		Properties prop = new Properties();
 
 		prop.load(fin);
-		if(browserType.toLowerCase().equals("firefox")) {
+		if(prop.get("driver").equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver", basePath+"geckodriver.exe");
 			driver = new FirefoxDriver();
 		}else if(prop.get("driver").equals("chrome")) {
@@ -123,8 +117,6 @@ public class BaseClass
 		return driver;
 	}
 	
-	
-
 
 	public  WebElement getElementByXpath(WebDriver d ,String xpath){
 
@@ -158,7 +150,6 @@ public class BaseClass
 		try{
 			WebElement w =  d.findElement(By.xpath(xpath));
 			found = w.isDisplayed();
-
 		}catch (NoSuchElementException e){
 
 			 e.printStackTrace();
@@ -179,14 +170,14 @@ public class BaseClass
 		w.click();
 	}
 
-	public WebDriver getDriver(){
+	public WebDriver getDriver() throws IOException {
 
 		if(driver !=null){
 
 			return  driver;
 		}
 		else
-			return 	null;
+			return 	openBrowser();
 	}
 
 	public String takeScreenshotForStep(String step){
@@ -204,6 +195,13 @@ public class BaseClass
 		return DestFile.getAbsolutePath();
 	}
 
+	/**
+	 * Author : John
+	 * Purpose : It will take the screenshot of the individual element in focus
+	 * @param step
+	 * @param el
+	 * @return returns path of the screenshot taken
+	 */
 	public String takeScreenshotForStep(String step, WebElement el){
 		File SrcFile, DestFile = null;
 		try {      String basePath = System.getProperty("user.dir")+"\\ScreenShots\\";
@@ -219,6 +217,64 @@ public class BaseClass
 
 		extent.flush();
 		//driver.close();
+	}
+
+	/**
+	 * Author: John
+	 * Purpose : It will return boolean value based on the clickability of the element and visibility
+	 *
+	 * @param el
+	 * @return
+	 */
+	public static boolean isElementPresent(WebElement el){
+
+		try{
+
+			WebDriverWait w = new WebDriverWait(driver,Duration.ofSeconds(5));
+		  WebElement web =	w.until(ExpectedConditions.elementToBeClickable(el));
+		  return  web.isDisplayed();
+
+		}catch (Exception e){
+			e.printStackTrace();
+			return  false;
+		}
+
+	}
+	public static  void waitforElementToMakeClickable(WebElement el){
+
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.elementToBeClickable(el));
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+
+	}
+
+	/**
+	 * Author: John
+	 * Purpose: It will go to the visible area of the element passed
+	 * @param el  Element to be make visible
+	 */
+	public static  void goToElementVisibleArea(WebElement el){
+
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView(true);",el);
+	}
+
+	public static void clickWithJavaScript(WebElement element){
+
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", element);
+	}
+
+	public int readNumberOfRowsInTable(WebElement ele) {//this reads number of rows in any given table.
+
+		List<WebElement> rowList = ele.findElements(By.tagName("tr"));
+		System.out.println("Total number of Rows in the table are : " + rowList.size());
+		return rowList.size();
+
 	}
 
 

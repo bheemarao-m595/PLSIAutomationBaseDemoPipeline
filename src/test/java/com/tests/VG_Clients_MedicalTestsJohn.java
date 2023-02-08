@@ -25,7 +25,7 @@ public class VG_Clients_MedicalTestsJohn extends BaseClass {
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is showing only todays appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
-		driver = openBrowser("chrome");
+		driver = openBrowser();
 
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);

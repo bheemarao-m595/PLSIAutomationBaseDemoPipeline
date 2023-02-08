@@ -59,7 +59,6 @@ public class GM_FinancialAdminPage {
     }
     public void approvingFinancialAppointment(int noOfChecboxRequired,String Status) throws Throwable {
 
-        //String elePath = "//span[text()='Pending']/../../../../preceding-sibling::td[1]//input[@type='checkbox']";
 
         int boxesChecked=0;
         while(boxesChecked<noOfChecboxRequired) {
@@ -69,17 +68,11 @@ public class GM_FinancialAdminPage {
                 if(rows.get(i).getText().contains(Status)) {
                     Thread.sleep(1000);
                     JavascriptExecutor js = (JavascriptExecutor) driver;
-                    //int noOfPendingBox=driver.findElements(By.xpath(elePath)).size();
-                    //if(noOfPendingBox==1) {
-                    //
-                    // String elePath = "(//span[text()='Pending'])[" + ( i + 2 )+ "]/../../../../preceding-sibling::td[1]//input[@type='checkbox']";
                     String elePath = "(//input[@type='checkbox'])[" + (i + 2 )+ "]";
 
                     WebElement checkbox=driver.findElement(By.xpath(elePath));
                     js.executeScript("arguments[0].scrollIntoView();",checkbox);
-                    // js.executeScript("window.scrollBy(0,-300)");
                     js.executeScript("arguments[0].click();", checkbox);
-                    //checkbox.click();
                     boxesChecked++;
                     if(boxesChecked == noOfChecboxRequired)
                         break;

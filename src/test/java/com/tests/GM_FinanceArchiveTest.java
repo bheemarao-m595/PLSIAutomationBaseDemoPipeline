@@ -3,6 +3,7 @@ package com.tests;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
+import com.pom.DashBoardPage;
 import com.pom.GM_FinancialAdminPage;
 import com.pom.GM_FinancialArchivePage;
 import com.pom.LoginPage;
@@ -25,10 +26,9 @@ public class GM_FinanceArchiveTest extends BaseClass{
     XSSFSheet sheet = null;
     @BeforeMethod
     public void Setup() throws IOException {
-        driver = openBrowser("chrome");
+        driver = openBrowser();
         driver.manage().window().maximize();
         System.out.println("Before test");
-        // data.readExcelDataToArray(sheet);
 
     }
 
@@ -58,6 +58,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
         Thread.sleep(5000);
         try {
+            DashBoardPage db = new DashBoardPage(driver);
             FA.approvingFinancialAppointment(1,"PENDING");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
@@ -164,7 +165,6 @@ public class GM_FinanceArchiveTest extends BaseClass{
         if(!isSelected)
         {
             WebElement el = FA.getArchivetab();
-            System.out.println(el.isDisplayed());
             String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
             Assert.assertTrue(false,"Tab not highlighted");
