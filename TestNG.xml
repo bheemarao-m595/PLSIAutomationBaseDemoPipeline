@@ -5,7 +5,7 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<test name="Test" parallel = "none" thread-count = "1" >
+	<!--<test name="Test" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="New appointment" />
 		<classes>
 
@@ -15,8 +15,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
-
+	</test>-->
 	<!--<test name="Test" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="Finance-Admin" />
 		<classes>
@@ -24,11 +23,12 @@
 			<class name="com.tests.GM_FinanceArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
+					<include name="sortingColumnsFinancialArchive"/>
 				</methods>
 			</class>
 		</classes>
-	</test>-->
-
+	</test>
+-->
 	<!--<test name="Test" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="ClientMedical" />
 		<classes>
@@ -47,13 +47,13 @@
 
 			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
 				<methods>
-					<include name="rescindOfferedToInterpreter"/>
+					<include name="makeAnOfferToInterpreter"/>
 				</methods>
 			</class>
 		</classes>
 	</test>-->
 
-<!--	<test name="Test" parallel = "none" thread-count = "1" >
+ 	<test name="Test" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="Reject-Accept app" />
 		<classes>
 
@@ -63,5 +63,5 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 </suite>
