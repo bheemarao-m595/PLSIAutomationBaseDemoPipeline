@@ -43,7 +43,7 @@ public class ListenerTest implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
 		String t =result.getThrowable().getMessage();
-         BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
+    //     BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
 
 
 
@@ -59,7 +59,7 @@ public class ListenerTest implements ITestListener {
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 
-		String methodName =result.getMethod().getMethodName();
+		String methodName = result.getMethod().getMethodName();
 		String moduleName = BaseClass.getModuleName();
 		BaseClass b = new BaseClass();
 		b.setMethodName(methodName);
