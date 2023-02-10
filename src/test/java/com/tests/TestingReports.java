@@ -72,7 +72,7 @@ public class TestingReports  extends BaseClass {
          Thread.sleep(4000);
          NewAppointmentPage na = new NewAppointmentPage(driver);
          na.clickNewAppointment();
-         na.addScheduleAppointment();
+         na.addScheduleAppointment("Medical");
 
          logger.log(Status.PASS, "New Appointment clicked");
          logger.addScreenCaptureFromPath(takeScreenshotForStep("new"));

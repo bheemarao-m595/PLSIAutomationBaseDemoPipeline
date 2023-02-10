@@ -6,7 +6,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import com.base.BaseClass;
 import com.pom.*;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.io.IOException;
 @Listeners({com.listeners.ListenerTest.class})
 public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
     WebDriver driver = null;
-    ExtentTest logger = null;
 
     @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
     public void editfinanace() throws InterruptedException, IOException {
@@ -24,7 +22,7 @@ public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
         driver.manage().window().maximize();
         LoginPage lo = new LoginPage(driver);
         InterpreterPage InO = new InterpreterPage(driver);
-        FinancePage Fp = new FinancePage(driver);
+        FinancePage financePage = new FinancePage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
         logger.log(Status.PASS, "Login CLicked");
@@ -33,16 +31,7 @@ public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
         InO.clickUrgent();
         logger.log(Status.PASS, "Urgent tab CLicked");
         Thread.sleep(3500);
-        InO.clickAppointmentId();
-        logger.log(Status.PASS, "Selected Appointment");
-        Thread.sleep(3500);
-
-        Fp.editfinance();
-        logger.log(Status.PASS, "Edit Appointment fields clicked");
-        Thread.sleep(3500);
-
-        Fp.calculationtimeframe(datasheet.get("TimeFrame"));
-        Fp.calculationsave();
+        financePage.editcalculation();
 
     }
 

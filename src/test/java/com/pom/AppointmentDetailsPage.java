@@ -59,9 +59,10 @@ public class AppointmentDetailsPage {
         tabInterpreterMatching.click();
     }
 
-    public  void clickButtonFindInterpreters(){
+    public  void clickButtonFindInterpreters() throws InterruptedException {
 
         buttonFindInterpreters.click();
+        Thread.sleep(3000);
     }
 
     public  WebElement get_interpreterListTableBody(){

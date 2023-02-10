@@ -4,6 +4,7 @@ import com.base.BaseClass;
 import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,9 @@ import org.testng.Assert;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.base.BaseClass.datasheet;
+import static com.base.BaseClass.driver;
 
 public class DashBoardPage {
 
@@ -77,11 +81,36 @@ public class DashBoardPage {
     @FindBy(xpath= "//button[text()=' Save']")
     private WebElement Save;
 
+    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[2]//td[9]")
+    private WebElement click_Status;
+
+    @FindBy(xpath = "//label[@id='typo_Statusform_apptstatus']/../following-sibling::div//input")
+    private WebElement select_Status;
+
+    @FindBy(id = "btn_Statusform_save")
+    private WebElement save_Status;
+
 
     public DashBoardPage(WebDriver d){
 
         wd = d;
         PageFactory.initElements(d,this);
+
+    }
+
+    public void updateQuickStatus() throws InterruptedException {
+
+        Thread.sleep(3000);
+        click_Status.click();
+
+        Thread.sleep(2000);
+        select_Status.click();
+        select_Status.sendKeys(datasheet.get("Appointment Status"));
+        select_Status.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        save_Status.click();
+        Thread.sleep(2000);
 
     }
 
@@ -104,47 +133,50 @@ public class DashBoardPage {
     public  WebElement getWebElementOfHeaderAndCellValue(DashBoardHeaders dbh, String cellValue){
 
          WebElement  appId = null;
-         int i  =1;
-         List<WebElement> rows =  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
-         Map<String,Integer> headIndex =new LinkedHashMap<>();
-
-
-         for( WebElement r :  rows){
-
-              String val = r.getText();
-              String firtword =  val.split("\\R")[0];
-                  headIndex.put(firtword,i);
-              i++;
-         }
-
-         for (Map.Entry<String,Integer> e : headIndex.entrySet()){
-
-             System.out.println(e.getKey() + "-->" + e.getValue());
-
-         }
-
-         DashBoardHeaders searchString = dbh;
+        DashBoardHeaders searchString = dbh;
         String  actualHeader =CommonUtils.getActualHeaderStringFromDashBoardTable(searchString);
-        int headerIndex =  headIndex.get(actualHeader);
 
-        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
-        Assert.assertNotEquals(recordsCount,0,"Table is empty");
-        for(int rowNumber=1;rowNumber < recordsCount;rowNumber++){
+            int i = 1;
+            List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
+            Map<String, Integer> headIndex = new LinkedHashMap<>();
 
-            String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
-            String part2 ="]//td//*[text()='"+ cellValue +  "']";
-            String part3 = "//td//*[text()='"+ cellValue +"']/ancestor::td/preceding-sibling::td[";
 
-            BaseClass b = new BaseClass();
-        boolean recordTEextMatching =    b.isElementByXpath(wd, part1 +rowNumber + part2);
-        if(recordTEextMatching) {
+            for (WebElement r : rows) {
 
-           appId =   b.getElementByXpath(wd, (part3 + ( headerIndex -1 ) + "]"));
-           break;
+                String val = r.getText();
+                String firtword = val.split("\\R")[0];
+                headIndex.put(firtword, i);
+                i++;
+            }
 
-        }
-        }
-        System.out.println(appId.getText());
+            for (Map.Entry<String, Integer> e : headIndex.entrySet()) {
+
+                System.out.println(e.getKey() + "-->" + e.getValue());
+
+            }
+
+
+            int headerIndex = headIndex.get(actualHeader);
+
+            int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
+            Assert.assertNotEquals(recordsCount, 0, "Table is empty");
+            for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
+
+                String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
+                String part2 = "]//td//*[text()='" + cellValue + "']";
+                String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
+
+                BaseClass b = new BaseClass();
+                boolean recordTEextMatching = b.isElementByXpath(wd, part1 + rowNumber + part2);
+                if (recordTEextMatching) {
+
+                    appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));
+                    break;
+
+                }
+            }
+            System.out.println(appId.getText());
+
 
         return appId;
 
@@ -176,7 +208,14 @@ public class DashBoardPage {
         Thread.sleep(3000);
     }
 
+public  WebElement getAppIDWebElement(String text){
 
+        WebElement appId =   wd.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='722']"));
+
+        System.out.println(appId.getText());
+   return  appId;
+
+    }
 
 
 

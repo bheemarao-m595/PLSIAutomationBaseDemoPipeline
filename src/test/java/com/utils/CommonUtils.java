@@ -2,6 +2,7 @@ package com.utils;
 
 import com.base.BaseClass;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,10 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class CommonUtils {
@@ -105,6 +110,25 @@ public class CommonUtils {
 
 		}
 		return actualHeader;
+	}
+
+	public static String getCurrentSystemDate()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		 return  dtf.format(now);
+	}
+	public  static  String addMinutesToCurrentTime(int minToAdd){
+
+		Calendar currentTimeNow = Calendar.getInstance();
+		String curTime = String.valueOf(currentTimeNow.getTime());
+		String truncCurrentTime = StringUtils.truncate(curTime,11,5);
+		currentTimeNow.add(Calendar.MINUTE, minToAdd);
+		Date fiveMinsFromNow = currentTimeNow.getTime();
+		String five = String.valueOf(fiveMinsFromNow);
+		String newTime = StringUtils. truncate(five,11,5);
+		return  newTime;
+
 	}
 
 

@@ -2,25 +2,25 @@ package com.tests;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.pom.*;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.utils.DashBoardHeaders;
+import com.utils.ExcelUtils;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-import com.base.BaseClass;
-
-
+import   com.base.BaseClass;
 import com.utils.CommonUtils;
 import com.utils.SeleniumUIUtils;
-
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+
 public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
         /*This class tests an appointment with current date is being rejected,accepted,
@@ -33,11 +33,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         WebDriver driver = null;
         CommonUtils CU = null;
 
-
-        ExtentTest logger = null;
-
-
-
         @Test(priority = 1)
         public void rejectAppointment() throws InterruptedException, IOException {
 
@@ -49,77 +44,38 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
 
+
             LoginPage loginPage = new LoginPage(driver);
             DashBoardPage dashboard = new DashBoardPage(driver);
             AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
             AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
             InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
+            ExcelUtils exl = new ExcelUtils();
+            XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
 
+            Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","addScheduleAppointment");
             loginPage.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
 
             Thread.sleep(3000);
 
             logger.log(Status.INFO, "current page is all appointments dashboard");
 
-            dashboard.search(datasheet.get("Appointment Status"));
 
-            Thread.sleep(5000);
+            NewAppointmentPage nap = new NewAppointmentPage(driver);
+            appointmentData.put("Requested Language",BaseClass.datasheet.get("Requested Language"));
+            String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+            DashBoardPage db = new DashBoardPage(driver);
+            String patientFName = appointmentData.get("First Name");
+            db.search(lastNameOfPatient);
+            Thread.sleep(4000);
+            WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+            //      WebElement appid = db.getAppIDWebElement("727");
+            // WebElement appid = driver.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='722']"));
+            Assert.assertNotNull(appid,"Appointment ID not returned properly");
+            String view_Text = appid.getText();
+            appid.click();
 
-            int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
-
-            logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
-
-            List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-            logger.log(Status.INFO, "selected the column Status");
-
-            List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-            logger.log(Status.INFO, "selected the column Language");
-
-            String view_Text = null;// for caturing appointment id
-
-            logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
-
-            for (int i = 0; i <= allAppRowsSize - 1; i++) {
-
-                String status = column_status.get(i).getText();
-                System.out.println(column_status.get(i).getText());
-
-                String language = column_language.get(i).getText();
-                System.out.println(column_language.get(i).getText());
-
-                if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
-
-                    logger.log(Status.INFO, "found a new appointment");
-
-                    List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
-
-                    WebElement view_id = column_view.get(i);
-
-                    view_Text = view_id.getText();
-
-                    System.out.println(view_Text);
-
-                    Thread.sleep(1000);
-
-                    view_id.click();
-                    logger.log(Status.INFO, "able to click appointment id:" + view_Text);
-                    Thread.sleep(3000);
-
-                    //UI.waitForElementVisibility(appDetails.appointmentId());
-                    logger.log(Status.INFO, " navigated to the appointment details page");
-                    String appId = appDetails.get_appointmentId().getAttribute("value");
-                    Assert.assertEquals(view_Text, appId);
-                    logger.log(Status.PASS,
-                            "clicked appointment id:" + view_Text + " and verified same appointment is being displayed");
-
-                    break;
-                }
-
-                js.executeScript("window.scrollBy(0,100)", "");
-            }
-
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             appDetails.clickTabInterpreterMatching();
 
@@ -240,7 +196,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             loginPage.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
 
             logger.log(Status.INFO, "Logged in as scheduler");
-
             Thread.sleep(2000);
 
             dashboard.search(view_Text);
@@ -328,67 +283,23 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
         InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
 
+         ExcelUtils exl = new ExcelUtils();
+        XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
+        Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","addScheduleAppointment");
+
         loginPage.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
-        Thread.sleep(3000);
-
-        logger.log(Status.INFO, "current page is all appointments dashboard");
-
-        dashboard.search(datasheet.get("Appointment Status"));
+        NewAppointmentPage nap = new NewAppointmentPage(driver);
+        appointmentData.put("Requested Language",BaseClass.datasheet.get("Requested Language"));
+        String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+        DashBoardPage db = new DashBoardPage(driver);
+        String patientFName = appointmentData.get("First Name");
+        WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+        Assert.assertNotNull(appid,"Appointment ID not returned properly");
+        String view_Text = appid.getText();
+        appid.click();
+        //for creating appointment id
 
         Thread.sleep(5000);
-        int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
-
-        logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
-
-        List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-        logger.log(Status.INFO, "selected the column Status");
-
-        List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-        logger.log(Status.INFO, "selected the column Language");
-
-        String view_Text = null;// for caturing appointment id
-
-        logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
-
-        for (int i = 0; i <= allAppRowsSize - 1; i++) {
-
-            String status = column_status.get(i).getText();
-            System.out.println(column_status.get(i).getText());
-
-            String language = column_language.get(i).getText();
-            System.out.println(column_language.get(i).getText());
-
-            if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                    && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
-
-                logger.log(Status.INFO, "found a new appointment");
-
-                List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
-
-                WebElement view_id = column_view.get(i);
-
-                view_Text = view_id.getText();
-
-                System.out.println(view_Text);
-
-                Thread.sleep(1000);
-
-                view_id.click();
-                logger.log(Status.INFO, "able to click appointment id:" + view_Text);
-                Thread.sleep(3000);
-
-                //UI.waitForElementVisibility(appDetails.appointmentId());
-                logger.log(Status.INFO, " navigated to the appointment details page");
-                String appId = appDetails.get_appointmentId().getAttribute("value");
-                Assert.assertEquals(view_Text, appId);
-                logger.log(Status.PASS,
-                        "clicked appointment id:" + view_Text + " and verified same appointment is being displayed");
-
-                break;
-            }
-
-            js.executeScript("window.scrollBy(0,100)", "");
-        }
 
         Thread.sleep(1000);
 
@@ -402,7 +313,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
         logger.log(Status.INFO, " Clicked the button FIND INTERPRETERS");
 
-        // UI.waitForElementVisibility(appDetails.interpreterListTableBody());
         Thread.sleep(1000);
 
         int interpreterListRowsSize = readNumberOfRowsInTable(appDetails.get_interpreterListTableBody());
@@ -418,8 +328,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         for (int j = 0; j <= interpreterListRowsSize - 1; j++) {
 
             String first_name = column_Interpreter_Name.get(j).getText();
-
-            System.out.println(column_Interpreter_Name.get(j).getText());
 
             if (first_name.equalsIgnoreCase(datasheet.get("Interpreter Name"))) {
 
@@ -478,11 +386,9 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             String id = column_View.get(k).getText();
             logger.log(Status.INFO, "iterating through view column list");
-            System.out.println(column_View.get(k).getText());
 
             if (id.equalsIgnoreCase(view_Text)) {
 
-                System.out.println(k);
                 column_View.get(k).click();
                 logger.log(Status.PASS, "able to click the id " + view_Text + " in OFFER tab page");
 
@@ -490,12 +396,10 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 //UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentClickTitle());
 
                 String appointment_offer_title = interpreterDb.getTextInterpreterDashboardAppointmentClickTitle();
-                System.out.println(appointment_offer_title);
                 Assert.assertTrue(appointment_offer_title.contains(view_Text));
                 logger.log(Status.PASS, "Verified the title has the view id selected i.e." + view_Text);
 
                 interpreterDb.clickAcceptButton();
-
                 logger.log(Status.PASS, "could click Accept Appointment");
 
                 Thread.sleep(5000);
@@ -504,12 +408,11 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             }
         }
-
             }
-
 
     @Test(priority = 3)
     public void returnAppointment() throws InterruptedException, IOException {
+
     logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
     driver = openBrowser();

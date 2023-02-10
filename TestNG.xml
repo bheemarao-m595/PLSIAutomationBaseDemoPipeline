@@ -5,7 +5,7 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<test name="SV" parallel = "none" thread-count = "1" >
+	<!--<test name="SV" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="New appointment" />
 		<classes>
 
@@ -15,19 +15,9 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
-	<!--<test name="GM" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Finance-Admin" />
-		<classes>
-
-			<class name="com.tests.GM_FinanceArchiveTest">
-				<methods>
-					<include name="sortingColumnsFinancialArchive"/>
-				</methods>
-			</class>
-		</classes>
 	</test>-->
-	<test name="VG" parallel = "none" thread-count = "1" >
+
+	<!--<test name="VG" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="ClientMedical" />
 		<classes>
 
@@ -37,26 +27,63 @@
 				</methods>
 			</class>
 		</classes>
-	</test>
+	</test>-->
 
 	<!--<test name="SB" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Interpreter_Offer" />
+		<parameter name="Module" value="Finance_Payout" />
 		<classes>
 
-			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
+			<class name="com.tests.SB_ActualInterpreterpayoutTests">
 				<methods>
-					<include name="editPreference"/>
+					<include name="editStandardInterpreter"/>
 				</methods>
 			</class>
 		</classes>
 	</test>-->
- 	<!--<test name="AG" parallel = "none" thread-count = "1" >
+ 	<test name="AG" parallel = "none" thread-count = "1" >
 		<parameter name="Module" value="Reject-Accept app" />
 		<classes>
 
 			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
 				<methods>
-					<include name="editPreference"/>
+<!--					<include name="acceptAppointment"/>-->
+					<include name="rejectAppointment"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!--<test name="AG" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="InterpreterAptTab" />
+		<classes>
+
+			<class name="com.tests.InterpreterAptsTab_Test">
+				<methods>
+					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInTable"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifySearchForAllColumnsData"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyNoResultsFound"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="verifySearchForAllColumnsDataIndividually"/>&ndash;&gt;
+				</methods>
+			</class>
+		</classes>
+	</test>-->
+
+<!--	<test name="AG" parallel = "none" thread-count = "1" >
+		<parameter name="Module" value="InterpreterAptTab" />
+		<classes>
+
+			<class name="com.tests.InterpreterAptsTab_Test">
+				<methods>
+					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInTable"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifySearchForAllColumnsData"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyNoResultsFound"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>P&ndash;&gt;
+					&lt;!&ndash;					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="verifySearchForAllColumnsDataIndividually"/>&ndash;&gt;
 				</methods>
 			</class>
 		</classes>

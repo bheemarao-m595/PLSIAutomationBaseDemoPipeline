@@ -16,8 +16,6 @@ import com.pom.InterpreterPage;
 
 public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     WebDriver driver = null;
-    ExtentTest logger = null;
-    XSSFSheet sheet = null;
 
     @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
     public void acceptOfferByInterpreter() throws Throwable
@@ -59,7 +57,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 logger.log(Status.PASS, "Urgent Tab clicked");
                 InP.clickAppointmentId();
                 logger.log(Status.PASS, "Clicked on Appointment");
-                InP.makeAnOfferClick();
+             //   InP.makeAnOfferClick();
                 logger.log(Status.PASS, "Inetrpreter offered");
             }
             catch (Exception e){

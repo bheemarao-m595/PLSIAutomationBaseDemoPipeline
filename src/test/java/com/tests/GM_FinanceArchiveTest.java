@@ -3,10 +3,7 @@ package com.tests;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
-import com.pom.DashBoardPage;
-import com.pom.GM_FinancialAdminPage;
-import com.pom.GM_FinancialArchivePage;
-import com.pom.LoginPage;
+import com.pom.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,10 +17,7 @@ import java.util.Date;
 
 public class GM_FinanceArchiveTest extends BaseClass{
     WebDriver driver = null;
-    ExtentTest logger = null;
 
-
-    XSSFSheet sheet = null;
     @BeforeMethod
     public void Setup() throws IOException {
         driver = openBrowser();
@@ -34,7 +28,7 @@ public class GM_FinanceArchiveTest extends BaseClass{
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve one pending status")
     public void approveFinancialArchivePendingAppointment() throws InterruptedException, IOException {
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
+        GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -80,7 +74,6 @@ public class GM_FinanceArchiveTest extends BaseClass{
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
         GM_FinancialArchivePage columns = new GM_FinancialArchivePage(driver);
 
-        System.out.println("starting");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));

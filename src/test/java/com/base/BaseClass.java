@@ -37,6 +37,8 @@ public class BaseClass
 	public static XSSFWorkbook workbook = null;
 	public ExcelUtils data;
 	static String methodName = "";
+	public  static ExtentTest logger = null;
+	static String moduleName = "";
 
 	public static String getModuleName() {
 		return moduleName;
@@ -46,8 +48,7 @@ public class BaseClass
 		BaseClass.moduleName = moduleName;
 	}
 
-	static String moduleName = "";
-   public  static 	ExtentTest logger = null;
+
 
 	public static  Map<String,String> datasheet = new HashMap<>();
 
@@ -252,6 +253,23 @@ public class BaseClass
 
 	}
 
+	public static String getFilePathOfTestDataFile(){
+
+		Properties prop = new Properties();
+		String proppath = System.getProperty("user.dir") + "\\src\\main\\resources\\Application.properties";
+
+		try {
+			FileInputStream fin = new FileInputStream(proppath);
+			prop.load(fin);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		XSSFWorkbook wb;
+		String testDataFilePath = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\" +prop.get("testDataFile");
+
+		 return  testDataFilePath;
+	}
+
 	/**
 	 * Author: John
 	 * Purpose: It will go to the visible area of the element passed
@@ -275,6 +293,26 @@ public class BaseClass
 		System.out.println("Total number of Rows in the table are : " + rowList.size());
 		return rowList.size();
 
+	}
+
+	/**
+	 * Author: Ashwini
+	 * Purpose: It will if the list of words are in alphabetical order.
+	 */
+
+	public boolean stringSort(List<String> words){
+		for(int a=0;a<words.size()-1;a++)
+		{
+			System.out.println(words.get(a));
+			System.out.println(words.get(a+1));
+			if(words.get(a).compareToIgnoreCase(words.get(a+1))>0)
+			{
+				System.out.println(words.get(a));
+				System.out.println(words.get(a+1));
+				return false;
+			}
+		}
+		return true;
 	}
 
 

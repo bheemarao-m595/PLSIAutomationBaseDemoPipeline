@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.pom.LoginPage;
-import com.pom.RequestAppointmentPage_John;
+import com.pom.VG_RequestAppointmentPage;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
@@ -42,10 +42,10 @@ public class VG_Clients_MedicalTestsJohn extends BaseClass {
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		logger.log(Status.PASS, "Login CLicked");
 		Thread.sleep(5000);
-		RequestAppointmentPage_John vi = new RequestAppointmentPage_John(driver);
+		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
 		System.out.println("hi");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
-		vi.createAppointmentFromClient();
+		vi.createAppointmentFromClient("Medical");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
 

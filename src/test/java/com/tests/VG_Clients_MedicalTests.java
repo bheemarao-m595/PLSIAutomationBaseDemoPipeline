@@ -20,14 +20,12 @@ import com.base.BaseClass;
 public class VG_Clients_MedicalTests extends BaseClass {
 
 	WebDriver driver = null;
-	ExtentTest logger = null;
 
 
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
 		driver = openBrowser();
-
 		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 

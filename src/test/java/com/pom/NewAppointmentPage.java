@@ -3,11 +3,16 @@ package com.pom;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
+import java.util.Map;
+
 import static com.base.BaseClass.datasheet;
 import static com.base.BaseClass.logger;
 
@@ -96,30 +101,55 @@ public class NewAppointmentPage {
     @FindBy(xpath = "//label[@id='typo_patientinfo_requestedlanguage']/../following-sibling::div//input")
     private WebElement requestedLanguage;
 
-    @FindBy(id= "btn_appointments_setappointment")
-    private WebElement setAppointment;
+    @FindBy(xpath= "//button[@id='btn_appointments_setappointment']")
+    private WebElement setAppointmentButton;
+
+    @FindBy(id = "rad_nonmedical_appt")
+    private WebElement Non_Medical;
+
+    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//td[1]")
+    private WebElement click_View;
+
+    @FindBy(id = "btn_viewAppointment_editappt")
+    private WebElement clickeditApp;
+
+    @FindBy(id= "form_editgeneralInfo_starttime")
+    private WebElement updateAppStartTime;
+
+    @FindBy(id= "form_editgeneralInfo_endtime")
+    private WebElement updateAppEndTime;
+
+    @FindBy(id = "form_editcaredetails_physicianname")
+    private WebElement care_Physician;
+
+    @FindBy(id = "tbn_viewAppointment_update")
+    private WebElement saveupdate;
+
 
 
 
     public  void clickNewAppointment(){
 
         try {
-            setAppointment.click();
+            setAppointmentButton.click();
         }catch (Exception e){
             logger.log(Status.INFO,"Got error ");
             throw  e;
         }
 
     }
-    public void addScheduleAppointment() throws InterruptedException {
+    public void addScheduleAppointment(String appInfo) throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         newAppointment.click();
+        Thread.sleep(3000);
+        if(!appInfo.equalsIgnoreCase("Medical"))
+            Non_Medical.click();
 
-
+        logger.log(Status.PASS,"Appointment Table");
         Thread.sleep(3000);
         appointmentDate.click();
-        appointmentDate.sendKeys(datasheet.get("Appointment Date"));
+        appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(2000);
         appointmentStartTime.click();
@@ -128,6 +158,7 @@ public class NewAppointmentPage {
         Thread.sleep(2000);
         appointmentEndTime.click();
         appointmentEndTime.sendKeys(datasheet.get("App End Time"));
+        logger.log(Status.PASS,"Time entered");
 
         Thread.sleep(2000);
         Tbd_Checkbox.click();
@@ -182,26 +213,142 @@ public class NewAppointmentPage {
         requestedLanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
 
+        logger.log(Status.PASS,"Before Set Appointment click");
         Thread.sleep(2000);
-        setAppointment.click();
+        setAppointmentButton.click();
+        logger.log(Status.PASS,"After Set Appointment click");
         Thread.sleep(4000);
+        BaseClass b = new BaseClass();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
 
     }
 
+
+    public String addScheduleAppointment(Map<String,String> creationData) throws InterruptedException {
+
+        Thread.sleep(3000);
+        newAppointment.click();
+
+        Thread.sleep(3000);
+        appointmentDate.click();
+        appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
+
+        Thread.sleep(2000);
+        appointmentStartTime.click();
+        appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
+
+        Thread.sleep(2000);
+        appointmentEndTime.click();
+        appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
+
+        Thread.sleep(2000);
+        Tbd_Checkbox.click();
+
+        Thread.sleep(2000);
+        client.click();
+        client.sendKeys(creationData.get("Client"));
+
+        client.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        Facility.click();
+        Facility.sendKeys(creationData.get("Facility"));
+
+        Facility.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        appointmentType.click();
+        appointmentType.sendKeys(creationData.get("App Type"));
+        appointmentType.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        building.click();
+        building.sendKeys(creationData.get("Building"));
+        building.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        department.click();
+        department.sendKeys(creationData.get("Department"));
+        Thread.sleep(2000);
+        department.sendKeys(Keys.TAB);
+
+        // building.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        patient_Mrn.click();
+        patient_Mrn.sendKeys(creationData.get("Patient MRN"));
+
+        Thread.sleep(2000);
+        patient_FName.click();
+        patient_FName.sendKeys(creationData.get("First Name"));
+
+        Thread.sleep(2000);
+        patient_LName.click();
+        String randomName = "NNCY";
+        randomName = CommonUtils.getRandomStringOfLength(3);
+        randomName = creationData.get("Last Name")+  "_" + randomName;
+        patient_LName.sendKeys(randomName);
+
+        Thread.sleep(2000);
+        patient_Dob.click();
+        patient_Dob.sendKeys(creationData.get("DOB"));
+
+
+        Thread.sleep(3000);
+        requestedLanguage.click();
+        requestedLanguage.sendKeys(creationData.get("Requested Language"));
+        requestedLanguage.sendKeys(Keys.TAB);
+        Thread.sleep(3000);
+
+        Thread.sleep(2000);
+        BaseClass.goToElementVisibleArea(setAppointmentButton);
+      //  BaseClass.clickWithJavaScript(setAppointmentButton);
+        setAppointmentButton.click();
+        Thread.sleep(4000);
+        return randomName;
+
+    }
 
     public void clickEdit(){
         editAppo.click();
 
     }
 
-    public  void editAppointment(){
+    public  void editAppointment() throws InterruptedException {
 
-        appointmentstarttime1.click();
-        appointmentendtime1.sendKeys(BaseClass.datasheet.get(""));
+        Thread.sleep(3000);
+        click_View.click();
 
-        appointmentendtime1.click();
-        appointmentendtime1.sendKeys(BaseClass.datasheet.get(""));
-        savebutton.click();
+        Thread.sleep(3000);
+        WebDriver d = BaseClass.driver;
+        JavascriptExecutor js = (JavascriptExecutor)d;
+        js.executeScript("arguments[0].scrollIntoView(true);",clickeditApp);
+
+        Thread.sleep(2000);
+        clickeditApp.click();
+
+        Thread.sleep(6000);
+        WebDriver d1 = BaseClass.driver;
+        JavascriptExecutor js1 = (JavascriptExecutor)d1;
+        Thread.sleep(3000);
+        js1.executeScript("arguments[0].scrollIntoView(true);",updateAppStartTime);
+
+
+        Thread.sleep(2000);
+        updateAppStartTime.click();
+        updateAppStartTime.sendKeys(datasheet.get("App Start time"));
+
+        Thread.sleep(2000);
+        updateAppEndTime.click();
+        updateAppEndTime.sendKeys(datasheet.get("App End Time"));
+
+
+
+        Thread.sleep(2000);
+        care_Physician.click();
+        care_Physician.sendKeys(datasheet.get("Physician Name"));
+
+        Thread.sleep(2000);
+        saveupdate.click();
+
+
 
     }
 

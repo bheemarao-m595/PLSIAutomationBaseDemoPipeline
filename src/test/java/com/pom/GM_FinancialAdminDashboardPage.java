@@ -1,20 +1,18 @@
 package com.pom;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.aventstack.extentreports.Status;
+import com.base.BaseClass;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.List;
+import static com.base.BaseClass.logger;
 
-
-//dont use
-public class GM_FinancialAdminPage {
+public class GM_FinancialAdminDashboardPage {
     WebDriver driver;
-    public GM_FinancialAdminPage(WebDriver d){
+    public GM_FinancialAdminDashboardPage(WebDriver d){
         driver=d;
         PageFactory.initElements(d,this);
     }
@@ -33,6 +31,21 @@ public class GM_FinancialAdminPage {
 
     @FindBy (xpath = "//span[contains(text(),'chevron_right')]")
     private WebElement paging;
+
+    @FindBy (xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//td[5]")
+    private WebElement financialAppintmentStatus;
+
+    @FindBy (xpath = "//p[contains(text(),'- Edit Status')]")
+    private WebElement getIDStatus;
+
+    @FindBy (xpath = "(//label[@id='typo_Statusform_apptstatus']/../following-sibling::div//input)[1]")
+    private WebElement appointmentStatus;
+
+    @FindBy (xpath = "//button[@id='btn_Statusform_save']")
+    private WebElement saveEditStatus;
+
+    @FindBy (xpath = "//button[@id='btn_Statusform_close']")
+    private WebElement closeEditStatus;
 
     public void navigateFinancialReviewPage() throws InterruptedException , IOException {
         Thread.sleep(2000);
@@ -99,5 +112,35 @@ public class GM_FinancialAdminPage {
         Thread.sleep(2000);
         btnApprove.click();
 
+    }
+    public void updateAppointmentStatus(String name) throws InterruptedException, IOException {
+        Thread.sleep(2000);
+        financeAdmin.click();
+
+        Thread.sleep(2000);
+        financeArchiveTab.click();
+
+        Thread.sleep(2000);
+        financialAppintmentStatus.click();
+
+        Thread.sleep(2000);
+        System.out.println(getIDStatus.getText());
+        BaseClass.logger.log(Status.INFO,getIDStatus.getText());
+        BaseClass b = new BaseClass();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Editing finance"));
+
+
+        Thread.sleep(3000);
+        appointmentStatus.click();
+        Thread.sleep(2000);
+        appointmentStatus.sendKeys(BaseClass.datasheet.get(name));
+        Thread.sleep(1000);
+        appointmentStatus.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        saveEditStatus.click();
+
+        Thread.sleep(2000);
+        closeEditStatus.click();
     }
 }
