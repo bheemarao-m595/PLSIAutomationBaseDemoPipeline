@@ -700,16 +700,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
         Thread.sleep(2000);
         driver.close();
 
-
     }
-
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-
-    }
-
 
 }

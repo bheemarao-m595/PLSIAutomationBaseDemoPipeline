@@ -21,6 +21,7 @@ import com.utils.CommonUtils;
 import com.utils.SeleniumUIUtils;
 import com.aventstack.extentreports.Status;
 
+@Listeners({com.listeners.ListenerTest.class})
 public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
         /*This class tests an appointment with current date is being rejected,accepted,
@@ -60,18 +61,22 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             logger.log(Status.INFO, "current page is all appointments dashboard");
 
-
             NewAppointmentPage nap = new NewAppointmentPage(driver);
-            appointmentData.put("Requested Language",BaseClass.datasheet.get("Requested Language"));
-            String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
-            DashBoardPage db = new DashBoardPage(driver);
             String patientFName = appointmentData.get("First Name");
-            db.search(lastNameOfPatient);
+            DashBoardPage db = new DashBoardPage(driver);
+            WebElement appid = null;
+            appointmentData.put("Requested Language",BaseClass.datasheet.get("Requested Language"));
+
+            String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
             Thread.sleep(4000);
-            WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
-            //      WebElement appid = db.getAppIDWebElement("727");
-            // WebElement appid = driver.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='722']"));
+            if(!lastNameOfPatient.equals("NC"))
+                appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+            else {
+                logger.log(Status.FAIL, "Appointment not created");
+                Assert.assertTrue(false,"Appointment not created");
+            }
             Assert.assertNotNull(appid,"Appointment ID not returned properly");
+            db.search(lastNameOfPatient);
             String view_Text = appid.getText();
             appid.click();
 
@@ -272,13 +277,11 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
     @Test(priority = 2)
     public void acceptAppointment() throws InterruptedException, IOException {
-        logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
+        logger = extent.createTest(BaseClass.getMethodName() + "method started");
         driver = openBrowser();
         driver.manage().window().maximize();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         LoginPage loginPage = new LoginPage(driver);
-        DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
         AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
         InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
@@ -293,11 +296,16 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
         DashBoardPage db = new DashBoardPage(driver);
         String patientFName = appointmentData.get("First Name");
-        WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+        WebElement appid = null;
+        if(!lastNameOfPatient.equals("NC"))
+         appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+        else {
+            logger.log(Status.FAIL, "Appointment not created");
+            Assert.assertTrue(false,"Appointment not created");
+        }
         Assert.assertNotNull(appid,"Appointment ID not returned properly");
         String view_Text = appid.getText();
         appid.click();
-        //for creating appointment id
 
         Thread.sleep(5000);
 
@@ -798,7 +806,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
         dropdown.get(1).sendKeys(datasheet.get("Requested Language"));
         dropdown.get(1).sendKeys(Keys.ENTER);
-        dropdown.get(2).sendKeys(datasheet.get("Request Reimbursement?"));
+        dropdown.get(2).sendKeys(datasheet.get("Request Reimbursement"));
         dropdown.get(2).sendKeys(Keys.ENTER);
 
         Thread.sleep(3000);
@@ -959,13 +967,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
     }
 
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
 
-        BaseClass.setModuleName(moduleName);
-
-    }
 
 }
 

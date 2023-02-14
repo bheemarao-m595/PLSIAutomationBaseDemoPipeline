@@ -5,17 +5,17 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<test name="SV1" parallel = "none" thread-count = "1" >
-		<!--<parameter name="Module" value="New appointment" />-->
+	<test name="AG" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SV_SetAppointmentTest">
+			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
 				<methods>
-<!--					<include name="updateAppointmentDetails"/>-->
-<!--					<include name="quickEditStatus"/>-->
-<!--					<include name="createNonMedicalAppointmentTest"/>-->
-					<include name="scheduleAppointmentMedicalTest"/>
-<!--					<include name="updateAppointmentDetails"/>-->
+					<include name="acceptAppointment"/>
+					<include name="rejectAppointment"/>
+					<include name="returnAppointment"/>
+					<include name="checkInAppointment"/>
+					<include name="checkOutAndFinaliseAppointment"/>
+					<include name="viewFinancialBreakdown"/>
 				</methods>
 			</class>
 		</classes>

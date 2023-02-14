@@ -22,8 +22,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     public void Setup() throws IOException {
         driver = openBrowser();
         driver.manage().window().maximize();
-        System.out.println("Before test");
-        // data.readExcelDataToArray(sheet);
 
     }
 
@@ -95,11 +93,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
         }
         try {
-            //Thread.sleep(5000);
-            //db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"CONFIRMED");
-            //clickElement(db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS, "CONFIRMED"));
-            //logger.log(Status.INFO,"Clicked Status");
-            //logger.addScreenCaptureFromPath(takeScreenshotForStep("Status to be clicked"));
 
             Thread.sleep(2000);
             aptDetails.editActualPayout();
@@ -125,11 +118,5 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
     }
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
 
-        BaseClass.setModuleName(moduleName);
-
-    }
 }

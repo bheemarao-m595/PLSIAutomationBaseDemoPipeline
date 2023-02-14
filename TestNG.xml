@@ -5,87 +5,130 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<!--<test name="SV" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="New appointment" />
-		<classes>
-
-			<class name="com.tests.SV_SetAppointmentTest">
-				<methods>
-					<include name="addScheduleAppointment"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
-
-	<!--<test name="VG" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="ClientMedical" />
+	<test name="VG" parallel = "none" thread-count = "1" >
 		<classes>
 
 			<class name="com.tests.VG_Clients_MedicalTests">
 				<methods>
 					<include name="ClientsnonMedical"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
-
-	<!--<test name="SB" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Finance_Payout" />
-		<classes>
-
-			<class name="com.tests.SB_ActualInterpreterpayoutTests">
-				<methods>
-					<include name="editStandardInterpreter"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
- 	<test name="AG" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Reject-Accept app" />
-		<classes>
-
-			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
-				<methods>
-<!--					<include name="acceptAppointment"/>-->
-					<include name="rejectAppointment"/>
+					<include name="ClientsMedical"/>
 				</methods>
 			</class>
 		</classes>
 	</test>
 
-	<!--<test name="AG" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="InterpreterAptTab" />
+	<test name="SB" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.SB_ActualInterpreterpayoutTests">
+				<methods>
+					<include name="editActualAfterInterpreter"/>
+					<include name="editHybridInterpreterpayout"/>
+					<include name="editStandardInterpreter"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="SB2" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
+				<methods>
+					<include name="makeAnOfferToInterpreter"/>
+					<include name="acceptOfferByInterpreter"/>
+					<include name="rescindOfferedToInterpreter"/>
+					<include name="editPreference"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+ 	<test name="AG" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
+				<methods>
+					<include name="acceptAppointment"/>
+					<include name="rejectAppointment"/>
+					<include name="returnAppointment"/>
+					<include name="checkInAppointment"/>
+					<include name="checkOutAndFinaliseAppointment"/>
+					<include name="viewFinancialBreakdown"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="AG2" parallel = "none" thread-count = "1" >
 		<classes>
 
 			<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
-					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInTable"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifySearchForAllColumnsData"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyNoResultsFound"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="verifySearchForAllColumnsDataIndividually"/>&ndash;&gt;
+										<include name="verifyColumnsRequiredAreAvailableInTable"/>
+										<include name="verifyDefaultSortIsInterpreterName"/>
+										<include name="verifySearchForAllColumnsData"/>
+										<include name="verifyNoResultsFound"/>
+										<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>
+										<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
+										<include name="verifySearchForAllColumnsDataIndividually"/>
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 
-<!--	<test name="AG" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="InterpreterAptTab" />
+	<test name="SV1" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.InterpreterAptsTab_Test">
+			<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
-					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInTable"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifySearchForAllColumnsData"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyNoResultsFound"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>P&ndash;&gt;
-					&lt;!&ndash;					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="verifySearchForAllColumnsDataIndividually"/>&ndash;&gt;
+					<include name="updateAppointmentDetails"/>
+					<include name="quickEditStatus"/>
+					<include name="createNonMedicalAppointmentTest"/>
+					<include name="scheduleAppointmentMedicalTest"/>
+					<include name="updateAppointmentDetails"/>
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
+
+	<test name="SV2" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.SV_Interpreter_DetailsTest">
+				<methods>
+					<include name="update_Interpreter_Availablity"/>
+					<include name="deleteInt_Avail"/>
+					<include name="create_Proficiency"/>
+					<include name="remove_LangProficiency"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="GM" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
+				<methods>
+					<include name="editingActualPayoutFields"/>
+					<include name="editingExpectedPayoutFields"/>
+				</methods>
+			</class>
+			<class name="com.tests.GM_EditAppointmentStatusTest">
+				<methods>
+					<include name="updateFinanceAppointmentStatus"/>
+				</methods>
+			</class>
+			<class name="com.tests.GM_FinanceArchiveTest">
+				<methods>
+					<include name="approveFinancialArchivePendingAppointment"/>
+					<include name="sortingColumnsFinancialArchive"/>
+					<include name="approveFinancialReviewPendingAppointment"/>
+					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
 </suite>

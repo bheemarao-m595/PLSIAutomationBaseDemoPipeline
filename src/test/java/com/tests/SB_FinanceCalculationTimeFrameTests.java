@@ -45,14 +45,6 @@ public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
-
     }
 
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-
-    }
 }

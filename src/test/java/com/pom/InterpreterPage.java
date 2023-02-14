@@ -1,12 +1,15 @@
 package com.pom;
 
 import com.base.BaseClass;
+import com.utils.CommonUtils;
+import com.utils.DashBoardHeaders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Date;
 import java.util.List;
 
 public class InterpreterPage {
@@ -38,7 +41,7 @@ public class InterpreterPage {
     @FindBy(xpath = "//span[contains(text(),'URGENT')]")
     private WebElement urgentTab;
 
-    @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[2]//td[1]/div/div")
+    @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//td[1]/div/div")
     private WebElement appointment;
 
     @FindBy(xpath= "//button[@id='Accept']")
@@ -169,15 +172,21 @@ public class InterpreterPage {
         Thread.sleep(4000);
     }
 
-    public void clickAppointmentId(){
+    public void clickAppointmentId() throws InterruptedException {
+
         appointment.click();
+        Thread.sleep(3000);
     }
 
-    public  void interpreterAccept()  {
+    public  void interpreterAccept() throws InterruptedException {
         IntrepreterTab.click();
+        Thread.sleep(2000);
         OfferedTab.click();
+        Thread.sleep(2000);
         AppointmentOffered.click();
+        Thread.sleep(3000);
         AcceptTab.click();
+        Thread.sleep(3000);
     }
 
     public void interpreterRescind() throws InterruptedException {
@@ -193,6 +202,14 @@ public class InterpreterPage {
 
         Thread.sleep(3000);
     }
+
+    public void makeAnOfferClick() throws InterruptedException {
+        if(BaseClass.isElementPresent(InterpreterMatchingTab))
+       InterpreterMatchingTab.click();
+        Thread.sleep(3000);
+        findInterpreter.click();
+        makeAnOffer.click();
+        }
 }
 
 

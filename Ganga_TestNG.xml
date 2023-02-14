@@ -5,19 +5,8 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<!--<test name="SV" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="New appointment" />
-		<classes>
 
-			<class name="com.tests.SV_SetAppointmentTest">
-				<methods>
-					<include name="addScheduleAppointment"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
 	<test name="GM" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Finance-Admin" />
 		<classes>
 
 			<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
@@ -28,7 +17,16 @@
 			</class>
 			<class name="com.tests.GM_EditAppointmentStatusTest">
 				<methods>
-										<include name="updateFinanceAppointmentStatus"/>
+					<include name="updateFinanceAppointmentStatus"/>
+				</methods>
+			</class>
+
+			<class name="com.tests.GM_FinanceArchiveTest">
+				<methods>
+					<include name="approveFinancialArchivePendingAppointment"/>
+					<include name="sortingColumnsFinancialArchive"/>
+					<include name="approveFinancialReviewPendingAppointment"/>
+					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
 				</methods>
 			</class>
 		</classes>

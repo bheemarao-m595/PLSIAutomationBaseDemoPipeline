@@ -138,7 +138,7 @@ public class NewAppointmentPage {
         }
 
     }
-    public void addScheduleAppointment(String appInfo) throws InterruptedException, IOException {
+    public String scheduleAppointment(String appInfo) throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         newAppointment.click();
@@ -153,11 +153,11 @@ public class NewAppointmentPage {
 
         Thread.sleep(2000);
         appointmentStartTime.click();
-        appointmentStartTime.sendKeys(datasheet.get("App Start time"));
+        appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
 
         Thread.sleep(2000);
         appointmentEndTime.click();
-        appointmentEndTime.sendKeys(datasheet.get("App End Time"));
+        appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
         logger.log(Status.PASS,"Time entered");
 
         Thread.sleep(2000);
@@ -198,9 +198,14 @@ public class NewAppointmentPage {
         patient_FName.click();
         patient_FName.sendKeys(datasheet.get("First Name"));
 
+        String randomName = "NNCY";
+        randomName = CommonUtils.getRandomStringOfLength(3);
+        randomName = datasheet.get("Last Name")+  "_" + randomName;
+        patient_LName.sendKeys(randomName);
+
         Thread.sleep(2000);
         patient_LName.click();
-        patient_LName.sendKeys(datasheet.get("Last Name")+ CommonUtils.getRandomStringOfLength(3));
+        patient_LName.sendKeys(randomName);
 
         Thread.sleep(2000);
         patient_Dob.click();
@@ -220,6 +225,7 @@ public class NewAppointmentPage {
         Thread.sleep(4000);
         BaseClass b = new BaseClass();
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
+        return randomName;
 
     }
 
@@ -302,7 +308,10 @@ public class NewAppointmentPage {
       //  BaseClass.clickWithJavaScript(setAppointmentButton);
         setAppointmentButton.click();
         Thread.sleep(4000);
-        return randomName;
+       if(BaseClass.isElementPresent(setAppointmentButton))
+        return "NC";
+       else
+           return randomName;
 
     }
 

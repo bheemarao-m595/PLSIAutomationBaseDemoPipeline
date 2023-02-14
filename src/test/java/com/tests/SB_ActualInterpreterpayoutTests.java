@@ -165,12 +165,4 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
 
     }
-
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-
-    }
 }

@@ -56,9 +56,12 @@ public class GM_FinancialAdminDashboardPage {
 
     }
     public boolean navigateFinancialArchivePage() throws InterruptedException,IOException{
+
         Thread.sleep(2000);
         financeAdmin.click();
 
+        Thread.sleep(2000);
+        financeReview.click();
         Thread.sleep(2000);
         financeArchiveTab.click();
         Thread.sleep(2000);

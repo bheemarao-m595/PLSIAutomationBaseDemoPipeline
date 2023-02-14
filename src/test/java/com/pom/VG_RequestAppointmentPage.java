@@ -1,6 +1,7 @@
 package com.pom;
 
 import com.base.BaseClass;
+import com.utils.CommonUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -140,7 +141,7 @@ public class VG_RequestAppointmentPage {
         else
           nonmedical.click();
         Appointmentdate.clear();
-        Appointmentdate.sendKeys(datasheet.get("Appointment Date"));
+        Appointmentdate.sendKeys(CommonUtils.getCurrentSystemDate());
         startTime.sendKeys(datasheet.get("Appointment Start Time"));
         EndTime.sendKeys(datasheet.get("Appointment End Time"));
 //        client.click();

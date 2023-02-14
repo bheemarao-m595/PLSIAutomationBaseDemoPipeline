@@ -118,6 +118,13 @@ public class CommonUtils {
 		LocalDateTime now = LocalDateTime.now();
 		 return  dtf.format(now);
 	}
+
+	public static String getCurrentSystemDateyear()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		return  dtf.format(now);
+	}
 	public  static  String addMinutesToCurrentTime(int minToAdd){
 
 		Calendar currentTimeNow = Calendar.getInstance();

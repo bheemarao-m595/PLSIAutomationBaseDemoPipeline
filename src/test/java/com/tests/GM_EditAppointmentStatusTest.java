@@ -22,13 +22,10 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
     ExtentTest logger = null;
 
 
-    XSSFSheet sheet = null;
     @BeforeMethod
     public void Setup() throws IOException {
         driver = openBrowser();
         driver.manage().window().maximize();
-        System.out.println("Before test");
-        // data.readExcelDataToArray(sheet);
 
     }
 
@@ -51,7 +48,6 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
         if(!isSelected)
         {
             WebElement el = FA.getArchivetab();
-            System.out.println(el.isDisplayed());
             String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
             Assert.assertTrue(false,"Tab not highlighted");
@@ -80,11 +76,5 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
     }
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
 
-        BaseClass.setModuleName(moduleName);
-
-    }
 }

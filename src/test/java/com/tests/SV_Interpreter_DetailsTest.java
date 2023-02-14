@@ -1,6 +1,7 @@
 package com.tests;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.DashBoardPage;
 import com.pom.LoginPage;
@@ -13,15 +14,15 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class SV_Interpreter_DetailsTest extends BaseClass
+public class    SV_Interpreter_DetailsTest extends BaseClass
 {
     WebDriver driver = null;
 
     XSSFSheet sheet = null;
     @BeforeMethod
     public void Setup() throws IOException {
-        driver = openBrowser();
-        driver.manage().window().maximize();
+       // driver = openBrowser();
+      //  driver.manage().window().maximize();
 
     }
 
@@ -43,7 +44,7 @@ public class SV_Interpreter_DetailsTest extends BaseClass
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.edit_Interpreter_Availablity();
-
+        logger.log(Status.PASS, "Save the updated availability");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated availability"));
 
     }
@@ -63,10 +64,10 @@ public class SV_Interpreter_DetailsTest extends BaseClass
         mInt.clickInterpreters();
 
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
-
+        logger.log(Status.PASS, "Delete Availability");
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.delete_Interpreter_Availablity();
-
+        logger.log(Status.PASS, " After Delete Availability");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Delete the updated availability"));
     }
 
@@ -89,7 +90,7 @@ public class SV_Interpreter_DetailsTest extends BaseClass
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.add_Proficiency();
-
+        logger.log(Status.PASS, "Add Proficiency");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Created language proficiency from any interpreter"));
 
     }
@@ -112,8 +113,8 @@ public class SV_Interpreter_DetailsTest extends BaseClass
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
-        intAvail.delete_Proficiency();
-
+        intAvail.delete_Proficiency(datasheet.get("Language"));
+        logger.log(Status.PASS, "Delete any selected language");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Delete any selected language proficiency from any interpreter"));
 
     }
@@ -123,14 +124,8 @@ public class SV_Interpreter_DetailsTest extends BaseClass
     public void captureResult(ITestResult result) throws IOException {
 
         String methodName = BaseClass.getMethodName();
+        logger.log(Status.PASS, "Method completed");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-    }
-
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
     }
 
 	@AfterTest

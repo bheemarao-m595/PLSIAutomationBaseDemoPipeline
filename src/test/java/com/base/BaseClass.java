@@ -236,7 +236,6 @@ public class BaseClass
 		  return  web.isDisplayed();
 
 		}catch (Exception e){
-			e.printStackTrace();
 			return  false;
 		}
 

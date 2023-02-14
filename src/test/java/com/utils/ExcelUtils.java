@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.Assert;
 
 public class ExcelUtils {
 
@@ -119,6 +120,7 @@ public class ExcelUtils {
 
 	public List<Map<String,String>> getMapDataForALlrows(Workbook wb, String sheetName) {
 
+
 		Sheet sh = wb.getSheet(sheetName);
 		Map<String, String> inputData = new LinkedHashMap<>();
 		Row firstRow = sh.getRow(0);
@@ -157,6 +159,40 @@ public class ExcelUtils {
 		return allRowsMap;
 	}
 
+	public  String getSheetNameforTestMethod(Workbook wb , String methodName){
+
+		String sheetName = "";
+		Sheet sh = wb.getSheet("ReadMe");
+		Map<String,String> inputData =  new LinkedHashMap<>();
+
+		int rowsCount = sh.getPhysicalNumberOfRows();
+		int requiredRowNum =0;
+		boolean found = false;
+		for(int i=1;i< rowsCount;i++) {
+
+			Row tempRow = sh.getRow(i);
+
+			String data = tempRow.getCell(0).toString();
+			if (data.equalsIgnoreCase(methodName)) {
+
+				requiredRowNum = i;
+				found =true;
+				break;
+			}
+		}
+
+		if(found) {
+
+			Row requiredRow = sh.getRow(requiredRowNum);
+			Cell cell = requiredRow.getCell(1);
+			sheetName = cell.toString();
+		}
+		else{
+
+			Assert.assertTrue(false,"sheet name not found for " + methodName);
+		}
+      return  sheetName;
+	}
 
 
 }

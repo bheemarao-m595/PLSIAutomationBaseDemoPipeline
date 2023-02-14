@@ -15,21 +15,15 @@ import com.pom.NewAppointmentPage;
 
 public class SV_SetAppointmentTest extends BaseClass
 {
-	@BeforeTest
-	@Parameters({"Module"})
-	public void readModule(String moduleName) throws IOException {
 
-		BaseClass.setModuleName(moduleName);
-
-	}
 	@Test(priority = 1)
-	public void addScheduleAppointment() throws Throwable
+	public void scheduleAppointmentMedicalTest() throws Throwable
 	{
 
 		try {
 			driver=openBrowser();
 			driver.manage().window().maximize();
-			logger = extent.createTest("Login as an PLSI scheduler");
+			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 			LoginPage lo = new LoginPage(driver);
 			lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
@@ -37,10 +31,28 @@ public class SV_SetAppointmentTest extends BaseClass
 
 			DashBoardPage db = new DashBoardPage(driver);
 			NewAppointmentPage nap = new NewAppointmentPage(driver);
-			nap.addScheduleAppointment("Medical");
-		WebElement newAppointment =	db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
-		System.out.println(newAppointment.getText());
+			WebElement appid = null;
+			String patientFName = datasheet.get("First Name");
+
+		    String lastNameOfPatient =	nap.scheduleAppointment("Medical");
+			if(!lastNameOfPatient.equals("NC"))
+				appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+			else {
+				logger.log(Status.FAIL, "Appointment not created");
+				Assert.assertTrue(false,"Appointment not created");
+			}
+
+			Assert.assertNotNull(appid,"Appointment ID not returned properly");
+			db.search(lastNameOfPatient);
+			Thread.sleep(4000);
+			appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+
 			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
+			if(appid !=null)
+				logger.log(Status.PASS,"Appointment Created as " + appid.getText());
+			else
+				logger.log(Status.FAIL,"Appointment could not created");
+
 		}catch (Exception e){
 
 			e.printStackTrace();
@@ -80,7 +92,6 @@ public class SV_SetAppointmentTest extends BaseClass
 
 		driver=openBrowser();
 		driver.manage().window().maximize();
-		logger = extent.createTest("Login as an PLSI scheduler");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		LoginPage lo = new LoginPage(driver);
@@ -90,15 +101,14 @@ public class SV_SetAppointmentTest extends BaseClass
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
 		nap.editAppointment();
-
+		logger.log(Status.PASS, "Save the updated appointment");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated appointment details"));
 	}
 
 
 	@Test
-	public void createNonMedicalAppointment()
+	public void createNonMedicalAppointmentTest()
 	{
-
 		try {
 
 			driver=openBrowser();
@@ -111,11 +121,28 @@ public class SV_SetAppointmentTest extends BaseClass
 
 			DashBoardPage db = new DashBoardPage(driver);
 			NewAppointmentPage nap = new NewAppointmentPage(driver);
+
 			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-			nap.addScheduleAppointment("Non Medical");
-			WebElement newAppointment =	db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
-			System.out.println(newAppointment.getText());
+		    String lastNameOfPatient =	nap.scheduleAppointment("Non Medical");
+			String patientFName = datasheet.get("First Name");
+			WebElement appid = null;
+
+			if(!lastNameOfPatient.equals("NC"))
+				appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+			else {
+				logger.log(Status.FAIL, "Appointment not created");
+				Assert.assertTrue(false,"Appointment not created");
+			}
+			db.search(lastNameOfPatient);
+			Assert.assertNotNull(appid,"Appointment ID not returned properly");
+			Thread.sleep(4000);
 			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
+			if(appid !=null)
+				logger.log(Status.PASS,"Appointment Created as " + appid.getText());
+			else
+				logger.log(Status.FAIL,"Appointment could not created");
+
+
 		}catch (Exception e){
 
 			e.printStackTrace();
@@ -130,14 +157,14 @@ public class SV_SetAppointmentTest extends BaseClass
 	public void captureResult(ITestResult result) throws IOException {
 
 		String methodName = BaseClass.getMethodName();
+		logger.log(Status.PASS, "Method completed");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 	}
 
 	@AfterTest
 	public void closingTheBrowser(){
 
-		driver.close();
+	//	driver.close();
 	}
-
 
 }

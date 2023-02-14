@@ -3,10 +3,7 @@ package com.tests;
 import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.NewAppointmentPage;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.Status;
 
@@ -72,7 +69,7 @@ public class TestingReports  extends BaseClass {
          Thread.sleep(4000);
          NewAppointmentPage na = new NewAppointmentPage(driver);
          na.clickNewAppointment();
-         na.addScheduleAppointment("Medical");
+         na.scheduleAppointment("Medical");
 
          logger.log(Status.PASS, "New Appointment clicked");
          logger.addScreenCaptureFromPath(takeScreenshotForStep("new"));
@@ -86,13 +83,5 @@ public class TestingReports  extends BaseClass {
             String methodName = BaseClass.getMethodName();
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
         }
-
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-
-    }
 
 }

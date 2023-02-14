@@ -1,5 +1,6 @@
 package com.pom;
 
+import com.base.BaseClass;
 import com.utils.CommonUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.base.BaseClass.datasheet;
+import  static com.base.BaseClass.logger;
 
 public class SV_Interpreter_DetailsPage
 {
@@ -19,10 +21,10 @@ public class SV_Interpreter_DetailsPage
     @FindBy(xpath = "//span[text()='AVAILABILITY']")
     private WebElement menu_Availability;
 
-    @FindBy(xpath = "//td[@data-date='2023-02-10']//div[@class='fc-timegrid-event-harness fc-timegrid-event-harness-inset'][1]")
+    @FindBy(xpath = "//td[@data-date='2023-02-13']//div[@class='fc-timegrid-event-harness fc-timegrid-event-harness-inset'][1]")
     private WebElement update_Existavailable;
 
-    @FindBy(xpath = "//td[@data-date='2023-02-10']//div[@class='fc-timegrid-event-harness fc-timegrid-event-harness-inset'][2]")
+    @FindBy(xpath = "//td[@data-date='2023-02-13']//div[@class='fc-timegrid-event-harness fc-timegrid-event-harness-inset'][2]")
     private WebElement update_ExistUnavailable;
 
 
@@ -60,16 +62,19 @@ public class SV_Interpreter_DetailsPage
     @FindBy(xpath = "//button[text()='Save']")
     private  WebElement save_Lang_Prof;
 
-    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//span")
+    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//span/input")
     private WebElement select_Langrow;
 
     @FindBy(id = "RemoveLanguageProficiency")
     private WebElement remove_Select_Lang;
 
+    BaseClass b ;
+
    public SV_Interpreter_DetailsPage (WebDriver d) {
 
         wd = d;
         PageFactory.initElements(d, this);
+       b = new BaseClass();
 
     }
 
@@ -82,7 +87,12 @@ public class SV_Interpreter_DetailsPage
         menu_Availability.click();
 
         Thread.sleep(2000);
-        update_Existavailable.click();
+        String currentDateYearFormat = CommonUtils.getCurrentSystemDateyear();
+        WebElement avail = b.getElementByXpath(wd, "//td[@data-date=' " + currentDateYearFormat + "']//div[@class='fc-timegrid-event-harness fc-timegrid-event-harness-inset'][1]");
+        avail.click();
+
+//        Thread.sleep(2000);
+//        update_Existavailable.click();
 
         Thread.sleep(2000);
         edit_StartTime_Available.clear();
@@ -129,6 +139,7 @@ public class SV_Interpreter_DetailsPage
 
         Thread.sleep(2000);
         addlangprof_Button.click();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Created language proficiency from any interpreter"));
 
         Thread.sleep(2000);
         select_Lang.click();
@@ -137,7 +148,8 @@ public class SV_Interpreter_DetailsPage
 
         Thread.sleep(2000);
         proficiency_Text.click();
-        proficiency_Text.sendKeys(datasheet.get("Proficiency"));
+        String pro = datasheet.get("Proficiency");
+        proficiency_Text.sendKeys(pro);
 
         Thread.sleep(2000);
         intRate_Text.click();
@@ -145,18 +157,31 @@ public class SV_Interpreter_DetailsPage
 
         Thread.sleep(2000);
         save_Lang_Prof.click();
+        Thread.sleep(2000);
+
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Created language proficiency from any interpreter"));
+
+        try {
+            delete_Proficiency(datasheet.get("Language"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public void delete_Proficiency() throws Throwable
+    public void delete_Proficiency(String lang) throws Throwable
     {
         Thread.sleep(3000);
+        if(BaseClass.isElementPresent(view_Int))
         view_Int.click();
 
         Thread.sleep(2000);
+        String xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td[text()='" + lang + "']/preceding-sibling::td/span/input";
+
         menu_LangProf.click();
 
         Thread.sleep(2000);
-        select_Langrow.click();
+        WebElement menu_LangProf_checkBox = b.getElementByXpath(wd,xpath);
+        menu_LangProf_checkBox.click();
 
         Thread.sleep(2000);
         remove_Select_Lang.click();

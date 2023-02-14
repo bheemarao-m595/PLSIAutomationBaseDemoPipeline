@@ -47,6 +47,8 @@ public class GM_FinancialAdminPage {
         financeAdmin.click();
 
         Thread.sleep(2000);
+        financeReview.click();
+        Thread.sleep(2000);
         financeArchiveTab.click();
         Thread.sleep(2000);
       String classVal =  financeArchiveTab.getAttribute("class");

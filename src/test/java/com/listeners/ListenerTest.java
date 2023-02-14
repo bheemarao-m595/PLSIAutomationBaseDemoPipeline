@@ -60,7 +60,7 @@ public class ListenerTest implements ITestListener {
 		// TODO Auto-generated method stub
 
 		String methodName = result.getMethod().getMethodName();
-		String moduleName = BaseClass.getModuleName();
+//		String moduleName = BaseClass.getModuleName();
 		BaseClass b = new BaseClass();
 		b.setMethodName(methodName);
 
@@ -81,8 +81,12 @@ public class ListenerTest implements ITestListener {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		String sheetName = data.getSheetNameforTestMethod(wb,methodName);
+		BaseClass.setModuleName(sheetName);
        if(wb  != null)
-		BaseClass.datasheet = data.getMapDataForRowName(wb,moduleName,methodName);
+		BaseClass.datasheet = data.getMapDataForRowName(wb,sheetName,methodName);
+
+
 
 
 	}

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.base.BaseClass.datasheet;
-import static com.base.BaseClass.driver;
 
 public class DashBoardPage {
 
@@ -114,13 +113,20 @@ public class DashBoardPage {
 
     }
 
-    public  void updatePatientName()  {
+    public  void updatePatientNotes() throws InterruptedException {
 
-        PatientConsumer.click();
+      WebElement pateintLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='Automation_SV Testerymy']"));
+
+        pateintLink.click();
+        Thread.sleep(2000);
         preference.sendKeys("Test Data");
+        Thread.sleep(2000);
         requester.sendKeys("Test Data");
+        Thread.sleep(2000);
         scheduler_notes.sendKeys("Test Data");
+        Thread.sleep(2000);
         Save.click();
+        Thread.sleep(2000);
 
     }
 
@@ -149,13 +155,6 @@ public class DashBoardPage {
                 i++;
             }
 
-            for (Map.Entry<String, Integer> e : headIndex.entrySet()) {
-
-                System.out.println(e.getKey() + "-->" + e.getValue());
-
-            }
-
-
             int headerIndex = headIndex.get(actualHeader);
 
             int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
@@ -175,8 +174,6 @@ public class DashBoardPage {
 
                 }
             }
-            System.out.println(appId.getText());
-
 
         return appId;
 

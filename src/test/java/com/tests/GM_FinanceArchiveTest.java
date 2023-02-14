@@ -99,15 +99,14 @@ public class GM_FinanceArchiveTest extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Sorted Columns"));
         }
 
-
     }
 
     @Test(description = "This TC will perform valid login and navigated to finance review page and approve one pending status")
     public void approveFinancialReviewPendingAppointment() throws InterruptedException, IOException {
+
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
 
-        System.out.println("starting");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
@@ -188,17 +187,11 @@ public class GM_FinanceArchiveTest extends BaseClass{
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
     }
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-    }
 
     @AfterTest
     public void closingTheBrowser(){
 
-        driver.close();
+      //  driver.close();
     }
 
 }

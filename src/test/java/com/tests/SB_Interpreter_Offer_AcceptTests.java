@@ -2,13 +2,13 @@ package com.tests;
 import java.io.IOException;
 
 import com.pom.DashBoardPage;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import com.utils.DashBoardHeaders;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.ExtentTest;
 import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.InterpreterPage;
@@ -17,19 +17,21 @@ import com.pom.InterpreterPage;
 public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     WebDriver driver = null;
 
-    @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
+    @Test(priority = 3)
     public void acceptOfferByInterpreter() throws Throwable
         {
 
             try {
-                logger = extent.createTest("Login as an PLSI scheduler");
+                logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 driver = openBrowser();
+                driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Login as Interpreter");
                 InterpreterPage InP = new InterpreterPage(driver);
                 InP.interpreterAccept();
                 logger.log(Status.PASS, "Interpreter Accepted");
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment clicked"));
 
             } catch (Exception e) {
 
@@ -40,12 +42,13 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
 
 
-    @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
+
+    @Test(priority = 1)
     public void makeAnOfferToInterpreter() throws Throwable{
         {
 
             try {
-                logger = extent.createTest("Login as an PLSI scheduler");
+                logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 driver = openBrowser();
                 driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
@@ -54,10 +57,14 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 InterpreterPage InP = new InterpreterPage(driver);
 
                 InP.clickUrgent();
+                InP.searchApps("Automation_SV Testerymy");
                 logger.log(Status.PASS, "Urgent Tab clicked");
-                InP.clickAppointmentId();
+                //InP.clickAppointmentId();
+                DashBoardPage db  = new DashBoardPage(driver);
+                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
+                appid.click();
                 logger.log(Status.PASS, "Clicked on Appointment");
-             //   InP.makeAnOfferClick();
+                InP.makeAnOfferClick();
                 logger.log(Status.PASS, "Inetrpreter offered");
             }
             catch (Exception e){
@@ -69,12 +76,12 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     }
 
 
-    @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
+    @Test(priority = 2)
     public void rescindOfferedToInterpreter() throws Throwable{
         {
 
             try {
-                logger = extent.createTest("Login as an PLSI scheduler");
+                logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 driver = openBrowser();
                 driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
@@ -86,7 +93,11 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 logger.log(Status.PASS, "Urgent Tab clicked");
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Urgent clicked"));
 
-                InP.clickAppointmentId();
+                InP.searchApps("Automation_SV Testerymy");
+               // InP.clickAppointmentId();
+                DashBoardPage db  = new DashBoardPage(driver);
+                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
+                appid.click();
                 logger.log(Status.PASS, "Clicked on Appointment");
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment clicked"));
 
@@ -104,7 +115,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     @Test(description = "This TC will perform valid login and update the patient preferences")
     public void editPreference() throws Throwable
     {
-        logger = extent.createTest("Editing Preferences");
+        logger = extent.createTest(BaseClass.getMethodName() + "method started");
         try {
 
             driver  = openBrowser();
@@ -117,7 +128,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             DashBoardPage dbp = new DashBoardPage(driver);
             InP.clickUrgent();
             logger.log(Status.PASS, "Clicked on Interpreter");
-            dbp.updatePatientName();
+            dbp.updatePatientNotes();
             logger.log(Status.PASS, "preference updated");
 
         }
@@ -141,18 +152,10 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
     }
 
-    @BeforeTest
-    @Parameters({"Module"})
-    public void readModule(String moduleName){
-
-        BaseClass.setModuleName(moduleName);
-
-    }
-
     @AfterTest
     public void closingTheBrowser(){
 
-        driver.close();
+        //driver.close();
     }
 
 
