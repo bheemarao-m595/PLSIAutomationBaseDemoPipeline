@@ -169,7 +169,7 @@ public class DashBoardPage {
                 String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
 
                 BaseClass b = new BaseClass();
-                boolean recordTEextMatching = b.isElementByXpath(wd, part1 + rowNumber + part2);
+                boolean recordTEextMatching = b.isElementByXpath( part1 + rowNumber + part2);
                 if (recordTEextMatching) {
 
                     appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));

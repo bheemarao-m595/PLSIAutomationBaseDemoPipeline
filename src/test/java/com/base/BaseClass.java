@@ -151,14 +151,14 @@ public class BaseClass
 	}
 
 
-	public  boolean isElementByXpath(WebDriver d ,String xpath){
+	public  boolean isElementByXpath(String xpath){
 
 
 		boolean found = false;
 
 		try{
-			WebElement w =  d.findElement(By.xpath(xpath));
-			found = w.isDisplayed();
+			WebElement w =  driver.findElement(By.xpath(xpath));
+			found = w.isEnabled();
 		}catch (NoSuchElementException e){
 
 			 e.printStackTrace();

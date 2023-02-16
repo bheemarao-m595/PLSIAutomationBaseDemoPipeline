@@ -153,36 +153,48 @@ public class SV_Interpreter_DetailsPage
 
         Thread.sleep(2000);
         menu_LangProf.click();
+        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+ datasheet.get("Language")  +"']/../preceding-sibling::td[1]//input";
+
+        menu_LangProf.click();
 
         Thread.sleep(2000);
-        addlangprof_Button.click();
-        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Creating language proficiency"));
-
-        Thread.sleep(2000);
-        select_Lang.click();
-        select_Lang.sendKeys(datasheet.get("Language"));
-        select_Lang.sendKeys(Keys.TAB);
-
-        Thread.sleep(2000);
-        proficiency_Text.click();
-        String pro = datasheet.get("Proficiency");
-        proficiency_Text.sendKeys(pro);
-
-        Thread.sleep(2000);
-        intRate_Text.click();
-        intRate_Text.sendKeys(datasheet.get("Interpretation Rate"));
-
-        Thread.sleep(2000);
-        save_Lang_Prof.click();
-        Thread.sleep(2000);
-
-        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Proficiency added"));
-
-        try {
+        boolean isPresent = b.isElementByXpath(xpath);
+        if(isPresent){
+            logger.log(Status.INFO,"Language" +datasheet.get("Language") +"is already present");
             delete_Proficiency(datasheet.get("Language"));
-        }catch (Exception e){
-            e.printStackTrace();
+        }else{
+            Thread.sleep(2000);
+            addlangprof_Button.click();
+            logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Creating language proficiency"));
+
+            Thread.sleep(2000);
+            select_Lang.click();
+            select_Lang.sendKeys(datasheet.get("Language"));
+            select_Lang.sendKeys(Keys.TAB);
+
+            Thread.sleep(2000);
+            proficiency_Text.click();
+            String pro = datasheet.get("Proficiency");
+            proficiency_Text.sendKeys(pro);
+
+            Thread.sleep(2000);
+            intRate_Text.click();
+            intRate_Text.sendKeys(datasheet.get("Interpretation Rate"));
+
+            Thread.sleep(2000);
+            save_Lang_Prof.click();
+            Thread.sleep(2000);
+
+            logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Proficiency added"));
+
+            try {
+                delete_Proficiency(datasheet.get("Language"));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
+
     }
 
     public void delete_Proficiency(String lang) throws Throwable
@@ -193,7 +205,7 @@ public class SV_Interpreter_DetailsPage
         menu_LangProf.click();
 
         Thread.sleep(2000);
-        boolean isPresent = b.isElementByXpath(wd,xpath);
+        boolean isPresent = b.isElementByXpath(xpath);
         if(isPresent)
         {
             WebElement menu_LangProf_checkBox = b.getElementByXpath(wd,xpath);
@@ -249,9 +261,6 @@ public class SV_Interpreter_DetailsPage
 
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Availability Saved"));
     }
-
-
-
 
 
 

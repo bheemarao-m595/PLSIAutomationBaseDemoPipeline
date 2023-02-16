@@ -68,7 +68,9 @@
 				<methods>
 					<include name="update_Interpreter_Availability"/>
 					<include name="deleteInt_Avail"/>
+					<include name="remove_LangProficiency"/>
 					<include name="create_Proficiency"/>
+					<include name="create_Interpreter_Availability"/>
 					<include name="create_Interpreter_Availability"/>
 				</methods>
 			</class>
