@@ -26,7 +26,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
     XSSFSheet sheet = null;
 
     @Test(description = "This TC will validate the table has the required columns",priority=1)
-
     public void verifyColumnsRequiredAreAvailableInTable() throws InterruptedException, IOException {
 
         driver = openBrowser();
@@ -44,7 +43,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
         JavascriptExecutor js = (JavascriptExecutor) driver;//to use for scrolling up and down the page
 
         lo.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
-        logger.log(Status.INFO, "logged in as scheduler");
+        logger.log(Status.PASS, "logged in as scheduler");
         Thread.sleep(5000);
 
         //UI.waitForElementVisibility(dashboard.newAppointment());
@@ -54,7 +53,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
         // UI.waitForElementVisibility(navPanel.Interpreters());
         Thread.sleep(5000);
         navPanel.click_Interpreters();
-        logger.log(Status.INFO, "clicked Interpreters tab");
+        logger.log(Status.PASS, "clicked Interpreters tab");
         // UI.waitForElementVisibility(interpreterPage.search());
         Thread.sleep(3000);
         logger.log(Status.INFO, "current page is Interpreters dashboard");

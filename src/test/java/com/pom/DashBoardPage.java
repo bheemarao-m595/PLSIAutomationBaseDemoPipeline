@@ -84,7 +84,7 @@ public class DashBoardPage {
     private WebElement click_Status;
 
     @FindBy(xpath = "//label[@id='typo_Statusform_apptstatus']/../following-sibling::div//input")
-    private WebElement select_Status;
+    private WebElement appointmentStatus;
 
     @FindBy(id = "btn_Statusform_save")
     private WebElement save_Status;
@@ -97,15 +97,15 @@ public class DashBoardPage {
 
     }
 
-    public void updateQuickStatus() throws InterruptedException {
+    public void updateQuickStatus(String patientName) throws InterruptedException {
 
-        Thread.sleep(3000);
-        click_Status.click();
+        WebElement statusLink =  wd.findElement(By.xpath("//*[text()='" + patientName     + "']//ancestor::td/following-sibling::td[2]//div//span"));
 
+        statusLink.click();
         Thread.sleep(2000);
-        select_Status.click();
-        select_Status.sendKeys(datasheet.get("Appointment Status"));
-        select_Status.sendKeys(Keys.TAB);
+        appointmentStatus.click();
+        appointmentStatus.sendKeys(datasheet.get("Appointment Status"));
+        appointmentStatus.sendKeys(Keys.TAB);
 
         Thread.sleep(2000);
         save_Status.click();
@@ -113,11 +113,11 @@ public class DashBoardPage {
 
     }
 
-    public  void updatePatientNotes() throws InterruptedException {
+    public  void updatePatientNotes(String patientName) throws InterruptedException {
 
-      WebElement pateintLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='Automation_SV Testerymy']"));
+      WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='" + patientName + "']"));
 
-        pateintLink.click();
+        patientLink.click();
         Thread.sleep(2000);
         scheduler_notes.clear();
         preference.sendKeys("Test Data");

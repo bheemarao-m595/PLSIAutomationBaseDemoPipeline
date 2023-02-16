@@ -1,17 +1,12 @@
 package com.listeners;
 
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.annotations.Test;
-
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -40,8 +35,6 @@ public class ListenerTest implements ITestListener {
 		// TODO Auto-generated method stub
 		String t =result.getThrowable().getMessage();
     //     BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
-
-
 
 	}
 

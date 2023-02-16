@@ -3,10 +3,7 @@ package com.pom;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -129,6 +126,33 @@ public class NewAppointmentPage {
     @FindBy(id = "tbn_viewAppointment_update")
     private WebElement saveupdate;
 
+    @FindBy(xpath = "(//input[@id='form_apptdae'])[2]")
+    private WebElement appointmentDate1;
+
+    @FindBy(xpath = "(//input[@id='form_apptdae'])[3]")
+    private WebElement appointmentDate2;
+
+
+    @FindBy(xpath = "(//input[@id='form_appt_starttime'])[2]")
+    private WebElement appointmentStartTime1;
+
+    @FindBy(xpath = "(//input[@id='form_appt_starttime'])[3]")
+    private WebElement appointmentStartTime2;
+
+    @FindBy(xpath= "(//input[@id='form_appt_endtime'])[2]")
+    private WebElement appointmentEndTime1;
+
+    @FindBy(xpath= "(//input[@id='form_appt_endtime'])[3]")
+    private WebElement appointmentEndTime2;
+
+    @FindBy (id = "cb_recurringappts")
+    private WebElement recurringAppointment;
+
+    @FindBy (id = "btn_addmoredates")
+    private WebElement addMoreDates;
+
+    @FindBy(xpath = "//div[@class='MuiBox-root css-1ixrlsg']")
+    private WebElement toastMessage;
 
 
 
@@ -222,9 +246,13 @@ public class NewAppointmentPage {
         setAppointmentButton.click();
         logger.log(Status.PASS,"Set Appointment clicked");
         Thread.sleep(4000);
-
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
-        return randomName;
+
+        Thread.sleep(4000);
+        if(BaseClass.isElementPresent(setAppointmentButton))
+            return "NC";
+        else
+            return randomName;
 
     }
 
@@ -321,10 +349,7 @@ public class NewAppointmentPage {
 
     }
 
-    public  void editAppointment() throws InterruptedException {
-
-        Thread.sleep(3000);
-        click_View.click();
+    public  void editAppointment(String patientName) throws InterruptedException {
 
         Thread.sleep(3000);
         WebDriver d = BaseClass.driver;
@@ -435,6 +460,146 @@ public class NewAppointmentPage {
         Thread.sleep(2000);
 
     }
+
+
+    public String recurringAppointment(Map<String,String> creationData) throws InterruptedException, IOException {
+
+        BaseClass b = new BaseClass();
+        Thread.sleep(3000);
+        newAppointment.click();
+
+        Thread.sleep(3000);
+        appointmentDate.click();
+        appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
+
+        Thread.sleep(2000);
+        appointmentStartTime.click();
+        appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
+
+        Thread.sleep(2000);
+        appointmentEndTime.click();
+        appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
+
+        Thread.sleep(2000);
+        recurringAppointment.click();
+
+        Thread.sleep(2000);
+        addMoreDates.click();
+
+        Thread.sleep(3000);
+        appointmentDate1.click();
+        appointmentDate1.sendKeys(CommonUtils.getCurrentSystemDate());
+
+        Thread.sleep(2000);
+        appointmentStartTime1.click();
+        Thread.sleep(1000);
+        appointmentStartTime1.sendKeys(CommonUtils.addMinutesToCurrentTime(12));
+        Thread.sleep(500);
+        appointmentStartTime1.sendKeys(Keys.TAB);
+
+
+        Thread.sleep(2000);
+        appointmentEndTime1.click();
+        Thread.sleep(2000);
+        appointmentEndTime1.sendKeys(CommonUtils.addMinutesToCurrentTime(15));
+        Thread.sleep(1000);
+        appointmentEndTime1.sendKeys(Keys.TAB);
+        logger.addScreenCaptureFromPath(BaseClass.takeScreenshotForStep("Recurring times entered"));
+        logger.log(Status.PASS,"Recurring time entered");
+
+        Thread.sleep(2000);
+        addMoreDates.click();
+
+        Thread.sleep(3000);
+        appointmentDate2.click();
+        Thread.sleep(1000);
+        appointmentDate2.sendKeys(CommonUtils.getCurrentSystemDate());
+
+        Thread.sleep(2000);
+        appointmentStartTime2.click();
+        Thread.sleep(1000);
+        appointmentStartTime2.sendKeys(CommonUtils.addMinutesToCurrentTime(15));
+        Thread.sleep(500);
+        appointmentStartTime2.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        appointmentEndTime2.click();
+        Thread.sleep(2000);
+        appointmentEndTime2.sendKeys(CommonUtils.addMinutesToCurrentTime(20));
+        Thread.sleep(1000);
+        appointmentEndTime2.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        client.click();
+        client.sendKeys(creationData.get("Client"));
+
+        client.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        Facility.click();
+        Facility.sendKeys(creationData.get("Facility"));
+
+        Facility.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        appointmentType.click();
+        appointmentType.sendKeys(creationData.get("App Type"));
+        appointmentType.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        building.click();
+        building.sendKeys(creationData.get("Building"));
+        building.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        department.click();
+        department.sendKeys(creationData.get("Department"));
+        Thread.sleep(2000);
+        department.sendKeys(Keys.TAB);
+
+        // building.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        patient_Mrn.click();
+        patient_Mrn.sendKeys(creationData.get("Patient MRN"));
+
+        Thread.sleep(2000);
+        patient_FName.click();
+        patient_FName.sendKeys(creationData.get("First Name"));
+
+        Thread.sleep(2000);
+        patient_LName.click();
+        String randomName = "NNCY";
+        randomName = CommonUtils.getRandomStringOfLength(3);
+        randomName = creationData.get("Last Name")+  "_" + randomName;
+        patient_LName.sendKeys(randomName);
+
+        Thread.sleep(2000);
+        patient_Dob.click();
+        patient_Dob.sendKeys(creationData.get("DOB"));
+
+
+        Thread.sleep(3000);
+        requestedLanguage.click();
+        requestedLanguage.sendKeys(creationData.get("Requested Language"));
+        requestedLanguage.sendKeys(Keys.TAB);
+        Thread.sleep(3000);
+        logger.addScreenCaptureFromPath(BaseClass.takeScreenshotForStep("Edited Requested Language"));
+
+        Thread.sleep(2000);
+        BaseClass.goToElementVisibleArea(setAppointmentButton);
+        setAppointmentButton.click();
+
+        Thread.sleep(2000);
+        if(BaseClass.isElementPresent(setAppointmentButton))
+        {
+            logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Recurring Appointment not created"));
+            return "NC";
+        }
+        else {
+            logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Recurring Appointment created"));
+            return randomName;
+        }
+
+    }
+
 
 
 }

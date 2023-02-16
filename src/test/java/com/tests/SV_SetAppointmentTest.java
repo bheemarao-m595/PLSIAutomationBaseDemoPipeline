@@ -1,10 +1,13 @@
 package com.tests;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.aventstack.extentreports.Status;
 import com.pom.DashBoardPage;
 import com.utils.DashBoardHeaders;
+import com.utils.ExcelUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -81,7 +84,9 @@ public class SV_SetAppointmentTest extends BaseClass
 		DashBoardPage dbp = new DashBoardPage(driver);
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		dbp.updateQuickStatus();
+		dbp.search("Tester_vsc");
+		String patientFullName = "Automation_SV Tester_vsc";
+		dbp.updateQuickStatus(patientFullName);
 		logger.log(Status.PASS,"Update Success");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save quick edit status"));
@@ -101,9 +106,14 @@ public class SV_SetAppointmentTest extends BaseClass
 		lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
 		NewAppointmentPage nap = new NewAppointmentPage(driver);
-
+        DashBoardPage dbp = new DashBoardPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		nap.editAppointment();
+		String patientFullName = "Automation_SV Tester_vsc";
+		dbp.search("Tester_vsc");
+		WebElement appIdLink = dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,patientFullName);
+		appIdLink.click();
+		Thread.sleep(2000);
+		nap.editAppointment("Tester_vsc");
 		logger.log(Status.PASS, "Save the updated appointment");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated appointment details"));
 	}
@@ -172,6 +182,51 @@ public class SV_SetAppointmentTest extends BaseClass
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Canceled the appointment"));
 	}
 
+	@Test()
+	public void createRecurringAppointment() throws InterruptedException, IOException {
+
+		driver=openBrowser();
+		driver.manage().window().maximize();
+		logger = extent.createTest(BaseClass.getMethodName() + "method started");
+		LoginPage lo = new LoginPage(driver);
+		NewAppointmentPage recurringAppointment = new NewAppointmentPage(driver);
+
+		try{
+		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
+		logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
+		logger.log(Status.PASS, "Login Clicked");
+		Thread.sleep(2000);
+		ExcelUtils excelUtils = new ExcelUtils();
+		XSSFWorkbook w = excelUtils.getWorkbook(getFilePathOfTestDataFile());
+		Map<String, String> recAppData = excelUtils.getMapDataForRowName(w, "New Appointment", "createRecurringAppointment");
+
+		   String lastNameOfPatient =	recurringAppointment.scheduleAppointment("Medical");
+			String	patientFName = datasheet.get("First Name");
+		DashBoardPage db = new DashBoardPage(driver);
+		WebElement appid = null;
+		if(!lastNameOfPatient.equals("NC")) {
+			db.search(lastNameOfPatient);
+			Thread.sleep(1000);
+			appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+			logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
+		}
+		else {
+			logger.log(Status.FAIL, "Appointment not created");
+			Assert.assertTrue(false,"Appointment not created");
+		}
+
+		Assert.assertNotNull(appid,"Appointment ID not returned properly");
+		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
+
+		if(appid !=null)
+			logger.log(Status.PASS,"Appointment Created as " + appid.getText());
+		else
+			logger.log(Status.FAIL,"Appointment could not created");
+
+	}catch (Exception e){
+        e.printStackTrace();
+        }
+	}
 
 
 	@AfterMethod

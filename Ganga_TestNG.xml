@@ -11,7 +11,7 @@
 			<!--<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
-&lt;!&ndash;					<include name="editingExpectedPayoutFields"/>&ndash;&gt;
+&lt;!&ndash;		<include name="editingExpectedPayoutFields"/>&ndash;&gt;
 				</methods>
 			</class>
 			<class name="com.tests.GM_EditAppointmentStatusTest">
@@ -24,7 +24,6 @@
 				<methods>
 <!--					<include name="approveFinancialArchivePendingAppointment"/>-->
 <!--					<include name="sortingColumnsFinancialArchive"/>-->
-					<include name="approveFinancialReviewPendingAppointment"/>
 <!--					<include name="approveFinancialReviewPendingAppointment"/>-->
 <!--					<include name="approveFinancialArchiveMultiplePendingAppointment"/>-->
 				</methods>

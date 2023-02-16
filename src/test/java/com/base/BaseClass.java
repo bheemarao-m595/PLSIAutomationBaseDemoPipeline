@@ -189,7 +189,7 @@ public class BaseClass
 			return 	openBrowser();
 	}
 
-	public String takeScreenshotForStep(String step){
+	public static  String takeScreenshotForStep(String step){
 		File SrcFile, DestFile = null;
 		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
 

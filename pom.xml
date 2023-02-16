@@ -22,7 +22,7 @@
 						<version>3.0.0-M9</version>
 						<configuration>
 							<suiteXmlFiles>
-								<suiteXmlFile>TestNG.xml</suiteXmlFile>
+								<suiteXmlFile>VG_TestNG.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>

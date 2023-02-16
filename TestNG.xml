@@ -59,6 +59,7 @@
 					<include name="scheduleAppointmentMedicalTest"/>
 					<include name="updateAppointmentDetails"/>
 					<include name="cancelNewAppointment"/>
+					<include name="createRecurringAppointment"/>
 				</methods>
 			</class>
 

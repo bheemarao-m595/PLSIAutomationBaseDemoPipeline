@@ -175,7 +175,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             InP.clickUrgent();
             logger.log(Status.PASS, "Clicked on Interpreter");
             dbp.search("Testerymy");
-            dbp.updatePatientNotes();
+            dbp.updatePatientNotes("Testerymy");
             logger.log(Status.PASS, "preference updated");
 
         }
