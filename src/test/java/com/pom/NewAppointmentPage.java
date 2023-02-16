@@ -217,16 +217,15 @@ public class NewAppointmentPage {
         Thread.sleep(2000);
         department.sendKeys(Keys.TAB);
 
-        // building.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         patient_Mrn.click();
-        patient_Mrn.sendKeys(datasheet.get("Patient MRN"));
+        patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
         Thread.sleep(2000);
         patient_FName.click();
         patient_FName.sendKeys(datasheet.get("First Name"));
 
-        String randomName = "NNCY";
+        String randomName = "NC";
         randomName = CommonUtils.getRandomStringOfLength(3);
         randomName = datasheet.get("Last Name")+  "_" + randomName;
         patient_LName.click();
@@ -306,7 +305,7 @@ public class NewAppointmentPage {
         // building.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         patient_Mrn.click();
-        patient_Mrn.sendKeys(creationData.get("Patient MRN"));
+        patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
         Thread.sleep(2000);
         patient_FName.click();
@@ -436,7 +435,7 @@ public class NewAppointmentPage {
         // building.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         patient_Mrn.click();
-        patient_Mrn.sendKeys(datasheet.get("Patient MRN"));
+        patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
         Thread.sleep(2000);
         patient_FName.click();
@@ -558,7 +557,7 @@ public class NewAppointmentPage {
         // building.sendKeys(Keys.TAB);
         Thread.sleep(2000);
         patient_Mrn.click();
-        patient_Mrn.sendKeys(creationData.get("Patient MRN"));
+        patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
         Thread.sleep(2000);
         patient_FName.click();

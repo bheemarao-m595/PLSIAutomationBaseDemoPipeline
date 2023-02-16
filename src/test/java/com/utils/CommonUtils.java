@@ -54,6 +54,22 @@ public class CommonUtils {
 		return  bf.toString();
 
 	}
+	public   static  String getRandomNumberOfLength(int n){
+
+		String st = "0123456789";
+
+		StringBuffer bf = new StringBuffer();
+
+
+		for(int i=0;i<n;i++){
+
+			Random r = new Random();
+			int charAt =	r.nextInt(9);
+			bf.append(st.charAt(charAt));
+		}
+		return  bf.toString();
+
+	}
 
 	public  static  String getActualHeaderStringFromDashBoardTable(DashBoardHeaders dbh){
 
