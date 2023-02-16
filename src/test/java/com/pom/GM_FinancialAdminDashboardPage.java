@@ -82,7 +82,6 @@ public class GM_FinancialAdminDashboardPage {
         while(boxesChecked<noOfChecboxRequired) {
             List<WebElement> rows = driver.findElements(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//td[2]"));
             for(int i=0;i<rows.size();i++) {
-                System.out.println(rows.get(i).getText());
                 if(rows.get(i).getText().contains(Status)) {
                     Thread.sleep(1000);
                     JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -127,7 +126,6 @@ public class GM_FinancialAdminDashboardPage {
         financialAppintmentStatus.click();
 
         Thread.sleep(2000);
-        System.out.println(getIDStatus.getText());
         BaseClass.logger.log(Status.INFO,getIDStatus.getText());
         BaseClass b = new BaseClass();
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Editing finance"));

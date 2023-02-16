@@ -24,13 +24,16 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
 
     @BeforeMethod
     public void Setup() throws IOException {
-        driver = openBrowser();
-        driver.manage().window().maximize();
+
 
     }
 
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
     public void updateFinanceAppointmentStatus() throws InterruptedException, IOException {
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
+
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
         GM_FinancialAdminDashboardPage fadmin = new GM_FinancialAdminDashboardPage(driver);
@@ -69,12 +72,17 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
     public void tearDown(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
             logger.log(Status.FAIL, "Test Case Failed due to " + result.getThrowable());
-
-
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

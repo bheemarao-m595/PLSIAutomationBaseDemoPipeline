@@ -20,6 +20,7 @@ public class NewAppointmentPage {
 
 
     WebDriver wd;
+    BaseClass b = new BaseClass();
     public  NewAppointmentPage(WebDriver d){
 
         wd = d;
@@ -27,6 +28,9 @@ public class NewAppointmentPage {
 
     }
 
+
+    @FindBy(id = "btn_appointments_cancel")
+    private WebElement appCancel;
 
     @FindBy(css= "input[placeholder='Search...']")
     private WebElement Search;
@@ -201,9 +205,6 @@ public class NewAppointmentPage {
         String randomName = "NNCY";
         randomName = CommonUtils.getRandomStringOfLength(3);
         randomName = datasheet.get("Last Name")+  "_" + randomName;
-        patient_LName.sendKeys(randomName);
-
-        Thread.sleep(2000);
         patient_LName.click();
         patient_LName.sendKeys(randomName);
 
@@ -212,25 +213,23 @@ public class NewAppointmentPage {
         patient_Dob.sendKeys(datasheet.get("DOB"));
 
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         requestedLanguage.click();
         requestedLanguage.sendKeys(datasheet.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
-        logger.log(Status.PASS,"Before Set Appointment click");
-        Thread.sleep(2000);
         setAppointmentButton.click();
-        logger.log(Status.PASS,"After Set Appointment click");
+        logger.log(Status.PASS,"Set Appointment clicked");
         Thread.sleep(4000);
-        BaseClass b = new BaseClass();
+
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
         return randomName;
 
     }
 
 
-    public String addScheduleAppointment(Map<String,String> creationData) throws InterruptedException {
+    public String addScheduleAppointment(Map<String,String> creationData) throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         newAppointment.click();
@@ -307,6 +306,8 @@ public class NewAppointmentPage {
         BaseClass.goToElementVisibleArea(setAppointmentButton);
       //  BaseClass.clickWithJavaScript(setAppointmentButton);
         setAppointmentButton.click();
+        logger.log(Status.PASS,"Set Appointment clicked");
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
         Thread.sleep(4000);
        if(BaseClass.isElementPresent(setAppointmentButton))
         return "NC";
@@ -352,13 +353,88 @@ public class NewAppointmentPage {
 
         Thread.sleep(2000);
         care_Physician.click();
-        care_Physician.sendKeys(datasheet.get("Physician Name"));
+        care_Physician.clear();
+        care_Physician.sendKeys(datasheet.get("Physician Name") + "_Edited");
 
         Thread.sleep(2000);
         saveupdate.click();
-
-
+        Thread.sleep(2000);
 
     }
+
+    public void cancelAppointment() throws InterruptedException {
+
+        Thread.sleep(3000);
+        newAppointment.click();
+
+        Thread.sleep(1000);
+        appointmentDate.click();
+        appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
+
+        Thread.sleep(2000);
+        appointmentStartTime.click();
+        appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(4));
+
+        Thread.sleep(2000);
+        appointmentEndTime.click();
+        appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
+
+        Thread.sleep(2000);
+        Tbd_Checkbox.click();
+
+        Thread.sleep(2000);
+        client.click();
+        client.sendKeys(datasheet.get("Client"));
+
+        client.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        Facility.click();
+        Facility.sendKeys(datasheet.get("Facility"));
+
+        Facility.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        appointmentType.click();
+        appointmentType.sendKeys(datasheet.get("App Type"));
+        appointmentType.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        building.click();
+        building.sendKeys(datasheet.get("Building"));
+        building.sendKeys(Keys.TAB);
+
+        Thread.sleep(2000);
+        department.click();
+        department.sendKeys(datasheet.get("Department"));
+        Thread.sleep(2000);
+        department.sendKeys(Keys.TAB);
+
+        // building.sendKeys(Keys.TAB);
+        Thread.sleep(2000);
+        patient_Mrn.click();
+        patient_Mrn.sendKeys(datasheet.get("Patient MRN"));
+
+        Thread.sleep(2000);
+        patient_FName.click();
+        patient_FName.sendKeys(datasheet.get("First Name"));
+
+        Thread.sleep(2000);
+        patient_LName.click();
+        patient_LName.sendKeys(datasheet.get("Last Name")+ CommonUtils.getRandomStringOfLength(3));
+
+        Thread.sleep(2000);
+        patient_Dob.click();
+        patient_Dob.sendKeys(datasheet.get("DOB"));
+
+
+        Thread.sleep(1000);
+        requestedLanguage.click();
+        requestedLanguage.sendKeys(datasheet.get("Requested Language"));
+        requestedLanguage.sendKeys(Keys.TAB);
+
+        appCancel.click();
+        Thread.sleep(2000);
+
+    }
+
 
 }

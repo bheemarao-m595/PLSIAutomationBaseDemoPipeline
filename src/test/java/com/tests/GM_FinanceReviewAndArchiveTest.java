@@ -1,32 +1,31 @@
 package com.tests;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.*;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GM_FinanceArchiveTest extends BaseClass{
+public class GM_FinanceReviewAndArchiveTest extends BaseClass{
     WebDriver driver = null;
 
     @BeforeMethod
     public void Setup() throws IOException {
-        driver = openBrowser();
-        driver.manage().window().maximize();
+
 
     }
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve one pending status")
-    public void approveFinancialArchivePendingAppointment() throws InterruptedException, IOException {
+    public void approveFinancialArchivePendingAppointment() throws Throwable {
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
 
@@ -34,14 +33,13 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
           boolean isSelected =  FA.navigateFinancialArchivePage();
           if(!isSelected)
             {
                 WebElement el = FA.getArchivetab();
-                System.out.println(el.isDisplayed());
                 String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
                 Assert.assertTrue(false,"Tab not highlighted");
@@ -69,7 +67,10 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and sorted all columns")
-    public void sortingColumnsFinancialArchive() throws InterruptedException, IOException {
+    public void sortingColumnsFinancialArchive() throws Throwable{
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
         GM_FinancialArchivePage columns = new GM_FinancialArchivePage(driver);
@@ -102,7 +103,10 @@ public class GM_FinanceArchiveTest extends BaseClass{
     }
 
     @Test(description = "This TC will perform valid login and navigated to finance review page and approve one pending status")
-    public void approveFinancialReviewPendingAppointment() throws InterruptedException, IOException {
+    public void approveFinancialReviewPendingAppointment() throws Throwable {
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
 
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
@@ -139,11 +143,13 @@ public class GM_FinanceArchiveTest extends BaseClass{
 
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve multiple pending status")
-    public void approveFinancialArchiveMultiplePendingAppointment() throws InterruptedException, IOException {
+    public void approveFinancialArchiveMultiplePendingAppointment() throws Throwable {
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
 
-        System.out.println("starting");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
@@ -185,7 +191,13 @@ public class GM_FinanceArchiveTest extends BaseClass{
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
+        try{
+            Thread.sleep(3000);
+            driver.close();
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @AfterTest

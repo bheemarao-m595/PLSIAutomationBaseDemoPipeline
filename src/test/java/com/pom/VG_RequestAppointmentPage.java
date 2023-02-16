@@ -1,5 +1,6 @@
 package com.pom;
 
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,11 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.base.BaseClass.datasheet;
+import static com.base.BaseClass.*;
 
 public class VG_RequestAppointmentPage {
 
@@ -41,32 +43,32 @@ public class VG_RequestAppointmentPage {
     private WebElement startTime;
 
     @FindBy(xpath= "//input[@name='appointments.0.aptEndTime']")
-    private WebElement EndTime;
+    private WebElement endTime;
 
 
     @FindBy(xpath= "//label[@id='typo_apptform_client']/../following-sibling::div//input")
     private WebElement client;
 
     @FindBy(xpath= "//label[@id='typo_apptform_facility']/../following-sibling::div//input")
-    private WebElement Facility;
+    private WebElement facility;
 
     @FindBy(xpath= "//label[@id='typo_apptform_appttype']/../following-sibling::div//input")
-    private WebElement AppointmentType;
+    private WebElement appointmenttype;
 
     @FindBy(xpath= "//label[@id='typo_apptform_building']/../following-sibling::div//input")
-    private WebElement Building;
+    private WebElement building;
 
     @FindBy(xpath= "//label[@id='typo_apptform_dept_clinic']/../following-sibling::div//input")
-    private WebElement Department;
+    private WebElement department;
 
     @FindBy(xpath= "//input[@name='patientMrn']")
-    private WebElement PatientMRN;
+    private WebElement patientMRN;
 
     @FindBy(xpath= "//input[@name='pFirstName']")
-    private WebElement FirstName;
+    private WebElement firstName;
 
     @FindBy(xpath= "//input[@id='form_patientinfo_lastname']")
-    private WebElement LastName;
+    private WebElement lastName;
 
     @FindBy(xpath= "//input[@name='pDob']")
     private WebElement DOB;
@@ -75,28 +77,28 @@ public class VG_RequestAppointmentPage {
     private WebElement Gender;
 
     @FindBy(xpath= "//input[@id='react-select-9-input']")
-    private WebElement PatientGender;
+    private WebElement patientGender;
 
     @FindBy(xpath= "//input[@id='react-select-10-input']")
-    private WebElement RequestedLanguage;
+    private WebElement requestedlanguage;
 
     @FindBy(xpath= "//input[@id='react-select-11-input']")
-    private WebElement AlternateLanguage;
+    private WebElement alternatelanguage;
 
     @FindBy(xpath= "//input[@name='pPreferences']")
-    private WebElement Prefrences;
+    private WebElement prefrences;
 
     @FindBy(xpath= "//button[@id='btn_clients_components_Addreq_addappt']")
-    private WebElement AddAppointment;
+    private WebElement addAppointment;
 
     @FindBy(xpath= "//input[@placeholder='Search...']")
     private WebElement searchbar;
 
     @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[@class='MuiTableRow-root css-1pe2zvv'][1]//div[@class='MuiBox-root css-1nxrbxh']")
-    private WebElement ViewAppointmnet;
+    private WebElement viewAppointmnet;
 
     @FindBy(xpath= "//button[@id='Request Change']")
-    private WebElement Requestchange1;
+    private WebElement requestchange1;
 
     @FindBy(xpath= "//textarea[@name='ChangeReason']")
     private WebElement Textarea;
@@ -128,7 +130,7 @@ public class VG_RequestAppointmentPage {
      return  "";
     }
 
-    public void     createAppointmentFromClient(String type) throws InterruptedException {
+    public void  createAppointmentFromClient(String type) throws InterruptedException {
 
         BaseClass.waitforElementToMakeClickable(clients);
         clients.click();
@@ -142,69 +144,70 @@ public class VG_RequestAppointmentPage {
           nonmedical.click();
         Appointmentdate.clear();
         Appointmentdate.sendKeys(CommonUtils.getCurrentSystemDate());
-        startTime.sendKeys(datasheet.get("Appointment Start Time"));
-        EndTime.sendKeys(datasheet.get("Appointment End Time"));
-//        client.click();
+        startTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
+        endTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
         client.sendKeys(datasheet.get("Client"));
         Thread.sleep(3000);
         client.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Facility.sendKeys(datasheet.get("Facility"));
-        Facility.sendKeys(Keys.TAB);
+        facility.sendKeys(datasheet.get("Facility"));
+        facility.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        AppointmentType.click();
+        appointmenttype.click();
         Thread.sleep(2000);
-        AppointmentType.sendKeys(datasheet.get("Appointment Type"));
-        AppointmentType.sendKeys(Keys.TAB);
+        appointmenttype.sendKeys(datasheet.get("Appointment Type"));
+        appointmenttype.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Building.sendKeys(datasheet.get("Building"));
-        Building.sendKeys(Keys.TAB);
+        building.sendKeys(datasheet.get("Building"));
+        building.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Department.sendKeys(datasheet.get("Department"));
-        Department.sendKeys(Keys.TAB);
+        department.sendKeys(datasheet.get("Department"));
+        department.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        PatientMRN.sendKeys(datasheet.get("Patient MRN"));
-        PatientMRN.sendKeys(Keys.TAB);
+        patientMRN.sendKeys(datasheet.get("Patient MRN"));
+        patientMRN.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        FirstName.sendKeys(datasheet.get("First Name"));
-        FirstName.sendKeys(Keys.TAB);
+        firstName.sendKeys(datasheet.get("First Name"));
+        firstName.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         String ln = datasheet.get("Last Name");
-        LastName.sendKeys(ln);
-        LastName.sendKeys(Keys.TAB);
+        lastName.sendKeys(ln);
+        lastName.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         DOB.sendKeys(datasheet.get("DOB"));
         DOB.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        PatientGender.sendKeys(datasheet.get("Select Patient Gender"));
-        PatientGender.sendKeys(Keys.TAB);
+        patientGender.sendKeys(datasheet.get("Select Patient Gender"));
+        patientGender.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        RequestedLanguage.sendKeys(datasheet.get("Requested Language"));
-        RequestedLanguage.sendKeys(Keys.TAB);
+        requestedlanguage.sendKeys(datasheet.get("Requested Language"));
+        requestedlanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        AlternateLanguage.sendKeys(datasheet.get("Alternate Language"));
-        AlternateLanguage.sendKeys(Keys.TAB);
+        alternatelanguage.sendKeys(datasheet.get("Alternate Language"));
+        alternatelanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Prefrences.sendKeys(datasheet.get("Preferences"));
-        Prefrences.sendKeys(Keys.TAB);
+        prefrences.sendKeys(datasheet.get("Preferences"));
+        prefrences.sendKeys(Keys.TAB);
         Thread.sleep(1000);
         WebDriver d = BaseClass.driver;
         JavascriptExecutor js = (JavascriptExecutor)d;
-        js.executeScript("arguments[0].scrollIntoView(true);",AddAppointment);
+        js.executeScript("arguments[0].scrollIntoView(true);", addAppointment);
         Thread.sleep(1000);
-        AddAppointment.click();
+        addAppointment.click();
+
+        Thread.sleep(1000);
+        if(isElementPresent(addAppointment)){
+            logger.log(Status.FAIL,"Appointment not created");
+            Assert.fail("Appointment not created");
+        }
         searchbar.sendKeys(datasheet.get("First Name"));
         searchbar.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        ViewAppointmnet.click();
-        js.executeScript("arguments[0].scrollIntoView(true);",Requestchange1);
+        viewAppointmnet.click();
+        js.executeScript("arguments[0].scrollIntoView(true);", requestchange1);
         Thread.sleep(3000);
-        Requestchange1.click();
+        requestchange1.click();
 
-
-
-//        FirstName.sendKeys(CommonUtils.getRandomStringOfLength(5));
-//        System.out.println("hi");
 
 
     }

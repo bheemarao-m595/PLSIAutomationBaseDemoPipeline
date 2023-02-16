@@ -143,6 +143,14 @@ public class BaseClass
 		}
 	}
 
+	public  List<WebElement> getAllElementsByXpath(WebDriver d ,String xpath){
+
+
+	return 	d.findElements(By.xpath(xpath));
+
+	}
+
+
 	public  boolean isElementByXpath(WebDriver d ,String xpath){
 
 
@@ -183,12 +191,13 @@ public class BaseClass
 
 	public String takeScreenshotForStep(String step){
 		File SrcFile, DestFile = null;
+		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
 
 		try {
 			String basePath = System.getProperty("user.dir")+"\\ScreenShots\\";
 			TakesScreenshot scrShot =((TakesScreenshot)driver);
 			SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-			DestFile=new File(basePath+step+".png");
+			DestFile=new File(basePath+timeStamp+"_"+step+".png");
 			FileUtils.copyFile(SrcFile, DestFile);
 		}catch(Exception ee) {
 			ee.printStackTrace();

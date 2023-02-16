@@ -65,7 +65,8 @@ public class InterpreterDashboardPage {
     private WebElement InterpreterDashboardAppointmentTableColView;
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColView(){
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr/td[1]"));
+//        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr/td[1]"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr/td[1]/div/div"));
 
     }
 

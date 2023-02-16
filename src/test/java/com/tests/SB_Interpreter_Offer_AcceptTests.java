@@ -1,8 +1,12 @@
 package com.tests;
 import java.io.IOException;
+import java.util.Map;
 
 import com.pom.DashBoardPage;
+import com.pom.NewAppointmentPage;
 import com.utils.DashBoardHeaders;
+import com.utils.ExcelUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -55,14 +59,39 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Logined as Scheduler");
                 InterpreterPage InP = new InterpreterPage(driver);
+////////////////////////////
 
-                InP.clickUrgent();
-                InP.searchApps("Automation_SV Testerymy");
+                ExcelUtils exl = new ExcelUtils();
+                XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
+                Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","scheduleAppointmentMedicalTest");
+
+                NewAppointmentPage nap = new NewAppointmentPage(driver);
+                String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+                DashBoardPage db = new DashBoardPage(driver);
+                String patientFName = appointmentData.get("First Name");
+                Thread.sleep(4000);
+                db.search(lastNameOfPatient);
+                WebElement appid = null;
+                if(!lastNameOfPatient.equals("NC")) {
+                    db.search(lastNameOfPatient);
+                    appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+                }
+                else {
+                    logger.log(Status.FAIL, "Appointment not created");
+                    Assert.assertTrue(false,"Appointment not created");
+                }
+                Assert.assertNotNull(appid,"Appointment ID not returned properly");
+                appid.click();
+
+                ////////////////////////////
+
+//                InP.clickUrgent();
+//                InP.searchApps("Automation_SV Testerymy");
                 logger.log(Status.PASS, "Urgent Tab clicked");
                 //InP.clickAppointmentId();
-                DashBoardPage db  = new DashBoardPage(driver);
-                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
-                appid.click();
+//                DashBoardPage db  = new DashBoardPage(driver);
+//                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
+//                appid.click();
                 logger.log(Status.PASS, "Clicked on Appointment");
                 InP.makeAnOfferClick();
                 logger.log(Status.PASS, "Inetrpreter offered");
@@ -88,21 +117,38 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Login as Scheduler");
                 InterpreterPage InP = new InterpreterPage(driver);
+///////////////////////
 
-                InP.clickUrgent();
-                logger.log(Status.PASS, "Urgent Tab clicked");
-                logger.addScreenCaptureFromPath(takeScreenshotForStep("Urgent clicked"));
+                ExcelUtils exl = new ExcelUtils();
+                XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
+                Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","scheduleAppointmentMedicalTest");
 
-                InP.searchApps("Automation_SV Testerymy");
-               // InP.clickAppointmentId();
-                DashBoardPage db  = new DashBoardPage(driver);
-                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
+                NewAppointmentPage nap = new NewAppointmentPage(driver);
+                String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+                DashBoardPage db = new DashBoardPage(driver);
+                String patientFName = appointmentData.get("First Name");
+                Thread.sleep(4000);
+
+                WebElement appid = null;
+                if(!lastNameOfPatient.equals("NC")) {
+                    db.search(lastNameOfPatient);
+                    appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+                }
+                    else {
+                    logger.log(Status.FAIL, "Appointment not created");
+                    Assert.assertTrue(false,"Appointment not created");
+                }
+                Assert.assertNotNull(appid,"Appointment ID not returned properly");
                 appid.click();
-                logger.log(Status.PASS, "Clicked on Appointment");
-                logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment clicked"));
 
+                ////////////////////////////
+
+                logger.log(Status.PASS, "Clicked on Appointment ID");
+                InP.makeAnOfferClick();
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("Made an Offer"));
                 InP.interpreterRescind();
                 logger.log(Status.PASS, "Interpreter Rescind");
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("Rescined Offer"));
             }
             catch (Exception e){
 
@@ -128,6 +174,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             DashBoardPage dbp = new DashBoardPage(driver);
             InP.clickUrgent();
             logger.log(Status.PASS, "Clicked on Interpreter");
+            dbp.search("Testerymy");
             dbp.updatePatientNotes();
             logger.log(Status.PASS, "preference updated");
 
@@ -144,10 +191,16 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         if (result.getStatus() == ITestResult.FAILURE) {
             logger.log(Status.FAIL, "Test Case Failed due to " + result.getThrowable());
 
-
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
     }

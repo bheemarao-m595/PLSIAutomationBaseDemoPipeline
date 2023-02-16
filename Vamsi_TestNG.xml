@@ -6,34 +6,28 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 	<test name="SV1" parallel = "none" thread-count = "1" >
-		<!--<parameter name="Module" value="New appointment" />-->
 		<classes>
 
-			<class name="com.tests.SV_SetAppointmentTest">
+			<!--<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
-<!--					<include name="updateAppointmentDetails"/>-->
-<!--					<include name="quickEditStatus"/>-->
-<!--					<include name="createNonMedicalAppointmentTest"/>-->
+					<include name="updateAppointmentDetails"/>
+					<include name="quickEditStatus"/>
+					<include name="createNonMedicalAppointmentTest"/>
 					<include name="scheduleAppointmentMedicalTest"/>
-<!--					<include name="updateAppointmentDetails"/>-->
+					<include name="updateAppointmentDetails"/>
+					<include name="cancelNewAppointment"/>
+				</methods>
+			</class>-->
+
+			<class name="com.tests.SV_Interpreter_DetailsTest">
+				<methods>
+<!--					<include name="update_Interpreter_Availablity"/>-->
+<!--					<include name="deleteInt_Avail"/>-->
+<!--					<include name="create_Proficiency"/>-->
+					<include name="remove_LangProficiency"/>
+<!--					<include name="create_Interpreter_Availablity"/>-->
 				</methods>
 			</class>
 		</classes>
 	</test>
-
-
-	<!--<test name="SV2" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Interpreter_Details" />
-		<classes>
-
-			<class name="com.tests.SV_Interpreter_DetailsTest">
-				<methods>
-					<include name="update_Interpreter_Availablity"/>
-					<include name="deleteInt_Avail"/>
-					<include name="create_Proficiency"/>
-					<include name="remove_LangProficiency"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
 </suite>

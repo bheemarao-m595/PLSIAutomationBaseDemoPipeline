@@ -61,7 +61,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
         //To find number of columns in the table
         List<WebElement> columnNames = interpreterPage.tableInterpreterListColumnNames();
         logger.log(Status.INFO, "Number of columns in table are "+columnNames.size());
-        System.out.println(columnNames.size());
 
         //looping though all the columns text to see if they have the columns required.
         for(int i=0;i<columnNames.size();i++) {
@@ -185,7 +184,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
     }
 
     @Test(description = "This TC will verify Search for all columns data",priority=3)
-
     public void verifySearchForAllColumnsData()throws InterruptedException, IOException {
 
         driver = openBrowser();
@@ -588,8 +586,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     }
 
 
-    @Test(description = "This TC will verify Search for all columns data individually.",priority=7)
-
+    @Test(priority=7)
     public void verifySearchForAllColumnsDataIndividually()throws InterruptedException, IOException{
 
         driver = openBrowser();
@@ -698,7 +695,14 @@ public class InterpreterAptsTab_Test extends BaseClass {
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
         Thread.sleep(2000);
-        driver.close();
+
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

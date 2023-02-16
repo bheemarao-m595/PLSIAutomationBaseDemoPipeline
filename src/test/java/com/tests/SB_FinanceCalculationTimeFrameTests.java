@@ -44,6 +44,13 @@ public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

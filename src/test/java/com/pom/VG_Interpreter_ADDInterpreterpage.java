@@ -16,7 +16,7 @@ public class VG_Interpreter_ADDInterpreterpage
 {
     WebDriver wd;
     @FindBy(xpath = "//a[@href='/interpreters']")
-    private WebElement Interpreters;
+    private WebElement interpretersLinkMenu;
     @FindBy(xpath = "//button[text()=' + add Interpreter']")
     private WebElement AddInterpreter;
     @FindBy(xpath = "//input[@name='FirstName']")
@@ -63,7 +63,7 @@ public class VG_Interpreter_ADDInterpreterpage
 
     public void clickInterpreters() throws InterruptedException {
         Thread.sleep(2000);
-        Interpreters.click();
+        interpretersLinkMenu.click();
 
     }
     public void addInterpreter() throws InterruptedException {

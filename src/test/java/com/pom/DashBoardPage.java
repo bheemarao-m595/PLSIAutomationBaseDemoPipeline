@@ -119,10 +119,13 @@ public class DashBoardPage {
 
         pateintLink.click();
         Thread.sleep(2000);
+        scheduler_notes.clear();
         preference.sendKeys("Test Data");
         Thread.sleep(2000);
+        scheduler_notes.clear();
         requester.sendKeys("Test Data");
         Thread.sleep(2000);
+        scheduler_notes.clear();
         scheduler_notes.sendKeys("Test Data");
         Thread.sleep(2000);
         Save.click();

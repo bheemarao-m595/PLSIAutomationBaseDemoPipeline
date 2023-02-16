@@ -21,7 +21,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
         System.out.println("Before test");
     }
     @Test(description = "This TC will perform valid login and update the Actual Interpreter Payout")
-    public void editHybridInterpreterpayout() throws InterruptedException, IOException {
+    public void editHybridInterpreterpayout() throws Throwable {
         try {
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
             driver = openBrowser();
@@ -65,7 +65,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
     }
     @Test
-    public void editActualAfterInterpreter() throws InterruptedException, IOException {
+    public void editActualAfterInterpreter() throws Throwable {
         try {
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
             driver = openBrowser();
@@ -77,7 +77,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Login"));
             logger.log(Status.PASS, "Login CLicked");
             Thread.sleep(5000);
-            InO.clickUrgent();
+          //  InO.clickUrgent(); john
             logger.log(Status.PASS, "Urgent tab CLicked");
             InO.searchApps("Completed");
             Thread.sleep(3500);
@@ -109,7 +109,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
     }
     @Test
-    public void editStandardInterpreter() throws InterruptedException, IOException {
+    public void editStandardInterpreter() throws Throwable {
         try {
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
             driver = openBrowser();
@@ -124,7 +124,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             InO.clickUrgent();
             logger.log(Status.PASS, "Urgent tab CLicked");
             Thread.sleep(3500);
-            InO.searchApps("Completed");
+         //   InO.searchApps("Completed");John
             Thread.sleep(3500);
             InO.clickAppointmentId();
             logger.log(Status.PASS, "Selected Appointment");
@@ -163,6 +163,14 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
+
 }

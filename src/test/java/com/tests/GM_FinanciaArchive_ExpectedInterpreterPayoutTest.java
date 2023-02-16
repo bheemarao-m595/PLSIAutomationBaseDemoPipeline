@@ -20,13 +20,15 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     WebDriver driver = null;
     @BeforeMethod
     public void Setup() throws IOException {
-        driver = openBrowser();
-        driver.manage().window().maximize();
+
 
     }
 
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
     public void editingExpectedPayoutFields() throws InterruptedException, IOException {
+
+        driver = openBrowser();
+        driver.manage().window().maximize();
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
@@ -72,6 +74,9 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     public void editingActualPayoutFields() throws InterruptedException, IOException {
 
 
+        driver = openBrowser();
+        driver.manage().window().maximize();
+
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
@@ -112,10 +117,17 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         if (result.getStatus() == ITestResult.FAILURE) {
             logger.log(Status.FAIL, "Test Case Failed due to " + result.getThrowable());
 
-
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
+
+        try{
+            Thread.sleep(3000);
+            driver.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

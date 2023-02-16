@@ -27,10 +27,6 @@ public class ListenerTest implements ITestListener {
 	public void onStart(ITestContext result) {
 		// TODO Auto-generated method stub
 
-		String s = result.getName();
-		System.out.println("hi");
-
-
 	}
 
 	@Override
@@ -60,7 +56,6 @@ public class ListenerTest implements ITestListener {
 		// TODO Auto-generated method stub
 
 		String methodName = result.getMethod().getMethodName();
-//		String moduleName = BaseClass.getModuleName();
 		BaseClass b = new BaseClass();
 		b.setMethodName(methodName);
 

@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="johnsuite" parallel="none">
+<suite name="PLSITestsuite" parallel="none">
 
 	<listeners>
 		<listener class-name="com.listeners.ListenerTest"></listener>
@@ -18,22 +18,7 @@
 					<include name="viewFinancialBreakdown"/>
 				</methods>
 			</class>
+
 		</classes>
 	</test>
-
-
-	<!--<test name="SV2" parallel = "none" thread-count = "1" >
-		<parameter name="Module" value="Interpreter_Details" />
-		<classes>
-
-			<class name="com.tests.SV_Interpreter_DetailsTest">
-				<methods>
-					<include name="update_Interpreter_Availablity"/>
-					<include name="deleteInt_Avail"/>
-					<include name="create_Proficiency"/>
-					<include name="remove_LangProficiency"/>
-				</methods>
-			</class>
-		</classes>
-	</test>-->
 </suite>
