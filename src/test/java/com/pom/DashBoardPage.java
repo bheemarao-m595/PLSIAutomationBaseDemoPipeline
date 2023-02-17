@@ -119,12 +119,15 @@ public class DashBoardPage {
 
         patientLink.click();
         Thread.sleep(2000);
+
         scheduler_notes.clear();
         preference.sendKeys("Test Data");
         Thread.sleep(2000);
-        scheduler_notes.clear();
+
+        requester.clear();
         requester.sendKeys("Test Data");
         Thread.sleep(2000);
+
         scheduler_notes.clear();
         scheduler_notes.sendKeys("Test Data");
         Thread.sleep(2000);

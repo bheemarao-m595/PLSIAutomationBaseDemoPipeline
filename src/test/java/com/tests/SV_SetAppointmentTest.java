@@ -24,8 +24,7 @@ public class SV_SetAppointmentTest extends BaseClass
 	{
 
 		try {
-			driver=openBrowser();
-			driver.manage().window().maximize();
+			driver.get("http://uat.ims.client.sstech.us/login");
 			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 			LoginPage lo = new LoginPage(driver);
@@ -59,6 +58,8 @@ public class SV_SetAppointmentTest extends BaseClass
 			else
 				logger.log(Status.FAIL,"Appointment could not created");
 
+			lo.click_logOut();
+
 		}catch (Exception e){
 
 			e.printStackTrace();
@@ -66,14 +67,15 @@ public class SV_SetAppointmentTest extends BaseClass
 		}
 
 
+
 	}
 
 
-	@Test
+	@Test(dependsOnMethods = "scheduleAppointmentMedicalTest")
 	public void quickEditStatus() throws Throwable
 	{
-	        driver=openBrowser();
-			driver.manage().window().maximize();
+
+		driver.get("http://uat.ims.client.sstech.us/login");
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -84,12 +86,13 @@ public class SV_SetAppointmentTest extends BaseClass
 		DashBoardPage dbp = new DashBoardPage(driver);
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		dbp.search("Tester_vsc");
-		String patientFullName = "Automation_SV Tester_vsc";
+		dbp.search("Tester_xnm");
+		String patientFullName = "Automation_SV Tester_xnm";
 		dbp.updateQuickStatus(patientFullName);
 		logger.log(Status.PASS,"Update Success");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save quick edit status"));
+		lo.click_logOut();
 
 	}
 
@@ -98,8 +101,7 @@ public class SV_SetAppointmentTest extends BaseClass
 	public void updateAppointmentDetails() throws Throwable
 	{
 
-		driver=openBrowser();
-		driver.manage().window().maximize();
+		 driver.get("http://uat.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		LoginPage lo = new LoginPage(driver);
@@ -108,14 +110,15 @@ public class SV_SetAppointmentTest extends BaseClass
 		NewAppointmentPage nap = new NewAppointmentPage(driver);
         DashBoardPage dbp = new DashBoardPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		String patientFullName = "Automation_SV Tester_vsc";
-		dbp.search("Tester_vsc");
+		String patientFullName = "Automation_SV Tester_xnm";
+		dbp.search("Tester_xnm");
 		WebElement appIdLink = dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,patientFullName);
 		appIdLink.click();
 		Thread.sleep(2000);
 		nap.editAppointment("Tester_vsc");
 		logger.log(Status.PASS, "Save the updated appointment");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated appointment details"));
+		lo.click_logOut();
 	}
 
 
@@ -124,9 +127,9 @@ public class SV_SetAppointmentTest extends BaseClass
 	{
 		try {
 
-			driver=openBrowser();
-			driver.manage().window().maximize();
-
+		//	driver=openBrowser();
+		//	driver.manage().window().maximize();
+			driver.get("http://uat.ims.client.sstech.us/login");
 			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 			LoginPage lo = new LoginPage(driver);
@@ -155,7 +158,7 @@ public class SV_SetAppointmentTest extends BaseClass
 				logger.log(Status.PASS,"Appointment Created as " + appid.getText());
 			else
 				logger.log(Status.FAIL,"Appointment could not created");
-
+			lo.click_logOut();
 
 		}catch (Exception e){
 
@@ -163,13 +166,15 @@ public class SV_SetAppointmentTest extends BaseClass
 			Assert.assertFalse(true, "got exception at ");
 		}
 
+
 	}
 
 	@Test
 	public void cancelNewAppointment() throws Throwable
 	{
-		driver=openBrowser();
-		driver.manage().window().maximize();
+		//driver=openBrowser();
+		//driver.manage().window().maximize();
+		driver.get("http://uat.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		LoginPage lo = new LoginPage(driver);
@@ -180,13 +185,15 @@ public class SV_SetAppointmentTest extends BaseClass
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
 		nap.cancelAppointment();
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Canceled the appointment"));
+		lo.click_logOut();
 	}
 
 	@Test()
 	public void createRecurringAppointment() throws InterruptedException, IOException {
 
-		driver=openBrowser();
-		driver.manage().window().maximize();
+		//driver=openBrowser();
+		//driver.manage().window().maximize();
+		driver.get("http://uat.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 		LoginPage lo = new LoginPage(driver);
 		NewAppointmentPage recurringAppointment = new NewAppointmentPage(driver);
@@ -223,6 +230,8 @@ public class SV_SetAppointmentTest extends BaseClass
 		else
 			logger.log(Status.FAIL,"Appointment could not created");
 
+		lo.click_logOut();
+
 	}catch (Exception e){
         e.printStackTrace();
         }
@@ -237,17 +246,13 @@ public class SV_SetAppointmentTest extends BaseClass
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 		try{
 			Thread.sleep(3000);
-			driver.close();
+		//	driver.quit();
 
 		}catch (Exception e){
 			e.printStackTrace();
 		}
 	}
 
-	@AfterTest
-	public void closingTheBrowser(){
 
-
-	}
 
 }

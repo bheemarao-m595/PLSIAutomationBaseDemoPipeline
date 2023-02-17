@@ -22,8 +22,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
 
 import com.utils.ExcelUtils;
 
@@ -82,6 +80,9 @@ public class BaseClass
 		extent.setSystemInfo("Environment", prop.getProperty("environment"));
 		extent.setSystemInfo("User Name", prop.getProperty("author"));
 		data = new ExcelUtils();
+		driver =openBrowser();
+		driver.manage().window().maximize();
+
 
 	}
 		
@@ -109,6 +110,12 @@ public class BaseClass
 			driver = new ChromeDriver(opt);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			driver.get(prop.getProperty("url"));
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException intr){
+				intr.printStackTrace();
+			}
+
 
 
 		}else {
@@ -227,6 +234,7 @@ public class BaseClass
 
 		extent.flush();
 		//driver.close();
+		driver.quit();
 	}
 
 	/**
@@ -287,6 +295,7 @@ public class BaseClass
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].scrollIntoView(true);",el);
+
 	}
 
 	public static void clickWithJavaScript(WebElement element){

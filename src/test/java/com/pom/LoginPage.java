@@ -15,8 +15,6 @@ import java.time.Duration;
 
 public class LoginPage {
 
-
-
     WebDriver wd;
 
     @FindBy(xpath= "//span[text()='logout']")
@@ -26,7 +24,7 @@ public class LoginPage {
     private WebElement user;
 
     @FindBy(id= "form_auth_signin_logininfo_password")
-    private WebElement pwd;
+    private WebElement password;
 
     @FindBy(id= "btn_auth_signinbasic")
     private WebElement login;
@@ -48,34 +46,47 @@ public class LoginPage {
 
         user.sendKeys(val);
 
+    }
+    public  void enterPassword(String pwd){
 
+
+        password.sendKeys(pwd);
     }
 
-    public  void enterPassword(String password){
+    public  void doLogin(String userName, String pwd) throws InterruptedException {
+
+         if(BaseClass.isElementPresent(logOut)){
+
+             click_logOut();
+         }
+         if(BaseClass.isElementPresent(user)){
+             enterUserName(userName);
+             enterPassword(pwd);
+
+             BaseClass.goToElementVisibleArea(login);
+             Thread.sleep(3000);
+             login.click();
+             Thread.sleep(3000);
+         }
 
 
-        pwd.sendKeys(password);
-    }
 
-    public  void doLogin(String user, String pwd) throws InterruptedException {
-
-        enterUserName(user);
-        enterPassword(pwd);
-
-        WebDriver d = BaseClass.driver;
-        JavascriptExecutor js = (JavascriptExecutor)d;
-        js.executeScript("arguments[0].scrollIntoView(true);",login);
-
-        Thread.sleep(3000);
-        login.click();
-        Thread.sleep(5000);
-   //    Assert.assertTrue(waitForLoginComplete(),"Login Failed");
 
     }
 
     public void click_logOut(){
 
-        logOut.click();
+        wd.get("http://uat.ims.client.sstech.us/login");
+        if(BaseClass.isElementPresent(logOut))
+        {
+            logOut.click();
+            try{
+                Thread.sleep(2000);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public boolean waitForLoginComplete(){

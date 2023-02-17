@@ -7,25 +7,20 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import com.base.BaseClass;
 import com.pom.*;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 import java.io.IOException;
 
 
 public class SB_ActualInterpreterpayoutTests extends BaseClass{
-    WebDriver driver = null;
-    XSSFSheet sheet = null;
-    @BeforeMethod
-    public void Setup() {
-        System.out.println("Before test");
-    }
+
+//    WebDriver driver = null;
+
     @Test(description = "This TC will perform valid login and update the Actual Interpreter Payout")
     public void editHybridInterpreterpayout() throws Throwable {
         try {
+            driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
-            driver = openBrowser();
-            driver.manage().window().maximize();
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
             FinancePage Fp = new FinancePage(driver);
@@ -51,6 +46,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
             logger.log(Status.PASS, "Hybrid Interpreter details saved");
+            lo.click_logOut();
 
         }
         catch (Exception e){
@@ -67,9 +63,11 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
     @Test
     public void editActualAfterInterpreter() throws Throwable {
         try {
+
+            driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
-            driver = openBrowser();
-            driver.manage().window().maximize();
+            //driver = openBrowser();
+           // driver.manage().window().maximize();
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
             FinancePage Fp = new FinancePage(driver);
@@ -96,6 +94,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
             logger.log(Status.PASS, "Selected Interpreter Payout for" + Type);
+            lo.click_logOut();
         }
         catch (Exception e){
 
@@ -111,9 +110,11 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
     @Test
     public void editStandardInterpreter() throws Throwable {
         try {
+
+            driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
-            driver = openBrowser();
-            driver.manage().window().maximize();
+          //  driver = openBrowser();
+          //  driver.manage().window().maximize();
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
             FinancePage Fp = new FinancePage(driver);
@@ -142,6 +143,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
             logger.log(Status.PASS, "Selected Interpreter Payout for" + Type);
+            lo.click_logOut();
         }
         catch (Exception e){
 
@@ -162,14 +164,6 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-        try{
-            Thread.sleep(3000);
-            driver.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 

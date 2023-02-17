@@ -1,13 +1,10 @@
 package com.tests;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.DashBoardPage;
 import com.pom.GM_FinancialAdminDashboardPage;
 import com.pom.LoginPage;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -18,33 +15,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GM_EditAppointmentStatusTest extends BaseClass{
-    WebDriver driver = null;
-    ExtentTest logger = null;
 
-
-    @BeforeMethod
-    public void Setup() throws IOException {
-
-
-    }
 
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
     public void updateFinanceAppointmentStatus() throws InterruptedException, IOException {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
         GM_FinancialAdminDashboardPage fadmin = new GM_FinancialAdminDashboardPage(driver);
-        DashBoardPage db = new DashBoardPage(driver);
 
-        System.out.println("starting");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
         boolean isSelected =  FA.navigateFinancialArchivePage();
@@ -64,25 +49,20 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
         catch (Exception e){
             e.printStackTrace();
         }
+        lo.click_logOut();
 
 
     }
 
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
+
         if (result.getStatus() == ITestResult.FAILURE) {
             logger.log(Status.FAIL, "Test Case Failed due to " + result.getThrowable());
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
-        try{
-            Thread.sleep(3000);
-            driver.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 }

@@ -7,7 +7,6 @@ import com.pom.NewAppointmentPage;
 import com.utils.DashBoardHeaders;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -19,16 +18,14 @@ import com.pom.InterpreterPage;
 
 
 public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
-    WebDriver driver = null;
 
     @Test(priority = 3)
     public void acceptOfferByInterpreter() throws Throwable
         {
 
             try {
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-                driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Login as Interpreter");
@@ -36,6 +33,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 InP.interpreterAccept();
                 logger.log(Status.PASS, "Interpreter Accepted");
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment clicked"));
+                lo.click_logOut();
 
             } catch (Exception e) {
 
@@ -52,14 +50,12 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         {
 
             try {
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-                driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Logined as Scheduler");
                 InterpreterPage InP = new InterpreterPage(driver);
-////////////////////////////
 
                 ExcelUtils exl = new ExcelUtils();
                 XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
@@ -70,7 +66,6 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 DashBoardPage db = new DashBoardPage(driver);
                 String patientFName = appointmentData.get("First Name");
                 Thread.sleep(4000);
-                db.search(lastNameOfPatient);
                 WebElement appid = null;
                 if(!lastNameOfPatient.equals("NC")) {
                     db.search(lastNameOfPatient);
@@ -83,18 +78,10 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 Assert.assertNotNull(appid,"Appointment ID not returned properly");
                 appid.click();
 
-                ////////////////////////////
-
-//                InP.clickUrgent();
-//                InP.searchApps("Automation_SV Testerymy");
-                logger.log(Status.PASS, "Urgent Tab clicked");
-                //InP.clickAppointmentId();
-//                DashBoardPage db  = new DashBoardPage(driver);
-//                WebElement appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"Automation_SV Testerymy");
-//                appid.click();
                 logger.log(Status.PASS, "Clicked on Appointment");
                 InP.makeAnOfferClick();
                 logger.log(Status.PASS, "Inetrpreter offered");
+                lo.click_logOut();
             }
             catch (Exception e){
 
@@ -110,14 +97,12 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         {
 
             try {
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-                driver.manage().window().maximize();
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Login as Scheduler");
                 InterpreterPage InP = new InterpreterPage(driver);
-///////////////////////
 
                 ExcelUtils exl = new ExcelUtils();
                 XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
@@ -141,14 +126,14 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 Assert.assertNotNull(appid,"Appointment ID not returned properly");
                 appid.click();
 
-                ////////////////////////////
 
                 logger.log(Status.PASS, "Clicked on Appointment ID");
                 InP.makeAnOfferClick();
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Made an Offer"));
                 InP.interpreterRescind();
                 logger.log(Status.PASS, "Interpreter Rescind");
-                logger.addScreenCaptureFromPath(takeScreenshotForStep("Rescined Offer"));
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("Rescind Offer"));
+                lo.click_logOut();
             }
             catch (Exception e){
 
@@ -163,9 +148,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     {
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         try {
-
-            driver  = openBrowser();
-            driver.manage().window().maximize();
+            driver.get("http://uat.ims.client.sstech.us/login");
             LoginPage lo = new LoginPage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             logger.addScreenCaptureFromPath(takeScreenshotForStep("UpdatePatient"));
@@ -175,8 +158,10 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             InP.clickUrgent();
             logger.log(Status.PASS, "Clicked on Interpreter");
             dbp.search("Testerymy");
-            dbp.updatePatientNotes("Testerymy");
+            String fullName =  "Automation_SV Testerymy";
+            dbp.updatePatientNotes(fullName);
             logger.log(Status.PASS, "preference updated");
+            lo.click_logOut();
 
         }
         catch (Exception e) {
@@ -194,21 +179,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-        try{
-            Thread.sleep(3000);
-            driver.close();
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
-
-    @AfterTest
-    public void closingTheBrowser(){
-
-        //driver.close();
     }
 
 

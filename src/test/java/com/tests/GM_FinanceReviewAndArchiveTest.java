@@ -13,19 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GM_FinanceReviewAndArchiveTest extends BaseClass{
-    WebDriver driver = null;
 
-    @BeforeMethod
-    public void Setup() throws IOException {
-
-
-    }
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve one pending status")
     public void approveFinancialArchivePendingAppointment() throws Throwable {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
+        driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
 
@@ -62,15 +55,14 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
             logger.addScreenCaptureFromPath(takeScreenshotForStep("pending appointment process for error"));
         }
 
-
+      lo.click_logOut();
     }
 
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and sorted all columns")
     public void sortingColumnsFinancialArchive() throws Throwable{
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
+        driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
         GM_FinancialArchivePage columns = new GM_FinancialArchivePage(driver);
@@ -99,15 +91,15 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Sorted Columns"));
         }
+        lo.click_logOut();
 
     }
 
     @Test(description = "This TC will perform valid login and navigated to finance review page and approve one pending status")
     public void approveFinancialReviewPendingAppointment() throws Throwable {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
 
+        driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
 
@@ -137,6 +129,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
         }
+        lo.click_logOut();
 
 
     }
@@ -145,8 +138,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve multiple pending status")
     public void approveFinancialArchiveMultiplePendingAppointment() throws Throwable {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
+        driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
 
@@ -180,6 +172,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
         }
+        lo.click_logOut();
     }
 
     @AfterMethod
@@ -191,19 +184,8 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-        try{
-            Thread.sleep(3000);
-            driver.close();
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
-    @AfterTest
-    public void closingTheBrowser(){
-
-      //  driver.close();
-    }
 
 }

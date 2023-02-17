@@ -99,7 +99,8 @@ public class InterpreterPage {
     @FindBy(xpath= "//span[text()='APPOINTMENTS']")
     private WebElement tabAppointments;
 
-    public void clickTabAppointments() {
+    public void clickTabAppointments() throws InterruptedException {
+        Thread.sleep(2000);
         tabAppointments.click();
     }
 
@@ -138,6 +139,7 @@ public class InterpreterPage {
 
     @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//input[@placeholder='Search...']")
     private WebElement tableAppointmentsListSearch;
+
     public void enterTableAppointmentsListSearch(String val) {
 
         tableAppointmentsListSearch.sendKeys(val);

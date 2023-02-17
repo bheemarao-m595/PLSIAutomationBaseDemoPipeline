@@ -22,7 +22,7 @@
 
 			<class name="com.tests.GM_FinanceReviewAndArchiveTest">
 				<methods>
-<!--					<include name="approveFinancialArchivePendingAppointment"/>-->
+					<include name="approveFinancialArchivePendingAppointment"/>
 <!--					<include name="sortingColumnsFinancialArchive"/>-->
 <!--					<include name="approveFinancialReviewPendingAppointment"/>-->
 <!--					<include name="approveFinancialArchiveMultiplePendingAppointment"/>-->

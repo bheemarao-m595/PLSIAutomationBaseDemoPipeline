@@ -14,21 +14,10 @@ import java.io.IOException;
 
 public class    SV_Interpreter_DetailsTest extends BaseClass
 {
-    WebDriver driver = null;
-
-    XSSFSheet sheet = null;
-    @BeforeMethod
-    public void Setup() throws IOException {
-       // driver = openBrowser();
-      //  driver.manage().window().maximize();
-
-    }
-
-    @Test(priority = 1)
+    @Test
     public void create_Interpreter_Availability() throws Throwable {
-        driver = openBrowser();
-        driver.manage().window().maximize();
 
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -41,15 +30,15 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.create_Interpreter_Availablity();
+        lo.click_logOut();
 
     }
 
-    @Test(priority = 2)
+    @Test
     public void update_Interpreter_Availability() throws Throwable
     {
-        driver = openBrowser();
-        driver.manage().window().maximize();
 
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -61,18 +50,18 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.edit_Interpreter_Availablity();
         logger.log(Status.PASS, "Save the updated availability");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated availability"));
+        lo.click_logOut();
 
     }
 
-    @Test(priority = 3)
+    @Test(dependsOnMethods = "create_Interpreter_Availability")
     public void deleteInt_Avail() throws Throwable {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -89,15 +78,14 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         intAvail.delete_Interpreter_Availability();
         logger.log(Status.PASS, " After Delete Availability");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Delete the updated availability"));
+        lo.click_logOut();
     }
 
     @Test
     public void create_Proficiency() throws Throwable
     {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest( BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -113,16 +101,14 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         intAvail.add_Proficiency();
         logger.log(Status.PASS, "Add Proficiency");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Created language proficiency from any interpreter"));
+        lo.click_logOut();
 
     }
 
-    @Test
+    @Test(dependsOnMethods = "create_Proficiency")
     public void remove_LangProficiency() throws Throwable
     {
-
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -138,7 +124,7 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         intAvail.delete_Proficiency(datasheet.get("Language"));
         logger.log(Status.PASS, "Delete any selected language");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Delete any selected language proficiency from any interpreter"));
-
+        lo.click_logOut();
     }
 
 
@@ -149,21 +135,9 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         logger.log(Status.PASS, "Method completed");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
-        try{
-            Thread.sleep(3000);
-            driver.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 
-	@AfterTest
-	public void closingTheBrowser(){
-
-		//driver.close();
-	}
 
 
 }

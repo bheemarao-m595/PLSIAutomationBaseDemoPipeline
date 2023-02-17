@@ -53,13 +53,13 @@
 
 			<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
+					<include name="createRecurringAppointment"/>
 					<include name="updateAppointmentDetails"/>
 					<include name="quickEditStatus"/>
 					<include name="createNonMedicalAppointmentTest"/>
 					<include name="scheduleAppointmentMedicalTest"/>
-					<include name="updateAppointmentDetails"/>
 					<include name="cancelNewAppointment"/>
-					<include name="createRecurringAppointment"/>
+
 				</methods>
 			</class>
 
@@ -70,7 +70,6 @@
 					<include name="deleteInt_Avail"/>
 					<include name="remove_LangProficiency"/>
 					<include name="create_Proficiency"/>
-					<include name="create_Interpreter_Availability"/>
 					<include name="create_Interpreter_Availability"/>
 				</methods>
 			</class>

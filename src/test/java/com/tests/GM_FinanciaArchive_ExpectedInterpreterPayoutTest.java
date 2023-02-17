@@ -17,19 +17,12 @@ import java.util.Date;
 
 public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
-    WebDriver driver = null;
-    @BeforeMethod
-    public void Setup() throws IOException {
 
-
-    }
 
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
     public void editingExpectedPayoutFields() throws InterruptedException, IOException {
 
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
@@ -38,7 +31,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
         boolean isSelected =  FA.navigateFinancialArchivePage();
@@ -52,11 +45,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
         }
         try {
-            //Thread.sleep(5000);
-            //db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"CONFIRMED");
-            //clickElement(db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS, "CONFIRMED"));
-            //logger.log(Status.INFO,"Clicked Status");
-            //logger.addScreenCaptureFromPath(takeScreenshotForStep("Status to be clicked"));
 
             Thread.sleep(2000);
             aptDetails.editExpectedPayout();
@@ -66,6 +54,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         catch (Exception e){
             e.printStackTrace();
         }
+        lo.click_logOut();
 
 
     }
@@ -73,10 +62,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Actual Payout fields")
     public void editingActualPayoutFields() throws InterruptedException, IOException {
 
-
-        driver = openBrowser();
-        driver.manage().window().maximize();
-
+        driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
         GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
@@ -84,7 +70,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
-        logger.log(Status.PASS, "Login CLicked");
+        logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
         boolean isSelected =  FA.navigateFinancialArchivePage();
@@ -107,7 +93,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         catch (Exception e){
             e.printStackTrace();
         }
-
+        lo.click_logOut();
 
     }
 
@@ -120,14 +106,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-        try{
-            Thread.sleep(3000);
-            driver.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
     }
 

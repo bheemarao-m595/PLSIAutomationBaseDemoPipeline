@@ -335,7 +335,7 @@ public class NewAppointmentPage {
         setAppointmentButton.click();
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
-        Thread.sleep(4000);
+        Thread.sleep(2000);
        if(BaseClass.isElementPresent(setAppointmentButton))
         return "NC";
        else

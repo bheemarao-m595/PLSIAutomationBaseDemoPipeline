@@ -8,28 +8,27 @@
 	<test name="SV1" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SV_SetAppointmentTest">
+		<!--	<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
-<!--					<include name="updateAppointmentDetails"/>-->
-<!--					<include name="quickEditStatus"/>-->
-<!--					<include name="createNonMedicalAppointmentTest"/>-->
+&lt;!&ndash;					<include name="updateAppointmentDetails"/>&ndash;&gt;
+					<include name="quickEditStatus"/>
+&lt;!&ndash;					<include name="createNonMedicalAppointmentTest"/>&ndash;&gt;
 					<include name="scheduleAppointmentMedicalTest"/>
-<!--					<include name="updateAppointmentDetails"/>-->
-<!--					<include name="cancelNewAppointment"/>-->
-<!--					<include name="createRecurringAppointment"/>-->
+&lt;!&ndash;					<include name="updateAppointmentDetails"/>&ndash;&gt;
+&lt;!&ndash;					<include name="cancelNewAppointment"/>&ndash;&gt;
+&lt;!&ndash;					<include name="createRecurringAppointment"/>&ndash;&gt;
 				</methods>
 			</class>
-
-			<!--<class name="com.tests.SV_Interpreter_DetailsTest">
+-->
+			<class name="com.tests.SV_Interpreter_DetailsTest">
 				<methods>
-&lt;!&ndash;					<include name="update_Interpreter_Availablity"/>&ndash;&gt;
-&lt;!&ndash;					<include name="deleteInt_Avail"/>&ndash;&gt;
-&lt;!&ndash;					<include name="create_Proficiency"/>&ndash;&gt;
-&lt;!&ndash;					<include name="remove_LangProficiency"/>&ndash;&gt;
-&lt;!&ndash;					<include name="remove_LangProficiency"/>&ndash;&gt;
-&lt;!&ndash;					<include name="create_Interpreter_Availablity"/>&ndash;&gt;
+					<include name="update_Interpreter_Availability"/>
+					<include name="deleteInt_Avail"/>
+					<include name="create_Proficiency"/>
+					<include name="remove_LangProficiency"/>
+					<include name="create_Interpreter_Availability"/>
 				</methods>
-			</class>-->
+			</class>
 		</classes>
 	</test>
 </suite>

@@ -100,7 +100,6 @@ public class SV_Interpreter_DetailsPage
     {
         String currentDateYearFormat = CommonUtils.getCurrentSystemDateyear();
         Thread.sleep(3000);
-        view_Int.click();
 
         Thread.sleep(3000);
         menu_Availability.click();
@@ -187,11 +186,6 @@ public class SV_Interpreter_DetailsPage
 
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Proficiency added"));
 
-            try {
-                delete_Proficiency(datasheet.get("Language"));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
         }
 
 
@@ -233,7 +227,7 @@ public class SV_Interpreter_DetailsPage
     public void create_Interpreter_Availablity() throws Throwable {
 
       String startTime =  CommonUtils.addMinutesToCurrentTime(5);
-      String endTime =  CommonUtils.addMinutesToCurrentTime(20);
+      String endTime =  CommonUtils.addMinutesToCurrentTime(65);
 
         Thread.sleep(3000);
         menu_Availability.click();

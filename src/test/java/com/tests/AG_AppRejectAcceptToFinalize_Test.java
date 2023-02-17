@@ -13,28 +13,17 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import   com.base.BaseClass;
-import com.utils.CommonUtils;
 import com.aventstack.extentreports.Status;
 
 
 public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
-        /*This class tests an appointment with current date is being rejected,accepted,
-        can not be returned as to return an appointment the start time should be past 24 hrs from current time,
-        check-in,checkout,finalize and view financial for the appointment.
-        Self booking of an appointment by interpreter is also tested.
-      */
-
-        WebDriver driver = null;
 
         @Test(priority = 1)
         public void rejectAppointment() throws Throwable {
 
+            driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
-
-            driver = openBrowser();
-
-            driver.manage().window().maximize();
 
             LoginPage loginPage = new LoginPage(driver);
             DashBoardPage dashboard = new DashBoardPage(driver);
@@ -49,7 +38,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             Thread.sleep(3000);
 
-            logger.log(Status.INFO, "current page is all appointments dashboard");
+            logger.log(Status.PASS, "current page is all appointments dashboard");
 
             NewAppointmentPage nap = new NewAppointmentPage(driver);
             String patientFName = appointmentData.get("First Name");
@@ -76,25 +65,25 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             appDetails.clickTabInterpreterMatching();
 
-            logger.log(Status.INFO, " Clicked INTERPRETER MATCHING Tab");
+            logger.log(Status.PASS, " Clicked INTERPRETER MATCHING Tab");
 
             Thread.sleep(1000);
 
             appDetails.clickButtonFindInterpreters();
 
-            logger.log(Status.INFO, " Clicked the button FIND INTERPRETERS");
+            logger.log(Status.PASS, " Clicked the button FIND INTERPRETERS");
 
             Thread.sleep(1000);
 
             int interpreterListRowsSize = readNumberOfRowsInTable(appDetails.get_interpreterListTableBody());
 
             List<WebElement> column_Actions = appDetails.get_interpreterListTableActionsCol();
-            logger.log(Status.INFO, "selected the column actions");
+            logger.log(Status.PASS, "selected the column actions");
 
             List<WebElement> column_Interpreter_Name = appDetails.get_interpreterListTableInterpreterCol();
-            logger.log(Status.INFO, "selected the column Interpreter name");
+            logger.log(Status.PASS, "selected the column Interpreter name");
 
-            logger.log(Status.INFO, "iterating through first name list");
+            logger.log(Status.PASS, "iterating through first name list");
 
             for (int j = 0; j <= interpreterListRowsSize - 1; j++) {
 
@@ -104,15 +93,15 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 if (first_name.equalsIgnoreCase(datasheet.get("Interpreter Name"))) {
 
-                    logger.log(Status.INFO,
+                    logger.log(Status.PASS,
                             "selected " + datasheet.get("Interpreter Name") + " to make the offer");
 
                     column_Actions.get(j).click();
-                    logger.log(Status.INFO, "selected the corresponding row and clicked actions to make offer");
+                    logger.log(Status.PASS, "selected the corresponding row and clicked actions to make offer");
                     Thread.sleep(3000);
 
                     appDetails.clickClose();
-                    logger.log(Status.INFO, "Closed the popup");
+                    logger.log(Status.PASS, "Closed the popup");
 
                     break;
 
@@ -123,28 +112,25 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             Thread.sleep(3000);
 
             loginPage.click_logOut();
-            logger.log(Status.INFO, "logout as scheduler");
+            logger.log(Status.PASS, "logout as scheduler");
 
             loginPage.doLogin(datasheet.get("Interpreter Username"),datasheet.get("Interpreter Password"));
 
 
-            logger.log(Status.INFO, "logged in as interpreter");
+            logger.log(Status.PASS, "logged in as interpreter");
 
             Thread.sleep(2000);
-           // UI.waitForElementVisibility(navPanel.Home_Interpreter());
 
             navPanel.click_Home_Interpreter();
             Thread.sleep(1000);
 
             interpreterDb.clickOfferedTab();
-            logger.log(Status.INFO, "Clicked Interpreter>Offered tab");
+            logger.log(Status.PASS, "Clicked Interpreter>Offered tab");
             Thread.sleep(1000);
 
             int count = Integer.parseInt(interpreterDb.getTextOfferedTab());
-            System.out.println(count);
 
             Thread.sleep(3000);
-            //UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentTable());
 
             int interpreterDashboardAppointmentListRowsSize = readNumberOfRowsInTable(interpreterDb.get_InterpreterDashboardAppointmentTable());
 
@@ -152,12 +138,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             logger.log(Status.PASS, "The count beside Offered tab is verified with number of records displayed.");
 
             List<WebElement> column_View = interpreterDb.get_InterpreterDashboardAppointmentTableColView();
-            logger.log(Status.INFO, "selected the column View ie appointment id");
+            logger.log(Status.PASS, "selected the column View ie appointment id");
 
             for (int k = 0; k <= interpreterDashboardAppointmentListRowsSize - 1; k++) {
 
                 String id = column_View.get(k).getText();
-                logger.log(Status.INFO, "iterating through view column list");
+                logger.log(Status.PASS, "iterating through view column list");
                 System.out.println(column_View.get(k).getText());
 
                 if (id.equalsIgnoreCase(view_Text)) {
@@ -166,10 +152,8 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     logger.log(Status.PASS, "able to click the id " + view_Text + " in OFFER tab page");
 
                     Thread.sleep(3000);
-                    //UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentClickTitle());
 
                     String appointment_offer_title = interpreterDb.getTextInterpreterDashboardAppointmentClickTitle();
-                    System.out.println(appointment_offer_title);
                     Assert.assertTrue(appointment_offer_title.contains(view_Text));
                     logger.log(Status.PASS, "Verified the title has the view id selected i.e." + view_Text);
 
@@ -185,22 +169,20 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             Thread.sleep(5000);
 
             loginPage.click_logOut();
-            logger.log(Status.INFO, "logged out as interpreter");
+            logger.log(Status.PASS, "logged out as interpreter");
 
-           /* CU.login(data.getDataAsString(sheet_Reject, "Scheduler Username", 1),
-                    data.getDataAsString(sheet_Reject, "Scheduler Password", 1));*/
             loginPage.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
 
-            logger.log(Status.INFO, "Logged in as scheduler");
+            logger.log(Status.PASS, "Logged in as scheduler");
             Thread.sleep(2000);
 
             dashboard.search(view_Text);
-            logger.log(Status.INFO, "entered id in search box");
+            logger.log(Status.PASS, "entered id in search box");
 
             Thread.sleep(2000);
 
             List<WebElement> column_status_offer_rejected = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-            logger.log(Status.INFO, "selected the column Status");
+            logger.log(Status.PASS, "selected the column Status");
 
             System.out.println(column_status_offer_rejected.get(0).getText());
 
@@ -219,22 +201,22 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             System.out.println(view_Text);
 
             view_id_offer_rejected.click();
-            logger.log(Status.INFO, "clicked the id");
+            logger.log(Status.PASS, "clicked the id");
 
             Thread.sleep(2000);
-            logger.log(Status.INFO, " navigated to the appointment details page");
+            logger.log(Status.PASS, " navigated to the appointment details page");
 
             appDetails.clickTabInterpreterMatching();
 
-            logger.log(Status.INFO, " Clicked INTERPRETER MATCHING Tab");
+            logger.log(Status.PASS, " Clicked INTERPRETER MATCHING Tab");
 
             Thread.sleep(2000);
 
             List<WebElement> column_Actions_offer_rejected = appDetails.get_interpreterListTableActionsCol();
-            logger.log(Status.INFO, "selected the column actions");
+            logger.log(Status.PASS, "selected the column actions");
             List<WebElement> column_Interpreter_Name_offer_rejected = appDetails.get_interpreterListTableInterpreterCol();
-            logger.log(Status.INFO, "selected the column first name");
-            logger.log(Status.INFO, "iterating through first name list");
+            logger.log(Status.PASS, "selected the column first name");
+            logger.log(Status.PASS, "iterating through first name list");
 
             for (int l = 0; l <= interpreterListRowsSize - 1; l++) {
 
@@ -242,7 +224,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 if (first_name_offer_rejected.equalsIgnoreCase(datasheet.get("Interpreter Name"))) {
 
-                    logger.log(Status.INFO,
+                    logger.log(Status.PASS,
                             "Selected the previous interpret " + datasheet.get("Interpreter Name"));
 
                     String offer_status_off_rejected = column_Actions_offer_rejected.get(l).getText();
@@ -252,22 +234,23 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     Thread.sleep(3000);
 
                     appDetails.clickClose();
-                    logger.log(Status.INFO, "Closed the appointment detail page");
+                    logger.log(Status.PASS, "Closed the appointment detail page");
                     break;
 
                 }
 
             }
+            loginPage.click_logOut();
 
         }
 
     @Test(priority = 2)
-    public void acceptAppointment() throws Throwable {
+    public void acceptAppointment()  {
 
             try {
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-                driver.manage().window().maximize();
+
                 LoginPage loginPage = new LoginPage(driver);
                 AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
                 AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
@@ -303,25 +286,25 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 appDetails.clickTabInterpreterMatching();
 
-                logger.log(Status.INFO, " Clicked INTERPRETER MATCHING Tab");
+                logger.log(Status.PASS, " Clicked INTERPRETER MATCHING Tab");
 
                 Thread.sleep(1000);
 
                 appDetails.clickButtonFindInterpreters();
 
-                logger.log(Status.INFO, " Clicked the button FIND INTERPRETERS");
+                logger.log(Status.PASS, " Clicked the button FIND INTERPRETERS");
 
                 Thread.sleep(1000);
 
                 int interpreterListRowsSize = readNumberOfRowsInTable(appDetails.get_interpreterListTableBody());
 
                 List<WebElement> column_Actions = appDetails.get_interpreterListTableActionsCol();
-                logger.log(Status.INFO, "selected the column actions");
+                logger.log(Status.PASS, "selected the column actions");
 
                 List<WebElement> column_Interpreter_Name = appDetails.get_interpreterListTableInterpreterCol();
-                logger.log(Status.INFO, "selected the column Interpreter name");
+                logger.log(Status.PASS, "selected the column Interpreter name");
 
-                logger.log(Status.INFO, "iterating through first name list");
+                logger.log(Status.PASS, "iterating through first name list");
 
                 for (int j = 0; j <= interpreterListRowsSize - 1; j++) {
 
@@ -329,15 +312,15 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                     if (first_name.equalsIgnoreCase(datasheet.get("Interpreter Name"))) {
 
-                        logger.log(Status.INFO,
+                        logger.log(Status.PASS,
                                 "selected " + datasheet.get("Interpreter Name") + " to make the offer");
 
                         column_Actions.get(j).click();
-                        logger.log(Status.INFO, "selected the corresponding row and clicked actions to make offer");
+                        logger.log(Status.PASS, "selected the corresponding row and clicked actions to make offer");
                         Thread.sleep(3000);
 
                         appDetails.clickClose();
-                        logger.log(Status.INFO, "Closed the popup");
+                        logger.log(Status.PASS, "Closed the popup");
 
                         break;
 
@@ -347,18 +330,18 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 Thread.sleep(3000);
 
                 loginPage.click_logOut();
-                logger.log(Status.INFO, "logout as scheduler");
+                logger.log(Status.PASS, "logout as scheduler");
 
                 loginPage.doLogin(datasheet.get("Interpreter Username"), datasheet.get("Interpreter Password"));
 
-                logger.log(Status.INFO, "logged in as interpreter");
+                logger.log(Status.PASS, "logged in as interpreter");
 
                 Thread.sleep(2000);
                 navPanel.click_Home_Interpreter();
                 Thread.sleep(1000);
 
                 interpreterDb.clickOfferedTab();
-                logger.log(Status.INFO, "Clicked Interpreter>Offered tab");
+                logger.log(Status.PASS, "Clicked Interpreter>Offered tab");
 
                 Thread.sleep(3000);
 
@@ -367,12 +350,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 logger.log(Status.PASS, "The count beside Offered tab is verified with number of records displayed.");
 
                 List<WebElement> column_View = interpreterDb.get_InterpreterDashboardAppointmentTableColView();
-                logger.log(Status.INFO, "selected the column View ie appointment id");
+                logger.log(Status.PASS, "selected the column View ie appointment id");
 
                 for (int k = 0; k <= interpreterDashboardAppointmentListRowsSize - 1; k++) {
 
                     String id = column_View.get(k).getText();
-                    logger.log(Status.INFO, "iterating through view column list");
+                    logger.log(Status.PASS, "iterating through view column list");
 
                     if (id.equalsIgnoreCase(view_Text)) {
 
@@ -393,20 +376,20 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                     }
                 }
+                loginPage.click_logOut();
             }catch (Exception e){
                 e.printStackTrace();
             }
-            }
+
+        }
 
     @Test(priority = 3)
     public void returnAppointment() throws Throwable {
 
             try {
+
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-
-                driver = openBrowser();
-
-                driver.manage().window().maximize();
 
                 JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -419,25 +402,24 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 Thread.sleep(3000);
 
-                logger.log(Status.INFO, "current page is all appointments dashboard");
+                logger.log(Status.PASS, "current page is all appointments dashboard");
 
                 dashboard.search(datasheet.get("Appointment Status"));
 
-                Thread.sleep(5000);
+                Thread.sleep(3000);
 
                 int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
 
-                logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
+                logger.log(Status.PASS, "Found number of rows in the page: " + allAppRowsSize);
 
                 List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-                logger.log(Status.INFO, "selected the column Status");
+                logger.log(Status.PASS, "selected the column Status");
 
                 List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-                logger.log(Status.INFO, "selected the column Language");
+                logger.log(Status.PASS, "selected the column Language");
 
-                String view_Text = null;// for caturing appointment id
+                String view_Text = null;
 
-                logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
 
                 for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
@@ -450,7 +432,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                             && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
 
-                        logger.log(Status.INFO, "found a Confirmed appointment");
+                        logger.log(Status.PASS, "found a Confirmed appointment");
 
                         List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
@@ -458,21 +440,18 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                         view_Text = view_id.getText();
 
-                        System.out.println(view_Text);
-
-
                         break;
                     }
                     js.executeScript("window.scrollBy(0,100)", "");
                 }
 
                 loginPage.click_logOut();
-                logger.log(Status.INFO, "clicked Log-out button");
+                logger.log(Status.PASS, "clicked Log-out button");
 
                 Thread.sleep(1000);
                 loginPage.doLogin(datasheet.get("Interpreter Username"), datasheet.get("Interpreter Password"));
 
-                logger.log(Status.INFO, "logged in as interpreter");
+                logger.log(Status.PASS, "logged in as interpreter");
 
                 Thread.sleep(2000);
 
@@ -480,12 +459,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 Thread.sleep(1000);
 
                 interpreterDb.clickAcceptedTab();
-                logger.log(Status.INFO, "Clicked Interpreter>Accepted tab");
+                logger.log(Status.PASS, "Clicked Interpreter>Accepted tab");
 
                 Thread.sleep(3000);
 
                 interpreterDb.enterSearch(view_Text);
-                logger.log(Status.INFO, "entered id " + view_Text + " in search box");
+                logger.log(Status.PASS, "entered id " + view_Text + " in search box");
 
                 Thread.sleep(2000);
                 //  UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentTableColView());
@@ -503,7 +482,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 logger.log(Status.PASS, "The status is confirmed in the list");
 
                 View_accepted.get(0).click();
-                logger.log(Status.INFO, "Clicked the Appointment id in view column");
+                logger.log(Status.PASS, "Clicked the Appointment id in view column");
 
 
                 Thread.sleep(5000);
@@ -538,25 +517,17 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             }
 
 
-
-
-
-
 }
     @Test(priority = 4)
     public void checkInAppointment() throws Throwable {
 
    try {
-
-
+       driver.get("http://uat.ims.client.sstech.us/login");
        logger = extent.createTest(BaseClass.getMethodName() + "method started");
-       driver = openBrowser();
-       driver.manage().window().maximize();
        JavascriptExecutor js = (JavascriptExecutor) driver;
 
        LoginPage loginPage = new LoginPage(driver);
        DashBoardPage dashboard = new DashBoardPage(driver);
-       AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
        AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
        InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
 
@@ -564,46 +535,41 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
        Thread.sleep(3000);
 
-       logger.log(Status.INFO, "current page is all appointments dashboard");
+       logger.log(Status.PASS, "current page is all appointments dashboard");
 
        dashboard.search(datasheet.get("Appointment Status"));
 
-       Thread.sleep(5000);
+       Thread.sleep(3000);
 
        int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
 
-       logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
+       logger.log(Status.PASS, "Found number of rows in the page: " + allAppRowsSize);
 
        List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-       logger.log(Status.INFO, "selected the column Status");
+       logger.log(Status.PASS, "selected the column Status");
 
        List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-       logger.log(Status.INFO, "selected the column Language");
+       logger.log(Status.PASS, "selected the column Language");
 
-       String view_Text = null;// for caturing appointment id
+       String view_Text = null;
 
-       logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
 
        for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
            String status = column_status.get(i).getText();
-           System.out.println(column_status.get(i).getText());
 
            String language = column_language.get(i).getText();
-           System.out.println(column_language.get(i).getText());
 
            if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                    && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
 
-               logger.log(Status.INFO, "found a Confirmed appointment");
+               logger.log(Status.PASS, "found a Confirmed appointment");
 
                List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
                WebElement view_id = column_view.get(i);
 
                view_Text = view_id.getText();
-
-               System.out.println(view_Text);
 
 
                break;
@@ -612,12 +578,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
        }
 
        loginPage.click_logOut();
-       logger.log(Status.INFO, "clicked Log-out button");
+       logger.log(Status.PASS, "clicked Log-out button");
 
        Thread.sleep(1000);
        loginPage.doLogin(datasheet.get("Interpreter Username"), datasheet.get("Interpreter Password"));
 
-       logger.log(Status.INFO, "logged in as interpreter");
+       logger.log(Status.PASS, "logged in as interpreter");
 
        Thread.sleep(2000);
        // UI.waitForElementVisibility(navPanel.Home_Interpreter());
@@ -626,12 +592,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
        Thread.sleep(1000);
 
        interpreterDb.clickAcceptedTab();
-       logger.log(Status.INFO, "Clicked Interpreter>Accepted tab");
+       logger.log(Status.PASS, "Clicked Interpreter>Accepted tab");
 
        Thread.sleep(3000);
 
        interpreterDb.enterSearch(view_Text);
-       logger.log(Status.INFO, "entered id " + view_Text + " in search box");
+       logger.log(Status.PASS, "entered id " + view_Text + " in search box");
 
        Thread.sleep(2000);
        //  UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentTableColView());
@@ -649,7 +615,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
        logger.log(Status.PASS, "The status is confirmed in the list");
 
        View_accepted.get(0).click();
-       logger.log(Status.INFO, "Clicked the Appointment id in view column");
+       logger.log(Status.PASS, "Clicked the Appointment id in view column");
 
        Thread.sleep(1000);
 
@@ -659,10 +625,14 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
        Thread.sleep(10000);
 
        loginPage.click_logOut();
-       logger.log(Status.INFO, "logged out as interpreter");
+       logger.log(Status.PASS, "logged out as interpreter");
+       loginPage.click_logOut();
+
      }catch (Exception e){
        e.printStackTrace();
     }
+
+
 
     }
 
@@ -670,17 +640,13 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
     public void checkOutAndFinaliseAppointment() throws Throwable {
 
             try {
-
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-
-                driver.manage().window().maximize();
 
                 JavascriptExecutor js = (JavascriptExecutor) driver;
 
                 LoginPage loginPage = new LoginPage(driver);
                 DashBoardPage dashboard = new DashBoardPage(driver);
-                AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
                 AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
                 InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
 
@@ -688,7 +654,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 Thread.sleep(3000);
 
-                logger.log(Status.INFO, "current page is all appointments dashboard");
+                logger.log(Status.PASS, "current page is all appointments dashboard");
 
                 dashboard.search(datasheet.get("Appointment Status"));
 
@@ -696,17 +662,17 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
 
-                logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
+                logger.log(Status.PASS, "Found number of rows in the page: " + allAppRowsSize);
 
                 List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-                logger.log(Status.INFO, "selected the column Status");
+                logger.log(Status.PASS, "selected the column Status");
 
                 List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-                logger.log(Status.INFO, "selected the column Language");
+                logger.log(Status.PASS, "selected the column Language");
 
-                String view_Text = null;// for caturing appointment id
+                String view_Text = null;
 
-                logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
+                logger.log(Status.PASS, "looping through all rows in Status column till we find new appointment");
 
                 for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
@@ -719,7 +685,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                             && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
 
-                        logger.log(Status.INFO, "found a Confirmed appointment");
+                        logger.log(Status.PASS, "found a Confirmed appointment");
 
                         List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
@@ -736,12 +702,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 }
 
                 loginPage.click_logOut();
-                logger.log(Status.INFO, "clicked Log-out button");
+                logger.log(Status.PASS, "clicked Log-out button");
 
                 Thread.sleep(1000);
                 loginPage.doLogin(datasheet.get("Interpreter Username"), datasheet.get("Interpreter Password"));
 
-                logger.log(Status.INFO, "logged in as interpreter");
+                logger.log(Status.PASS, "logged in as interpreter");
 
                 Thread.sleep(2000);
 
@@ -749,12 +715,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 Thread.sleep(1000);
 
                 interpreterDb.clickAcceptedTab();
-                logger.log(Status.INFO, "Clicked Interpreter>Accepted tab");
+                logger.log(Status.PASS, "Clicked Interpreter>Accepted tab");
 
                 Thread.sleep(3000);
 
                 interpreterDb.enterSearch(view_Text);
-                logger.log(Status.INFO, "entered id " + view_Text + " in search box");
+                logger.log(Status.PASS, "entered id " + view_Text + " in search box");
 
                 Thread.sleep(2000);
 
@@ -771,7 +737,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 logger.log(Status.PASS, "The status is confirmed in the list");
 
                 View_accepted.get(0).click();
-                logger.log(Status.INFO, "Clicked the Appointment id in view column");
+                logger.log(Status.PASS, "Clicked the Appointment id in view column");
 
                 Thread.sleep(2000);
 
@@ -792,6 +758,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 interpreterDb.clickFinalizeAppointmentButton();
 
                 Thread.sleep(10000);
+                loginPage.click_logOut();
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -802,17 +769,13 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             try {
 
-
+                driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
-                driver = openBrowser();
-
-                driver.manage().window().maximize();
 
                 JavascriptExecutor js = (JavascriptExecutor) driver;
 
                 LoginPage loginPage = new LoginPage(driver);
                 DashBoardPage dashboard = new DashBoardPage(driver);
-                AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
                 AG_NavigationPanelPage navPanel = new AG_NavigationPanelPage(driver);
                 InterpreterDashboardPage interpreterDb = new InterpreterDashboardPage(driver);
 
@@ -820,7 +783,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 Thread.sleep(3000);
 
-                logger.log(Status.INFO, "current page is all appointments dashboard");
+                logger.log(Status.PASS, "current page is all appointments dashboard");
 
                 dashboard.search(datasheet.get("Appointment Status"));
 
@@ -828,17 +791,17 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 int allAppRowsSize = readNumberOfRowsInTable(dashboard.get_allAppointmentTable());
 
-                logger.log(Status.INFO, "Found number of rows in the page: " + allAppRowsSize);
+                logger.log(Status.PASS, "Found number of rows in the page: " + allAppRowsSize);
 
                 List<WebElement> column_status = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
-                logger.log(Status.INFO, "selected the column Status");
+                logger.log(Status.PASS, "selected the column Status");
 
                 List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
-                logger.log(Status.INFO, "selected the column Language");
+                logger.log(Status.PASS, "selected the column Language");
 
-                String view_Text = null;// for caturing appointment id
+                String view_Text = "";
 
-                logger.log(Status.INFO, "looping through all rows in Status column till we find new appointment");
+                logger.log(Status.PASS, "looping through all rows in Status column till we find new appointment");
 
                 for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
@@ -849,7 +812,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                             && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
 
-                        logger.log(Status.INFO, "found a Confirmed appointment");
+                        logger.log(Status.PASS, "found a Confirmed appointment");
 
                         List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
@@ -863,12 +826,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 }
 
                 loginPage.click_logOut();
-                logger.log(Status.INFO, "clicked Log-out button");
+                logger.log(Status.PASS, "clicked Log-out button");
 
                 Thread.sleep(1000);
                 loginPage.doLogin(datasheet.get("Interpreter Username"), datasheet.get("Interpreter Password"));
 
-                logger.log(Status.INFO, "logged in as interpreter");
+                logger.log(Status.PASS, "logged in as interpreter");
 
                 Thread.sleep(2000);
 
@@ -876,12 +839,12 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 Thread.sleep(1000);
 
                 interpreterDb.clickAcceptedTab();
-                logger.log(Status.INFO, "Clicked Interpreter>Accepted tab");
+                logger.log(Status.PASS, "Clicked Interpreter>Accepted tab");
 
                 Thread.sleep(3000);
 
                 interpreterDb.enterSearch(view_Text);
-                logger.log(Status.INFO, "entered id " + view_Text + " in search box");
+                logger.log(Status.PASS, "entered id " + view_Text + " in search box");
 
                 Thread.sleep(2000);
 
@@ -898,14 +861,15 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 logger.log(Status.PASS, "The status is confirmed in the list");
 
                 View_accepted.get(0).click();
-                logger.log(Status.INFO, "Clicked the Appointment id in view column");
+                logger.log(Status.PASS, "Clicked the Appointment id in view column");
 
                 Thread.sleep(2000);
 
                 interpreterDb.clickFinancialBreakDownButton();
-                logger.log(Status.INFO, "clicked the FinancialBreakDown button ");
+                logger.log(Status.PASS, "clicked the FinancialBreakDown button ");
 
                 Thread.sleep(1000);
+                loginPage.click_logOut();
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -918,14 +882,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         }
         String methodName = BaseClass.getMethodName();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-            try{
-                Thread.sleep(3000);
-                driver.close();
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
 
     }
 

@@ -25,8 +25,6 @@ public class VG_Clients_MedicalTests extends BaseClass {
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
-		driver = openBrowser();
-		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
@@ -40,13 +38,12 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		vi.createAppointmentFromClient("Medical");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
+		lo.click_logOut();
 
 	}
 	@Test(description = "This TC will perform valid login and verified that all NonMedical appoinmets will create and serach")
 	public void ClientsnonMedical() throws InterruptedException, IOException {
 
-		driver = openBrowser();
-		driver.manage().window().maximize();
 		LoginPage lo = new LoginPage(driver);
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
@@ -60,6 +57,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Nonmedical"));
 		vi.createAppointmentFromClient("nonmedical");
+		lo.click_logOut();
 
 	}
 
@@ -73,13 +71,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		String methodName = BaseClass.getMethodName();
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
-		try{
-			Thread.sleep(3000);
-			driver.close();
 
-		}catch (Exception e){
-			e.printStackTrace();
-		}
 	}
 
 
