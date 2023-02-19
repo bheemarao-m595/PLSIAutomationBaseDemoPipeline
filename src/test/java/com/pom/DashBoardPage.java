@@ -211,12 +211,11 @@ public class DashBoardPage {
         Thread.sleep(3000);
     }
 
-public  WebElement getAppIDWebElement(String text){
+   public  WebElement getAppIDWebElement(String text){
 
-        WebElement appId =   wd.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='722']"));
+        WebElement appId =   wd.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='"+ text +"']"));
 
-        System.out.println(appId.getText());
-   return  appId;
+       return  appId;
 
     }
 

@@ -1,15 +1,20 @@
 
 package com.pom;
 
+import com.base.BaseClass;
+import com.utils.CommonUtils;
+import com.utils.DashBoardHeaders;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InterpreterDashboardPage {
 
@@ -102,6 +107,10 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//button[text()='Return Appointment']")
     private WebElement returnAppointmentButton;
 
+    @FindBy(xpath= "//div[@class='MuiTooltip-tooltip MuiTooltip-tooltipArrow MuiTooltip-tooltipPlacementTop css-1p9alne']")
+    private WebElement HoverTextOnReturnAppointmentButton;
+
+
     public  void hoverReturnAppointmentButton(){
 
         Actions actions = new Actions(wd);
@@ -110,15 +119,12 @@ public class InterpreterDashboardPage {
 
     }
 
-
     public  void clickReturnAppointmentButton(){
 
                returnAppointmentButton.click();
     }
 
 
-    @FindBy(xpath= "//div[@class='MuiTooltip-tooltip MuiTooltip-tooltipArrow MuiTooltip-tooltipPlacementTop css-1p9alne']")
-    private WebElement HoverTextOnReturnAppointmentButton;
 
     public boolean isDisplayed_HoverTextOnReturnAppointmentButton(){
 
@@ -127,20 +133,6 @@ public class InterpreterDashboardPage {
     }
     public  String get_HoverTextOnReturnAppointmentButton(){
 
-     /*   WebElement ele = d.findElement(By.xpath("//button[text()='Return Appointment']"));
-
-        JavascriptExecutor js = (JavascriptExecutor)d;
-        js.executeScript("arguments[0].scrollIntoView(true);",ele);
-
-        Actions actions = new Actions(d);
-
-        actions.moveToElement(ele).perform();
-
-
-
-        String s = HoverTextOnReturnAppointmentButton.getText();
-
-        System.out.println(s);*/
         return HoverTextOnReturnAppointmentButton.getText();
     }
 
@@ -229,8 +221,53 @@ public class InterpreterDashboardPage {
 
     }
 
+    public  WebElement getWebElementOfHeaderAndCellValue(DashBoardHeaders dbh, String cellValue){
+
+        WebElement  appId = null;
+        DashBoardHeaders searchString = dbh;
+        String  actualHeader = CommonUtils.getActualHeaderStringFromDashBoardTable(searchString);
+
+        int i = 1;
+        List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
+        Map<String, Integer> headIndex = new LinkedHashMap<>();
+
+
+        for (WebElement r : rows) {
+
+            String val = r.getText();
+            String firtword = val.split("\\R")[0];
+            headIndex.put(firtword, i);
+            i++;
+        }
+
+        int headerIndex = headIndex.get(actualHeader);
+
+        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
+        Assert.assertNotEquals(recordsCount, 0, "Table is empty");
+        for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
+
+            String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
+            String part2 = "]//td//*[text()='" + cellValue + "']";
+            String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
+
+            BaseClass b = new BaseClass();
+            boolean recordTEextMatching = b.isElementByXpath( part1 + rowNumber + part2);
+            if (recordTEextMatching) {
+
+                appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));
+                break;
+
+            }
+        }
+
+        return appId;
+
 
     }
+
+
+
+}
 
 
 

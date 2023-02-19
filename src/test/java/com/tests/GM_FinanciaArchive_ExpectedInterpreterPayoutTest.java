@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Listeners({com.listeners.ListenerTest.class})
 public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
 
@@ -38,7 +39,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         if(!isSelected)
         {
             WebElement el = FA.getArchivetab();
-            System.out.println(el.isDisplayed());
             String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
             Assert.assertTrue(false,"Tab not highlighted");
@@ -77,7 +77,6 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         if(!isSelected)
         {
             WebElement el = FA.getArchivetab();
-            System.out.println(el.isDisplayed());
             String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
             Assert.assertTrue(false,"Tab not highlighted");

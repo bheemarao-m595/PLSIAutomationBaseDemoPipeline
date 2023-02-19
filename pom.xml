@@ -24,6 +24,12 @@
 							<suiteXmlFiles>
 								<suiteXmlFile>TestNG.xml</suiteXmlFile>
 							</suiteXmlFiles>
+							<properties>
+							<property>
+								<name>listener</name>
+								<value>com.listeners.ListenerTest</value>
+							</property>
+						</properties>
 						</configuration>
 					</plugin>
 				</plugins>

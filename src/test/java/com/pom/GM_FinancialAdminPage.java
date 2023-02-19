@@ -68,7 +68,6 @@ public class GM_FinancialAdminPage {
         while(boxesChecked<noOfChecboxRequired) {
             List<WebElement> rows = driver.findElements(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//td[2]"));
             for(int i=0;i<rows.size();i++) {
-                System.out.println(rows.get(i).getText());
                 if(rows.get(i).getText().contains(Status)) {
                     Thread.sleep(1000);
                     JavascriptExecutor js = (JavascriptExecutor) driver;

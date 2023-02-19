@@ -19,14 +19,12 @@ import com.base.BaseClass;
 @Listeners({com.listeners.ListenerTest.class})
 public class VG_Clients_MedicalTests extends BaseClass {
 
-	WebDriver driver = null;
-
 
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
 	public void ClientsMedical() throws InterruptedException, IOException {
 
+		driver.get("http://uat.ims.client.sstech.us/login");
 		LoginPage lo = new LoginPage(driver);
-
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));

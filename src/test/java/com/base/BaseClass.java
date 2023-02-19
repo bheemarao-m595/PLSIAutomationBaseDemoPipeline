@@ -72,7 +72,6 @@ public class BaseClass
 
 		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
 		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
-		System.out.println("report path : " + reportPath);
 		htmlReporter = new ExtentHtmlReporter(reportPath);
         extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
@@ -307,7 +306,6 @@ public class BaseClass
 	public int readNumberOfRowsInTable(WebElement ele) {//this reads number of rows in any given table.
 
 		List<WebElement> rowList = ele.findElements(By.tagName("tr"));
-		System.out.println("Total number of Rows in the table are : " + rowList.size());
 		return rowList.size();
 
 	}
@@ -320,12 +318,8 @@ public class BaseClass
 	public boolean stringSort(List<String> words){
 		for(int a=0;a<words.size()-1;a++)
 		{
-			System.out.println(words.get(a));
-			System.out.println(words.get(a+1));
 			if(words.get(a).compareToIgnoreCase(words.get(a+1))>0)
 			{
-				System.out.println(words.get(a));
-				System.out.println(words.get(a+1));
 				return false;
 			}
 		}

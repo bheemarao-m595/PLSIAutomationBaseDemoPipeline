@@ -11,10 +11,9 @@ import com.aventstack.extentreports.Status;
 
 import java.io.IOException;
 
-
+@Listeners({com.listeners.ListenerTest.class})
 public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
-//    WebDriver driver = null;
 
     @Test(description = "This TC will perform valid login and update the Actual Interpreter Payout")
     public void editHybridInterpreterpayout() throws Throwable {

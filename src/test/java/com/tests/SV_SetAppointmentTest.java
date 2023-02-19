@@ -16,6 +16,7 @@ import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.NewAppointmentPage;
 
+@Listeners({com.listeners.ListenerTest.class})
 public class SV_SetAppointmentTest extends BaseClass
 {
 

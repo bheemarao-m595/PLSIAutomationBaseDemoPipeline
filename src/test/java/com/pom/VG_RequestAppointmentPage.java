@@ -3,6 +3,7 @@ package com.pom;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
+import com.utils.DashBoardHeaders;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -130,7 +132,7 @@ public class VG_RequestAppointmentPage {
      return  "";
     }
 
-    public void  createAppointmentFromClient(String type) throws InterruptedException {
+    public void  createAppointmentFromClient(String type) throws InterruptedException, IOException {
 
         BaseClass.waitforElementToMakeClickable(clients);
         clients.click();
@@ -142,6 +144,8 @@ public class VG_RequestAppointmentPage {
         medical.click();
         else
           nonmedical.click();
+
+        logger.addScreenCaptureFromPath(takeScreenshotForStep("Before entering details"));
         Appointmentdate.clear();
         Appointmentdate.sendKeys(CommonUtils.getCurrentSystemDate());
         startTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
@@ -165,6 +169,7 @@ public class VG_RequestAppointmentPage {
         department.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         patientMRN.sendKeys(datasheet.get("Patient MRN"));
+        patientMRN.sendKeys(CommonUtils.getRandomNumberOfLength(3));
         patientMRN.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         firstName.sendKeys(datasheet.get("First Name"));
@@ -193,17 +198,22 @@ public class VG_RequestAppointmentPage {
         JavascriptExecutor js = (JavascriptExecutor)d;
         js.executeScript("arguments[0].scrollIntoView(true);", addAppointment);
         Thread.sleep(1000);
+        logger.addScreenCaptureFromPath(takeScreenshotForStep("Before Add"));
         addAppointment.click();
 
         Thread.sleep(1000);
+        logger.addScreenCaptureFromPath(takeScreenshotForStep("Add Clicked"));
         if(isElementPresent(addAppointment)){
             logger.log(Status.FAIL,"Appointment not created");
             Assert.fail("Appointment not created");
         }
-        searchbar.sendKeys(datasheet.get("First Name"));
-        searchbar.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        viewAppointmnet.click();
+        searchbar.sendKeys("RAVI AGARWAL");
+//        searchbar.sendKeys(Keys.TAB);
+        Thread.sleep(1000);
+        InterpreterDashboardPage interdbd = new InterpreterDashboardPage(driver);
+        WebElement appId = interdbd.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"RAVI AGARWAL");
+        appId.click();
         js.executeScript("arguments[0].scrollIntoView(true);", requestchange1);
         Thread.sleep(3000);
         requestchange1.click();

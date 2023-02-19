@@ -15,7 +15,7 @@ import org.testng.annotations.*;
 import   com.base.BaseClass;
 import com.aventstack.extentreports.Status;
 
-
+@Listeners({com.listeners.ListenerTest.class})
 public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
 
@@ -89,8 +89,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 String first_name = column_Interpreter_Name.get(j).getText();
 
-                System.out.println(column_Interpreter_Name.get(j).getText());
-
                 if (first_name.equalsIgnoreCase(datasheet.get("Interpreter Name"))) {
 
                     logger.log(Status.PASS,
@@ -144,7 +142,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                 String id = column_View.get(k).getText();
                 logger.log(Status.PASS, "iterating through view column list");
-                System.out.println(column_View.get(k).getText());
 
                 if (id.equalsIgnoreCase(view_Text)) {
 
@@ -184,8 +181,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             List<WebElement> column_status_offer_rejected = dashboard.get_allAppointmentTableBodyRowsStatusColumn();
             logger.log(Status.PASS, "selected the column Status");
 
-            System.out.println(column_status_offer_rejected.get(0).getText());
-
             String status_offer_rejected = column_status_offer_rejected.get(0).getText();
 
             Assert. assertEquals("OFFER REJECTED", status_offer_rejected);
@@ -195,10 +190,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
             List<WebElement> column_view_offer_rejected = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
             WebElement view_id_offer_rejected = column_view_offer_rejected.get(0);
-
-            view_Text = view_id_offer_rejected.getText();
-
-            System.out.println(view_Text);
 
             view_id_offer_rejected.click();
             logger.log(Status.PASS, "clicked the id");
@@ -424,10 +415,8 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
                     String status = column_status.get(i).getText();
-                    System.out.println(column_status.get(i).getText());
 
                     String language = column_language.get(i).getText();
-                    System.out.println(column_language.get(i).getText());
 
                     if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                             && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
@@ -677,10 +666,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                 for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
                     String status = column_status.get(i).getText();
-                    System.out.println(column_status.get(i).getText());
-
                     String language = column_language.get(i).getText();
-                    System.out.println(column_language.get(i).getText());
 
                     if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
                             && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
@@ -692,9 +678,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                         WebElement view_id = column_view.get(i);
 
                         view_Text = view_id.getText();
-
-                        System.out.println(view_Text);
-
 
                         break;
                     }

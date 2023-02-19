@@ -71,7 +71,7 @@ public class VG_Interpreter_ADDInterpreterpage
         AddInterpreter.click();
     }
     public void clickAddInterpretertabs() throws InterruptedException {
-        // BaseClass.waitforElementToMakeClickable(clients);
+
         Thread.sleep(2000);
         FirstName.sendKeys(datasheet.get("Select FirstName"));
         Thread.sleep(3000);

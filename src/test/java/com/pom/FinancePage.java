@@ -114,6 +114,7 @@ public class FinancePage {
     }
     public void save(){
         SaveCalculation.click();
+
     }
 
 

@@ -4,21 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.*;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-
+@Listeners({com.listeners.ListenerTest.class})
 public class InterpreterAptsTab_Test extends BaseClass {
 
 
@@ -55,9 +52,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         //looping though all the columns text to see if they have the columns required.
         for(int i=0;i<columnNames.size();i++) {
-
-            System.out.println(columnNames.get(i).getText());
-
 
             String[] col_names= {"VIEW INTERPRETER","EMAIL ADDRESS","GENDER","LEGACY INTERPRETER ID","SMS CAPABLE PHONE NUMBER","LANDLINE","ADDRESS","INACTIVE"};
 
@@ -205,7 +199,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
                 //List<WebElement> ToGetColumns = driver.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr["+i+"]/td"));
 
                 int colsize = ToGetColumns.size();
-                System.out.println(colsize);
                 logger.log(Status.PASS, "Iterating through the cells in each row.");
                 for(int j=1;j<=colsize;j++) {
                     String td = tableBody_forStringValue.findElement(By.xpath("//tr/td[" + j + "]")).getText();
@@ -422,7 +415,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         for(int i=0;i<columnLanguage_Appointments.size();i++) {
 
-            System.out.println(columnLanguage_Appointments.get(i).getText());
             String s= columnLanguage_Appointments.get(i).getText();
             Boolean b = ArrayUtils.contains(language_proficeiency_language_array, columnLanguage_Appointments.get(i).getText());
 
@@ -505,7 +497,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
         }
 
     }
-
 
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException, InterruptedException {

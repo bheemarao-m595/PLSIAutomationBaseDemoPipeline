@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Listeners({com.listeners.ListenerTest.class})
 public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
 

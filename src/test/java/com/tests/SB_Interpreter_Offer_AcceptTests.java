@@ -17,6 +17,7 @@ import com.pom.LoginPage;
 import com.pom.InterpreterPage;
 
 
+@Listeners({com.listeners.ListenerTest.class})
 public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
     @Test(priority = 3)

@@ -224,7 +224,7 @@ public class SV_Interpreter_DetailsPage
 
     }
 
-    public void create_Interpreter_Availablity() throws Throwable {
+    public void create_Interpreter_Availability() throws Throwable {
 
       String startTime =  CommonUtils.addMinutesToCurrentTime(5);
       String endTime =  CommonUtils.addMinutesToCurrentTime(65);

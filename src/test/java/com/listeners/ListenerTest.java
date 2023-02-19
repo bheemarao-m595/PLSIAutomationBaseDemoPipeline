@@ -63,7 +63,6 @@ public class ListenerTest implements ITestListener {
 		}
 		XSSFWorkbook wb;
 		String testDataFilePath = System.getProperty("user.dir") + "\\src\\test\\resources\\data\\" +prop.get("testDataFile");
-		System.out.println(testDataFilePath + " xl file of the path");
 		ExcelUtils data = new ExcelUtils();
 		try {
 			wb = data.getWorkbook(testDataFilePath);

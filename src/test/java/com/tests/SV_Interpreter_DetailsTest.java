@@ -5,13 +5,12 @@ import com.base.BaseClass;
 import com.pom.LoginPage;
 import com.pom.SV_Interpreter_DetailsPage;
 import com.pom.VG_Interpreter_ADDInterpreterpage;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 
+@Listeners({com.listeners.ListenerTest.class})
 public class    SV_Interpreter_DetailsTest extends BaseClass
 {
     @Test
@@ -29,7 +28,7 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
-        intAvail.create_Interpreter_Availablity();
+        intAvail.create_Interpreter_Availability();
         lo.click_logOut();
 
     }

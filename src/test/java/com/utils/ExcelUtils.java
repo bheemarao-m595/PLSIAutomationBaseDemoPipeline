@@ -154,8 +154,6 @@ public class ExcelUtils {
 
 		}
 
-		System.out.println(allRowsMap.size());
-
 		return allRowsMap;
 	}
 
