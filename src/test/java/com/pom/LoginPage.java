@@ -44,7 +44,7 @@ public class LoginPage {
 
    public   void enterUserName(String val){
 
-        user.sendKeys(val);
+        user.sendKeys("ravi.thota@sstech.us");
 
     }
     public  void enterPassword(String pwd){
