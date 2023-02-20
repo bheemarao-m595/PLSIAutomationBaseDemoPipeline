@@ -1,11 +1,15 @@
 package com.pom;
 
 import com.base.BaseClass;
+import com.utils.CommonUtils;
+import com.utils.DashBoardHeaders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.Date;
 import java.util.List;
 
 public class InterpreterPage {
@@ -102,6 +106,14 @@ public class InterpreterPage {
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]")
     private WebElement allAppointmentTableBodyRowsViewInterpretercolumn;
+
+    @FindBy(xpath="//div[@class='MuiBox-root css-g53dgy'][1]")
+    private WebElement firstInterpreterViewInList;
+
+
+    public void clickFirstInterpreterViewInList(){
+        firstInterpreterViewInList.click();
+    }
 
     public List<WebElement> allAppointmentTableBodyRowsViewInterpretercolumn() {
         return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]"));
@@ -203,11 +215,11 @@ public class InterpreterPage {
 
     public void makeAnOfferClick() throws InterruptedException {
         if(BaseClass.isElementPresent(InterpreterMatchingTab))
-       InterpreterMatchingTab.click();
+            InterpreterMatchingTab.click();
         Thread.sleep(3000);
         findInterpreter.click();
         makeAnOffer.click();
-        }
+    }
 }
 
 

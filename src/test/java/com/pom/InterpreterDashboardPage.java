@@ -49,7 +49,15 @@ public class InterpreterDashboardPage {
     }
 
     @FindBy(xpath= "//span[text()='AVAILABLE']")
-    private WebElement AvailableTab;
+    private WebElement availableTab;
+
+    public boolean availableTabIsDisplayed(){
+        return availableTab.isDisplayed();
+    }
+
+    public void clickAvailableTab(){
+        availableTab.click();
+    }
 
     @FindBy(xpath= "//input[@class='MuiInputBase-input css-1bqqmdo']")
     private WebElement search;
@@ -67,7 +75,12 @@ public class InterpreterDashboardPage {
 
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr/td[1]")
-    private WebElement InterpreterDashboardAppointmentTableColView;
+    private WebElement firstInterpreterDashboardAppointmentTableColView;
+
+    public WebElement getFirstInterpreterDashboardAppointmentTableColView(){
+
+        return firstInterpreterDashboardAppointmentTableColView;
+    }
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColView(){
 //        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr/td[1]"));
@@ -84,10 +97,14 @@ public class InterpreterDashboardPage {
     }
 
     @FindBy(xpath= "//p[@class='MuiTypography-root MuiTypography-body1 css-16o4yi7']")
-    private WebElement InterpreterDashboardAppointmentClickTitle;
+    private WebElement interpreterDashboardAppointmentTitle;
+
+    public String getTitleInterpreterDashboardAppointmentTitle(){
+        return interpreterDashboardAppointmentTitle.getText();
+    }
 
     public  String getTextInterpreterDashboardAppointmentClickTitle(){
-        return InterpreterDashboardAppointmentClickTitle.getText();
+        return interpreterDashboardAppointmentTitle.getText();
     }
 
     @FindBy(xpath= "//button[text()='Decline Appointment']")
@@ -121,7 +138,7 @@ public class InterpreterDashboardPage {
 
     public  void clickReturnAppointmentButton(){
 
-               returnAppointmentButton.click();
+        returnAppointmentButton.click();
     }
 
 
@@ -198,21 +215,37 @@ public class InterpreterDashboardPage {
     private WebElement appointmentCrossButton;
     public  void clickAppointmentCrossButton(){
 
-         appointmentCrossButton.click();
+        appointmentCrossButton.click();
     }
 
     @FindBy(xpath= "//button[text()='EDIT INTERPRETER']")
-    private WebElement EditInterpreter;
+    private WebElement editInterpreterButton;
+
+    public  void clickEditInterpreterButton(){
+
+        editInterpreterButton.click();
+    }
 
     @FindBy(xpath= "//span[text()='Can Self-Book for Appointments']")
     private WebElement CanSelfBookAppointment;
 
+    public WebElement getCanSelfBookAppointment(){
+        return CanSelfBookAppointment;
+    }
+
     @FindBy(xpath= "//button[text()='Cancel']")
     private WebElement Cancel;
 
-    @FindBy(xpath= "//button[text()='close']")
-    private WebElement Close;
+    public void clickCancel(){
+        Cancel.click();
+    }
 
+    @FindBy(xpath= "//button[text()='close']")
+    private WebElement close;
+
+    public void clickClose(){
+        close.click();
+    }
 
     @FindBy(xpath= "//input[contains(@id,'react-select')]")
     private WebElement finalizeAppointmentDropdownsList;
