@@ -34,6 +34,10 @@ public class DashBoardPage {
     @FindBy(css= ".css-1txeit4")
     private WebElement newAppointment;
 
+    public boolean newAppointmentIsDisplayed(){
+        return newAppointment.isDisplayed();
+    }
+
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
     private WebElement allAppointmentTable;
 
@@ -115,7 +119,7 @@ public class DashBoardPage {
 
     public  void updatePatientNotes(String patientName) throws InterruptedException {
 
-      WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='" + patientName + "']"));
+        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='" + patientName + "']"));
 
         patientLink.click();
         Thread.sleep(2000);
@@ -144,42 +148,42 @@ public class DashBoardPage {
 
     public  WebElement getWebElementOfHeaderAndCellValue(DashBoardHeaders dbh, String cellValue){
 
-         WebElement  appId = null;
+        WebElement  appId = null;
         DashBoardHeaders searchString = dbh;
         String  actualHeader =CommonUtils.getActualHeaderStringFromDashBoardTable(searchString);
 
-            int i = 1;
-            List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
-            Map<String, Integer> headIndex = new LinkedHashMap<>();
+        int i = 1;
+        List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
+        Map<String, Integer> headIndex = new LinkedHashMap<>();
 
 
-            for (WebElement r : rows) {
+        for (WebElement r : rows) {
 
-                String val = r.getText();
-                String firtword = val.split("\\R")[0];
-                headIndex.put(firtword, i);
-                i++;
+            String val = r.getText();
+            String firtword = val.split("\\R")[0];
+            headIndex.put(firtword, i);
+            i++;
+        }
+
+        int headerIndex = headIndex.get(actualHeader);
+
+        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
+        Assert.assertNotEquals(recordsCount, 0, "Table is empty");
+        for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
+
+            String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
+            String part2 = "]//td//*[text()='" + cellValue + "']";
+            String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
+
+            BaseClass b = new BaseClass();
+            boolean recordTEextMatching = b.isElementByXpath( part1 + rowNumber + part2);
+            if (recordTEextMatching) {
+
+                appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));
+                break;
+
             }
-
-            int headerIndex = headIndex.get(actualHeader);
-
-            int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
-            Assert.assertNotEquals(recordsCount, 0, "Table is empty");
-            for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
-
-                String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
-                String part2 = "]//td//*[text()='" + cellValue + "']";
-                String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
-
-                BaseClass b = new BaseClass();
-                boolean recordTEextMatching = b.isElementByXpath( part1 + rowNumber + part2);
-                if (recordTEextMatching) {
-
-                    appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));
-                    break;
-
-                }
-            }
+        }
 
         return appId;
 
@@ -211,11 +215,11 @@ public class DashBoardPage {
         Thread.sleep(3000);
     }
 
-   public  WebElement getAppIDWebElement(String text){
+    public  WebElement getAppIDWebElement(String text){
 
         WebElement appId =   wd.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='"+ text +"']"));
 
-       return  appId;
+        return  appId;
 
     }
 
