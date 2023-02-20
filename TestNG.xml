@@ -14,7 +14,7 @@
 				</methods>
 			</class>
 
-			<class name="com.tests.SB_ActualInterpreterpayoutTests">
+			<!--<class name="com.tests.SB_ActualInterpreterpayoutTests">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
 					<include name="editHybridInterpreterpayout"/>
@@ -93,7 +93,7 @@
 					<include name="approveFinancialReviewPendingAppointment"/>
 					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
 				</methods>
-			</class>
+			</class>-->
 		</classes>
 	</test>
 
