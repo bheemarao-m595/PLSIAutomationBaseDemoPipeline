@@ -93,6 +93,14 @@ public class DashBoardPage {
     @FindBy(id = "btn_Statusform_save")
     private WebElement save_Status;
 
+    @FindBy(xpath = "//span[text()='TO BE PROCESSED']/..")
+    private WebElement toBeProcessedTab;
+
+    @FindBy(xpath = "//span[text()='PENDING ACCEPTANCE']/..")
+    private WebElement pendingAcceptanceTab;
+
+
+
 
     public DashBoardPage(WebDriver d){
 
@@ -215,12 +223,22 @@ public class DashBoardPage {
         Thread.sleep(3000);
     }
 
-    public  WebElement getAppIDWebElement(String text){
+    public  WebElement getAppIDWebElementwithText(String appidText){
 
-        WebElement appId =   wd.findElement(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td/div/div[text()='"+ text +"']"));
+        WebElement appId =   wd.findElement(By.xpath("//div[@class='custom-badge' and text()='"+ appidText + "']"));
 
         return  appId;
 
+    }
+
+    public  void clickTobeProcessedTab(){
+
+        toBeProcessedTab.click();
+    }
+
+    public  void clickAcceptancePendingTab(){
+
+        pendingAcceptanceTab.click();
     }
 
 
