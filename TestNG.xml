@@ -14,6 +14,19 @@
 				</methods>
 			</class>
 
+
+			<class name="com.tests.SV_SetAppointmentTest">
+				<methods>
+					<include name="createRecurringAppointment"/>
+					<include name="updateAppointmentDetails"/>
+					<include name="quickEditStatus"/>
+					<include name="createNonMedicalAppointmentTest"/>
+					<include name="scheduleAppointmentMedicalTest"/>
+					<include name="cancelNewAppointment"/>
+
+				</methods>
+			</class>
+
 			<class name="com.tests.SB_ActualInterpreterpayoutTests">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
@@ -51,17 +64,6 @@
 				</methods>
 			</class>
 
-			<class name="com.tests.SV_SetAppointmentTest">
-				<methods>
-					<include name="createRecurringAppointment"/>
-					<include name="updateAppointmentDetails"/>
-					<include name="quickEditStatus"/>
-					<include name="createNonMedicalAppointmentTest"/>
-					<include name="scheduleAppointmentMedicalTest"/>
-					<include name="cancelNewAppointment"/>
-
-				</methods>
-			</class>
 
 
 			<class name="com.tests.SV_Interpreter_DetailsTest">
