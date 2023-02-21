@@ -1,20 +1,25 @@
 package com.pom;
 
+import com.base.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import  static com.base.BaseClass.logger;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AppointmentDetailsPage {
     WebDriver wd;
 
+    BaseClass b;
     public AppointmentDetailsPage(WebDriver d){
 
         wd = d;
         PageFactory.initElements(d,this);
+       b  = new BaseClass();
 
     }
     @FindBy(xpath= "//input[@name='AppointmentId']")
@@ -59,10 +64,12 @@ public class AppointmentDetailsPage {
         tabInterpreterMatching.click();
     }
 
-    public  void clickButtonFindInterpreters() throws InterruptedException {
+    public  void clickButtonFindInterpreters() throws InterruptedException, IOException {
+
 
         buttonFindInterpreters.click();
         Thread.sleep(3000);
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Find Interpreter"));
     }
 
     public  WebElement get_interpreterListTableBody(){

@@ -440,8 +440,6 @@ public class InterpreterAptsTab_Test extends BaseClass {
         InterpreterPage interpreterPage = new InterpreterPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
-        JavascriptExecutor js = (JavascriptExecutor) driver;//to use for scrolling up and down the page
-
         lo.doLogin(datasheet.get("Scheduler Username"),datasheet.get("Scheduler Password"));
         logger.log(Status.PASS, "logged in as scheduler");
         Thread.sleep(5000);

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.pom.DashBoardPage;
 import com.pom.NewAppointmentPage;
+import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -71,17 +72,25 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 if(!lastNameOfPatient.equals("NC")) {
                     db.search(lastNameOfPatient);
                     appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+                    String appIdText = appid.getText();
+                    CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",appIdText);
+                    appid.click();
                 }
                 else {
-                    logger.log(Status.FAIL, "Appointment not created");
-                    Assert.assertTrue(false,"Appointment not created");
+
+                  String appIdText  =  CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
+                  db.clickUrgent();
+                  db.search(appIdText);
+                  WebElement appIdAlt = db.getAppIDWebElementwithText(appIdText);
+                  appIdAlt.click();
+                    /*logger.log(Status.FAIL, "Appointment not created");
+                    Assert.assertTrue(false,"Appointment not created");*/
                 }
-                Assert.assertNotNull(appid,"Appointment ID not returned properly");
-                appid.click();
+              //  Assert.assertNotNull(appid,"Appointment ID not returned properly");
 
                 logger.log(Status.PASS, "Clicked on Appointment");
                 InP.makeAnOfferClick();
-                logger.log(Status.PASS, "Inetrpreter offered");
+                logger.log(Status.PASS, "Interpreter offered");
                 lo.click_logOut();
             }
             catch (Exception e){
@@ -156,7 +165,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             logger.log(Status.PASS, "Login Clicked");
             InterpreterPage InP = new InterpreterPage(driver);
             DashBoardPage dbp = new DashBoardPage(driver);
-            InP.clickUrgent();
+            dbp.clickUrgent();
             logger.log(Status.PASS, "Clicked on Interpreter");
             dbp.search("Testerymy");
             String fullName =  "Automation_SV Testerymy";

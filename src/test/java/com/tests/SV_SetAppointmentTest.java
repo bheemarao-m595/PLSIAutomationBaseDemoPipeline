@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.aventstack.extentreports.Status;
 import com.pom.DashBoardPage;
+import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -43,6 +44,7 @@ public class SV_SetAppointmentTest extends BaseClass
 				Thread.sleep(1000);
 				appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
 				logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment created"));
+				CommonUtils.writeToPropertiesFile("ExecutionData.properties","scheduleAppointmentMedicalTest",appid.getText());
 			}
 			else {
 				logger.log(Status.FAIL, "Appointment not created");
@@ -72,7 +74,7 @@ public class SV_SetAppointmentTest extends BaseClass
 	}
 
 
-	@Test(dependsOnMethods = "scheduleAppointmentMedicalTest")
+	@Test(priority = 3)
 	public void quickEditStatus() throws Throwable
 	{
 
@@ -87,9 +89,9 @@ public class SV_SetAppointmentTest extends BaseClass
 		DashBoardPage dbp = new DashBoardPage(driver);
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		dbp.search("Tester_xnm");
-		String patientFullName = "Automation_SV Tester_xnm";
-		dbp.updateQuickStatus(patientFullName);
+		String id = CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
+		dbp.search(id);
+		dbp.updateQuickStatus(id);
 		logger.log(Status.PASS,"Update Success");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Save quick edit status"));
@@ -98,7 +100,7 @@ public class SV_SetAppointmentTest extends BaseClass
 	}
 
 
-	@Test
+	@Test(priority = 2)
 	public void updateAppointmentDetails() throws Throwable
 	{
 
@@ -111,9 +113,11 @@ public class SV_SetAppointmentTest extends BaseClass
 		NewAppointmentPage nap = new NewAppointmentPage(driver);
         DashBoardPage dbp = new DashBoardPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		String patientFullName = "Automation_SV Tester_xnm";
-		dbp.search("Tester_xnm");
-		WebElement appIdLink = dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,patientFullName);
+		String id = CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
+		dbp.search(id);
+		Thread.sleep(2000);
+		WebElement appIdLink = dbp.getAppIDWebElementwithText(id);
+		BaseClass.goToElementVisibleArea(appIdLink);
 		appIdLink.click();
 		Thread.sleep(2000);
 		nap.editAppointment("Tester_vsc");
@@ -128,8 +132,6 @@ public class SV_SetAppointmentTest extends BaseClass
 	{
 		try {
 
-		//	driver=openBrowser();
-		//	driver.manage().window().maximize();
 			driver.get("http://uat.ims.client.sstech.us/login");
 			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 

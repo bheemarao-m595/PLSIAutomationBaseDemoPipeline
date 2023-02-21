@@ -10,8 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.base.BaseClass.datasheet;
-import static com.base.BaseClass.logger;
+import static com.base.BaseClass.*;
 
 public class NewAppointmentPage {
 
@@ -262,6 +261,9 @@ public class NewAppointmentPage {
         newAppointment.click();
 
         Thread.sleep(3000);
+        if(!isElementPresent(appointmentDate)){
+             return  "NC";
+        }
         appointmentDate.click();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 

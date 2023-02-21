@@ -298,6 +298,8 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
             logger.log(Status.PASS, "iterating through first name list");
 
+            boolean interpreterFound = false;
+
             for (int j = 0; j <= interpreterListRowsSize - 1; j++) {
 
                 String first_name = column_Interpreter_Name.get(j).getText();
@@ -313,14 +315,14 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                     appDetails.clickClose();
                     logger.log(Status.PASS, "Closed the popup");
-
+                     interpreterFound = true;
                     break;
 
                 }
 
             }
             Thread.sleep(3000);
-
+            Assert.assertTrue(interpreterFound,"Interpreter " + datasheet.get("Interpreter Name") + "not found");
             loginPage.click_logOut();
             logger.log(Status.PASS, "logout as scheduler");
 
@@ -943,17 +945,13 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
 
                 String interpreter = interpreters[j];
-
                 loginPage.doLogin(interpreter, datasheet.get("Interpreter Password"));
                 logger.log(Status.PASS, "Logged in as interpreter " + interpreter + " from the list available for the appointment is "+view_Text);
-
                 Thread.sleep(2000);
 
                 if (db.newAppointmentIsDisplayed()) {
 
                     logger.log(Status.PASS, "current page is all appointments dashboard");
-
-                    //UI.waitForElementVisibility(navPanel.Interpreters());
                     navPanel.click_Interpreters();
                     Thread.sleep(1000);
                     logger.log(Status.PASS, "Clicked Interpreters");
@@ -965,12 +963,10 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                     logger.log(Status.PASS, "clicked the interpreter");
 
                     Thread.sleep(2000);
-                    //UI.waitForElementVisibility(interpreterDb.EditInterpreter());
                     interpreterDb.clickEditInterpreterButton();
                     logger.log(Status.PASS, "clicked the Edit Interpreter to see the status of checkbox");
 
                     Thread.sleep(2000);
-                    /* UI.waitForElementVisibility(interpreterDb.CanSelfBookAppointment());*/
 
                     String selfbookCheckboxValue = interpreterDb.getCanSelfBookAppointment()
                             .getAttribute("value");
@@ -996,8 +992,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                         logger.log(Status.PASS, "entered id " + view_Text + " in search box");
 
                         Thread.sleep(2000);
-                        //UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentTableColView());
-
                         WebElement View_id = interpreterDb.getFirstInterpreterDashboardAppointmentTableColView();
 
                         View_id.click();
@@ -1005,7 +999,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
                         logger.log(Status.PASS, "appointment id " + view_Text + " is displayed in AVAILABLE tab page");
 
                         Thread.sleep(3000);
-                        // UI.waitForElementVisibility(interpreterDb.InterpreterDashboardAppointmentClickTitle());
 
                         String appointment_offer_title = interpreterDb.getTitleInterpreterDashboardAppointmentTitle();
 
@@ -1030,8 +1023,6 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
                         navPanel.click_Home_Interpreter();
                         Thread.sleep(1000);
-                        //UI.click(navPanel.SubInterpreter());
-                        //Thread.sleep(1000);
 
                         Boolean availableTab = interpreterDb.availableTabIsDisplayed();
 
@@ -1054,6 +1045,7 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail("Failed due to" + e.getMessage());
         }
     }
 

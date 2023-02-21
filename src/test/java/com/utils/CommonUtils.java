@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.base.BaseClass;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
@@ -10,10 +11,12 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 
 public class CommonUtils {
@@ -152,6 +155,37 @@ public class CommonUtils {
 		String newTime = StringUtils. truncate(five,11,5);
 		return  newTime;
 
+	}
+
+	public static String readPropertiesFileValues(String filePath, String key){
+
+		String val ="";
+		try {
+			String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\" + filePath;
+			FileInputStream fin = new FileInputStream(fullPath);
+			Properties prop = new Properties();
+			prop.load(fin);
+
+		val =	prop.get(key).toString();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return  val;
+
+	}
+	public static   void writeToPropertiesFile(String filePath, String key, String val){
+
+		FileOutputStream outputStream = null;
+		try{
+
+			String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\" + filePath;
+			PropertiesConfiguration props = new PropertiesConfiguration(fullPath);
+			props.setProperty(key,val);
+			props.save();
+		}catch (Exception e){
+       e.printStackTrace();
+		}
 	}
 
 

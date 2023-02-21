@@ -60,7 +60,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
     }
 
 
-    @Test(description = "This TC will perform valid login and navigated to finance archive page and sorted all columns")
+    @Test
     public void sortingColumnsFinancialArchive() throws Throwable{
 
         driver.get("http://uat.ims.client.sstech.us/login");

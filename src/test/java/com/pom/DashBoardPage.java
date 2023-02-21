@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.base.BaseClass.datasheet;
+import static com.base.BaseClass.driver;
 
 public class DashBoardPage {
 
@@ -99,6 +100,9 @@ public class DashBoardPage {
     @FindBy(xpath = "//span[text()='PENDING ACCEPTANCE']/..")
     private WebElement pendingAcceptanceTab;
 
+    @FindBy(xpath = "//span[contains(text(),'URGENT')]")
+    private WebElement urgentTab;
+
 
 
 
@@ -109,9 +113,9 @@ public class DashBoardPage {
 
     }
 
-    public void updateQuickStatus(String patientName) throws InterruptedException {
+    public void updateQuickStatus(String appId) throws InterruptedException {
 
-        WebElement statusLink =  wd.findElement(By.xpath("//*[text()='" + patientName     + "']//ancestor::td/following-sibling::td[2]//div//span"));
+        WebElement statusLink   =  driver.findElement(By.xpath("//*[text()='"+ appId +"']/../../following-sibling::td[8]//span/span"));
 
         statusLink.click();
         Thread.sleep(2000);
@@ -221,6 +225,7 @@ public class DashBoardPage {
     public  void search(String searchFor) throws InterruptedException {
         search.sendKeys(searchFor);
         Thread.sleep(3000);
+        search.sendKeys(Keys.TAB);
     }
 
     public  WebElement getAppIDWebElementwithText(String appidText){
@@ -241,6 +246,23 @@ public class DashBoardPage {
         pendingAcceptanceTab.click();
     }
 
+    public  void clickUrgent() throws InterruptedException {
+        urgentTab.click();
+        Thread.sleep(4000);
+    }
+
+     public  String getPatientNameFromAppId(String appID){
+
+         BaseClass b = new BaseClass();
+         try {
+             WebElement name = b.getElementByXpath(wd, "//div[text()='" + appID + "']/../../following-sibling::td[6]//span/span");
+             String nameString = name.getText();
+             return nameString;
+         }catch (Exception e){
+             e.printStackTrace();
+             return  "Not Found";
+         }
+    }
 
 
 

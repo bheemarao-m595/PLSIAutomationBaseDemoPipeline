@@ -10,13 +10,13 @@
 
 			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
 				<methods>
-					<!--<include name="acceptAppointment"/>
-					<include name="rejectAppointment"/>
-					<include name="returnAppointment"/>
-					<include name="checkInAppointment"/>
-					<include name="checkOutAndFinaliseAppointment"/>
-					<include name="viewFinancialBreakdown"/>-->
-					<include name="selfBookAppointment"/>
+					<include name="acceptAppointment"/>
+<!--					<include name="rejectAppointment"/>-->
+<!--					<include name="returnAppointment"/>-->
+<!--					<include name="checkInAppointment"/>-->
+<!--					<include name="checkOutAndFinaliseAppointment"/>-->
+<!--					<include name="viewFinancialBreakdown"/>-->
+<!--					<include name="selfBookAppointment"/>-->
 				</methods>
 			</class>
 

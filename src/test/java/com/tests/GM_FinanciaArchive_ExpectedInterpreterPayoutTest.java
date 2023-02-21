@@ -20,7 +20,7 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
 
 
-    @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
+    @Test
     public void editingExpectedPayoutFields() throws InterruptedException, IOException {
 
         driver.get("http://uat.ims.client.sstech.us/login");

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import  static com.base.BaseClass.logger;
 
 import java.io.IOException;
 
@@ -128,62 +129,62 @@ public class GM_FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClas
      Thread.sleep(1000);
      headerView.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         financialTab.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         editFieldsExpectedBtn.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
      performOperations(requestedStartTime,"Requested Start Time");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(requestedEndTime,"Requested End Time");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(checkINDuration,"Chek-In Duration");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
     performOperations(hoursPaymentType,"Hours Payment Type");
      Thread.sleep(1000);
      hoursPaymentType.sendKeys(Keys.TAB);
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterDurationBusinessHours,"Interpreter Duration (Business Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterDurationAfterHours,"Interpreter Duration (After Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(expectedInterpreterPayout,"Expected Interpreter Payout");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterMilesTraveled,"Interpreter - Miles Traveled");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterTravelReimbursementMiles,"Interpreter - Travel Reimbursement (Miles)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterTotalTravelTimeHours,"Interpreter - Total Travel Time (Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterTotalTravelTimeMinutes,"Interpreter - Total Travel Time (Minutes)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterTravelReimbursementTime,"Interpreter - Travel Reimbursement (Time)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterRequestedTollsParkingReimbursement,"Interpreter - Req Tolls & Parking Reimbursement");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(interpreterFlatRate,"Interpreter - Flat Rate");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(totalExpectedInterpreterPay,"Total Expected Interpreter Pay");
-     logger.log(Status.INFO,"Edited Total Expected Interpreter pay");
+     logger.log(Status.PASS,"Edited Total Expected Interpreter pay");
      logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Interpreter pay"));
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(clientBDHoursPaymentType,"CB Hours Payment Type");
      Thread.sleep(1000);
      clientBDHoursPaymentType.sendKeys(Keys.TAB);
@@ -211,114 +212,102 @@ public class GM_FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClas
 
      Thread.sleep(2000);
      performOperations(totalExpectedClientBilling,"Total Expected Client Billing");
-     logger.log(Status.INFO,"Edited Total Expected Client Billing");
+     logger.log(Status.PASS,"Edited Total Expected Client Billing");
      logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Client Billing"));
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      saveExpectedPO.click();
     }
+
     public void editActualPayout() throws InterruptedException, IOException {
+
      Thread.sleep(1000);
      headerView.click();
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      financialTab.click();
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      editFieldsActualBtn.click();
 
-     Thread.sleep(2000);
-     //requestedStartTime.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(requestedStartTime,"Requested Start Time");
 
-     Thread.sleep(2000);
-     //requestedEndTime.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(requestedEndTime,"Requested End Time");
 
-     Thread.sleep(2000);
-     //checkINDuration.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(checkINDuration,"Chek-In Duration");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(hoursPaymentType,"Hours Payment Type");
      Thread.sleep(1000);
      hoursPaymentType.sendKeys(Keys.TAB);
 
-     Thread.sleep(2000);
-     //interpreterDurationBusinessHours.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterDurationBusinessHours,"Interpreter Duration (Business Hours)");
 
-     Thread.sleep(2000);
-     //interpreterDurationAfterHours.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterDurationAfterHours,"Interpreter Duration (After Hours)");
 
-     Thread.sleep(2000);
-     //expectedInterpreterPayout.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(expectedInterpreterPayout,"Expected Interpreter Payout");
 
-     Thread.sleep(2000);
-     //interpreterMilesTraveled.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterMilesTraveled,"Interpreter - Miles Traveled");
 
-     Thread.sleep(2000);
-     //interpreterTravelReimbursementMiles.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterTravelReimbursementMiles,"Interpreter - Travel Reimbursement (Miles)");
 
-     Thread.sleep(2000);
-     //interpreterTotalTravelTimeHours.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterTotalTravelTimeHours,"Interpreter - Total Travel Time (Hours)");
 
-     Thread.sleep(2000);
-     //interpreterTotalTravelTimeMinutes.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterTotalTravelTimeMinutes,"Interpreter - Total Travel Time (Minutes)");
 
-     Thread.sleep(2000);
-     //interpreterTravelReimbursementTime.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterTravelReimbursementTime,"Interpreter - Travel Reimbursement (Time)");
 
-     Thread.sleep(2000);
-     //interpreterRequestedTollsParkingReimbursement.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterRequestedTollsParkingReimbursement,"Interpreter - Req Tolls & Parking Reimbursement");
 
-     Thread.sleep(2000);
-     //interpreterFlatRate.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(interpreterFlatRate,"Interpreter - Flat Rate");
 
-     Thread.sleep(2000);
-     //totalExpectedInterpreterPay.sendKeys(datasheet.get(""));
+     Thread.sleep(1000);
      performOperations(totalExpectedInterpreterPay,"Total Expected Interpreter Pay");
-     logger.log(Status.INFO,"Edited Total Expected Interpreter Pay");
+     logger.log(Status.PASS,"Edited Total Expected Interpreter Pay");
      logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Interpreter Pay"));
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(clientBDHoursPaymentType,"CB Hours Payment Type");
      Thread.sleep(1000);
      clientBDHoursPaymentType.sendKeys(Keys.TAB);
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(expectedClientBillingBusinessHours,"Expected Client Billing (Business Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(expectedClientBillingAfterHours,"Expected Client Billing (After Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(expectedClientBillingRateAfterHours,"Expected Client Billing Rate (After Hours)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(expectedClientCharge,"Expected Client Charge");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(clientTravelReimbursementMiles,"Client Travel Reimbursement (Miles)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(clientTravelReimbursementTime,"Client Travel Reimbursement (Time)");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(clientFlatRate,"Client - Flat Rate");
 
-     Thread.sleep(2000);
+     Thread.sleep(1000);
      performOperations(totalExpectedClientBilling,"Total Expected Client Billing");
-     logger.log(Status.INFO,"Edited Total Expected Client Billing");
+     logger.log(Status.PASS,"Edited Total Expected Client Billing");
      logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Client Billing"));
 
      Thread.sleep(2000);
