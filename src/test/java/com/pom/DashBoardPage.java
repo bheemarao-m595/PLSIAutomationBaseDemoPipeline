@@ -1,5 +1,6 @@
 package com.pom;
 
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
@@ -11,12 +12,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.base.BaseClass.datasheet;
-import static com.base.BaseClass.driver;
+import static com.base.BaseClass.*;
 
 public class DashBoardPage {
 
@@ -131,7 +132,7 @@ public class DashBoardPage {
 
     public  void updatePatientNotes(String patientName) throws InterruptedException {
 
-        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='" + patientName + "']"));
+        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//*[text()='" + patientName + "']"));
 
         patientLink.click();
         Thread.sleep(2000);
@@ -180,6 +181,7 @@ public class DashBoardPage {
         int headerIndex = headIndex.get(actualHeader);
 
         int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
+        logger.log(Status.INFO,"Table is empty");
         Assert.assertNotEquals(recordsCount, 0, "Table is empty");
         for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
 
@@ -196,7 +198,7 @@ public class DashBoardPage {
 
             }
         }
-
+       System.out.println(appId.getText());
         return appId;
 
 
@@ -262,6 +264,21 @@ public class DashBoardPage {
              e.printStackTrace();
              return  "Not Found";
          }
+    }
+
+    public List<WebElement> getAllAppointmentIdsWithStatus(String status){
+
+        List<WebElement> li = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[9]"));
+         List<WebElement> requiredList = new ArrayList<>();
+         for(int i=0; i<li.size();i++){
+
+             if(li.get(i).getText().equalsIgnoreCase(status)){
+
+                 requiredList.add(li.get(i));
+             }
+         }
+         return requiredList;
+
     }
 
 

@@ -109,12 +109,10 @@ public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
         }
 
         Thread.sleep(3000);
-
         loginPage.click_logOut();
         logger.log(Status.PASS, "logout as scheduler");
 
         loginPage.doLogin(datasheet.get("Interpreter Username"),datasheet.get("Interpreter Password"));
-
 
         logger.log(Status.PASS, "logged in as interpreter");
 

@@ -21,7 +21,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
+        GM_FinancialAdminDashboardPage financialAdminPage=new GM_FinancialAdminDashboardPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -30,10 +30,10 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
 
-          boolean isSelected =  FA.navigateFinancialArchivePage();
+          boolean isSelected =  financialAdminPage.navigateFinancialArchivePage();
           if(!isSelected)
             {
-                WebElement el = FA.getArchivetab();
+                WebElement el = financialAdminPage.getArchivetab();
                 String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("taking screenshot"+timeStamp+".png",el));
                 Assert.assertTrue(false,"Tab not highlighted");
@@ -43,13 +43,13 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         Thread.sleep(5000);
         try {
             DashBoardPage db = new DashBoardPage(driver);
-            FA.approvingFinancialAppointment(1,"PENDING");
+            financialAdminPage.approvingFinancialAppointment(1,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));
         }
         try {
-            FA.approvingAppointment();
+            financialAdminPage.approvingAppointment();
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
         }catch (Throwable e){
             logger.log(Status.FAIL,e.getMessage());
@@ -118,7 +118,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         }
         Thread.sleep(5000);
         try {
-            FA.approvingFinancialAppointment(1,"PENDING");
+            FA.approvingFinancialAppointment(1,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));
@@ -162,7 +162,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         Thread.sleep(5000);
         try {
-            FA.approvingFinancialAppointment(3,"PENDING");
+            FA.approvingFinancialAppointment(2,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));

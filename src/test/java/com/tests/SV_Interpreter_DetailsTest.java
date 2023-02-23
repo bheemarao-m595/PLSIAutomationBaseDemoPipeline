@@ -13,7 +13,7 @@ import java.io.IOException;
 @Listeners({com.listeners.ListenerTest.class})
 public class    SV_Interpreter_DetailsTest extends BaseClass
 {
-    @Test
+    @Test(priority = 1)
     public void create_Interpreter_Availability() throws Throwable {
 
         driver.get("http://uat.ims.client.sstech.us/login");
@@ -33,7 +33,7 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
 
     }
 
-    @Test
+    @Test(dependsOnMethods= "create_Interpreter_Availability")
     public void update_Interpreter_Availability() throws Throwable
     {
 
@@ -57,7 +57,7 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
 
     }
 
-    @Test(dependsOnMethods = "create_Interpreter_Availability")
+    @Test(dependsOnMethods = "update_Interpreter_Availability")
     public void deleteInt_Avail() throws Throwable {
 
         driver.get("http://uat.ims.client.sstech.us/login");

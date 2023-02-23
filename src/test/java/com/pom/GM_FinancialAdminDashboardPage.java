@@ -5,10 +5,12 @@ import com.base.BaseClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.List;
-import static com.base.BaseClass.logger;
+import static com.base.BaseClass.*;
+import com.aventstack.extentreports.Status;
 
 public class GM_FinancialAdminDashboardPage {
     WebDriver driver;
@@ -99,11 +101,16 @@ public class GM_FinancialAdminDashboardPage {
             } // all rows executed
             if(boxesChecked < noOfChecboxRequired) { // for next page
                 JavascriptExecutor js = (JavascriptExecutor) driver;
-                //WebElement Element = driver.findElement(paging);
-                js.executeScript("arguments[0].scrollIntoView();",paging );
-                Thread.sleep(2000);
-                paging.click();
-                Thread.sleep(3000);
+                if(!BaseClass.isElementPresent(paging)){
+                    logger.log(com.aventstack.extentreports.Status.INFO,"paging ended");
+                    break;
+                }else{
+                    js.executeScript("arguments[0].scrollIntoView();",paging );
+                    Thread.sleep(2000);
+                    paging.click();
+                    Thread.sleep(1000);
+                }
+
             }
         } //end of while
     }

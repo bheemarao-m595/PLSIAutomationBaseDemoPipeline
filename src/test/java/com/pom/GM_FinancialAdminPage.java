@@ -1,5 +1,6 @@
 package com.pom;
 
+import com.base.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.base.BaseClass.logger;
 
 
 //dont use
@@ -86,10 +89,16 @@ public class GM_FinancialAdminPage {
             if(boxesChecked < noOfChecboxRequired) { // for next page
                 JavascriptExecutor js = (JavascriptExecutor) driver;
                 //WebElement Element = driver.findElement(paging);
-                js.executeScript("arguments[0].scrollIntoView();",paging );
-                Thread.sleep(2000);
-                paging.click();
-                Thread.sleep(3000);
+                if(!BaseClass.isElementPresent(paging)) {
+                    logger.log(com.aventstack.extentreports.Status.INFO, "paging ended");
+                    break;
+                }else{
+                    js.executeScript("arguments[0].scrollIntoView();",paging );
+                    Thread.sleep(2000);
+                    paging.click();
+                    Thread.sleep(1000);
+                }
+
             }
         } //end of while
     }
@@ -99,6 +108,7 @@ public class GM_FinancialAdminPage {
         js.executeScript("window.scrollBy(0,-700)");
         Thread.sleep(2000);
         btnApprove.click();
+        Thread.sleep(2000);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.listeners;
 
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -34,14 +35,14 @@ public class ListenerTest implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
 		String t =result.getThrowable().getMessage();
-    //     BaseClass.logger.log(Status.FAIL,"Failed due to " + t);
+
 
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		// TODO Auto-generated method stub
-
+		BaseClass.logger.log(Status.SKIP,"Skipped due to dependency");
 	}
 
 	@Override

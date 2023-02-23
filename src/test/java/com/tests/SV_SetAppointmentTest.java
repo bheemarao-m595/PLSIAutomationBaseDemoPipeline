@@ -1,6 +1,7 @@
 package com.tests;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import com.aventstack.extentreports.Status;
@@ -89,8 +90,14 @@ public class SV_SetAppointmentTest extends BaseClass
 		DashBoardPage dbp = new DashBoardPage(driver);
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		String id = CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
-		dbp.search(id);
+		List<WebElement> rows = dbp.getAllAppointmentIdsWithStatus("New");
+		if(rows.size() ==0) {
+			logger.log(Status.INFO, "There are no rows with status New");
+			Assert.fail("Table has no New appointments");
+		}
+		dbp.search("New");
+		String id = dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New").getText();
+		Thread.sleep(2000);
 		dbp.updateQuickStatus(id);
 		logger.log(Status.PASS,"Update Success");
 
@@ -113,10 +120,15 @@ public class SV_SetAppointmentTest extends BaseClass
 		NewAppointmentPage nap = new NewAppointmentPage(driver);
         DashBoardPage dbp = new DashBoardPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointments table"));
-		String id = CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
-		dbp.search(id);
+		//String id = CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
+		List<WebElement> rows = dbp.getAllAppointmentIdsWithStatus("New");
+		if(rows.size() ==0) {
+			logger.log(Status.INFO, "There are no rows with status New");
+			Assert.fail("Table has no New appointments");
+		}
+		dbp.search("New");
 		Thread.sleep(2000);
-		WebElement appIdLink = dbp.getAppIDWebElementwithText(id);
+		WebElement appIdLink = dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
 		BaseClass.goToElementVisibleArea(appIdLink);
 		appIdLink.click();
 		Thread.sleep(2000);

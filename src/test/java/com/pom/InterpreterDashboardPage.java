@@ -69,7 +69,11 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
     private WebElement InterpreterDashboardAppointmentTable;
 
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
+    private WebElement tableInterpreterListBody;
+
     public  WebElement get_InterpreterDashboardAppointmentTable(){
+
         return InterpreterDashboardAppointmentTable;
     }
 
@@ -296,6 +300,10 @@ public class InterpreterDashboardPage {
         return appId;
 
 
+    }
+
+    public  WebElement get_tableInterpreterListBody(){
+        return tableInterpreterListBody;
     }
 
 

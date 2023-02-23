@@ -167,7 +167,6 @@ public class BaseClass
 			found = w.isEnabled();
 		}catch (NoSuchElementException e){
 
-			 e.printStackTrace();
 			 found = false;
 		}catch (Exception e){
 			e.printStackTrace();
@@ -297,10 +296,11 @@ public class BaseClass
 
 	}
 
-	public static void clickWithJavaScript(WebElement element){
+	public static void clickWithJavaScript(WebElement element) throws InterruptedException {
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click();", element);
+		Thread.sleep(2000);
 	}
 
 	public int readNumberOfRowsInTable(WebElement ele) {//this reads number of rows in any given table.

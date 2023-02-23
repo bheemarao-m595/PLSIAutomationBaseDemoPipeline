@@ -1,5 +1,6 @@
 package com.tests;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import com.pom.DashBoardPage;
@@ -8,6 +9,7 @@ import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
 import com.utils.ExcelUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -21,7 +23,7 @@ import com.pom.InterpreterPage;
 @Listeners({com.listeners.ListenerTest.class})
 public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
-    @Test(priority = 3)
+    @Test(dependsOnMethods = "makeAnOfferToInterpreter")
     public void acceptOfferByInterpreter() throws Throwable
         {
 
@@ -29,6 +31,8 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
+                String intEmail = CommonUtils.readPropertiesFileValues("ExecutionData.properties","makeAnOfferToInterpreter");
+                datasheet.put("UserName",intEmail);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Login as Interpreter");
                 InterpreterPage InP = new InterpreterPage(driver);
@@ -57,46 +61,59 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
                 logger.log(Status.PASS, "Logined as Scheduler");
-                InterpreterPage InP = new InterpreterPage(driver);
+                InterpreterPage interpreterPage = new InterpreterPage(driver);
+                DashBoardPage dbp = new DashBoardPage(driver);
 
                 ExcelUtils exl = new ExcelUtils();
                 XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
                 Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","scheduleAppointmentMedicalTest");
 
-                NewAppointmentPage nap = new NewAppointmentPage(driver);
-                String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
-                DashBoardPage db = new DashBoardPage(driver);
-                String patientFName = appointmentData.get("First Name");
-                Thread.sleep(4000);
-                WebElement appid = null;
-                if(!lastNameOfPatient.equals("NC")) {
-                    db.search(lastNameOfPatient);
-                    appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
-                    String appIdText = appid.getText();
-                    CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",appIdText);
+                List<WebElement> rows = dbp.getAllAppointmentIdsWithStatus("New");
+                if(rows.size() ==0) {
+                    logger.log(Status.INFO, "There are no rows with status New");
+                    NewAppointmentPage nap = new NewAppointmentPage(driver);
+                    appointmentData.put("First Name","Automation_SB");
+                    String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+                    DashBoardPage db = new DashBoardPage(driver);
+                    String patientFName = appointmentData.get("First Name");
+                    Thread.sleep(4000);
+                    WebElement appid = null;
+                    if(!lastNameOfPatient.equals("NC")) {
+                        db.search(lastNameOfPatient);
+                        appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
+                        String appIdText = appid.getText();
+                        CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",appIdText);
+                        appid.click();
+                    }
+                    else {
+
+                        logger.log(Status.FAIL, "Appointment not created");
+                        Assert.fail("Appointment not created");
+                    }
+                    Thread.sleep(2000);
+                    logger.log(Status.PASS, "Clicked on Appointment");
+
+                }else{
+                    WebElement appid = null;
+                    appid =  dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
+                    Assert.assertNotNull(appid,"Appointment Id not found");
+                    JavascriptExecutor js = (JavascriptExecutor)driver;
+                    js.executeScript("arguments[0].scrollIntoView(true);",appid);
+                    Thread.sleep(2000);
                     appid.click();
                 }
-                else {
 
-                  String appIdText  =  CommonUtils.readPropertiesFileValues("ExecutionData.properties","scheduleAppointmentMedicalTest");
-                  db.clickUrgent();
-                  db.search(appIdText);
-                  WebElement appIdAlt = db.getAppIDWebElementwithText(appIdText);
-                  appIdAlt.click();
-                    /*logger.log(Status.FAIL, "Appointment not created");
-                    Assert.assertTrue(false,"Appointment not created");*/
-                }
-              //  Assert.assertNotNull(appid,"Appointment ID not returned properly");
 
-                logger.log(Status.PASS, "Clicked on Appointment");
-                InP.makeAnOfferClick();
+                String intEmail =   interpreterPage.makeAnOfferforAny();
+                CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",intEmail);
+
                 logger.log(Status.PASS, "Interpreter offered");
                 lo.click_logOut();
             }
             catch (Exception e){
 
                 e.printStackTrace();
-                Assert.assertFalse(true, "got exception at offerInterpreter ");
+                Assert.fail( "got exception at offerInterpreter ");
             }
         }
     }
@@ -119,7 +136,9 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","scheduleAppointmentMedicalTest");
 
                 NewAppointmentPage nap = new NewAppointmentPage(driver);
+                appointmentData.put("First Name","Automation_SB");
                 String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+                logger.log(Status.PASS, "Appointment Created");
                 DashBoardPage db = new DashBoardPage(driver);
                 String patientFName = appointmentData.get("First Name");
                 Thread.sleep(4000);
@@ -136,9 +155,10 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 Assert.assertNotNull(appid,"Appointment ID not returned properly");
                 appid.click();
 
-
+                Thread.sleep(2000);
                 logger.log(Status.PASS, "Clicked on Appointment ID");
-                InP.makeAnOfferClick();
+              String email =  InP.makeAnOfferforAny();
+               logger.log(Status.INFO," Offer made to " + email);
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Made an Offer"));
                 InP.interpreterRescind();
                 logger.log(Status.PASS, "Interpreter Rescind");
@@ -148,7 +168,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             catch (Exception e){
 
                 e.printStackTrace();
-                Assert.assertFalse(true, "got exception at offerInterpreter ");
+                Assert.fail("got exception at offerInterpreter ");
             }
         }
     }

@@ -208,16 +208,6 @@ public class VG_RequestAppointmentPage {
             Assert.fail("Appointment not created");
         }
         Thread.sleep(3000);
-        searchbar.sendKeys("RAVI AGARWAL");
-//        searchbar.sendKeys(Keys.TAB);
-        Thread.sleep(1000);
-        InterpreterDashboardPage interdbd = new InterpreterDashboardPage(driver);
-        WebElement appId = interdbd.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER,"RAVI AGARWAL");
-        appId.click();
-        js.executeScript("arguments[0].scrollIntoView(true);", requestchange1);
-        Thread.sleep(3000);
-        requestchange1.click();
-
 
 
     }

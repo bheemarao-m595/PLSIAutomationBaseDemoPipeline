@@ -1,5 +1,6 @@
 package com.pom;
 
+import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import  static com.base.BaseClass.logger;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -93,9 +95,7 @@ public class InterpreterPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
     private WebElement tableInterpreterListBody;
 
-    public  WebElement get_tableInterpreterListBody(){
-        return tableInterpreterListBody;
-    }
+
 
     @FindBy(xpath= "//span[text()='APPOINTMENTS']")
     private WebElement tabAppointments;
@@ -189,39 +189,73 @@ public class InterpreterPage {
         Thread.sleep(3000);
     }
 
-    public  void interpreterAccept() throws InterruptedException {
+    public  void interpreterAccept() throws InterruptedException, IOException {
+
         IntrepreterTab.click();
         Thread.sleep(2000);
         OfferedTab.click();
+        logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Offer Tab"));
         Thread.sleep(2000);
         AppointmentOffered.click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         AcceptTab.click();
-        Thread.sleep(3000);
+        logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Offer Accepted"));
+        Thread.sleep(2000);
     }
 
-    public void interpreterRescind() throws InterruptedException {
-
+    public void interpreterRescind() throws InterruptedException, IOException {
 
         BaseClass.waitforElementToMakeClickable(InterpreterMatchingTab);
         BaseClass.clickWithJavaScript(InterpreterMatchingTab);
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         findInterpreter.click();
         Thread.sleep(3000);
-        if(BaseClass.isElementPresent(rescindOfferbutton))
-            rescindOfferbutton.click();
-
-        Thread.sleep(3000);
+        if(BaseClass.isElementPresent(rescindOfferbutton)) {
+            BaseClass.goToElementVisibleArea(rescindOfferbutton);
+            BaseClass.clickWithJavaScript(rescindOfferbutton);
+        }
+       logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Offer Rescined"));
+        Thread.sleep(2000);
     }
 
-    public void makeAnOfferClick() throws InterruptedException {
+    public void makeAnOfferClickForInterpreterName(String name) throws InterruptedException, IOException {
+
+        BaseClass b = new BaseClass();
         if(BaseClass.isElementPresent(InterpreterMatchingTab))
             InterpreterMatchingTab.click();
+
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("InterpreterMatching Tab clicked"));
+        Thread.sleep(2000);
+        findInterpreter.click();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Find Interpreter Clicked"));
         Thread.sleep(3000);
+        WebElement makeAnOfferLinkForInterpreter = new BaseClass().getElementByXpath(wd,"//div[text()='"+ name  +"']/../following-sibling::td[5]");
+        makeAnOfferLinkForInterpreter.click();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Make an Offer Clicked"));
+        Thread.sleep(2000);
+    }
+
+    public String makeAnOfferforAny() throws InterruptedException, IOException {
+        BaseClass b = new BaseClass();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Details Tab"));
+        if(BaseClass.isElementPresent(InterpreterMatchingTab))
+            InterpreterMatchingTab.click();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("InterpreterMatching Tab clicked"));
+        logger.log(Status.PASS,"Matching Tab clicked");
+        Thread.sleep(2000);
         findInterpreter.click();
         Thread.sleep(3000);
-        makeAnOffer.click();
-        Thread.sleep(3000);
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Find Interpreter Clicked"));
+        logger.log(Status.PASS,"Find Interpreter Clicked");
+          WebElement interPreterFirstemail = new BaseClass().getElementByXpath(wd,"//span[text()='make an offer']/../../../preceding-sibling::td[4]/div");
+         String firstEmail  = interPreterFirstemail.getText();
+         makeAnOffer.click();
+          logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Make an Offer Clicked"));
+        logger.log(Status.PASS,"Make an Offer Clicked");
+
+
+        Thread.sleep(2000);
+        return firstEmail;
     }
 }
 

@@ -26,8 +26,8 @@
 			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
-<!--					<include name="acceptOfferByInterpreter"/>-->
-<!--					<include name="rescindOfferedToInterpreter"/>-->
+					<include name="acceptOfferByInterpreter"/>
+					<include name="rescindOfferedToInterpreter"/>
 <!--					<include name="editPreference"/>-->
 				</methods>
 			</class>

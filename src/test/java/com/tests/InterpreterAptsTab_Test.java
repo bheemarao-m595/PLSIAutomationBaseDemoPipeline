@@ -2,7 +2,9 @@ package com.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
@@ -129,7 +131,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         Thread.sleep(5000);
 
-        int rowsSize = readNumberOfRowsInTable(interpreterPage.get_tableInterpreterListBody());
+        int rowsSize = readNumberOfRowsInTable(interpreterDb.get_tableInterpreterListBody());
         
         List<WebElement> column_view_interpreter = interpreterPage.allAppointmentTableBodyRowsViewInterpretercolumn();
         logger.log(Status.PASS, "selected the column View Interpreter");
@@ -187,7 +189,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
             logger.log(Status.PASS, "Entered "+c1+"in Search");
             Thread.sleep(2000);
             //getting number of rows of that page table
-            WebElement tableBody_forStringValue = interpreterPage. get_tableInterpreterListBody();
+            WebElement tableBody_forStringValue = interpreterDb.get_tableInterpreterListBody();
             logger.log(Status.PASS, "Took all rows in a list.");
             List<WebElement>TotalRowsList = tableBody_forStringValue.findElements(By.tagName("tr"));
 
@@ -285,7 +287,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         Thread.sleep(3000);
 
-        WebElement tableBody = interpreterPage.get_tableInterpreterListBody();
+        WebElement tableBody = interpreterDb.get_tableInterpreterListBody();
 
         tableBody.findElement(By.xpath("//tr/td[" + 1 + "]")).click();
 
@@ -387,7 +389,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         Thread.sleep(3000);
 
-        WebElement tableBody = interpreterPage.get_tableInterpreterListBody();
+        WebElement tableBody = interpreterDb.get_tableInterpreterListBody();
 
         tableBody.findElement(By.xpath("//tr/td[" + 1 + "]")).click();
 
@@ -399,11 +401,11 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         List<WebElement> columnLanguage_LanguageProficiency = interpreterPage.tableLanguageProficiencyList_Col_Language();
 
-        String[] language_proficeiency_language_array = new String[columnLanguage_LanguageProficiency.size()];
+        Set<String> interpreterLanguagesSet = new HashSet<>();
 
-        for(int i=0;i<columnLanguage_LanguageProficiency.size();i++) {
+        for(WebElement e: columnLanguage_LanguageProficiency) {
 
-            language_proficeiency_language_array[i] =columnLanguage_LanguageProficiency.get(i).getText();
+            interpreterLanguagesSet.add(e.getText());
 
         }
 
@@ -416,12 +418,9 @@ public class InterpreterAptsTab_Test extends BaseClass {
         for(int i=0;i<columnLanguage_Appointments.size();i++) {
 
             String s= columnLanguage_Appointments.get(i).getText();
-            Boolean b = ArrayUtils.contains(language_proficeiency_language_array, columnLanguage_Appointments.get(i).getText());
-
-            Assert.assertEquals(true, b);
+            Boolean b = interpreterLanguagesSet.contains(columnLanguage_Appointments.get(i).getText());
 
             logger.log(Status.PASS, "The language "+s+" is included in language proficiency for the interpreter");
-
         }
         lo.click_logOut();
 
@@ -453,7 +452,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         Thread.sleep(2000);
 
-        WebElement tableBody = interpreterPage.get_tableInterpreterListBody();
+        WebElement tableBody = interpreterDb.get_tableInterpreterListBody();
         tableBody.findElement(By.xpath("//tr/td[" + 1 + "]")).click();
         logger.log(Status.PASS, "Clicked the interpreter");
 
