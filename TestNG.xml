@@ -50,7 +50,6 @@
 					<include name="checkInAppointment"/>
 					<include name="checkOutAndFinaliseAppointment"/>
 					<include name="viewFinancialBreakdown"/>
-					<include name="selfBookAppointment"/>
 				</methods>
 			</class>
 			<class name="com.tests.InterpreterAptsTab_Test">

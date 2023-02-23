@@ -289,10 +289,11 @@ public class BaseClass
 	 * Purpose: It will go to the visible area of the element passed
 	 * @param el  Element to be make visible
 	 */
-	public static  void goToElementVisibleArea(WebElement el){
+	public static  void goToElementVisibleArea(WebElement el) throws InterruptedException {
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].scrollIntoView(true);",el);
+		Thread.sleep(2000);
 
 	}
 

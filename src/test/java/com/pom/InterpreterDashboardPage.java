@@ -5,6 +5,7 @@ import com.base.BaseClass;
 import com.utils.CommonUtils;
 import com.utils.DashBoardHeaders;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -64,6 +65,8 @@ public class InterpreterDashboardPage {
 
     public  void enterSearch(String searchFor){
         search.sendKeys(searchFor);
+        search.sendKeys(Keys.TAB);
+
     }
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")

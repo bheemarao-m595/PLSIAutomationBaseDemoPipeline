@@ -8,30 +8,30 @@
 	<test name="AG" parallel = "none" thread-count = "1" >
 		<classes>
 
-		<!--	<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
+			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
 				<methods>
-&lt;!&ndash;					<include name="acceptAppointment"/>&ndash;&gt;
-&lt;!&ndash;					<include name="rejectAppointment"/>&ndash;&gt;
-&lt;!&ndash;					<include name="returnAppointment"/>&ndash;&gt;
-&lt;!&ndash;					<include name="checkInAppointment"/>&ndash;&gt;
-&lt;!&ndash;					<include name="checkOutAndFinaliseAppointment"/>&ndash;&gt;
-&lt;!&ndash;					<include name="viewFinancialBreakdown"/>&ndash;&gt;
-&lt;!&ndash;					<include name="selfBookAppointment"/>&ndash;&gt;
-				</methods>
-			</class>-->
-
-			<class name="com.tests.InterpreterAptsTab_Test">
-				<methods>
-<!--					<include name="verifyDefaultSortIsInterpreterName"/>-->
-					<!--					<include name="rejectAppointment"/>-->
-					<!--					<include name="returnAppointment"/>-->
-					<!--					<include name="checkInAppointment"/>-->
-					<!--					<include name="checkOutAndFinaliseAppointment"/>-->
-					<!--					<include name="viewFinancialBreakdown"/>-->
-					<!--					<include name="selfBookAppointment"/>-->
-										<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
+<!--					<include name="acceptAppointment"/>-->
+<!--					<include name="rejectAppointment"/>-->
+<!--					<include name="returnAppointment"/>-->
+<!--					<include name="checkInAppointment"/>-->
+<!--					<include name="checkOutAndFinaliseAppointment"/>-->
+<!--					<include name="viewFinancialBreakdown"/>-->
+					<include name="selfBookAppointment"/>
 				</methods>
 			</class>
+
+		<!--	<class name="com.tests.InterpreterAptsTab_Test">
+				<methods>
+&lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="rejectAppointment"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="returnAppointment"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="checkInAppointment"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="checkOutAndFinaliseAppointment"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="viewFinancialBreakdown"/>&ndash;&gt;
+					&lt;!&ndash;					<include name="selfBookAppointment"/>&ndash;&gt;
+										<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
+				</methods>
+			</class>-->
 
 		</classes>
 	</test>

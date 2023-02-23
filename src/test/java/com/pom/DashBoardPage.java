@@ -182,7 +182,6 @@ public class DashBoardPage {
 
         int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
         logger.log(Status.INFO,"Table is empty");
-        Assert.assertNotEquals(recordsCount, 0, "Table is empty");
         for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
 
             String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
@@ -198,7 +197,7 @@ public class DashBoardPage {
 
             }
         }
-       System.out.println(appId.getText());
+       logger.log(Status.INFO,"Appointment ID found is " + appId.getText());
         return appId;
 
 

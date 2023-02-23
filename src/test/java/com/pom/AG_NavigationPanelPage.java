@@ -1,5 +1,7 @@
 package com.pom;
 
+import com.base.BaseClass;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +17,9 @@ public class AG_NavigationPanelPage {
         PageFactory.initElements(d,this);
 
     }
-    @FindBy(xpath= "//a[@href='/interpreters/interpreters']")
-    private WebElement Interpreters;
+//    @FindBy(xpath= "//a[@href='/interpreters/interpreters']")
+    @FindBy(xpath= "//div/*[text()='Interpreters']/..")
+    private WebElement interpreters;
 
     @FindBy(xpath= "//a[@href='/interpreter/interpreter-home']")
     private WebElement Home_Interpreter;
@@ -28,7 +31,12 @@ public class AG_NavigationPanelPage {
 
     public void click_Interpreters() throws InterruptedException {
         Thread.sleep(3000);
-        Interpreters.click();
+        boolean b = BaseClass.isElementPresent(interpreters);
+     //   BaseClass.goToElementVisibleArea(interpreters);
+        WebElement el = new BaseClass().getElementByXpath(wd,"//div/*[text()='Interpreters']/../preceding-sibling::div");
+        BaseClass.clickWithJavaScript(el);
+        Thread.sleep(3000);
+
     }
 
 
