@@ -62,7 +62,7 @@ public class SV_Interpreter_DetailsPage
     private WebElement save_Availability_Status;
 
     @FindBy(id = "Delete")
-    private WebElement delete_Availablity;
+    private WebElement deleteAvailablity;
 
     @FindBy(xpath = "//span[text()='LANGUAGE PROFICIENCY']")
     private WebElement menu_LangProf;
@@ -96,7 +96,7 @@ public class SV_Interpreter_DetailsPage
     }
 
 
-    public void edit_Interpreter_Availablity() throws Throwable
+    public void editInterpreterAvailablity() throws Throwable
     {
         String currentDateYearFormat = CommonUtils.getCurrentSystemDateyear();
         Thread.sleep(3000);
@@ -144,7 +144,7 @@ public class SV_Interpreter_DetailsPage
         update_ExistavailableDyna.click();
 
         Thread.sleep(2000);
-        delete_Availablity.click();
+        deleteAvailablity.click();
     }
 
     public void add_Proficiency() throws Throwable

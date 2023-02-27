@@ -6,8 +6,9 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 
+<!--
 
-	<!--<test name="SB" parallel = "none" thread-count = "1" >
+	<test name="SB" parallel = "none" thread-count = "1" >
 		<classes>
 
 			<class name="com.tests.SB_ActualInterpreterpayoutTests">
@@ -18,7 +19,8 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
+-->
 
 	<test name="SB2" parallel = "none" thread-count = "1" >
 		<classes>
@@ -26,9 +28,9 @@
 			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
-					<include name="acceptOfferByInterpreter"/>
-					<include name="rescindOfferedToInterpreter"/>
-<!--					<include name="editPreference"/>-->
+<!--					<include name="acceptOfferByInterpreter"/>-->
+<!--					<include name="rescindOfferedToInterpreter"/>-->
+					<include name="editPreference"/>
 				</methods>
 			</class>
 		</classes>

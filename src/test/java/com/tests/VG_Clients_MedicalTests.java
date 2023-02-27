@@ -36,6 +36,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		vi.createAppointmentFromClient("Medical");
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("new Appointment booked"));
+		logger.log(Status.PASS, "Appointment Created");
 		lo.click_logOut();
 
 	}
@@ -55,6 +56,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Nonmedical"));
 		vi.createAppointmentFromClient("nonmedical");
+		logger.log(Status.PASS, "Appointment Created");
 		lo.click_logOut();
 
 	}
@@ -64,9 +66,9 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		if (result.getStatus() == ITestResult.FAILURE) {
 			logger.log(Status.FAIL, "Test Case Failed due to " + result.getThrowable());
 
-
 		}
 		String methodName = BaseClass.getMethodName();
+		logger.log(Status.PASS, "Method completed");
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
 
 

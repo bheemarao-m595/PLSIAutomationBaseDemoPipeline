@@ -130,9 +130,9 @@ public class DashBoardPage {
 
     }
 
-    public  void updatePatientNotes(String patientName) throws InterruptedException {
+    public  void updatePatientNotes(String appIdText) throws InterruptedException {
 
-        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//*[text()='" + patientName + "']"));
+        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[6]//span/span"));
 
         patientLink.click();
         Thread.sleep(2000);

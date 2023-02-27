@@ -3,7 +3,6 @@ package com.pom;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
-import com.utils.DashBoardHeaders;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -81,14 +80,14 @@ public class VG_RequestAppointmentPage {
     @FindBy(xpath= "//input[@id='react-select-9-input']")
     private WebElement patientGender;
 
-    @FindBy(xpath= "//input[@id='react-select-10-input']")
+    @FindBy(xpath= "//label[text()='Requested Language ']/../following-sibling::div//input")
     private WebElement requestedlanguage;
 
-    @FindBy(xpath= "//input[@id='react-select-11-input']")
+    @FindBy(xpath= "//label[text()='Alternate Language']/../following-sibling::div//input")
     private WebElement alternatelanguage;
 
     @FindBy(xpath= "//input[@name='pPreferences']")
-    private WebElement prefrences;
+    private WebElement preferences;
 
     @FindBy(xpath= "//button[@id='btn_clients_components_Addreq_addappt']")
     private WebElement addAppointment;
@@ -97,25 +96,25 @@ public class VG_RequestAppointmentPage {
     private WebElement searchbar;
 
     @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[@class='MuiTableRow-root css-1pe2zvv'][1]//div[@class='MuiBox-root css-1nxrbxh']")
-    private WebElement viewAppointmnet;
+    private WebElement viewAppointment;
 
     @FindBy(xpath= "//button[@id='Request Change']")
-    private WebElement requestchange1;
+    private WebElement requestChange;
 
     @FindBy(xpath= "//textarea[@name='ChangeReason']")
-    private WebElement Textarea;
+    private WebElement textarea;
 
     @FindBy(xpath= "//button[text()='send request']")
-    private WebElement SendRequest;
+    private WebElement sendRequest;
 
     @FindBy(xpath= "//button[@id='Cancellation']")
-    private WebElement Cancellation;
+    private WebElement cancellation;
 
     @FindBy(xpath= "//button[text()='send request']")
-    private WebElement SendCancellation;
+    private WebElement sendCancellation;
 
     @FindBy(xpath= "//span[text()='MODIFICATION REQUESTS']")
-    private WebElement ModificationRequest;
+    private WebElement modificationRequest;
 
 
     public VG_RequestAppointmentPage(WebDriver d){
@@ -179,6 +178,7 @@ public class VG_RequestAppointmentPage {
         lastName.sendKeys(ln);
         lastName.sendKeys(Keys.TAB);
         Thread.sleep(3000);
+        DOB.click();
         DOB.sendKeys(datasheet.get("DOB"));
         DOB.sendKeys(Keys.TAB);
         Thread.sleep(3000);
@@ -191,8 +191,8 @@ public class VG_RequestAppointmentPage {
         alternatelanguage.sendKeys(datasheet.get("Alternate Language"));
         alternatelanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        prefrences.sendKeys(datasheet.get("Preferences"));
-        prefrences.sendKeys(Keys.TAB);
+        preferences.sendKeys(datasheet.get("Preferences"));
+        preferences.sendKeys(Keys.TAB);
         Thread.sleep(1000);
         WebDriver d = BaseClass.driver;
         JavascriptExecutor js = (JavascriptExecutor)d;
@@ -201,7 +201,7 @@ public class VG_RequestAppointmentPage {
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Before Add"));
         addAppointment.click();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Add Clicked"));
         if(isElementPresent(addAppointment)){
             logger.log(Status.FAIL,"Appointment not created");

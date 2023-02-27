@@ -42,7 +42,6 @@ public class ListenerTest implements ITestListener {
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		// TODO Auto-generated method stub
-		BaseClass.logger.log(Status.SKIP,"Skipped due to dependency");
 	}
 
 	@Override

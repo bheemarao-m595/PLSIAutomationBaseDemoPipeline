@@ -30,21 +30,21 @@ public class VG_Interpreter_ADDInterpreterpage
     @FindBy(xpath = "//input[@name='SMSCapableNumber']")
     private WebElement phonenumber;
     @FindBy(xpath = "//input[@name='City']")
-    private WebElement City;
+    private WebElement city;
     @FindBy(xpath = "//input[@id='react-select-21-input']")
-    private WebElement State;
+    private WebElement state;
     @FindBy(xpath = "//input[@name='Email']")
-    private WebElement Email;
+    private WebElement email;
     @FindBy(xpath = "//input[@name='PostalCode']")
     private WebElement postalCode;
     @FindBy(xpath = "//input[@name='UserName']")
-    private WebElement UserName;
+    private WebElement userName;
     @FindBy(xpath = "//input[@name='Password']")
-    private WebElement Password1;
+    private WebElement password1;
     @FindBy(xpath = "//input[@name='ConfirmPassword']")
-    private WebElement ConfirmPassword;
+    private WebElement confirmPassword;
     @FindBy(xpath = "//button[@id=\"btn-add-interpreter\"]")
-    private WebElement ADDInterpreterbutton;
+    private WebElement addinterpreterbutton;
 
     public VG_Interpreter_ADDInterpreterpage (WebDriver d) {
 
@@ -89,32 +89,32 @@ public class VG_Interpreter_ADDInterpreterpage
         phonenumber.sendKeys(datasheet.get("Select SMSPHnumber"));
         phonenumber.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        City.sendKeys(datasheet.get("Select City"));
-        City.sendKeys(Keys.TAB);
+        city.sendKeys(datasheet.get("Select City"));
+        city.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        State.sendKeys(datasheet.get("Select State"));
-        State.sendKeys(Keys.TAB);
+        state.sendKeys(datasheet.get("Select State"));
+        state.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Email.sendKeys(datasheet.get("Select Email"));
-        Email.sendKeys(Keys.TAB);
+        email.sendKeys(datasheet.get("Select Email"));
+        email.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         postalCode.sendKeys(datasheet.get("Select Postalcode"));
         postalCode.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        UserName.sendKeys(datasheet.get("Select Username"));
-        UserName.sendKeys(Keys.TAB);
+        userName.sendKeys(datasheet.get("Select Username"));
+        userName.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        Password1.sendKeys(datasheet.get("Select Password1"));
-        Password1.sendKeys(Keys.TAB);
+        password1.sendKeys(datasheet.get("Select Password1"));
+        password1.sendKeys(Keys.TAB);
         Thread.sleep(3000);
-        ConfirmPassword.sendKeys(datasheet.get("Select Confirmpassword"));
-        ConfirmPassword.sendKeys(Keys.TAB);
+        confirmPassword.sendKeys(datasheet.get("Select Confirmpassword"));
+        confirmPassword.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         WebDriver d = BaseClass.driver;
         JavascriptExecutor js = (JavascriptExecutor)d;
-        js.executeScript("arguments[0].scrollIntoView(true);",ADDInterpreterbutton);
+        js.executeScript("arguments[0].scrollIntoView(true);", addinterpreterbutton);
         Thread.sleep(3000);
-        ADDInterpreterbutton.click();
+        addinterpreterbutton.click();
 
 
     }

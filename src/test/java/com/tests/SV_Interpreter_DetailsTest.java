@@ -50,7 +50,7 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
 
         SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
-        intAvail.edit_Interpreter_Availablity();
+        intAvail.editInterpreterAvailablity();
         logger.log(Status.PASS, "Save the updated availability");
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Save the updated availability"));
         lo.click_logOut();

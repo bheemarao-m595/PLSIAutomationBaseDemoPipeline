@@ -77,13 +77,6 @@ public class InterpreterPage {
     private WebElement InterpreterMatchingTab;
 
 
-    public   void enterSearch(String val){
-
-        search.sendKeys(val);
-
-
-    }
-
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
     private WebElement tableInterpreterList;
 
@@ -98,20 +91,42 @@ public class InterpreterPage {
     private WebElement tableInterpreterListBody;
 
 
-
     @FindBy(xpath= "//span[text()='APPOINTMENTS']")
     private WebElement tabAppointments;
 
-    public void clickTabAppointments() throws InterruptedException {
-        Thread.sleep(2000);
-        tabAppointments.click();
-    }
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]")
     private WebElement allAppointmentTableBodyRowsViewInterpretercolumn;
 
     @FindBy(xpath="//div[@class='MuiBox-root css-g53dgy'][1]")
     private WebElement firstInterpreterViewInList;
+
+    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/tbody/tr/td[7]")
+    private WebElement tableAppointmentList_Col_Language;
+
+    @FindBy(xpath= "//span[text()='LANGUAGE PROFICIENCY']")
+    private WebElement tabLanguageProficiency;
+
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td")
+    private WebElement allAppointmentTableBody_td;
+
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    private WebElement allAppointmentTableBody_tr;
+
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    private WebElement noResults;
+
+    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table")
+    private WebElement tableAppointmentsList;
+
+    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//input[@placeholder='Search...']")
+    private WebElement tableAppointmentsListSearch;
+
+    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/thead/tr/th/div")
+    private WebElement tableAppointmentsListColumnNames;
+
+    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/tbody")
+    private WebElement tableAppointmentsListBody;
 
 
     public void clickFirstInterpreterViewInList(){
@@ -126,16 +141,9 @@ public class InterpreterPage {
         return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]"));
     }
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td")
-    private WebElement allAppointmentTableBody_td;
-
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
-    private WebElement allAppointmentTableBody_tr;
     public By allAppointmentTableBody_tr() {
         return By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr");
     }
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
-    private WebElement noResults;
 
     public boolean isDisplayed_noResults(){
 
@@ -143,38 +151,35 @@ public class InterpreterPage {
 
     }
 
+    public void clickTabAppointments() throws InterruptedException {
+        Thread.sleep(2000);
+        tabAppointments.click();
+    }
 
-    @FindBy(xpath= "//span[text()='LANGUAGE PROFICIENCY']")
-    private WebElement tabLanguageProficiency;
+
     public void clickTabLanguageProficiency() {
+
         tabLanguageProficiency.click();
     }
-    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table")
-    private WebElement tableAppointmentsList;
 
-    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//input[@placeholder='Search...']")
-    private WebElement tableAppointmentsListSearch;
 
     public void enterTableAppointmentsListSearch(String val) {
 
         tableAppointmentsListSearch.sendKeys(val);
     }
-    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/thead/tr/th/div")
-    private WebElement tableAppointmentsListColumnNames;
+
     public List<WebElement> tableAppointmentsListColumnNames() {
 
         return wd.findElements(By.xpath("//div[@class='MuiBox-root css-xj7u6x']//table/thead/tr/th/div"));
 
     }
-    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/tbody")
-    private WebElement tableAppointmentsListBody;
+
     public WebElement tableAppointmentsListBody() {
 
         return tableAppointmentsListBody;
 
     }
-    @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table/tbody/tr/td[7]")
-    private WebElement tableAppointmentList_Col_Language;
+
     public List<WebElement> tableAppointmentList_Col_Language() {
 
         return wd.findElements(By.xpath("//div[@class='MuiBox-root css-xj7u6x']//table/tbody/tr/td[7]"));
@@ -193,6 +198,11 @@ public class InterpreterPage {
 
         appointment.click();
         Thread.sleep(3000);
+    }
+
+    public   void enterSearch(String val){
+
+        search.sendKeys(val);
     }
 
     public  void interpreterAccept() throws InterruptedException, IOException {

@@ -43,7 +43,6 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.log(Status.PASS, "Selected Interpreter Payout for" +Type);
             String methodName = BaseClass.getMethodName();
             logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
             logger.log(Status.PASS, "Hybrid Interpreter details saved");
             lo.click_logOut();
 

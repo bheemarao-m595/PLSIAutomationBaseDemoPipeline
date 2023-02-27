@@ -5,7 +5,7 @@
 		<listener class-name="com.listeners.ListenerTest"></listener>
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
-	<test name="VG" parallel = "none" thread-count = "1">
+	   <test name="VG" parallel = "none" thread-count = "1">
 		<classes>
 			<class name="com.tests.VG_Clients_MedicalTests">
 				<methods>
@@ -13,7 +13,6 @@
 					<include name="ClientsMedical"/>
 				</methods>
 			</class>
-
 
 			<class name="com.tests.SV_SetAppointmentTest">
 				<methods>

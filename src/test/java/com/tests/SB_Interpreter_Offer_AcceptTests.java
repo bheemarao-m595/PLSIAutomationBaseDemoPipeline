@@ -49,8 +49,6 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         }
 
 
-
-
     @Test(priority = 1)
     public void makeAnOfferToInterpreter() throws Throwable{
         {
@@ -82,7 +80,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                         db.search(lastNameOfPatient);
                         appid = db.getWebElementOfHeaderAndCellValue(DashBoardHeaders.PATIENT_CONSUMER, patientFName + " " + lastNameOfPatient);
                         String appIdText = appid.getText();
-                        CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",appIdText);
+                        CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter-AppId",appIdText);
                         appid.click();
                     }
                     else {
@@ -173,7 +171,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
         }
     }
 
-    @Test(description = "This TC will perform valid login and update the patient preferences")
+    @Test(dependsOnMethods = "makeAnOfferToInterpreter")
     public void editPreference() throws Throwable
     {
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
@@ -181,15 +179,17 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             driver.get("http://uat.ims.client.sstech.us/login");
             LoginPage lo = new LoginPage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
+            Thread.sleep(4000);
             logger.addScreenCaptureFromPath(takeScreenshotForStep("UpdatePatient"));
             logger.log(Status.PASS, "Login Clicked");
             InterpreterPage InP = new InterpreterPage(driver);
             DashBoardPage dbp = new DashBoardPage(driver);
-            dbp.clickUrgent();
+         //   dbp.clickUrgent();
+            String appIdText = CommonUtils.readPropertiesFileValues("ExecutionData.properties","makeAnOfferToInterpreter-AppId");
             logger.log(Status.PASS, "Clicked on Interpreter");
-            dbp.search("Testerymy");
-            String fullName =  "Automation_SV Testerymy";
-            dbp.updatePatientNotes(fullName);
+            dbp.search(appIdText);
+//            String fullName = dbp.getPatientNameFromAppId(appIdText);
+            dbp.updatePatientNotes(appIdText);
             logger.log(Status.PASS, "preference updated");
             lo.click_logOut();
 
