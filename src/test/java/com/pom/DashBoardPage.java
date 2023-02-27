@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -130,7 +131,7 @@ public class DashBoardPage {
 
     }
 
-    public  void updatePatientNotes(String appIdText) throws InterruptedException {
+    public  void updatePatientNotes(String appIdText) throws InterruptedException, IOException {
 
         WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[6]//span/span"));
 
@@ -138,18 +139,19 @@ public class DashBoardPage {
         Thread.sleep(2000);
 
         scheduler_notes.clear();
-        preference.sendKeys("Test Data");
+        preference.sendKeys("Test Preferenes:" + CommonUtils.getCurrentSystemDate());
         Thread.sleep(2000);
 
         requester.clear();
-        requester.sendKeys("Test Data");
+        requester.sendKeys("Test requester");
         Thread.sleep(2000);
 
         scheduler_notes.clear();
-        scheduler_notes.sendKeys("Test Data");
+        scheduler_notes.sendKeys("Test Notes");
         Thread.sleep(2000);
         Save.click();
         Thread.sleep(2000);
+        logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Preference Edited"));
 
     }
 

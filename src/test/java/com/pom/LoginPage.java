@@ -36,6 +36,11 @@ public class LoginPage {
     @FindBy(xpath = "//p[text()='Error: Invalid User Credentials']")
     private WebElement invalidCredentialsErrorMsg;
 
+    @FindBy(xpath = "//button[text()='ACKNOWLEDGE & CONTINUE']")
+    private WebElement ackButton;
+
+    //button[text()='ACKNOWLEDGE & CONTINUE']
+
     public LoginPage(WebDriver d) {
 
         wd = d;
@@ -74,6 +79,12 @@ public class LoginPage {
             Thread.sleep(3000);
             login.click();
             Thread.sleep(3000);
+            if(BaseClass.isElementPresent(ackButton)) {
+                ackButton.click();
+                Thread.sleep(2000);
+            }
+
+
         }
     }
 

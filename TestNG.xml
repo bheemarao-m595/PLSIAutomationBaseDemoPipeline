@@ -10,11 +10,11 @@
 			<class name="com.tests.VG_Clients_MedicalTests">
 				<methods>
 					<include name="ClientsnonMedical"/>
-<!--					<include name="ClientsMedical"/>-->
+					<include name="ClientsMedical"/>
 				</methods>
 			</class>
 
-		<!--	<class name="com.tests.SV_SetAppointmentTest">
+			<class name="com.tests.SV_SetAppointmentTest">
 				<methods>
 					<include name="createRecurringAppointment"/>
 					<include name="updateAppointmentDetails"/>
@@ -94,7 +94,7 @@
 					<include name="approveFinancialReviewPendingAppointment"/>
 					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
 				</methods>
-			</class>-->
+			</class>
 		</classes>
 	</test>
 

@@ -71,8 +71,7 @@ public class BaseClass
 		prop.load(fin);
 
 		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
-//		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
-		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_Testing.html";
+		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
 		htmlReporter = new ExtentHtmlReporter(reportPath);
         extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);

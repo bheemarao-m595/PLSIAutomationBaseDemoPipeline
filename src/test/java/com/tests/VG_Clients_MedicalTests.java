@@ -45,13 +45,8 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
-		driver.get("https://www.facebook.com/");
-		logger.log(Status.PASS, "facebook Created");
 
-		/*LoginPage lo = new LoginPage(driver);
-
-
-
+		LoginPage lo = new LoginPage(driver);
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 
 		DashBoardPage db = new DashBoardPage(driver);
@@ -62,7 +57,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Nonmedical"));
 		vi.createAppointmentFromClient("nonmedical");
 		logger.log(Status.PASS, "Appointment Created");
-		lo.click_logOut();*/
+		lo.click_logOut();
 
 	}
 

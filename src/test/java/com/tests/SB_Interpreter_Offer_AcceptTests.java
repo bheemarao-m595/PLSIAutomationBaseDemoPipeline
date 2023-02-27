@@ -184,7 +184,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             logger.log(Status.PASS, "Login Clicked");
             InterpreterPage InP = new InterpreterPage(driver);
             DashBoardPage dbp = new DashBoardPage(driver);
-         //   dbp.clickUrgent();
+            dbp.clickUrgent();
             String appIdText = CommonUtils.readPropertiesFileValues("ExecutionData.properties","makeAnOfferToInterpreter-AppId");
             logger.log(Status.PASS, "Clicked on Interpreter");
             dbp.search(appIdText);
