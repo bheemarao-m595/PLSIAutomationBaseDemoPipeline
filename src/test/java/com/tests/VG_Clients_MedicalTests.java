@@ -2,15 +2,10 @@ package com.tests;
 
 import java.io.IOException;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.pom.DashBoardPage;
 import com.pom.LoginPage;
 import com.pom.VG_RequestAppointmentPage;
-import com.utils.DashBoardHeaders;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -21,7 +16,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 
 	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
-	public void ClientsMedical() throws InterruptedException, IOException {
+	public void requestClientsMedicalAppointment() throws InterruptedException, IOException {
 
 		driver.get("http://uat.ims.client.sstech.us/login");
 		LoginPage lo = new LoginPage(driver);
@@ -41,7 +36,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 	}
 	@Test(description = "This TC will perform valid login and verified that all NonMedical appoinmets will create and serach")
-	public void ClientsnonMedical() throws InterruptedException, IOException {
+	public void requestClientsNonMedicalAppointment() throws InterruptedException, IOException {
 
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");

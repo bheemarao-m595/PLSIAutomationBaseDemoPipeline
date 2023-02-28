@@ -11,8 +11,8 @@
 		<classes>
 			<class name="com.tests.VG_Clients_MedicalTests">
 				<methods>
-					<include name="ClientsnonMedical"/>
-					<include name="ClientsMedical"/>
+					<include name="requestClientsMedicalAppointment"/>
+					<include name="requestClientsNonMedicalAppointment"/>
 				</methods>
 			</class>
 		</classes>

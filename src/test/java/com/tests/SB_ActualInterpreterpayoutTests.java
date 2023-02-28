@@ -1,6 +1,5 @@
 package com.tests;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -111,8 +110,6 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
             driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
-          //  driver = openBrowser();
-          //  driver.manage().window().maximize();
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
             FinancePage Fp = new FinancePage(driver);
