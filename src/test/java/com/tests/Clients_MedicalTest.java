@@ -12,10 +12,10 @@ import org.testng.annotations.*;
 import com.base.BaseClass;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class VG_Clients_MedicalTests extends BaseClass {
+public class Clients_MedicalTest extends BaseClass {
 
 
-	@Test(description = "This TC will perform valid login and verified that all appointments tab page is create medical  appointments")
+	@Test()
 	public void requestClientsMedicalAppointment() throws InterruptedException, IOException {
 
 		driver.get("http://uat.ims.client.sstech.us/login");
@@ -25,7 +25,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
-		logger.log(Status.PASS, "Login CLicked");
+		logger.log(Status.PASS, "Login Clicked");
 		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		vi.createAppointmentFromClient("Medical");
@@ -40,7 +40,7 @@ public class VG_Clients_MedicalTests extends BaseClass {
 
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
-
+		driver.get("http://uat.ims.client.sstech.us/login");
 		LoginPage lo = new LoginPage(driver);
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 

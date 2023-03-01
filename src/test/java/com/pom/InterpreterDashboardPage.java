@@ -50,7 +50,7 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
     private WebElement tableInterpreterListBody;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr/td[1]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr/td[1]/div/div")
     private WebElement firstInterpreterDashboardAppointmentTableColView;
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr[1]/td[12]")
@@ -155,6 +155,21 @@ public class InterpreterDashboardPage {
     public WebElement getFirstInterpreterDashboardAppointmentTableColView(){
 
         return firstInterpreterDashboardAppointmentTableColView;
+    }
+
+    public void clickFirstInterpreterDashboardAppointmentTableColView() throws InterruptedException {
+        firstInterpreterDashboardAppointmentTableColView.click();
+        Thread.sleep(3000);
+        /*BaseClass.clickWithJavaScript(firstInterpreterDashboardAppointmentTableColView);
+        Thread.sleep(3000);*/
+    }
+
+    public void clickAppointmentIdWithText(String apptId) throws InterruptedException {
+        BaseClass b = new BaseClass();
+
+        WebElement ele = b.getElementByXpath(wd,"//table[@class='MuiTable-root css-jiyur0']//tr/td/div/div[text()='"+apptId+"']");
+        ele.click();
+        Thread.sleep(2000);
     }
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColView(){

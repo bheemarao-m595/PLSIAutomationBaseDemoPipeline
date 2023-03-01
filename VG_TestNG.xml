@@ -9,7 +9,7 @@
 
 	<test name="VG" parallel = "none" thread-count = "1" >
 		<classes>
-			<class name="com.tests.VG_Clients_MedicalTests">
+			<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsMedicalAppointment"/>
 					<include name="requestClientsNonMedicalAppointment"/>
@@ -21,7 +21,7 @@
 <!--	<test name="SB2" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
+			<class name="com.tests.SB_Interpreter_Offer_AcceptTest">
 				<methods>
 &lt;!&ndash;					<include name="makeAnOfferToInterpreter"/>&ndash;&gt;
 &lt;!&ndash;					<include name="acceptOfferByInterpreter"/>&ndash;&gt;

@@ -21,13 +21,11 @@ import com.pom.InterpreterPage;
 
 
 @Listeners({com.listeners.ListenerTest.class})
-public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
+public class SB_Interpreter_Offer_AcceptTest extends BaseClass {
 
-    @Test(dependsOnMethods = "makeAnOfferToInterpreter")
+    @Test(alwaysRun = true,dependsOnMethods = "makeAnOfferToInterpreter")
     public void acceptOfferByInterpreter() throws Throwable
         {
-
-            try {
                 driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
@@ -41,31 +39,23 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Appointment clicked"));
                 lo.click_logOut();
 
-            } catch (Exception e) {
-
-                e.printStackTrace();
-                Assert.assertFalse(true, "got exception at acceptInterpreter ");
-            }
         }
 
 
     @Test(priority = 1)
     public void makeAnOfferToInterpreter() throws Throwable{
         {
-
-            try {
                 driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
-                logger.log(Status.PASS, "Logined as Scheduler");
+                logger.log(Status.PASS, "Login as Scheduler");
                 InterpreterPage interpreterPage = new InterpreterPage(driver);
                 DashBoardPage dbp = new DashBoardPage(driver);
 
                 ExcelUtils exl = new ExcelUtils();
                 XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
                 Map<String,String> appointmentData =   exl.getMapDataForRowName(wb,"New appointment","scheduleAppointmentMedicalTest");
-
                 List<WebElement> rows = dbp.getAllAppointmentIdsWithStatus("New");
                 if(rows.size() ==0) {
                     logger.log(Status.INFO, "There are no rows with status New");
@@ -95,33 +85,25 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
                     WebElement appid = null;
                     appid =  dbp.getWebElementOfHeaderAndCellValue(DashBoardHeaders.STATUS,"New");
                     Assert.assertNotNull(appid,"Appointment Id not found");
+                    dbp.search(appid.getText());
                     JavascriptExecutor js = (JavascriptExecutor)driver;
                     js.executeScript("arguments[0].scrollIntoView(true);",appid);
-                    Thread.sleep(2000);
                     appid.click();
+                    Thread.sleep(2000);
                 }
-
 
                 String intEmail =   interpreterPage.makeAnOfferforAny();
                 CommonUtils.writeToPropertiesFile("ExecutionData.properties","makeAnOfferToInterpreter",intEmail);
 
                 logger.log(Status.PASS, "Interpreter offered");
                 lo.click_logOut();
-            }
-            catch (Exception e){
 
-                e.printStackTrace();
-                Assert.fail( "got exception at offerInterpreter ");
-            }
         }
     }
-
 
     @Test(priority = 2)
     public void rescindOfferedToInterpreter() throws Throwable{
         {
-
-            try {
                 driver.get("http://uat.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
@@ -155,19 +137,14 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
 
                 Thread.sleep(2000);
                 logger.log(Status.PASS, "Clicked on Appointment ID");
-              String email =  InP.makeAnOfferforAny();
-               logger.log(Status.INFO," Offer made to " + email);
+                String email =  InP.makeAnOfferforAny();
+                logger.log(Status.INFO," Offer made to " + email);
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Made an Offer"));
                 InP.interpreterRescind();
                 logger.log(Status.PASS, "Interpreter Rescind");
                 logger.addScreenCaptureFromPath(takeScreenshotForStep("Rescind Offer"));
                 lo.click_logOut();
-            }
-            catch (Exception e){
 
-                e.printStackTrace();
-                Assert.fail("got exception at offerInterpreter ");
-            }
         }
     }
 
@@ -175,7 +152,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
     public void editPreference() throws Throwable
     {
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
-        try {
+
             driver.get("http://uat.ims.client.sstech.us/login");
             LoginPage lo = new LoginPage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
@@ -193,12 +170,7 @@ public class SB_Interpreter_Offer_AcceptTests extends BaseClass {
             logger.log(Status.PASS, "preference updated");
             lo.click_logOut();
 
-        }
-        catch (Exception e) {
 
-            e.printStackTrace();
-            Assert.assertFalse(true, "got exception at preference ");
-        }
     }
 
     @AfterMethod

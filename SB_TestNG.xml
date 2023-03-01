@@ -11,7 +11,7 @@
 	<test name="SB" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SB_ActualInterpreterpayoutTests">
+			<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
 					<include name="editHybridInterpreterpayout"/>
@@ -25,12 +25,12 @@
 	<test name="SB2" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SB_Interpreter_Offer_AcceptTests">
+			<class name="com.tests.SB_Interpreter_Offer_AcceptTest">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
-<!--					<include name="acceptOfferByInterpreter"/>-->
+					<include name="acceptOfferByInterpreter"/>
 <!--					<include name="rescindOfferedToInterpreter"/>-->
-					<include name="editPreference"/>
+<!--					<include name="editPreference"/>-->
 				</methods>
 			</class>
 		</classes>

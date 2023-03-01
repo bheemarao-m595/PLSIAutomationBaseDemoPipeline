@@ -9,7 +9,7 @@ import com.aventstack.extentreports.Status;
 import java.io.IOException;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class SB_FinanceCalculationTimeFrameTests extends BaseClass{
+public class SB_FinanceCalculationTimeFrameTest extends BaseClass{
 
     @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
     public void editfinanace() throws InterruptedException, IOException {

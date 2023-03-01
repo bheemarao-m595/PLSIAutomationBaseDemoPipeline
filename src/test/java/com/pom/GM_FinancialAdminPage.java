@@ -64,10 +64,11 @@ public class GM_FinancialAdminPage {
 
      return financeArchiveTab;
     }
-    public void approvingFinancialAppointment(int noOfChecboxRequired,String Status) throws Throwable {
+    public boolean approvingFinancialAppointment(int noOfChecboxRequired,String Status) throws Throwable {
 
 
         int boxesChecked=0;
+        boolean found = false;
         while(boxesChecked<noOfChecboxRequired) {
             List<WebElement> rows = driver.findElements(By.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//td[2]"));
             for(int i=0;i<rows.size();i++) {
@@ -79,6 +80,7 @@ public class GM_FinancialAdminPage {
                     WebElement checkbox=driver.findElement(By.xpath(elePath));
                     js.executeScript("arguments[0].scrollIntoView();",checkbox);
                     js.executeScript("arguments[0].click();", checkbox);
+                    found = true;
                     boxesChecked++;
                     if(boxesChecked == noOfChecboxRequired)
                         break;
@@ -101,8 +103,9 @@ public class GM_FinancialAdminPage {
 
             }
         } //end of while
+        return found;
     }
-    public void approvingAppointment() throws InterruptedException ,IOException{
+    public void clickApproveButton() throws InterruptedException ,IOException{
         Thread.sleep(3000);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,-700)");

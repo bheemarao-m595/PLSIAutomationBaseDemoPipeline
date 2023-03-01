@@ -20,16 +20,12 @@
 				</methods>
 			</class>
 
-		<!--	<class name="com.tests.InterpreterAptsTab_Test">
+			<!--<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
 &lt;!&ndash;					<include name="verifyDefaultSortIsInterpreterName"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="rejectAppointment"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="returnAppointment"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="checkInAppointment"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="checkOutAndFinaliseAppointment"/>&ndash;&gt;
-					&lt;!&ndash;					<include name="viewFinancialBreakdown"/>&ndash;&gt;
 					&lt;!&ndash;					<include name="selfBookAppointment"/>&ndash;&gt;
-										<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
+&lt;!&ndash;										<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>&ndash;&gt;
+&lt;!&ndash;										<include name="verifySearchForAllColumnsDataIndividually"/>&ndash;&gt;
 				</methods>
 			</class>-->
 

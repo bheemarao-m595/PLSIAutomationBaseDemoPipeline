@@ -210,6 +210,7 @@ public class InterpreterPage {
         IntrepreterTab.click();
         Thread.sleep(2000);
         OfferedTab.click();
+        Thread.sleep(2000);
         logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Offer Tab"));
         Thread.sleep(2000);
         AppointmentOffered.click();

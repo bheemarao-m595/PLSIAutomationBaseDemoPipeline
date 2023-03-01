@@ -39,6 +39,11 @@ public class LoginPage {
     @FindBy(xpath = "//button[text()='ACKNOWLEDGE & CONTINUE']")
     private WebElement ackButton;
 
+    @FindBy(xpath = "//div/p[text()='2-Step Verification']")
+    private WebElement OTP;
+
+    //div/p[text()='2-Step Verification']
+
     //button[text()='ACKNOWLEDGE & CONTINUE']
 
     public LoginPage(WebDriver d) {
@@ -83,7 +88,9 @@ public class LoginPage {
                 ackButton.click();
                 Thread.sleep(2000);
             }
-
+            if(BaseClass.isElementPresent(OTP)){
+                Assert.fail("OTP page displayed hence failing for now");
+            }
 
         }
     }

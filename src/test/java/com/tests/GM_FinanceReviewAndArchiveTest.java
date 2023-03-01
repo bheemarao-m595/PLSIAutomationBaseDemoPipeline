@@ -3,7 +3,6 @@ package com.tests;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -41,16 +40,19 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
             }
 
         Thread.sleep(5000);
+          boolean found = false;
         try {
             DashBoardPage db = new DashBoardPage(driver);
-            financialAdminPage.approvingFinancialAppointment(1,"Pending");
+          found =  financialAdminPage.approvingFinancialAppointment(1,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));
         }
         try {
-            financialAdminPage.approvingAppointment();
-            logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
+            if(found) {
+                financialAdminPage.clickApproveButton();
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
+            }
         }catch (Throwable e){
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("pending appointment process for error"));
@@ -102,7 +104,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
+        GM_FinancialAdminPage financialAdmin=new GM_FinancialAdminPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -111,21 +113,24 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         logger.log(Status.PASS, "Login Clicked");
         Thread.sleep(2000);
         try {
-            FA.navigateFinancialReviewPage();
+            financialAdmin.navigateFinancialReviewPage();
         }catch (Throwable e){
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Financial Review Page"));
         }
         Thread.sleep(5000);
+        boolean found  = false;
         try {
-            FA.approvingFinancialAppointment(1,"Pending");
+            found =  financialAdmin.approvingFinancialAppointment(1,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));
         }
         try {
-            FA.approvingAppointment();
-            logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
+            if(found) {
+                financialAdmin.clickApproveButton();
+                logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
+            }
         }catch (Throwable e){
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));
@@ -161,14 +166,17 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
         }
 
         Thread.sleep(5000);
+        boolean found  =false;
         try {
-            FA.approvingFinancialAppointment(2,"Pending");
+            found  =   FA.approvingFinancialAppointment(2,"Pending");
         } catch (Throwable e) {
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Pending Appointment to be clicked"));
         }
         try {
-            FA.approvingAppointment();
+            if(found)
+                FA.clickApproveButton();
+
         }catch (Throwable e){
             logger.log(Status.FAIL,e.getMessage());
             logger.addScreenCaptureFromPath(takeScreenshotForStep("After Approved the pending appointment"));

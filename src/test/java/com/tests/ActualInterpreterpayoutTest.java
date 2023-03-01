@@ -1,7 +1,5 @@
 package com.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import com.base.BaseClass;
@@ -11,12 +9,12 @@ import com.aventstack.extentreports.Status;
 import java.io.IOException;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class SB_ActualInterpreterpayoutTests extends BaseClass{
+public class ActualInterpreterpayoutTest extends BaseClass{
 
 
     @Test(description = "This TC will perform valid login and update the Actual Interpreter Payout")
     public void editHybridInterpreterpayout() throws Throwable {
-        try {
+
             driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
             LoginPage lo = new LoginPage(driver);
@@ -45,21 +43,10 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
             logger.log(Status.PASS, "Hybrid Interpreter details saved");
             lo.click_logOut();
 
-        }
-        catch (Exception e){
-
-            e.printStackTrace();
-            Assert.assertFalse(false, "got exception at offerInterpreter ");
-            String methodName = BaseClass.getMethodName();
-            logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-        }
-
 
     }
     @Test
     public void editActualAfterInterpreter() throws Throwable {
-        try {
 
             driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
@@ -92,21 +79,11 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
             logger.log(Status.PASS, "Selected Interpreter Payout for" + Type);
             lo.click_logOut();
-        }
-        catch (Exception e){
-
-            e.printStackTrace();
-            Assert.assertFalse(false, "got exception at offerInterpreter ");
-            String methodName = BaseClass.getMethodName();
-            logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-        }
 
 
     }
     @Test
     public void editStandardInterpreter() throws Throwable {
-        try {
 
             driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
@@ -139,15 +116,7 @@ public class SB_ActualInterpreterpayoutTests extends BaseClass{
 
             logger.log(Status.PASS, "Selected Interpreter Payout for" + Type);
             lo.click_logOut();
-        }
-        catch (Exception e){
 
-            e.printStackTrace();
-            Assert.assertFalse(false, "got exception at offerInterpreter ");
-            String methodName = BaseClass.getMethodName();
-            logger.addScreenCaptureFromPath(takeScreenshotForStep("End of " + methodName));
-
-        }
 
     }
     @AfterMethod

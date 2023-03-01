@@ -37,6 +37,7 @@ public class BaseClass
 	static String methodName = "";
 	public  static ExtentTest logger = null;
 	static String moduleName = "";
+	String reportPath ="FinalReport.html";
 
 	public static String getModuleName() {
 		return moduleName;
@@ -71,7 +72,7 @@ public class BaseClass
 		prop.load(fin);
 
 		String timeStamp = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss").format(new Date());
-		String reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
+		reportPath = System.getProperty("user.dir") + "\\Reports\\Report_" + timeStamp + ".html";
 		htmlReporter = new ExtentHtmlReporter(reportPath);
         extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
@@ -228,9 +229,14 @@ public class BaseClass
 	}   return DestFile.getAbsolutePath();}
 
 	@AfterSuite
-	public  void tearDown(){
+	public  void tearDown() throws IOException {
 
 		extent.flush();
+
+		File fileOrg = new File(reportPath);
+		File fileDest = new File(System.getProperty("user.dir")+"\\Reports\\FinalReport.html");
+
+		FileUtils.copyFile(fileOrg,fileDest);
 		//driver.close();
 		driver.quit();
 	}
