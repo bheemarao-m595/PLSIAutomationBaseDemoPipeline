@@ -15,9 +15,9 @@ import static com.base.BaseClass.logger;
 
 
 //dont use
-public class GM_FinancialAdminPage {
+public class FinancialAdminPage {
     WebDriver driver;
-    public GM_FinancialAdminPage(WebDriver d){
+    public FinancialAdminPage(WebDriver d){
         driver=d;
         PageFactory.initElements(d,this);
     }

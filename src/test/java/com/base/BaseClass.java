@@ -181,7 +181,6 @@ public class BaseClass
 
 	public  void clickElement(WebElement w)
 	{
-
 		w.click();
 	}
 
@@ -331,6 +330,27 @@ public class BaseClass
 			}
 		}
 		return true;
+	}
+
+	public static boolean isDataPresentinTable(String xpathOfTable, String targetData, boolean headerPresent){
+
+		System.out.println(targetData);
+		boolean found = false;
+		List<WebElement> rows = driver.findElements(By.xpath(xpathOfTable+"//tr"));
+		for(WebElement row : rows){
+
+			List<WebElement> tds = row.findElements(By.tagName("td"));
+			for(WebElement td :tds){
+
+				String cellData = td.getText();
+				if(cellData != null && (!cellData.isEmpty()))
+					if(targetData.equalsIgnoreCase(cellData)) {
+						found = true;
+						break;
+					}
+			}
+		}
+		return found;
 	}
 
 

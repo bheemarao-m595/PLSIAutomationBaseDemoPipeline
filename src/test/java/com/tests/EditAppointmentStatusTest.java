@@ -2,8 +2,7 @@ package com.tests;
 
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
-import com.pom.DashBoardPage;
-import com.pom.GM_FinancialAdminDashboardPage;
+import com.pom.FinancialAdminDashboardPage;
 import com.pom.LoginPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -15,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class GM_EditAppointmentStatusTest extends BaseClass{
+public class EditAppointmentStatusTest extends BaseClass{
 
 
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
@@ -23,8 +22,8 @@ public class GM_EditAppointmentStatusTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
-        GM_FinancialAdminDashboardPage fadmin = new GM_FinancialAdminDashboardPage(driver);
+        FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);
+        FinancialAdminDashboardPage fadmin = new FinancialAdminDashboardPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 

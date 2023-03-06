@@ -15,6 +15,9 @@ public class NavigationPanelPage {
     @FindBy(xpath= "//a[@href='/interpreter/interpreter-home']")
     private WebElement homeInterpreter;
 
+    @FindBy(xpath= "//a[@href='/clients']")
+    private WebElement clientsLink;
+
     public NavigationPanelPage(WebDriver d){
 
         wd = d;
@@ -32,6 +35,10 @@ public class NavigationPanelPage {
         interpreters.click();
     }
 
+     public  void clickClientsLinkinLeftPanel() throws InterruptedException {
+         clientsLink.click();
+         Thread.sleep(2000);
+     }
 
 
 

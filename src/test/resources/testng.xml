@@ -14,7 +14,7 @@
 					<include name="requestClientsMedicalAppointment"/>
 				</methods>
 			</class>
-			<class name="com.tests.SV_SetAppointmentTest">
+			<class name="com.tests.SetAppointmentTest">
 				<methods>
 					<include name="createRecurringAppointment"/>
 					<include name="updateAppointmentDetails"/>
@@ -33,7 +33,7 @@
 					<include name="editStandardInterpreter"/>
 				</methods>
 			</class>
-			<class name="com.tests.SB_Interpreter_Offer_AcceptTest">
+			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
 					<include name="acceptOfferByInterpreter"/>
@@ -41,7 +41,7 @@
 					<include name="editPreference"/>
 				</methods>
 			</class>
-			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
+			<class name="com.tests.AppRejectAcceptToFinalize_Test">
 				<methods>
 					<include name="acceptAppointment"/>
 					<include name="rejectAppointment"/>
@@ -66,7 +66,7 @@
 
 
 
-			<class name="com.tests.SV_Interpreter_DetailsTest">
+			<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
 					<include name="update_Interpreter_Availability"/>
 					<include name="deleteInt_Avail"/>
@@ -77,18 +77,18 @@
 			</class>
 
 
-			<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
+			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
 					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
-			<class name="com.tests.GM_EditAppointmentStatusTest">
+			<class name="com.tests.EditAppointmentStatusTest">
 				<methods>
 					<include name="updateFinanceAppointmentStatus"/>
 				</methods>
 			</class>
-			<class name="com.tests.GM_FinanceReviewAndArchiveTest">
+			<class name="com.tests.FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
 					<include name="sortingColumnsFinancialArchive"/>

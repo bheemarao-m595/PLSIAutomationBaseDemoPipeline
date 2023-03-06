@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.aventstack.extentreports.Status;
 import com.pom.DashBoardPage;
 import com.pom.LoginPage;
-import com.pom.VG_RequestAppointmentPage;
+import com.pom.RequestAppointmentPage;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -26,7 +26,7 @@ public class Clients_MedicalTest extends BaseClass {
 
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		logger.log(Status.PASS, "Login Clicked");
-		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
+		RequestAppointmentPage vi = new RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("medical"));
 		vi.createAppointmentFromClient("Medical");
 
@@ -48,7 +48,7 @@ public class Clients_MedicalTest extends BaseClass {
 
 		logger.log(Status.PASS, "Login Clicked");
 
-		VG_RequestAppointmentPage vi = new VG_RequestAppointmentPage(driver);
+		RequestAppointmentPage vi = new RequestAppointmentPage(driver);
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Nonmedical"));
 		vi.createAppointmentFromClient("nonmedical");
 		logger.log(Status.PASS, "Appointment Created");

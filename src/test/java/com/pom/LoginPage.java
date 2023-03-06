@@ -81,7 +81,7 @@ public class LoginPage {
             enterPassword(pwd);
 
             BaseClass.goToElementVisibleArea(login);
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             login.click();
             Thread.sleep(3000);
             if(BaseClass.isElementPresent(ackButton)) {

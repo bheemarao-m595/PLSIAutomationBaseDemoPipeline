@@ -21,7 +21,7 @@
 <!--	<test name="SB2" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SB_Interpreter_Offer_AcceptTest">
+			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
 &lt;!&ndash;					<include name="makeAnOfferToInterpreter"/>&ndash;&gt;
 &lt;!&ndash;					<include name="acceptOfferByInterpreter"/>&ndash;&gt;

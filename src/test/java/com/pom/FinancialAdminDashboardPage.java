@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.List;
 import static com.base.BaseClass.*;
 
-public class GM_FinancialAdminDashboardPage {
+public class FinancialAdminDashboardPage {
     WebDriver driver;
-    public GM_FinancialAdminDashboardPage(WebDriver d){
+    public FinancialAdminDashboardPage(WebDriver d){
         driver=d;
         PageFactory.initElements(d,this);
     }

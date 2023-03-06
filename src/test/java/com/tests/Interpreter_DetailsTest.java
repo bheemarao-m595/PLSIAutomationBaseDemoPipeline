@@ -3,15 +3,15 @@ package com.tests;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.LoginPage;
-import com.pom.SV_Interpreter_DetailsPage;
-import com.pom.VG_Interpreter_ADDInterpreterpage;
+import com.pom.Interpreter_DetailsPage;
+import com.pom.Interpreter_ADDInterpreterpage;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class    SV_Interpreter_DetailsTest extends BaseClass
+public class    Interpreter_DetailsTest extends BaseClass
 {
     @Test(priority = 1)
     public void create_Interpreter_Availability() throws Throwable {
@@ -22,11 +22,11 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         LoginPage lo = new LoginPage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-        VG_Interpreter_ADDInterpreterpage mInt = new VG_Interpreter_ADDInterpreterpage(driver);
+        Interpreter_ADDInterpreterpage mInt = new Interpreter_ADDInterpreterpage(driver);
         mInt.clickInterpreters();
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Create Availability Interpreter table"));
 
-        SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        Interpreter_DetailsPage intAvail = new Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.create_Interpreter_Availability();
         lo.click_logOut();
@@ -43,12 +43,12 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         LoginPage lo = new LoginPage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-        VG_Interpreter_ADDInterpreterpage mInt = new VG_Interpreter_ADDInterpreterpage(driver);
+        Interpreter_ADDInterpreterpage mInt = new Interpreter_ADDInterpreterpage(driver);
         mInt.clickInterpreters();
 
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
 
-        SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        Interpreter_DetailsPage intAvail = new Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.editInterpreterAvailablity();
         logger.log(Status.PASS, "Save the updated availability");
@@ -66,13 +66,13 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         LoginPage lo = new LoginPage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-        VG_Interpreter_ADDInterpreterpage mInt = new VG_Interpreter_ADDInterpreterpage(driver);
+        Interpreter_ADDInterpreterpage mInt = new Interpreter_ADDInterpreterpage(driver);
         mInt.clickInterpreters();
 
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
         logger.log(Status.PASS, "Delete Availability");
 
-        SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        Interpreter_DetailsPage intAvail = new Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.delete_Interpreter_Availability();
         logger.log(Status.PASS, " After Delete Availability");
@@ -90,12 +90,12 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         LoginPage lo = new LoginPage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-        VG_Interpreter_ADDInterpreterpage mInt = new VG_Interpreter_ADDInterpreterpage(driver);
+        Interpreter_ADDInterpreterpage mInt = new Interpreter_ADDInterpreterpage(driver);
         mInt.clickInterpreters();
 
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
 
-        SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        Interpreter_DetailsPage intAvail = new Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.add_Proficiency();
         logger.log(Status.PASS, "Add Proficiency");
@@ -113,12 +113,12 @@ public class    SV_Interpreter_DetailsTest extends BaseClass
         LoginPage lo = new LoginPage(driver);
         lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
 
-        VG_Interpreter_ADDInterpreterpage mInt = new VG_Interpreter_ADDInterpreterpage(driver);
+        Interpreter_ADDInterpreterpage mInt = new Interpreter_ADDInterpreterpage(driver);
         mInt.clickInterpreters();
 
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Interpreters table"));
 
-        SV_Interpreter_DetailsPage intAvail = new SV_Interpreter_DetailsPage(driver);
+        Interpreter_DetailsPage intAvail = new Interpreter_DetailsPage(driver);
         intAvail.openInterpreterDetailsWindow(datasheet.get("InterpreterName"));
         intAvail.delete_Proficiency(datasheet.get("Language"));
         logger.log(Status.PASS, "Delete any selected language");

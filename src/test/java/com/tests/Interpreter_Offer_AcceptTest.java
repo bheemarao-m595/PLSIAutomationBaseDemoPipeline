@@ -21,7 +21,7 @@ import com.pom.InterpreterPage;
 
 
 @Listeners({com.listeners.ListenerTest.class})
-public class SB_Interpreter_Offer_AcceptTest extends BaseClass {
+public class Interpreter_Offer_AcceptTest extends BaseClass {
 
     @Test(alwaysRun = true,dependsOnMethods = "makeAnOfferToInterpreter")
     public void acceptOfferByInterpreter() throws Throwable

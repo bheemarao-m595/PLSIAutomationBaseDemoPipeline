@@ -8,7 +8,7 @@
 	<test name="AG" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.AG_AppRejectAcceptToFinalize_Test">
+			<class name="com.tests.AppRejectAcceptToFinalize_Test">
 				<methods>
 <!--					<include name="acceptAppointment"/>-->
 <!--					<include name="rejectAppointment"/>-->

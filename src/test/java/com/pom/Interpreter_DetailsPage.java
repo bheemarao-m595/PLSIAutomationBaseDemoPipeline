@@ -15,7 +15,7 @@ import java.util.List;
 import static com.base.BaseClass.datasheet;
 import  static com.base.BaseClass.logger;
 
-public class SV_Interpreter_DetailsPage
+public class Interpreter_DetailsPage
 {
     WebDriver wd;
     BaseClass b = new BaseClass();
@@ -89,7 +89,7 @@ public class SV_Interpreter_DetailsPage
     private WebElement remove_Select_Lang;
 
 
-   public SV_Interpreter_DetailsPage (WebDriver d) {
+   public Interpreter_DetailsPage(WebDriver d) {
 
         wd = d;
         PageFactory.initElements(d, this);

@@ -1,11 +1,8 @@
 package com.tests;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.pom.*;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -16,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
+public class FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
 
 
 
@@ -26,8 +23,8 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
-        GM_FinancialAdmin_AppointmentDetails_FinancialPage aptDetails = new GM_FinancialAdmin_AppointmentDetails_FinancialPage(driver);
+        FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);
+        FinancialAdmin_AppointmentDetails_FinancialPage aptDetails = new FinancialAdmin_AppointmentDetails_FinancialPage(driver);
         DashBoardPage db = new DashBoardPage(driver);
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
@@ -65,8 +62,8 @@ public class GM_FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
         driver.get("http://uat.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminDashboardPage FA=new GM_FinancialAdminDashboardPage(driver);
-        GM_FinancialAdmin_AppointmentDetails_FinancialPage aptDetails = new GM_FinancialAdmin_AppointmentDetails_FinancialPage(driver);
+        FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);
+        FinancialAdmin_AppointmentDetails_FinancialPage aptDetails = new FinancialAdmin_AppointmentDetails_FinancialPage(driver);
 
         lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
