@@ -19,7 +19,7 @@ import com.pom.LoginPage;
 import com.pom.NewAppointmentPage;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class SV_SetAppointmentTest extends BaseClass
+public class SetAppointmentTest extends BaseClass
 {
 
 	@Test(priority = 1)

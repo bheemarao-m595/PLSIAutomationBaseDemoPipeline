@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static com.base.BaseClass.*;
 
-public class VG_RequestAppointmentPage {
+public class RequestAppointmentPage {
 
 
     WebDriver wd;
@@ -117,7 +117,7 @@ public class VG_RequestAppointmentPage {
     private WebElement modificationRequest;
 
 
-    public VG_RequestAppointmentPage(WebDriver d){
+    public RequestAppointmentPage(WebDriver d){
 
         wd = d;
         PageFactory.initElements(d,this);

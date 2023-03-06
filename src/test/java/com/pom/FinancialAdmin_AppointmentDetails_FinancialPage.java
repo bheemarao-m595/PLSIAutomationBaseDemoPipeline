@@ -7,13 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import  static com.base.BaseClass.logger;
 
 import java.io.IOException;
 
-public class GM_FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClass {
+public class FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClass {
    public  WebDriver wd;
-    public GM_FinancialAdmin_AppointmentDetails_FinancialPage(WebDriver driver){
+    public FinancialAdmin_AppointmentDetails_FinancialPage(WebDriver driver){
         wd=driver;
         PageFactory.initElements(driver,this);
     }

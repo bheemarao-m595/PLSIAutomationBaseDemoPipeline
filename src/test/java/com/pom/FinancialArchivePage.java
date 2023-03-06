@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
-public class GM_FinancialArchivePage {
+public class FinancialArchivePage {
     WebDriver driver;
-    public GM_FinancialArchivePage(WebDriver driver){
+    public FinancialArchivePage(WebDriver driver){
 
         PageFactory.initElements(driver,this);
     }

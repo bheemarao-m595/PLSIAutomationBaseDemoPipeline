@@ -8,7 +8,7 @@
 	<test name="SV1" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SV_SetAppointmentTest">
+			<class name="com.tests.SetAppointmentTest">
 				<methods>
 					<include name="updateAppointmentDetails"/>
 <!--					<include name="quickEditStatus"/>-->

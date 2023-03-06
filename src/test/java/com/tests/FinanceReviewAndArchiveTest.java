@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class GM_FinanceReviewAndArchiveTest extends BaseClass{
+public class FinanceReviewAndArchiveTest extends BaseClass{
 
 
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve one pending status")
@@ -20,7 +20,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminDashboardPage financialAdminPage=new GM_FinancialAdminDashboardPage(driver);
+        FinancialAdminDashboardPage financialAdminPage=new FinancialAdminDashboardPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -67,8 +67,8 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
-        GM_FinancialArchivePage columns = new GM_FinancialArchivePage(driver);
+        FinancialAdminPage FA=new FinancialAdminPage(driver);
+        FinancialArchivePage columns = new FinancialArchivePage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -104,7 +104,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminPage financialAdmin=new GM_FinancialAdminPage(driver);
+        FinancialAdminPage financialAdmin=new FinancialAdminPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -146,7 +146,7 @@ public class GM_FinanceReviewAndArchiveTest extends BaseClass{
 
         driver.get("http://uat.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        GM_FinancialAdminPage FA=new GM_FinancialAdminPage(driver);
+        FinancialAdminPage FA=new FinancialAdminPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 

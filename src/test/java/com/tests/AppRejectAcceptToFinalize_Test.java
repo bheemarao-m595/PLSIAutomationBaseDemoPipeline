@@ -17,7 +17,7 @@ import com.utils.CommonUtils;
 import com.aventstack.extentreports.Status;
 
 @Listeners({com.listeners.ListenerTest.class})
-public class AG_AppRejectAcceptToFinalize_Test extends BaseClass {
+public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
 
     @Test(priority = 1)

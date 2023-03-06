@@ -9,7 +9,7 @@
 		<classes>
 
 
-			<!--<class name="com.tests.GM_FinanceReviewAndArchiveTest">
+			<!--<class name="com.tests.FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
 &lt;!&ndash;					<include name="sortingColumnsFinancialArchive"/>&ndash;&gt;
@@ -18,13 +18,13 @@
 				</methods>
 			</class>-->
 
-			<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
+			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
 					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
-			<class name="com.tests.GM_EditAppointmentStatusTest">
+			<class name="com.tests.EditAppointmentStatusTest">
 				<methods>
 					<include name="updateFinanceAppointmentStatus"/>
 				</methods>

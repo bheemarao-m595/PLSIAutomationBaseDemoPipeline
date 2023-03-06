@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static com.base.BaseClass.datasheet;
 
-public class VG_Interpreter_ADDInterpreterpage
+public class Interpreter_ADDInterpreterpage
 {
     WebDriver wd;
     @FindBy(xpath = "//a[@href='/interpreters']")
@@ -46,7 +46,7 @@ public class VG_Interpreter_ADDInterpreterpage
     @FindBy(xpath = "//button[@id=\"btn-add-interpreter\"]")
     private WebElement addinterpreterbutton;
 
-    public VG_Interpreter_ADDInterpreterpage (WebDriver d) {
+    public Interpreter_ADDInterpreterpage(WebDriver d) {
 
         wd = d;
         PageFactory.initElements(d, this);
