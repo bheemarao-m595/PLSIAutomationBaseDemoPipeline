@@ -22,11 +22,13 @@ public class ActualInterpreterpayoutTest extends BaseClass{
             FinancePage Fp = new FinancePage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Login"));
-            logger.log(Status.PASS, "Login CLicked");
+            logger.log(Status.PASS, "Login Clicked");
             Thread.sleep(5000);
             InO.clickUrgent();
-            logger.log(Status.PASS, "Urgent tab CLicked");
+            logger.log(Status.PASS, "Urgent tab Clicked");
             Thread.sleep(3500);
+            InO.searchApps("Completed");
+            Thread.sleep(2000);
             InO.clickAppointmentId();
             logger.log(Status.PASS, "Selected Appointment");
             Thread.sleep(3500);
@@ -50,17 +52,15 @@ public class ActualInterpreterpayoutTest extends BaseClass{
 
             driver.get("http://uat.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
-            //driver = openBrowser();
-           // driver.manage().window().maximize();
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
             FinancePage Fp = new FinancePage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Login"));
-            logger.log(Status.PASS, "Login CLicked");
+            logger.log(Status.PASS, "Login Clicked");
             Thread.sleep(5000);
-          //  InO.clickUrgent(); john
-            logger.log(Status.PASS, "Urgent tab CLicked");
+            InO.clickUrgent();
+            logger.log(Status.PASS, "Urgent tab Clicked");
             InO.searchApps("Completed");
             Thread.sleep(3500);
             InO.clickAppointmentId();
@@ -92,18 +92,18 @@ public class ActualInterpreterpayoutTest extends BaseClass{
             FinancePage Fp = new FinancePage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Login"));
-            logger.log(Status.PASS, "Login CLicked");
+            logger.log(Status.PASS, "Login Clicked");
             Thread.sleep(5000);
             InO.clickUrgent();
-            logger.log(Status.PASS, "Urgent tab CLicked");
+            logger.log(Status.PASS, "Urgent tab Clicked");
             Thread.sleep(3500);
-         //   InO.searchApps("Completed");John
+            InO.searchApps("Completed");
             Thread.sleep(3500);
             InO.clickAppointmentId();
             logger.log(Status.PASS, "Selected Appointment");
             Thread.sleep(3500);
             Fp.editFinancePayout();
-            logger.log(Status.PASS, "Selected Finance and EditActualpaayout module");
+            logger.log(Status.PASS, "Selected Finance and Edit Actual paayout module");
 
             Thread.sleep(3500);
             Fp.editActualPayout(datasheet.get("Check-in"), datasheet.get("Check-out"));

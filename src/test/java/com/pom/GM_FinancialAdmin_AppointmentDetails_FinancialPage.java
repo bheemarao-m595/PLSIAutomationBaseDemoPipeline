@@ -213,10 +213,11 @@ public class GM_FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClas
      Thread.sleep(2000);
      performOperations(totalExpectedClientBilling,"Total Expected Client Billing");
      logger.log(Status.PASS,"Edited Total Expected Client Billing");
-     logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Client Billing"));
 
      Thread.sleep(1000);
      saveExpectedPO.click();
+     Thread.sleep(2000);
+     logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Client Billing"));
     }
 
     public void editActualPayout() throws InterruptedException, IOException {
@@ -312,6 +313,8 @@ public class GM_FinancialAdmin_AppointmentDetails_FinancialPage extends BaseClas
 
      Thread.sleep(2000);
      saveActualPO.click();
+     Thread.sleep(2000);
+     logger.addScreenCaptureFromPath(takeScreenshotForStep("Total Expected Client Billing"));
 
     }
 }

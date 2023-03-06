@@ -97,6 +97,14 @@
 					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
 				</methods>
 			</class>
+
+			<class name="com.tests.ClientAddRequesterTest">
+						<methods>
+							<include name="addRequesterforClient"/>
+						</methods>
+			</class>
+
+
 		</classes>
 	</test>
 

@@ -9,23 +9,24 @@
 		<classes>
 
 
-
-
-
-
-
-
-
-
-
-
-
-			<class name="com.tests.GM_FinanceReviewAndArchiveTest">
+			<!--<class name="com.tests.GM_FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
-<!--					<include name="sortingColumnsFinancialArchive"/>-->
-<!--					<include name="approveFinancialReviewPendingAppointment"/>-->
-<!--					<include name="approveFinancialArchiveMultiplePendingAppointment"/>-->
+&lt;!&ndash;					<include name="sortingColumnsFinancialArchive"/>&ndash;&gt;
+&lt;!&ndash;					<include name="approveFinancialReviewPendingAppointment"/>&ndash;&gt;
+&lt;!&ndash;					<include name="approveFinancialArchiveMultiplePendingAppointment"/>&ndash;&gt;
+				</methods>
+			</class>-->
+
+			<class name="com.tests.GM_FinanciaArchive_ExpectedInterpreterPayoutTest">
+				<methods>
+					<include name="editingActualPayoutFields"/>
+					<include name="editingExpectedPayoutFields"/>
+				</methods>
+			</class>
+			<class name="com.tests.GM_EditAppointmentStatusTest">
+				<methods>
+					<include name="updateFinanceAppointmentStatus"/>
 				</methods>
 			</class>
 		</classes>

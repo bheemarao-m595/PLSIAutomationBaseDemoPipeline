@@ -349,7 +349,7 @@ public class NewAppointmentPage {
 
     }
 
-    public  void editAppointment(String patientName) throws InterruptedException {
+    public  void editAppointment() throws InterruptedException {
 
         Thread.sleep(3000);
         WebDriver d = BaseClass.driver;
@@ -359,7 +359,7 @@ public class NewAppointmentPage {
         Thread.sleep(2000);
         clickeditApp.click();
 
-        Thread.sleep(6000);
+        Thread.sleep(3000);
         WebDriver d1 = BaseClass.driver;
         JavascriptExecutor js1 = (JavascriptExecutor)d1;
         Thread.sleep(3000);
@@ -373,8 +373,6 @@ public class NewAppointmentPage {
         Thread.sleep(2000);
         updateAppEndTime.click();
         updateAppEndTime.sendKeys(datasheet.get("App End Time"));
-
-
 
         Thread.sleep(2000);
         care_Physician.click();
@@ -392,7 +390,7 @@ public class NewAppointmentPage {
         Thread.sleep(3000);
         newAppointment.click();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         appointmentDate.click();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 

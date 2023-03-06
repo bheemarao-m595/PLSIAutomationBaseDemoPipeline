@@ -118,12 +118,12 @@ public class InterpreterDashboardPage {
 
 
 
-    public  String getTextOfferedTab(){
+    public  String getTextOfferedTab()  {
         return offeredTabCount.getText();
     }
 
     public boolean availableTabIsDisplayed(){
-        return availableTab.isDisplayed();
+        return  BaseClass.isElementPresent(availableTab);
     }
 
     public void clickAvailableTab(){
@@ -281,8 +281,6 @@ public class InterpreterDashboardPage {
 
         return canSelfBookAppointment;
     }
-
-
 
     public void clickCancel(){
 

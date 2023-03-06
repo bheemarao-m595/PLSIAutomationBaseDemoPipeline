@@ -188,5 +188,12 @@ public class CommonUtils {
 		}
 	}
 
+	public   static  String getRandomEmailIdDomain(String domain){
+
+	String emaildId= getRandomStringOfLength(5);
+	  return  emaildId + "@" + domain;
+
+	}
+
 
 }

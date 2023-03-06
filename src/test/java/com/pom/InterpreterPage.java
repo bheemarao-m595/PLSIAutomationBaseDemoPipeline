@@ -229,7 +229,7 @@ public class InterpreterPage {
         Thread.sleep(3000);
         if(BaseClass.isElementPresent(rescindOfferbutton)) {
             BaseClass.goToElementVisibleArea(rescindOfferbutton);
-            BaseClass.clickWithJavaScript(rescindOfferbutton);
+            rescindOfferbutton.click();
         }
        logger.addScreenCaptureFromPath(new BaseClass().takeScreenshotForStep("Offer Rescined"));
         Thread.sleep(2000);
