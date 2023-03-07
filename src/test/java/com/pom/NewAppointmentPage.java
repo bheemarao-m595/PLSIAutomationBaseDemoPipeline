@@ -257,86 +257,86 @@ public class NewAppointmentPage {
 
     public String addScheduleAppointment(Map<String,String> creationData) throws InterruptedException, IOException {
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         newAppointment.click();
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         if(!isElementPresent(appointmentDate)){
              return  "NC";
         }
         appointmentDate.click();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentStartTime.click();
         appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentEndTime.click();
         appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Tbd_Checkbox.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         client.click();
         client.sendKeys(creationData.get("Client"));
 
         client.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Facility.click();
         Facility.sendKeys(creationData.get("Facility"));
 
         Facility.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentType.click();
         appointmentType.sendKeys(creationData.get("App Type"));
         appointmentType.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         building.click();
         building.sendKeys(creationData.get("Building"));
         building.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.click();
         department.sendKeys(creationData.get("Department"));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.sendKeys(Keys.TAB);
 
         // building.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Mrn.click();
         patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_FName.click();
         patient_FName.sendKeys(creationData.get("First Name"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_LName.click();
         String randomName = "NNCY";
         randomName = CommonUtils.getRandomStringOfLength(3);
         randomName = creationData.get("Last Name")+  "_" + randomName;
         patient_LName.sendKeys(randomName);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Dob.click();
         patient_Dob.sendKeys(creationData.get("DOB"));
 
 
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         requestedLanguage.click();
         requestedLanguage.sendKeys(creationData.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
         setAppointmentButton.click();
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
        if(BaseClass.isElementPresent(setAppointmentButton))
         return "NC";
        else
@@ -349,7 +349,7 @@ public class NewAppointmentPage {
 
     }
 
-    public  void editAppointment() throws InterruptedException {
+    public  void editAppointment() throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         WebDriver d = BaseClass.driver;
@@ -366,26 +366,28 @@ public class NewAppointmentPage {
         js1.executeScript("arguments[0].scrollIntoView(true);",updateAppStartTime);
 
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         updateAppStartTime.click();
         updateAppStartTime.sendKeys(datasheet.get("App Start time"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         updateAppEndTime.click();
         updateAppEndTime.sendKeys(datasheet.get("App End Time"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         care_Physician.click();
         care_Physician.clear();
         care_Physician.sendKeys(datasheet.get("Physician Name") + "_Edited");
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         saveupdate.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Edited"));
+
 
     }
 
-    public void cancelAppointment() throws InterruptedException {
+    public void cancelAppointment() throws InterruptedException, IOException {
 
         Thread.sleep(3000);
         newAppointment.click();
@@ -420,31 +422,31 @@ public class NewAppointmentPage {
         appointmentType.sendKeys(datasheet.get("App Type"));
         appointmentType.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         building.click();
         building.sendKeys(datasheet.get("Building"));
         building.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.click();
         department.sendKeys(datasheet.get("Department"));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.sendKeys(Keys.TAB);
 
         // building.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Mrn.click();
         patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_FName.click();
         patient_FName.sendKeys(datasheet.get("First Name"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_LName.click();
         patient_LName.sendKeys(datasheet.get("Last Name")+ CommonUtils.getRandomStringOfLength(3));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Dob.click();
         patient_Dob.sendKeys(datasheet.get("DOB"));
 
@@ -453,6 +455,8 @@ public class NewAppointmentPage {
         requestedLanguage.click();
         requestedLanguage.sendKeys(datasheet.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
+
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Filled to Cancel"));
 
         appCancel.click();
         Thread.sleep(2000);
@@ -474,21 +478,21 @@ public class NewAppointmentPage {
         appointmentStartTime.click();
         appointmentStartTime.sendKeys(CommonUtils.addMinutesToCurrentTime(5));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentEndTime.click();
         appointmentEndTime.sendKeys(CommonUtils.addMinutesToCurrentTime(10));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         recurringAppointment.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         addMoreDates.click();
 
         Thread.sleep(3000);
         appointmentDate1.click();
         appointmentDate1.sendKeys(CommonUtils.getCurrentSystemDate());
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentStartTime1.click();
         Thread.sleep(1000);
         appointmentStartTime1.sendKeys(CommonUtils.addMinutesToCurrentTime(12));
@@ -496,7 +500,7 @@ public class NewAppointmentPage {
         appointmentStartTime1.sendKeys(Keys.TAB);
 
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentEndTime1.click();
         Thread.sleep(2000);
         appointmentEndTime1.sendKeys(CommonUtils.addMinutesToCurrentTime(15));
@@ -505,7 +509,7 @@ public class NewAppointmentPage {
         logger.addScreenCaptureFromPath(BaseClass.takeScreenshotForStep("Recurring times entered"));
         logger.log(Status.PASS,"Recurring time entered");
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         addMoreDates.click();
 
         Thread.sleep(3000);
@@ -520,72 +524,72 @@ public class NewAppointmentPage {
         Thread.sleep(500);
         appointmentStartTime2.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentEndTime2.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentEndTime2.sendKeys(CommonUtils.addMinutesToCurrentTime(20));
         Thread.sleep(1000);
         appointmentEndTime2.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         client.click();
         client.sendKeys(creationData.get("Client"));
 
         client.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Facility.click();
         Facility.sendKeys(creationData.get("Facility"));
 
         Facility.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentType.click();
         appointmentType.sendKeys(creationData.get("App Type"));
         appointmentType.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         building.click();
         building.sendKeys(creationData.get("Building"));
         building.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.click();
         department.sendKeys(creationData.get("Department"));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         department.sendKeys(Keys.TAB);
 
         // building.sendKeys(Keys.TAB);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Mrn.click();
         patient_Mrn.sendKeys(CommonUtils.getRandomNumberOfLength(4));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_FName.click();
         patient_FName.sendKeys(creationData.get("First Name"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_LName.click();
         String randomName = "NNCY";
         randomName = CommonUtils.getRandomStringOfLength(3);
         randomName = creationData.get("Last Name")+  "_" + randomName;
         patient_LName.sendKeys(randomName);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         patient_Dob.click();
         patient_Dob.sendKeys(creationData.get("DOB"));
 
 
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         requestedLanguage.click();
         requestedLanguage.sendKeys(creationData.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
         logger.addScreenCaptureFromPath(BaseClass.takeScreenshotForStep("Edited Requested Language"));
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
         setAppointmentButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         if(BaseClass.isElementPresent(setAppointmentButton))
         {
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Recurring Appointment not created"));

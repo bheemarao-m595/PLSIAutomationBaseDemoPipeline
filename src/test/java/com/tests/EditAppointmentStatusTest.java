@@ -45,8 +45,7 @@ public class EditAppointmentStatusTest extends BaseClass{
            fadmin.updateAppointmentStatus("Requested Start Time");
            logger.addScreenCaptureFromPath(takeScreenshotForStep("Updated Appointment Status"));
            logger.log(Status.PASS,"Updating Appointment Status");
-
-        lo.click_logOut();
+           lo.click_logOut();
 
 
     }

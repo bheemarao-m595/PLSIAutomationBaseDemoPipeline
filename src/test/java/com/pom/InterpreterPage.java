@@ -196,6 +196,8 @@ public class InterpreterPage {
 
     public void clickAppointmentId() throws InterruptedException {
 
+        boolean isTablePresent = BaseClass.isElementPresent(appointment);
+        Assert.assertTrue(isTablePresent,"Empty table");
         appointment.click();
         Thread.sleep(3000);
     }

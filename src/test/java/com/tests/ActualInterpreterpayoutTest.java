@@ -23,7 +23,6 @@ public class ActualInterpreterpayoutTest extends BaseClass{
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             logger.addScreenCaptureFromPath(takeScreenshotForStep("Login"));
             logger.log(Status.PASS, "Login Clicked");
-            Thread.sleep(5000);
             InO.clickUrgent();
             logger.log(Status.PASS, "Urgent tab Clicked");
             Thread.sleep(3500);

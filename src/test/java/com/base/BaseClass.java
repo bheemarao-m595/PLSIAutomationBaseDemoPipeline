@@ -252,8 +252,8 @@ public class BaseClass
 		try{
 
 			WebDriverWait w = new WebDriverWait(driver,Duration.ofSeconds(5));
-		  WebElement web =	w.until(ExpectedConditions.elementToBeClickable(el));
-		  return  web.isDisplayed();
+		    WebElement web =	w.until(ExpectedConditions.elementToBeClickable(el));
+		    return  web.isDisplayed();
 
 		}catch (Exception e){
 			return  false;

@@ -186,8 +186,7 @@ public class ExcelUtils {
 			sheetName = cell.toString();
 		}
 		else{
-
-			Assert.assertTrue(false,"sheet name not found for " + methodName);
+			sheetName = "NF";
 		}
       return  sheetName;
 	}

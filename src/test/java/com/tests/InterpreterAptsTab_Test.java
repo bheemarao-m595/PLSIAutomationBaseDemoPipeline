@@ -252,7 +252,9 @@ public class InterpreterAptsTab_Test extends BaseClass {
         logger.log(Status.PASS, "Entering some junk data which is not in any interpreter record");
         interpreterPage.enterSearch("mjnhbgvfcdxsza");
 
+
         Thread.sleep(2000);
+        logger.addScreenCaptureFromPath(takeScreenshotForStep("Randome search"));
 
         Assert.assertEquals(interpreterPage.isDisplayed_noResults(), true);
         logger.log(Status.PASS,"No Records is displayed." );

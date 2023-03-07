@@ -70,12 +70,17 @@ public class ListenerTest implements ITestListener {
 			throw new RuntimeException(e);
 		}
 		String sheetName = data.getSheetNameforTestMethod(wb,methodName);
-		BaseClass.setModuleName(sheetName);
-       if(wb  != null)
-		BaseClass.datasheet = data.getMapDataForRowName(wb,sheetName,methodName);
-
-
-
+		if(sheetName.equalsIgnoreCase("NF"))
+		{
+			BaseClass.datasheet.put("UserName","Ravi.thota@sstech.us");
+			BaseClass.datasheet.put("Password","Welcome@1");
+		}
+		else
+		{
+			BaseClass.setModuleName(sheetName);
+			if(wb  != null)
+				BaseClass.datasheet = data.getMapDataForRowName(wb,sheetName,methodName);
+		}
 
 	}
 

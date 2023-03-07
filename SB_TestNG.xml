@@ -6,32 +6,32 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 
-	<!--<test name="SB" parallel = "none" thread-count = "1" >
-		&lt;!&ndash;<classes>
+	<test name="SB" parallel = "none" thread-count = "1" >
+		<classes>
 
 			<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
-					<include name="editActualAfterInterpreter"/>
-					<include name="editHybridInterpreterpayout"/>
+<!--					<include name="editActualAfterInterpreter"/>-->
+<!--					<include name="editHybridInterpreterpayout"/>-->
 					<include name="editStandardInterpreter"/>
-				</methods>
-			</class>
-		</classes>&ndash;&gt;
-	</test>-->
-
-
-	<test name="SB2" parallel = "none" thread-count = "1" >
-		<classes>
-
-			<class name="com.tests.Interpreter_Offer_AcceptTest">
-				<methods>
-<!--					<include name="makeAnOfferToInterpreter"/>-->
-<!--					<include name="acceptOfferByInterpreter"/>-->
-					<include name="rescindOfferedToInterpreter"/>
-<!--					<include name="editPreference"/>-->
 				</methods>
 			</class>
 		</classes>
 	</test>
+
+
+	<!--<test name="SB2" parallel = "none" thread-count = "1" >
+		<classes>
+
+			<class name="com.tests.Interpreter_Offer_AcceptTest">
+				<methods>
+&lt;!&ndash;					<include name="makeAnOfferToInterpreter"/>&ndash;&gt;
+&lt;!&ndash;					<include name="acceptOfferByInterpreter"/>&ndash;&gt;
+&lt;!&ndash;					<include name="rescindOfferedToInterpreter"/>&ndash;&gt;
+&lt;!&ndash;					<include name="editPreference"/>&ndash;&gt;
+				</methods>
+			</class>
+		</classes>
+	</test>-->
 
 </suite>

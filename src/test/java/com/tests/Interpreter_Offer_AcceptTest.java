@@ -148,7 +148,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
         }
     }
 
-    @Test(dependsOnMethods = "makeAnOfferToInterpreter")
+    @Test(alwaysRun = true,dependsOnMethods = "makeAnOfferToInterpreter")
     public void editPreference() throws Throwable
     {
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
