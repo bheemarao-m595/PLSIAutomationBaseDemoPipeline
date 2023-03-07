@@ -124,6 +124,7 @@ public class FinancialAdminDashboardPage {
 
     }
     public void updateAppointmentStatus(String name) throws InterruptedException, IOException {
+
         Thread.sleep(2000);
         financeAdmin.click();
 
@@ -134,22 +135,23 @@ public class FinancialAdminDashboardPage {
         financialAppintmentStatus.click();
 
         Thread.sleep(2000);
-        BaseClass.logger.log(Status.INFO,getIDStatus.getText());
+        logger.log(Status.PASS,getIDStatus.getText());
         BaseClass b = new BaseClass();
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Editing finance"));
 
 
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         appointmentStatus.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         appointmentStatus.sendKeys(BaseClass.datasheet.get(name));
         Thread.sleep(1000);
         appointmentStatus.sendKeys(Keys.TAB);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         saveEditStatus.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         closeEditStatus.click();
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment status Edited"));
     }
 }

@@ -65,8 +65,6 @@
 				</methods>
 			</class>
 
-
-
 			<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
 					<include name="update_Interpreter_Availability"/>

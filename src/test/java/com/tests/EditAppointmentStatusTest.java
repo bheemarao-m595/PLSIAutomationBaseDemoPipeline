@@ -17,7 +17,7 @@ import java.util.Date;
 public class EditAppointmentStatusTest extends BaseClass{
 
 
-    @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Expected Payout fields")
+    @Test()
     public void updateFinanceAppointmentStatus() throws InterruptedException, IOException {
 
         driver.get("http://uat.ims.client.sstech.us/login");
@@ -41,14 +41,11 @@ public class EditAppointmentStatusTest extends BaseClass{
             Assert.assertTrue(false,"Tab not highlighted");
 
         }
-        try {
+
            fadmin.updateAppointmentStatus("Requested Start Time");
            logger.addScreenCaptureFromPath(takeScreenshotForStep("Updated Appointment Status"));
-            logger.log(Status.INFO,"Updating Appointment Status");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+           logger.log(Status.PASS,"Updating Appointment Status");
+
         lo.click_logOut();
 
 

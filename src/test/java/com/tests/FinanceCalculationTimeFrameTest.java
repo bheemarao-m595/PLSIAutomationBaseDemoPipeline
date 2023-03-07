@@ -11,7 +11,7 @@ import java.io.IOException;
 @Listeners({com.listeners.ListenerTest.class})
 public class FinanceCalculationTimeFrameTest extends BaseClass{
 
-    @Test(description = "This TC will perform valid login and verified that appointment can ablle to edit the calculation TimeFrame")
+    @Test()
     public void editfinanace() throws InterruptedException, IOException {
 
         driver.get("http://uat.ims.client.sstech.us/login");

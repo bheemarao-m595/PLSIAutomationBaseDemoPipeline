@@ -13,21 +13,21 @@
 					<include name="editingActualPayoutFields"/>
 &lt;!&ndash;		<include name="editingExpectedPayoutFields"/>&ndash;&gt;
 				</methods>
-			</class>
+			</class>-->
 			<class name="com.tests.EditAppointmentStatusTest">
 				<methods>
 					<include name="updateFinanceAppointmentStatus"/>
 				</methods>
-			</class>-->
+			</class>
 
-			<class name="com.tests.FinanceReviewAndArchiveTest">
+		<!--	<class name="com.tests.FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
-<!--					<include name="sortingColumnsFinancialArchive"/>-->
-<!--					<include name="approveFinancialReviewPendingAppointment"/>-->
-<!--					<include name="approveFinancialArchiveMultiplePendingAppointment"/>-->
+&lt;!&ndash;					<include name="sortingColumnsFinancialArchive"/>&ndash;&gt;
+&lt;!&ndash;					<include name="approveFinancialReviewPendingAppointment"/>&ndash;&gt;
+&lt;!&ndash;					<include name="approveFinancialArchiveMultiplePendingAppointment"/>&ndash;&gt;
 				</methods>
-			</class>
+			</class>-->
 		</classes>
 	</test>
 

@@ -152,7 +152,7 @@ public class Interpreter_DetailsPage
 
         Thread.sleep(2000);
         menu_LangProf.click();
-        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+ datasheet.get("Language")  +"']/../preceding-sibling::td[1]//input";
+        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+ datasheet.get("Language")  +"']/ancestor::td/preceding-sibling::td[1]//input";
 
         menu_LangProf.click();
 
@@ -161,40 +161,40 @@ public class Interpreter_DetailsPage
         if(isPresent){
             logger.log(Status.INFO,"Language" +datasheet.get("Language") +"is already present");
             delete_Proficiency(datasheet.get("Language"));
-        }else{
-            Thread.sleep(2000);
+        }
+            Thread.sleep(1000);
             addlangprof_Button.click();
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Creating language proficiency"));
+            logger.log(Status.PASS,"Add Proficiency tab clicked");
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             select_Lang.click();
             select_Lang.sendKeys(datasheet.get("Language"));
             select_Lang.sendKeys(Keys.TAB);
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             proficiency_Text.click();
             String pro = datasheet.get("Proficiency");
             proficiency_Text.sendKeys(pro);
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             intRate_Text.click();
             intRate_Text.sendKeys(datasheet.get("Interpretation Rate"));
+            logger.log(Status.PASS,"Rate Added");
+            logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Rate Added added"));
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             save_Lang_Prof.click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Proficiency added"));
-
-        }
-
 
     }
 
     public void delete_Proficiency(String lang) throws Throwable
     {
         Thread.sleep(2000);
-        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+ lang  +"']/../preceding-sibling::td[1]//input";
+        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+  lang +"']/ancestor::td/preceding-sibling::td[1]//input";
 
         menu_LangProf.click();
 
@@ -210,7 +210,6 @@ public class Interpreter_DetailsPage
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("After clicking Remove Language"));
         }else
             logger.log(Status.PASS,"Language not present in Remove");
-
 
     }
 
