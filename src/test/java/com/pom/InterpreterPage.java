@@ -54,9 +54,9 @@ public class InterpreterPage {
 
     @FindBy(xpath= "//a[@href='/interpreter/interpreter-home']")
     private WebElement IntrepreterTab;
-    @FindBy(xpath= "//button[@class='MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1auuvg7'][1]")
+    @FindBy(xpath= "//button[@class='MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-pqhchs'][1]")
     private WebElement OfferedTab;
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr[1]/td[1]/div/div")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr[1]/td[1]/div/div")
     private WebElement AppointmentOffered;
     @FindBy(xpath= "//button[@id='Accept']")
     private WebElement AcceptTab;

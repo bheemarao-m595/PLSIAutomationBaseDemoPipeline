@@ -75,13 +75,13 @@ public class DashBoardPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr[1]/td[7]")
     private WebElement PatientConsumer;
 
-    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant preferences']")
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-9q87mf' ]//*[@placeholder='Enter relevant preferences']")
     private WebElement preference;
 
-    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant comments']")
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-9q87mf' ]//*[@placeholder='Enter relevant comments']")
     private WebElement requester;
 
-    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant notes']")
+    @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-9q87mf' ]//*[@placeholder='Enter relevant notes']")
     private WebElement scheduler_notes;
 
     @FindBy(xpath= "//button[text()=' Save']")
@@ -133,7 +133,7 @@ public class DashBoardPage {
 
     public  void updatePatientNotes(String appIdText) throws InterruptedException, IOException {
 
-        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[6]//span/span"));
+        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[6]//span/span"));
 
         patientLink.click();
         Thread.sleep(2000);

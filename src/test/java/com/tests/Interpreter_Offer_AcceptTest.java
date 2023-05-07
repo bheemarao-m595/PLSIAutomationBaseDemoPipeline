@@ -26,7 +26,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
     @Test(alwaysRun = true,dependsOnMethods = "makeAnOfferToInterpreter")
     public void acceptOfferByInterpreter() throws Throwable
         {
-                driver.get("http://uat.ims.client.sstech.us/login");
+                driver.get("http://qa.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
                 String intEmail = CommonUtils.readPropertiesFileValues("ExecutionData.properties","makeAnOfferToInterpreter");
@@ -45,7 +45,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
     @Test(priority = 1)
     public void makeAnOfferToInterpreter() throws Throwable{
         {
-                driver.get("http://uat.ims.client.sstech.us/login");
+                driver.get("http://qa.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
@@ -104,7 +104,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
     @Test(priority = 2)
     public void rescindOfferedToInterpreter() throws Throwable{
         {
-                driver.get("http://uat.ims.client.sstech.us/login");
+                driver.get("http://qa.ims.client.sstech.us/login");
                 logger = extent.createTest(BaseClass.getMethodName() + "method started");
                 LoginPage lo = new LoginPage(driver);
                 lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
@@ -153,7 +153,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
     {
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             LoginPage lo = new LoginPage(driver);
             lo.doLogin(datasheet.get("UserName"), datasheet.get("Password"));
             Thread.sleep(4000);
@@ -162,8 +162,10 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
             InterpreterPage InP = new InterpreterPage(driver);
             DashBoardPage dbp = new DashBoardPage(driver);
             dbp.clickUrgent();
+            Thread.sleep(5000);
             String appIdText = CommonUtils.readPropertiesFileValues("ExecutionData.properties","makeAnOfferToInterpreter-AppId");
             logger.log(Status.PASS, "Clicked on Interpreter");
+            Thread.sleep(3000);
             dbp.search(appIdText);
 //            String fullName = dbp.getPatientNameFromAppId(appIdText);
             dbp.updatePatientNotes(appIdText);

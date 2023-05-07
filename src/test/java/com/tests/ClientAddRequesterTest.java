@@ -17,7 +17,7 @@ public class ClientAddRequesterTest extends BaseClass {
     @Test()
     public void addRequesterforClient() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
         LoginPage lo = new LoginPage(driver);
         InterpreterPage InO = new InterpreterPage(driver);
