@@ -20,10 +20,10 @@ public class EditAppointmentStatusTest extends BaseClass{
     @Test()
     public void updateFinanceAppointmentStatus() throws InterruptedException, IOException {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
-        FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);
-        FinancialAdminDashboardPage fadmin = new FinancialAdminDashboardPage(driver);
+        FinancialAdminDashboardPage FA = new FinancialAdminDashboardPage(driver);
+        //FinancialAdminDashboardPage fadmin = new FinancialAdminDashboardPage(driver);
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -42,7 +42,7 @@ public class EditAppointmentStatusTest extends BaseClass{
 
         }
 
-           fadmin.updateAppointmentStatus("Requested Start Time");
+           FA.updateAppointmentStatus("Requested Start Time");
            logger.addScreenCaptureFromPath(takeScreenshotForStep("Updated Appointment Status"));
            logger.log(Status.PASS,"Updating Appointment Status");
            lo.click_logOut();

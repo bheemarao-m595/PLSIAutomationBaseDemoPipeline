@@ -126,7 +126,7 @@ public class FinancialAdminDashboardPage {
     public void updateAppointmentStatus(String name) throws InterruptedException, IOException {
 
         Thread.sleep(2000);
-        financeAdmin.click();
+        //financeAdmin.click();
 
         Thread.sleep(2000);
         financeArchiveTab.click();

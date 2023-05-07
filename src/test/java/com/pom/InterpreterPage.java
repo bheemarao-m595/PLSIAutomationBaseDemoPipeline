@@ -46,7 +46,7 @@ public class InterpreterPage {
     @FindBy(xpath = "//span[contains(text(),'URGENT')]")
     private WebElement urgentTab;
 
-    @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//td[1]/div/div")
+    @FindBy(xpath= "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[2]//td[1]/div/div")
     private WebElement appointment;
 
     @FindBy(xpath= "//button[@id='Accept']")

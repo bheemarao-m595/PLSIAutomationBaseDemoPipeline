@@ -25,7 +25,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     public void verifyColumnsRequiredAreAvailableInTable() throws InterruptedException, IOException {
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -112,7 +112,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     public void verifyDefaultSortIsInterpreterName() throws InterruptedException, IOException {
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -161,7 +161,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     @Test(description = "This TC will verify Search for all columns data",priority=3)
     public void verifySearchForAllColumnsData()throws InterruptedException, IOException {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -226,7 +226,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     public void verifyNoResultsFound()throws InterruptedException, IOException{
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -266,7 +266,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     public void verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter()throws InterruptedException, IOException{
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -366,7 +366,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
     public void verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage()throws InterruptedException, IOException{
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);
@@ -433,7 +433,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
 
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         DashBoardPage dashboard = new DashBoardPage(driver);
         AppointmentDetailsPage appDetails = new AppointmentDetailsPage(driver);

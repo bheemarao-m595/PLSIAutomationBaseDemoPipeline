@@ -18,7 +18,7 @@ public class FinanceReviewAndArchiveTest extends BaseClass{
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve one pending status")
     public void approveFinancialArchivePendingAppointment() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminDashboardPage financialAdminPage=new FinancialAdminDashboardPage(driver);
 
@@ -65,7 +65,7 @@ public class FinanceReviewAndArchiveTest extends BaseClass{
     @Test
     public void sortingColumnsFinancialArchive() throws Throwable{
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminPage FA=new FinancialAdminPage(driver);
         FinancialArchivePage columns = new FinancialArchivePage(driver);
@@ -102,7 +102,7 @@ public class FinanceReviewAndArchiveTest extends BaseClass{
     public void approveFinancialReviewPendingAppointment() throws Throwable {
 
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminPage financialAdmin=new FinancialAdminPage(driver);
 
@@ -144,7 +144,7 @@ public class FinanceReviewAndArchiveTest extends BaseClass{
     @Test(description = "This TC will perform valid login and navigated to finance archive page and approve multiple pending status")
     public void approveFinancialArchiveMultiplePendingAppointment() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminPage FA=new FinancialAdminPage(driver);
 

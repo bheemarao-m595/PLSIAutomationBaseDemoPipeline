@@ -15,7 +15,7 @@ public class ActualInterpreterpayoutTest extends BaseClass{
     @Test(description = "This TC will perform valid login and update the Actual Interpreter Payout")
     public void editHybridInterpreterpayout() throws Throwable {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
@@ -25,12 +25,12 @@ public class ActualInterpreterpayoutTest extends BaseClass{
             logger.log(Status.PASS, "Login Clicked");
             InO.clickUrgent();
             logger.log(Status.PASS, "Urgent tab Clicked");
-            Thread.sleep(3500);
+            Thread.sleep(5000);
             InO.searchApps("Completed");
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             InO.clickAppointmentId();
             logger.log(Status.PASS, "Selected Appointment");
-            Thread.sleep(3500);
+            Thread.sleep(4000);
             Fp.editFinancePayout();
 
             Thread.sleep(3500);
@@ -49,7 +49,7 @@ public class ActualInterpreterpayoutTest extends BaseClass{
     @Test
     public void editActualAfterInterpreter() throws Throwable {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "" + "method started");
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
@@ -60,6 +60,7 @@ public class ActualInterpreterpayoutTest extends BaseClass{
             Thread.sleep(5000);
             InO.clickUrgent();
             logger.log(Status.PASS, "Urgent tab Clicked");
+            Thread.sleep(3500);
             InO.searchApps("Completed");
             Thread.sleep(3500);
             InO.clickAppointmentId();
@@ -84,7 +85,7 @@ public class ActualInterpreterpayoutTest extends BaseClass{
     @Test
     public void editStandardInterpreter() throws Throwable {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
             LoginPage lo = new LoginPage(driver);
             InterpreterPage InO = new InterpreterPage(driver);
