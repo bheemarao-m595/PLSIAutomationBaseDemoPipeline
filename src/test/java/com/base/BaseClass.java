@@ -106,7 +106,7 @@ public class BaseClass
 		}else if(prop.get("driver").equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
 			ChromeOptions opt  = new ChromeOptions();
-			opt.addArguments("--incognito");
+			opt.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(opt);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			driver.get(prop.getProperty("url"));

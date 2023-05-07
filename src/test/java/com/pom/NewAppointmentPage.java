@@ -175,7 +175,7 @@ public class NewAppointmentPage {
 
         logger.log(Status.PASS,"Appointment Table");
         Thread.sleep(3000);
-        appointmentDate.click();
+        appointmentDate.clear();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(2000);
@@ -264,7 +264,7 @@ public class NewAppointmentPage {
         if(!isElementPresent(appointmentDate)){
              return  "NC";
         }
-        appointmentDate.click();
+        appointmentDate.clear();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(1000);
@@ -393,7 +393,7 @@ public class NewAppointmentPage {
         newAppointment.click();
 
         Thread.sleep(2000);
-        appointmentDate.click();
+        appointmentDate.clear();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(2000);
@@ -471,7 +471,7 @@ public class NewAppointmentPage {
         newAppointment.click();
 
         Thread.sleep(3000);
-        appointmentDate.click();
+        appointmentDate.clear();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(2000);
@@ -489,7 +489,7 @@ public class NewAppointmentPage {
         addMoreDates.click();
 
         Thread.sleep(3000);
-        appointmentDate1.click();
+        appointmentDate1.clear();
         appointmentDate1.sendKeys(CommonUtils.getCurrentSystemDate());
 
         Thread.sleep(1000);
@@ -513,7 +513,7 @@ public class NewAppointmentPage {
         addMoreDates.click();
 
         Thread.sleep(3000);
-        appointmentDate2.click();
+        appointmentDate2.clear();
         Thread.sleep(1000);
         appointmentDate2.sendKeys(CommonUtils.getCurrentSystemDate());
 
@@ -525,7 +525,7 @@ public class NewAppointmentPage {
         appointmentStartTime2.sendKeys(Keys.TAB);
 
         Thread.sleep(1000);
-        appointmentEndTime2.click();
+        appointmentEndTime2.clear();
         Thread.sleep(1000);
         appointmentEndTime2.sendKeys(CommonUtils.addMinutesToCurrentTime(20));
         Thread.sleep(1000);

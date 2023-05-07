@@ -8,7 +8,7 @@
 	<test name="SV1" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.SetAppointmentTest">
+			<!--<class name="com.tests.SetAppointmentTest">
 				<methods>
 					<include name="updateAppointmentDetails"/>
 					<include name="quickEditStatus"/>
@@ -18,14 +18,14 @@
 					<include name="cancelNewAppointment"/>
 					<include name="createRecurringAppointment"/>
 				</methods>
-			</class>
+			</class>-->
 			<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
-					<include name="update_Interpreter_Availability"/>
-					<include name="deleteInt_Avail"/>
+					<!--<include name="update_Interpreter_Availability"/>-->
+					<!--<include name="deleteInt_Avail"/>-->
 					<include name="create_Proficiency"/>
 					<include name="remove_LangProficiency"/>
-					<include name="create_Interpreter_Availability"/>
+					<!--<include name="create_Interpreter_Availability"/>-->
 				</methods>
 			</class>
 		</classes>

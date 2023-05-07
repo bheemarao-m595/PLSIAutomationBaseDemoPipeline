@@ -86,18 +86,21 @@ public class LoginPage {
             Thread.sleep(3000);
             if(BaseClass.isElementPresent(ackButton)) {
                 ackButton.click();
-                Thread.sleep(2000);
+                Thread.sleep(4000);
+               // login.click();
             }
             if(BaseClass.isElementPresent(OTP)){
                 Assert.fail("OTP page displayed hence failing for now");
             }
+            Thread.sleep(2000);
+
 
         }
     }
 
     public void click_logOut() {
 
-        wd.get("http://uat.ims.client.sstech.us/login");
+        wd.get("http://qa.ims.client.sstech.us/login");
         if (BaseClass.isElementPresent(logOut)) {
             logOut.click();
             try {

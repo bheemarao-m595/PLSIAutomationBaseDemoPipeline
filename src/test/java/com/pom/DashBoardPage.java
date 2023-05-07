@@ -24,7 +24,7 @@ public class DashBoardPage {
 
     WebDriver wd;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']")
     private WebElement appointmentsTableinDashBoard;
 
     @FindBy(css= ".MuiBox-root.css-w2sxf")
@@ -41,38 +41,38 @@ public class DashBoardPage {
         return newAppointment.isDisplayed();
     }
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']")
     private WebElement allAppointmentTable;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody")
     private WebElement allAppointmentTableBody;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr")
     private WebElement allAppointmentTableBodyRows;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[2]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[2]")
     private WebElement allAppointmentTableBodyRowsDatecolumn;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[9]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[9]")
     private WebElement allAppointmentTableBodyRowsStatusColumn;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[1]")
     private WebElement allAppointmentTableBodyRowsViewColumn;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[7]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[7]")
     private WebElement allAppointmentTableBodyRowsPatientColumn;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[8]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[8]")
     private WebElement allAppointmentTableBodyRowsLanguageColumn;
 
 
     @FindBy(css= ".MuiBox-root.css-lhz7xj")
     private WebElement appointmentCreatedSuccessMsg;
 
-    @FindBy(css= ".MuiBox-root.css-8kdvm0")
+    @FindBy(xpath = "//img[@class='MuiBox-root css-8kdvm0'][2]")
     private WebElement filter;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr[1]/td[7]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr[1]/td[7]")
     private WebElement PatientConsumer;
 
     @FindBy(xpath= "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-116j8tg' ]//*[@placeholder='Enter relevant preferences']")
@@ -168,7 +168,7 @@ public class DashBoardPage {
         String  actualHeader =CommonUtils.getActualHeaderStringFromDashBoardTable(searchString);
 
         int i = 1;
-        List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//th/div[1]"));
+        List<WebElement> rows = wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//th/div[1]"));
         Map<String, Integer> headIndex = new LinkedHashMap<>();
 
 
@@ -182,11 +182,11 @@ public class DashBoardPage {
 
         int headerIndex = headIndex.get(actualHeader);
 
-        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tbody//tr")).size();
+        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tbody//tr")).size();
         logger.log(Status.INFO,"Table is empty");
         for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
 
-            String part1 = "//table[@class='MuiTable-root css-jiyur0']//tbody//tr[";
+            String part1 = "//table[@class='MuiTable-root css-v6tz28']//tbody//tr[";
             String part2 = "]//td//*[text()='" + cellValue + "']";
             String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
 
@@ -212,16 +212,16 @@ public class DashBoardPage {
 
     public  List<WebElement> get_allAppointmentTableBodyRowsStatusColumn(){
 
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[9]"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[9]"));
 
     }
 
     public  List<WebElement> get_allAppointmentTableBodyRowsLanguageColumn() {
-        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[8]"));
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[8]"));
     }
 
     public List<WebElement> get_allAppointmentTableBodyRowsViewColumn() {
-        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]"));
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[1]"));
     }
 
 

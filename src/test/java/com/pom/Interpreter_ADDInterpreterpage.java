@@ -62,7 +62,7 @@ public class Interpreter_ADDInterpreterpage
     }
 
     public void clickInterpreters() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         interpretersLinkMenu.click();
 
     }

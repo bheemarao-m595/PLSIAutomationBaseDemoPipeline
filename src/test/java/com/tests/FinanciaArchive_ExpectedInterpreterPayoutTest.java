@@ -20,7 +20,7 @@ public class FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     @Test
     public void editingExpectedPayoutFields() throws InterruptedException, IOException {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);
@@ -59,7 +59,7 @@ public class FinanciaArchive_ExpectedInterpreterPayoutTest extends BaseClass{
     @Test(description = "This TC will perform valid login, navigated to financial tab in financial archive page and edit Actual Payout fields")
     public void editingActualPayoutFields() throws InterruptedException, IOException {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
         LoginPage lo = new LoginPage(driver);
         FinancialAdminDashboardPage FA=new FinancialAdminDashboardPage(driver);

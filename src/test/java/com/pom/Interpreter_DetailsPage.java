@@ -82,11 +82,12 @@ public class Interpreter_DetailsPage
     @FindBy(xpath = "//button[text()='Save']")
     private  WebElement save_Lang_Prof;
 
-    @FindBy(xpath = "//tbody[@class='MuiTableBody-root css-1xnox0e']//tr[1]//span/input")
-    private WebElement select_Langrow;
+    @FindBy(xpath = "//div[text()='Hindi']//ancestor::td/following-sibling::td[3]//span[text()='delete_outline']")
+    private WebElement select_LangrowtoDelete;
 
-    @FindBy(id = "RemoveLanguageProficiency")
-    private WebElement remove_Select_Lang;
+    @FindBy(xpath = "//span[contains(text(),'check')]")
+    private WebElement confirmDelete;
+
 
 
    public Interpreter_DetailsPage(WebDriver d) {
@@ -194,22 +195,28 @@ public class Interpreter_DetailsPage
     public void delete_Proficiency(String lang) throws Throwable
     {
         Thread.sleep(2000);
-        String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+  lang +"']/ancestor::td/preceding-sibling::td[1]//input";
-
+        //
+        // String xpath = "(//tbody[@class='MuiTableBody-root css-1xnox0e'])[2]//tr//td//div[text()='"+  lang +"']/ancestor::td/preceding-sibling::td[1]//input";
+        String xpath="//div[text()='"+  lang +"']//ancestor::td/following-sibling::td[3]//span[text()='delete_outline']";
         menu_LangProf.click();
 
         Thread.sleep(2000);
+
         boolean isPresent = b.isElementByXpath(xpath);
         if(isPresent)
         {
-            WebElement menu_LangProf_checkBox = b.getElementByXpath(wd,xpath);
-            menu_LangProf_checkBox.click();
+            //WebElement menu_LangProf_checkBox = b.getElementByXpath(wd,xpath);
+            //menu_LangProf_checkBox.click();
 
             Thread.sleep(2000);
-            remove_Select_Lang.click();
+            select_LangrowtoDelete.click();
+
+            Thread.sleep(2000);
+            confirmDelete.click();
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("After clicking Remove Language"));
         }else
             logger.log(Status.PASS,"Language not present in Remove");
+
 
     }
 

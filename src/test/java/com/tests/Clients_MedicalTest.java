@@ -18,7 +18,7 @@ public class Clients_MedicalTest extends BaseClass {
 	@Test()
 	public void requestClientsMedicalAppointment() throws InterruptedException, IOException {
 
-		driver.get("http://uat.ims.client.sstech.us/login");
+		driver.get("http://qa.ims.client.sstech.us/login");
 		LoginPage lo = new LoginPage(driver);
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -40,7 +40,7 @@ public class Clients_MedicalTest extends BaseClass {
 
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
-		driver.get("http://uat.ims.client.sstech.us/login");
+		driver.get("http://qa.ims.client.sstech.us/login");
 		LoginPage lo = new LoginPage(driver);
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 

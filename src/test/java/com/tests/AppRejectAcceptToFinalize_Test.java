@@ -23,7 +23,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
     @Test(priority = 1)
     public void rejectAppointment() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage loginPage = new LoginPage(driver);
@@ -237,7 +237,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
     public void acceptAppointment()  {
 
         try {
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
             LoginPage loginPage = new LoginPage(driver);
@@ -379,7 +379,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
         try {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -511,7 +511,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
     public void checkInAppointment() throws Throwable {
 
         try {
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
             JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -629,7 +629,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
     public void checkOutAndFinaliseAppointment() throws Throwable {
 
         try {
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -752,7 +752,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
         try {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -862,7 +862,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
     public void selfBookAppointment()  throws Throwable {
         try {
 
-            driver.get("http://uat.ims.client.sstech.us/login");
+            driver.get("http://qa.ims.client.sstech.us/login");
             logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
             LoginPage loginPage = new LoginPage(driver);
@@ -874,6 +874,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
             ExcelUtils exl = new ExcelUtils();
             XSSFWorkbook wb = exl.getWorkbook(BaseClass.getFilePathOfTestDataFile());
             Map<String, String> appointmentData = exl.getMapDataForRowName(wb, "New appointment", "scheduleAppointmentMedicalTest");
+
 
             loginPage.doLogin(datasheet.get("Scheduler Username"), datasheet.get("Scheduler Password"));
            // NewAppointmentPage nap = new NewAppointmentPage(driver);

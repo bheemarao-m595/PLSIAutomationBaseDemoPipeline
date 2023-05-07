@@ -15,8 +15,8 @@
 <!--					<include name="returnAppointment"/>-->
 <!--					<include name="checkInAppointment"/>-->
 <!--					<include name="checkOutAndFinaliseAppointment"/>-->
-<!--					<include name="viewFinancialBreakdown"/>-->
-					<include name="selfBookAppointment"/>
+					<include name="viewFinancialBreakdown"/>
+					<!--<include name="selfBookAppointment"/>-->
 				</methods>
 			</class>
 

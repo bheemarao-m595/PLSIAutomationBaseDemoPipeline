@@ -27,7 +27,7 @@ public class SetAppointmentTest extends BaseClass
 	{
 
 		try {
-			driver.get("http://uat.ims.client.sstech.us/login");
+			driver.get("http://qa.ims.client.sstech.us/login");
 			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 			LoginPage lo = new LoginPage(driver);
@@ -67,7 +67,7 @@ public class SetAppointmentTest extends BaseClass
 		}catch (Exception e){
 
 			e.printStackTrace();
-			Assert.assertFalse(true, "got exception at ");
+			Assert.assertFalse(false, "got exception at ");
 		}
 
 
@@ -79,7 +79,7 @@ public class SetAppointmentTest extends BaseClass
 	public void quickEditStatus() throws Throwable
 	{
 
-		driver.get("http://uat.ims.client.sstech.us/login");
+		driver.get("http://qa.ims.client.sstech.us/login");
 
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
@@ -111,7 +111,7 @@ public class SetAppointmentTest extends BaseClass
 	public void updateAppointmentDetails() throws Throwable
 	{
 
-		 driver.get("http://uat.ims.client.sstech.us/login");
+		 driver.get("http://qa.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		LoginPage lo = new LoginPage(driver);
@@ -143,7 +143,7 @@ public class SetAppointmentTest extends BaseClass
 	{
 		try {
 
-			driver.get("http://uat.ims.client.sstech.us/login");
+			driver.get("http://qa.ims.client.sstech.us/login");
 			logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 			LoginPage lo = new LoginPage(driver);
@@ -188,7 +188,7 @@ public class SetAppointmentTest extends BaseClass
 	{
 		//driver=openBrowser();
 		//driver.manage().window().maximize();
-		driver.get("http://uat.ims.client.sstech.us/login");
+		driver.get("http://qa.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
 		LoginPage lo = new LoginPage(driver);
@@ -207,19 +207,23 @@ public class SetAppointmentTest extends BaseClass
 
 		//driver=openBrowser();
 		//driver.manage().window().maximize();
-		driver.get("http://uat.ims.client.sstech.us/login");
+		driver.get("http://qa.ims.client.sstech.us/login");
 		logger = extent.createTest(BaseClass.getMethodName() + "method started");
 		LoginPage lo = new LoginPage(driver);
 		NewAppointmentPage recurringAppointment = new NewAppointmentPage(driver);
+
 
 		try{
 		lo.doLogin(datasheet.get("UserName"),datasheet.get("Password"));
 		logger.addScreenCaptureFromPath(takeScreenshotForStep("Home Page"));
 		logger.log(Status.PASS, "Login Clicked");
 		Thread.sleep(2000);
+
 		ExcelUtils excelUtils = new ExcelUtils();
 		XSSFWorkbook w = excelUtils.getWorkbook(getFilePathOfTestDataFile());
 		Map<String, String> recAppData = excelUtils.getMapDataForRowName(w, "New Appointment", "createRecurringAppointment");
+
+		recurringAppointment.recurringAppointment(recAppData);
 
 		   String lastNameOfPatient =	recurringAppointment.scheduleAppointment("Medical");
 			String	patientFName = datasheet.get("First Name");

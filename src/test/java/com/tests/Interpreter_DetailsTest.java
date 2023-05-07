@@ -16,7 +16,7 @@ public class    Interpreter_DetailsTest extends BaseClass
     @Test(priority = 1)
     public void create_Interpreter_Availability() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -37,7 +37,7 @@ public class    Interpreter_DetailsTest extends BaseClass
     public void update_Interpreter_Availability() throws Throwable
     {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -60,7 +60,7 @@ public class    Interpreter_DetailsTest extends BaseClass
     @Test(dependsOnMethods = "update_Interpreter_Availability")
     public void deleteInt_Avail() throws Throwable {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -84,7 +84,7 @@ public class    Interpreter_DetailsTest extends BaseClass
     public void create_Proficiency() throws Throwable
     {
 
-        driver.get("http://uat.ims.client.sstech.us/login");
+        driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest( BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
@@ -107,7 +107,7 @@ public class    Interpreter_DetailsTest extends BaseClass
     @Test(dependsOnMethods = "create_Proficiency")
     public void remove_LangProficiency() throws Throwable
     {
-        driver.get("http://uat.ims.client.sstech.us/login");
+        //driver.get("http://qa.ims.client.sstech.us/login");
         logger = extent.createTest(BaseClass.getMethodName() + "method started");
 
         LoginPage lo = new LoginPage(driver);
