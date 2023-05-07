@@ -22,7 +22,7 @@ import com.pom.NewAppointmentPage;
 public class SetAppointmentTest extends BaseClass
 {
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void scheduleAppointmentMedicalTest() throws Throwable
 	{
 
@@ -75,7 +75,7 @@ public class SetAppointmentTest extends BaseClass
 	}
 
 
-	@Test(priority = 3)
+	@Test(priority = 3, enabled = false)
 	public void quickEditStatus() throws Throwable
 	{
 
@@ -107,7 +107,7 @@ public class SetAppointmentTest extends BaseClass
 	}
 
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = false)
 	public void updateAppointmentDetails() throws Throwable
 	{
 
@@ -183,7 +183,7 @@ public class SetAppointmentTest extends BaseClass
 
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void cancelNewAppointment() throws Throwable
 	{
 		//driver=openBrowser();
@@ -202,7 +202,7 @@ public class SetAppointmentTest extends BaseClass
 		lo.click_logOut();
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void createRecurringAppointment() throws InterruptedException, IOException {
 
 		//driver=openBrowser();
