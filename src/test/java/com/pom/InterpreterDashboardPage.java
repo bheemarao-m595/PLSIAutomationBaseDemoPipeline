@@ -44,10 +44,10 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//span[text()='AVAILABLE']")
     private WebElement availableTab;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody")
     private WebElement interpreterDashboardAppointmentTable;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody")
     private WebElement tableInterpreterListBody;
 
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr/td[1]/div/div")
@@ -167,18 +167,18 @@ public class InterpreterDashboardPage {
     public void clickAppointmentIdWithText(String apptId) throws InterruptedException {
         BaseClass b = new BaseClass();
 
-        WebElement ele = b.getElementByXpath(wd,"//table[@class='MuiTable-root css-jiyur0']//tr/td/div/div[text()='"+apptId+"']");
+        WebElement ele = b.getElementByXpath(wd,"//table[@class='MuiTable-root css-v6tz28']//tr/td/div/div[text()='"+apptId+"']");
         ele.click();
         Thread.sleep(2000);
     }
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColView(){
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr/td[1]/div/div"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tr/td[1]/div/div"));
 
     }
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColStatus(){
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//tr[1]/td[12]"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tr[1]/td[12]"));
 
     }
 

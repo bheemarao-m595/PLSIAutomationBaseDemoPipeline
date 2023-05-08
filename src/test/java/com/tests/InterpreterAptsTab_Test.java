@@ -141,7 +141,7 @@ public class InterpreterAptsTab_Test extends BaseClass {
 
         for (int i = 0; i <= rowsSize - 1; i++) {
 
-            logger.log(Status.PASS, "The interpreter list has "+i  +column_view_interpreter.get(i).getText());
+            logger.log(Status.INFO, "The interpreter list has "+i  +column_view_interpreter.get(i).getText());
 
             interpreter_Names.add(column_view_interpreter.get(i).getText());
         }

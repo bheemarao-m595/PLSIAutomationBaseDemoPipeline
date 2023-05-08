@@ -107,9 +107,11 @@ public class ExcelUtils {
 				 while (cells.hasNext()){
 
 					 Cell c = cells.next();
-					 String key = firstRow.getCell(it).toString();
-					 inputData.put(key,c.toString());
-					 it++;
+					 if (firstRow.getCell(it)!= null){
+						 String key = firstRow.getCell(it).toString();
+						 inputData.put(key,c.toString());
+						 it++;
+					 }
 
 				 }
 

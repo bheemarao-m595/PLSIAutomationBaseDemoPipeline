@@ -29,7 +29,7 @@
 
 				</methods>
 			</class>
-
+			<!--//every method passed-->
 			<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
@@ -59,7 +59,7 @@
 					<include name="selfBookAppointment"/>
 				</methods>
 			</class>
-
+			<!--//every method passed-->
 			<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
 					<include name="verifyColumnsRequiredAreAvailableInTable"/>  <!--Pass-->
@@ -83,7 +83,7 @@
 				</methods>
 			</class>
 
-
+			<!--//every method passed-->
 			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>

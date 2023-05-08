@@ -9,11 +9,28 @@
 	<test name="SB" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.ActualInterpreterpayoutTest">
+<!--			<class name="com.tests.ActualInterpreterpayoutTest">-->
+<!--				<methods>-->
+<!--&lt;!&ndash;					<include name="editActualAfterInterpreter"/>&ndash;&gt;-->
+<!--&lt;!&ndash;					<include name="editHybridInterpreterpayout"/>&ndash;&gt;-->
+<!--					<include name="editStandardInterpreter"/>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--			<class name="com.tests.InterpreterAptsTab_Test">-->
+<!--				<methods>-->
+<!--					<include name="verifyColumnsRequiredAreAvailableInTable"/>  &lt;!&ndash;Pass&ndash;&gt;-->
+<!--					<include name="verifyDefaultSortIsInterpreterName"/>-->
+<!--					<include name="verifySearchForAllColumnsData"/>-->
+<!--					<include name="verifyNoResultsFound"/>-->
+<!--					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>-->
+<!--					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>-->
+<!--					<include name="verifySearchForAllColumnsDataIndividually"/>-->
+<!--				</methods>-->
+<!--			</class>-->
+			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
-<!--					<include name="editActualAfterInterpreter"/>-->
-<!--					<include name="editHybridInterpreterpayout"/>-->
-					<include name="editStandardInterpreter"/>
+					<include name="editingActualPayoutFields"/>
+					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
 		</classes>

@@ -70,24 +70,24 @@ public class InterpreterPage {
     @FindBy(xpath= "//*[local-name()='svg' and @data-testid='ReplayIcon']/*[local-name()='path']")
     private WebElement rescindOfferbutton;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr[1]/td[7]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr[1]/td[7]")
     private WebElement PatientConsumer;
 
     @FindBy(xpath= "//span[text()='INTERPRETER MATCHING']/..")
     private WebElement InterpreterMatchingTab;
 
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']")
     private WebElement tableInterpreterList;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//thead/tr/th/div")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']//thead/tr/th/div")
     private WebElement tableInterpreterListColumnNames;
 
     public List<WebElement> tableInterpreterListColumnNames() {
-        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']//thead/tr/th/div"));
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//thead/tr/th/div"));
     }
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody")
     private WebElement tableInterpreterListBody;
 
 
@@ -95,7 +95,7 @@ public class InterpreterPage {
     private WebElement tabAppointments;
 
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[1]")
     private WebElement allAppointmentTableBodyRowsViewInterpretercolumn;
 
     @FindBy(xpath="//div[@class='MuiBox-root css-g53dgy'][1]")
@@ -107,13 +107,13 @@ public class InterpreterPage {
     @FindBy(xpath= "//span[text()='LANGUAGE PROFICIENCY']")
     private WebElement tabLanguageProficiency;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td")
     private WebElement allAppointmentTableBody_td;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']")
     private WebElement allAppointmentTableBody_tr;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']")
     private WebElement noResults;
 
     @FindBy(xpath= "//div[@class='MuiBox-root css-xj7u6x']//table")
@@ -138,11 +138,11 @@ public class InterpreterPage {
     }
 
     public List<WebElement> allAppointmentTableBodyRowsViewInterpretercolumn() {
-        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr/td[1]"));
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[1]"));
     }
 
     public By allAppointmentTableBody_tr() {
-        return By.xpath("//table[@class='MuiTable-root css-jiyur0']/tbody/tr");
+        return By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr");
     }
 
     public boolean isDisplayed_noResults(){
