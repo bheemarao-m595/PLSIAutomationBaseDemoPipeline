@@ -97,7 +97,7 @@ public class CommonUtils {
 				actualHeader = "MRN/RN";
 				break;
 			case  PATIENT_CONSUMER:
-				actualHeader = "PATIENT/ CONSUMER";
+				actualHeader = "PATIENT/CONSUMER";
 				break;
 			case REQUESTED_LANGUAGE:
 				actualHeader = "REQUESTED LANGUAGE";

@@ -182,12 +182,12 @@ public class DashBoardPage {
 
         int headerIndex = headIndex.get(actualHeader);
 
-        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tbody//tr")).size();
+        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTableBody-root css-1xnox0e']//tbody//tr")).size();
         logger.log(Status.INFO,"Table is empty");
         for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
 
             String part1 = "//table[@class='MuiTable-root css-v6tz28']//tbody//tr[";
-            String part2 = "]//td//*[text()='" + cellValue + "']";
+            String part2 = "]//td//*[contains(text(),'" + cellValue + "']";
             String part3 = "//td//*[text()='" + cellValue + "']/ancestor::td/preceding-sibling::td[";
 
             BaseClass b = new BaseClass();

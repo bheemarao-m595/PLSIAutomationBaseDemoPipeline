@@ -6,49 +6,59 @@
 <!--		<listener class-name="com.listeners.AnnotationTransformer"></listener>-->
 	</listeners>
 
-	<test name="SB" parallel = "none" thread-count = "1" >
+	<!--<test name="SB" parallel = "none" thread-count = "1" >
 		<classes>
 
-<!--			<class name="com.tests.ActualInterpreterpayoutTest">-->
-<!--				<methods>-->
-<!--&lt;!&ndash;					<include name="editActualAfterInterpreter"/>&ndash;&gt;-->
-<!--&lt;!&ndash;					<include name="editHybridInterpreterpayout"/>&ndash;&gt;-->
-<!--					<include name="editStandardInterpreter"/>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--			<class name="com.tests.InterpreterAptsTab_Test">-->
-<!--				<methods>-->
-<!--					<include name="verifyColumnsRequiredAreAvailableInTable"/>  &lt;!&ndash;Pass&ndash;&gt;-->
-<!--					<include name="verifyDefaultSortIsInterpreterName"/>-->
-<!--					<include name="verifySearchForAllColumnsData"/>-->
-<!--					<include name="verifyNoResultsFound"/>-->
-<!--					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>-->
-<!--					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>-->
-<!--					<include name="verifySearchForAllColumnsDataIndividually"/>-->
-<!--				</methods>-->
-<!--			</class>-->
-			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
+			&lt;!&ndash;<class name="com.tests.ActualInterpreterpayoutTest">
+				<methods>
+					<include name="editActualAfterInterpreter"/>
+					<include name="editHybridInterpreterpayout"/>
+					<include name="editStandardInterpreter"/>
+				</methods>
+			</class>&ndash;&gt;
+			&lt;!&ndash;<class name="com.tests.InterpreterAptsTab_Test">
+				<methods>
+					<include name="verifyColumnsRequiredAreAvailableInTable"/>  &lt;!&ndash;Pass&ndash;&gt;
+					<include name="verifyDefaultSortIsInterpreterName"/>
+					<include name="verifySearchForAllColumnsData"/>
+					<include name="verifyNoResultsFound"/>
+					<include name="verifyColumnsRequiredAreAvailableInAppointmentsTableForAInterpreter"/>
+					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
+					<include name="verifySearchForAllColumnsDataIndividually"/>
+				</methods>
+			</class>&ndash;&gt;
+			&lt;!&ndash;<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
 					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
-		</classes>
-	</test>
+
+		</classes>&ndash;&gt;
+	</test>-->
 
 
-	<!--<test name="SB2" parallel = "none" thread-count = "1" >
+	<test name="SB2" parallel = "none" thread-count = "1" >
 		<classes>
 
-			<class name="com.tests.Interpreter_Offer_AcceptTest">
+<!--			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
-&lt;!&ndash;					<include name="makeAnOfferToInterpreter"/>&ndash;&gt;
-&lt;!&ndash;					<include name="acceptOfferByInterpreter"/>&ndash;&gt;
-&lt;!&ndash;					<include name="rescindOfferedToInterpreter"/>&ndash;&gt;
-&lt;!&ndash;					<include name="editPreference"/>&ndash;&gt;
+					<include name="makeAnOfferToInterpreter"/>
+					<include name="acceptOfferByInterpreter"/>
+					<include name="rescindOfferedToInterpreter"/>
+					<include name="editPreference"/>
+				</methods>
+			</class>-->
+			<class name="com.tests.Interpreter_DetailsTest">
+				<methods>
+					<include name="update_Interpreter_Availability"/>
+					<include name="deleteInt_Avail"/>
+					<include name="remove_LangProficiency"/>
+					<include name="create_Proficiency"/>
+					<include name="create_Interpreter_Availability"/>
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 
 </suite>

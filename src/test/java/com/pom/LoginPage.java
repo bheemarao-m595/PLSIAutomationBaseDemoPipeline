@@ -36,7 +36,7 @@ public class LoginPage {
     @FindBy(xpath = "//p[text()='Error: Invalid User Credentials']")
     private WebElement invalidCredentialsErrorMsg;
 
-    @FindBy(xpath = "//button[text()='ACKNOWLEDGE & CONTINUE']")
+    @FindBy(xpath = "//button[text()='ACCEPT & CONTINUE']")
     private WebElement ackButton;
 
     @FindBy(xpath = "//div/p[text()='2-Step Verification']")

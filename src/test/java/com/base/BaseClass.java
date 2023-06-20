@@ -104,7 +104,8 @@ public class BaseClass
 			System.setProperty("webdriver.gecko.driver", basePath+"geckodriver.exe");
 			driver = new FirefoxDriver();
 		}else if(prop.get("driver").equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions opt  = new ChromeOptions();
 			opt.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(opt);
