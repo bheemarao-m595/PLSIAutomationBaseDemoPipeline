@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -147,13 +148,9 @@ public class CommonUtils {
 	public  static  String addMinutesToCurrentTime(int minToAdd){
 
 		Calendar currentTimeNow = Calendar.getInstance();
-		String curTime = String.valueOf(currentTimeNow.getTime());
-		String truncCurrentTime = StringUtils.truncate(curTime,11,5);
 		currentTimeNow.add(Calendar.MINUTE, minToAdd);
-		Date fiveMinsFromNow = currentTimeNow.getTime();
-		String five = String.valueOf(fiveMinsFromNow);
-		String newTime = StringUtils. truncate(five,11,5);
-		return  newTime;
+		SimpleDateFormat formatDate = new SimpleDateFormat("hh:mm");
+		return  formatDate.format(currentTimeNow.getTime()).toString();
 
 	}
 
