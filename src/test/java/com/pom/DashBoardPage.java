@@ -133,7 +133,7 @@ public class DashBoardPage {
 
     public  void updatePatientNotes(String appIdText) throws InterruptedException, IOException {
 
-        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[6]//span/span"));
+        WebElement patientLink =  wd.findElement(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr//td//div[text()='"+ appIdText  +"']/../../following-sibling::td[7]//span/span"));
 
         patientLink.click();
         Thread.sleep(2000);
@@ -182,7 +182,7 @@ public class DashBoardPage {
 
         int headerIndex = headIndex.get(actualHeader);
 
-        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTableBody-root css-1xnox0e']//tbody//tr")).size();
+        int recordsCount = wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tbody//tr")).size();
         logger.log(Status.INFO,"Table is empty");
         for (int rowNumber = 1; rowNumber <= recordsCount; rowNumber++) {
 
@@ -192,12 +192,10 @@ public class DashBoardPage {
 
             BaseClass b = new BaseClass();
             boolean recordTEextMatching = b.isElementByXpath( part1 + rowNumber + part2);
-            if (recordTEextMatching) {
-
                 appId = b.getElementByXpath(wd, (part3 + (headerIndex - 1) + "]"));
                 break;
 
-            }
+
         }
        logger.log(Status.INFO,"Appointment ID found is " + appId.getText());
         return appId;
