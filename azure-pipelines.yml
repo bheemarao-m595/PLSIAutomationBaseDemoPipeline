@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 steps:
 - task: Maven@3
@@ -18,5 +18,17 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '**/junitreports/TEST-*.xml'
+    goals: 'clean test -PDemoADOIntegration'
+- script: 
+   echo "$(Pipeline.Workspace)"
+- task: PublishPipelineArtifact@1
+  inputs:
+      targetPath: 'Reports'
+      artifact: 'Extent Reports'
+      publishLocation: 'pipeline'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'ScreenShots'
+    artifact: 'ScreenShots'
+    publishLocation: 'pipeline'
