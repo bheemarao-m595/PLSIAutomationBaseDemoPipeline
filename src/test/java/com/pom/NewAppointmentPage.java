@@ -165,7 +165,7 @@ public class NewAppointmentPage {
         }
 
     }
-    public String scheduleAppointment(String appInfo) throws InterruptedException, IOException {
+    public String scheduleAppointment(String appInfo) throws InterruptedException, Exception {
 
         Thread.sleep(3000);
         newAppointment.click();
