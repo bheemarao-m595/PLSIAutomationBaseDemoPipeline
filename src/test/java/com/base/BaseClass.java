@@ -107,7 +107,7 @@ public class BaseClass
 			//System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions opt  = new ChromeOptions();
-			opt.addArguments("enable-automation"); opt.addArguments("--headless"); 
+			opt.addArguments("enable-automation"); //opt.addArguments("--headless"); 
 			opt.addArguments("--window-size=1280,720"); opt.addArguments("--no-sandbox"); opt.addArguments("--disable-extensions"); opt.addArguments("--dns-prefetch-disable"); opt.addArguments("--disable-gpu");
 			opt.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(opt);

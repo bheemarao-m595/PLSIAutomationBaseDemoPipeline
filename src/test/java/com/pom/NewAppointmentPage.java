@@ -239,7 +239,7 @@ public class NewAppointmentPage {
         requestedLanguage.click();
         requestedLanguage.sendKeys(datasheet.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         setAppointmentButton.click();
         logger.log(Status.PASS,"Set Appointment clicked");
