@@ -107,6 +107,7 @@ public class BaseClass
 			//System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions opt  = new ChromeOptions();
+			opt.addArguments("--headless");
 			opt.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(opt);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
