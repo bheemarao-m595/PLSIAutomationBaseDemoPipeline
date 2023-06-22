@@ -111,7 +111,7 @@ public class BaseClass
 			//opt.addArguments("--headless");
 			//opt.addArguments("enable-automation"); opt.addArguments("--headless"); 
 			//opt.addArguments("--window-size=1920x1080"); opt.addArguments("--no-sandbox"); opt.addArguments("--disable-extensions"); opt.addArguments("--dns-prefetch-disable"); opt.addArguments("--disable-gpu");
-			//opt.addArguments("--remote-allow-origins=*");
+			opt.addArguments("--remote-allow-origins=*");
 			driver = new ChromeDriver(opt);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 			driver.get(prop.getProperty("url"));
