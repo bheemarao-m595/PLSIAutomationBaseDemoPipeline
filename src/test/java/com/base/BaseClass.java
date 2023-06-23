@@ -107,7 +107,7 @@ public class BaseClass
 			//System.setProperty("webdriver.chrome.driver", basePath+"chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions opt  = new ChromeOptions();
-			opt.addArguments("--window-size=1680 x 1050");
+			//opt.addArguments("--window-size=1680 x 1050");
 			//opt.addArguments("--headless");
 			//opt.addArguments("enable-automation"); opt.addArguments("--headless"); 
 			//opt.addArguments("--window-size=1920x1080"); opt.addArguments("--no-sandbox"); opt.addArguments("--disable-extensions"); opt.addArguments("--dns-prefetch-disable"); opt.addArguments("--disable-gpu");

@@ -334,8 +334,8 @@ public class NewAppointmentPage {
         Thread.sleep(1000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
         Thread.sleep(5000);
-        clickWithJavaScript(setAppointmentButton);
-       // setAppointmentButton.click();
+        //clickWithJavaScript(setAppointmentButton);
+        setAppointmentButton.click();
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
         Thread.sleep(5000);
