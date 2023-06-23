@@ -101,7 +101,7 @@ public class NewAppointmentPage {
     @FindBy(xpath = "//label[@id='typo_patientinfo_requestedlanguage']/../following-sibling::div//input")
     private WebElement requestedLanguage;
 
-    @FindBy(xpath= "//button[@id='btn_appointments_setappointment']")
+    @FindBy(xpath= "//*[@id='grid_appointments_setappointment']")
     private WebElement setAppointmentButton;
 
     @FindBy(id = "rad_nonmedical_appt")
