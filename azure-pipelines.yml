@@ -13,7 +13,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Set-DisplayResolution -Width 1920 -Height 1080'
+    script: 'Set-DisplayResolution -Width 1920 -Height 1080 -Force'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
