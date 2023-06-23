@@ -8,23 +8,31 @@
 	<test name="VG" parallel = "none" thread-count = "1">
 		<classes>
 
+        <class name="com.tests.Interpreter_Offer_AcceptTest">
+				<methods>
+					<include name="makeAnOfferToInterpreter"/>
+					<!-- <include name="acceptOfferByInterpreter"/>
+					<include name="rescindOfferedToInterpreter"/>
+					<include name="editPreference"/> -->
+				</methods>
+			</class>
 			<!--<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsNonMedicalAppointment"/>
 					<include name="requestClientsMedicalAppointment"/>
 				</methods>
 			</class>-->
-			<class name="com.tests.SetAppointmentTest">
+			<!-- <class name="com.tests.SetAppointmentTest">
 				<methods>
-					<!--<include name="createRecurringAppointment"/>
+					<include name="createRecurringAppointment"/>
 					<include name="updateAppointmentDetails"/>
-					<include name="quickEditStatus"/>-->
+					<include name="quickEditStatus"/>
 					<include name="createNonMedicalAppointmentTest"/>
-					<!-- <include name="scheduleAppointmentMedicalTest"/> -->
-					<!-- <include name="cancelNewAppointment"/> -->
+					<include name="scheduleAppointmentMedicalTest"/>
+					<include name="cancelNewAppointment"/>
 
 				</methods>
-			</class>
+			</class> -->
 
 			<!--<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
