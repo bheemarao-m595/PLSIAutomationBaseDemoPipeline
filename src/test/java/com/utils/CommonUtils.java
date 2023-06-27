@@ -149,7 +149,7 @@ public class CommonUtils {
 
 		Calendar currentTimeNow = Calendar.getInstance();
 		currentTimeNow.add(Calendar.MINUTE, minToAdd);
-		SimpleDateFormat formatDate = new SimpleDateFormat("hh:mm");
+		SimpleDateFormat formatDate = new SimpleDateFormat("hh:mma");
 		return  formatDate.format(currentTimeNow.getTime()).toString();
 
 	}
