@@ -8,49 +8,15 @@
 	<test name="VG" parallel = "none" thread-count = "1">
 		<classes>
 		
-		<class name="com.tests.Interpreter_DetailsTest">
-				<methods>
-					<include name="update_Interpreter_Availability"/>
-					<include name="deleteInt_Avail"/>
-					 <include name="remove_LangProficiency"/>
-					<include name="create_Proficiency"/>
-					<include name="create_Interpreter_Availability"/> 
-				</methods>
-			</class>
-
-        <!-- <class name="com.tests.Interpreter_Offer_AcceptTest">
-				<methods>
-					<include name="makeAnOfferToInterpreter"/>
-					<include name="acceptOfferByInterpreter"/>
-					<include name="rescindOfferedToInterpreter"/>
-					<include name="editPreference"/>
-				</methods>
-			</class> -->
-			<!--<class name="com.tests.Clients_MedicalTest">
-				<methods>
-					<include name="requestClientsNonMedicalAppointment"/>
-					<include name="requestClientsMedicalAppointment"/>
-				</methods>
-			</class>-->
-			<!-- <class name="com.tests.SetAppointmentTest">
-				<methods>
-					<include name="createRecurringAppointment"/>
-					<include name="updateAppointmentDetails"/>
-					<include name="quickEditStatus"/>
-					<include name="createNonMedicalAppointmentTest"/>
-					<include name="scheduleAppointmentMedicalTest"/>
-					<include name="cancelNewAppointment"/>
-
-				</methods>
-			</class> -->
-
-			<!--<class name="com.tests.ActualInterpreterpayoutTest">
+		<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
 					<include name="editHybridInterpreterpayout"/>
 					<include name="editStandardInterpreter"/>
 				</methods>
 			</class>
+
+			<!--//every method passed-->
 			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
@@ -59,20 +25,11 @@
 					<include name="editPreference"/>
 				</methods>
 			</class>
-			<class name="com.tests.AppRejectAcceptToFinalize_Test">
-				<methods>
-					<include name="acceptAppointment"/>
-					<include name="rejectAppointment"/>
-					<include name="returnAppointment"/>
-					<include name="checkInAppointment"/>
-					<include name="checkOutAndFinaliseAppointment"/>
-					<include name="viewFinancialBreakdown"/>
-					<include name="selfBookAppointment"/>
-				</methods>
-			</class>
+
+			<!--//every method passed-->
 			<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
-					<include name="verifyColumnsRequiredAreAvailableInTable"/>
+					<include name="verifyColumnsRequiredAreAvailableInTable"/>  <!--Pass-->
 					<include name="verifyDefaultSortIsInterpreterName"/>
 					<include name="verifySearchForAllColumnsData"/>
 					<include name="verifyNoResultsFound"/>
@@ -82,8 +39,7 @@
 				</methods>
 			</class>
 
-
-
+			<!--//every method passed-->
 			<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
 					<include name="update_Interpreter_Availability"/>
@@ -94,18 +50,22 @@
 				</methods>
 			</class>
 
-
+			<!--//every method passed-->
 			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
 					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
+
+			<!--//every method passed-->
 			<class name="com.tests.EditAppointmentStatusTest">
 				<methods>
 					<include name="updateFinanceAppointmentStatus"/>
 				</methods>
 			</class>
+
+			<!--//every method passed-->
 			<class name="com.tests.FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
@@ -113,7 +73,14 @@
 					<include name="approveFinancialReviewPendingAppointment"/>
 					<include name="approveFinancialArchiveMultiplePendingAppointment"/>
 				</methods>
-			</class>-->
+			</class>
+
+			<!--//unable to test for otp-->
+			<class name="com.tests.ClientAddRequesterTest">
+						<methods>
+							<include name="addRequesterforClient"/>
+						</methods>
+			</class>
 		</classes>
 	</test>
 
