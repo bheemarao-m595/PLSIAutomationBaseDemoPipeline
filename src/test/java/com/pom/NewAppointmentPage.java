@@ -334,10 +334,10 @@ public class NewAppointmentPage {
 
         Thread.sleep(1000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
-        Thread.sleep(5000);
+        Thread.sleep(15000);
         
-        Actions actions = new Actions(driver); 
-        actions.clickAndHold(setAppointmentButton).release().perform();
+        Actions actions = new Actions(driver);
+        actions.sendKeys(setAppointmentButton, Keys.ENTER).perform();
         Thread.sleep(15000);
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
