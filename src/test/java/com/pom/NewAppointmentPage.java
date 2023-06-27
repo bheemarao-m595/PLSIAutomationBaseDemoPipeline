@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -334,15 +335,13 @@ public class NewAppointmentPage {
         Thread.sleep(1000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
         Thread.sleep(5000);
-        //clickWithJavaScript(setAppointmentButton);
-        try {
-        setAppointmentButton.click();
-        }catch(Exception e) {
-        	logger.log(Status.FAIL, e.getMessage());
-        }
+        
+        Actions actions = new Actions(driver); 
+        actions.clickAndHold(setAppointmentButton).release().perform();
+        Thread.sleep(15000);
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
-        Thread.sleep(15000);
+     
        if(BaseClass.isElementPresent(setAppointmentButton))
         return "NC";
        else
