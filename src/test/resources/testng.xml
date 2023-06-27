@@ -7,15 +7,25 @@
 	</listeners>
 	<test name="VG" parallel = "none" thread-count = "1">
 		<classes>
-
-        <class name="com.tests.Interpreter_Offer_AcceptTest">
+		
+		<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
-					<include name="makeAnOfferToInterpreter"/>
-					<!-- <include name="acceptOfferByInterpreter"/>
-					<include name="rescindOfferedToInterpreter"/>
-					<include name="editPreference"/> -->
+					<include name="update_Interpreter_Availability"/>
+					<include name="deleteInt_Avail"/>
+					<!-- <include name="remove_LangProficiency"/>
+					<include name="create_Proficiency"/>
+					<include name="create_Interpreter_Availability"/> -->
 				</methods>
 			</class>
+
+        <!-- <class name="com.tests.Interpreter_Offer_AcceptTest">
+				<methods>
+					<include name="makeAnOfferToInterpreter"/>
+					<include name="acceptOfferByInterpreter"/>
+					<include name="rescindOfferedToInterpreter"/>
+					<include name="editPreference"/>
+				</methods>
+			</class> -->
 			<!--<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsNonMedicalAppointment"/>
