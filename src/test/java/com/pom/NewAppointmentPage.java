@@ -332,13 +332,14 @@ public class NewAppointmentPage {
         requestedLanguage.sendKeys(Keys.TAB);
         Thread.sleep(1000);
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
-        Thread.sleep(15000);
+        Thread.sleep(60000);
         
         Actions actions = new Actions(driver);
         actions.sendKeys(setAppointmentButton, Keys.ENTER).perform();
-        Thread.sleep(50000);
+        Thread.sleep(60000);
+        Thread.sleep(60000);
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
      
