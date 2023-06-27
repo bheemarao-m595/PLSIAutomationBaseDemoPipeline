@@ -8,11 +8,10 @@
 	<test name="VG" parallel = "none" thread-count = "1">
 		<classes>
 		
-			<!--//every method passed-->
-			<class name="com.tests.Interpreter_Offer_AcceptTest">
+			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
-					<include name="makeAnOfferToInterpreter"/>
-					
+					<include name="editingActualPayoutFields"/>
+					<include name="editingExpectedPayoutFields"/>
 				</methods>
 			</class>
 
