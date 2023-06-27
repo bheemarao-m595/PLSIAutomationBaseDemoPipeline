@@ -335,7 +335,7 @@ public class NewAppointmentPage {
         Thread.sleep(10000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
          
-        setAppointmentButton.submit();
+        requestedLanguage.submit();
        
         Thread.sleep(60000);
         logger.log(Status.PASS,"Set Appointment clicked");
