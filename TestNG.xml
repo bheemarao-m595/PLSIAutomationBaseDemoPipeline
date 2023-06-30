@@ -9,7 +9,7 @@
 		<classes>
 
 
-			<!--//every method passed-->
+		<!-- 	
 			<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsNonMedicalAppointment"/>
@@ -17,7 +17,7 @@
 				</methods>
 			</class>
 
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.SetAppointmentTest">
 				<methods>
 					<include name="createRecurringAppointment"/>
@@ -29,7 +29,7 @@
 
 				</methods>
 			</class>
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
@@ -38,7 +38,7 @@
 				</methods>
 			</class>
 
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
@@ -48,7 +48,7 @@
 				</methods>
 			</class>
 
-			<!-- <class name="com.tests.AppRejectAcceptToFinalize_Test">
+			<class name="com.tests.AppRejectAcceptToFinalize_Test">
 				<methods>
 					<include name="acceptAppointment"/>
 					<include name="rejectAppointment"/>
@@ -58,11 +58,11 @@
 					<include name="viewFinancialBreakdown"/>
 					<include name="selfBookAppointment"/>
 				</methods>
-			</class> -->
-			<!--//every method passed-->
+			</class>
+			//every method passed
 			<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
-					<include name="verifyColumnsRequiredAreAvailableInTable"/>  <!--Pass-->
+					<include name="verifyColumnsRequiredAreAvailableInTable"/>  Pass
 					<include name="verifyDefaultSortIsInterpreterName"/>
 					<include name="verifySearchForAllColumnsData"/>
 					<include name="verifyNoResultsFound"/>
@@ -70,10 +70,10 @@
 					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
 					<include name="verifySearchForAllColumnsDataIndividually"/>
 				</methods>
-			</class>
+			</class> -->
 
 			<!--//every method passed-->
-		<!-- 	<class name="com.tests.Interpreter_DetailsTest">
+			<class name="com.tests.Interpreter_DetailsTest">
 				<methods>
 					<include name="update_Interpreter_Availability"/>
 					<include name="deleteInt_Avail"/>
@@ -83,7 +83,7 @@
 				</methods>
 			</class>
 
-			//every method passed
+			<!--//every method passed-->
 			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
 				<methods>
 					<include name="editingActualPayoutFields"/>
@@ -91,14 +91,14 @@
 				</methods>
 			</class>
 
-			//every method passed
+			<!--//every method passed-->
 			<class name="com.tests.EditAppointmentStatusTest">
 				<methods>
 					<include name="updateFinanceAppointmentStatus"/>
 				</methods>
 			</class>
 
-			//every method passed
+			<!--//every method passed-->
 			<class name="com.tests.FinanceReviewAndArchiveTest">
 				<methods>
 					<include name="approveFinancialArchivePendingAppointment"/>
@@ -108,12 +108,12 @@
 				</methods>
 			</class>
 
-			//unable to test for otp
+			<!--//unable to test for otp-->
 			<class name="com.tests.ClientAddRequesterTest">
 						<methods>
 							<include name="addRequesterforClient"/>
 						</methods>
-			</class> -->
+			</class>
 
 
 		</classes>
