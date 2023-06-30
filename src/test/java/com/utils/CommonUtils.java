@@ -134,7 +134,7 @@ public class CommonUtils {
 
 	public static String getCurrentSystemDate()
 	{
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
 		LocalDateTime now = LocalDateTime.now();
 		 return  dtf.format(now);
 	}
