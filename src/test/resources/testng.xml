@@ -8,10 +8,10 @@
 	<test name="VG" parallel = "none" thread-count = "1">
 		<classes>
 		
-			<class name="com.tests.FinanciaArchive_ExpectedInterpreterPayoutTest">
+			<class name="com.tests.SetAppointmentTest">
 				<methods>
-					<include name="editingActualPayoutFields"/>
-					<include name="editingExpectedPayoutFields"/>
+					<include name="scheduleAppointmentMedicalTest"/>
+					
 				</methods>
 			</class>
 
