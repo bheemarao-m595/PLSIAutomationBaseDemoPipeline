@@ -23,7 +23,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/junitreports/TEST-*.xml'
-    goals: 'clean test -PDemoADOIntegration'
+    goals: 'clean test -PPLSIAutomationSuiteRegression'
 - script: 
    echo "$(Pipeline.Workspace)"
 - task: PublishPipelineArtifact@1
