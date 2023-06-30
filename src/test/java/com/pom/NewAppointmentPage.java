@@ -242,7 +242,7 @@ public class NewAppointmentPage {
         requestedLanguage.sendKeys(Keys.TAB);
         Thread.sleep(3000);
 
-        setAppointmentButton.click();
+        setAppointmentButton.submit();
         logger.log(Status.PASS,"Set Appointment clicked");
         Thread.sleep(4000);
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
