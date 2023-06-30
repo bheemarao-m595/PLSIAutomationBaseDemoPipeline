@@ -177,7 +177,7 @@ public class NewAppointmentPage {
         logger.log(Status.PASS,"Appointment Table");
         Thread.sleep(3000);
         appointmentDate.clear();
-        appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
+        appointmentDate.sendKeys("30-06-2023");
 
         Thread.sleep(2000);
         appointmentStartTime.click();
