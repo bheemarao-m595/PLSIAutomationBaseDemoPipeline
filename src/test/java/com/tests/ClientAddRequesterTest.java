@@ -44,7 +44,7 @@ public class ClientAddRequesterTest extends BaseClass {
         String createdrequesterName = cdp.addRequester();
         logger.log(Status.PASS, "Client Added:" + createdrequesterName);
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Created and clicked appt id"));
-        boolean isCreated =  BaseClass.isDataPresentinTable("(//table[@class='MuiTable-root css-jiyur0'])[2]",createdrequesterName, true);
+        boolean isCreated =  BaseClass.isDataPresentinTable("(//table[@class='MuiTable-root css-v6tz28'])[2]",createdrequesterName, true);
         lo.click_logOut();
         Assert.assertTrue(isCreated,"Requester Not created");
 
