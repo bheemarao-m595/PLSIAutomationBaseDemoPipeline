@@ -1,12 +1,7 @@
 package com.utils;
 
-import com.base.BaseClass;
+
 import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -134,7 +129,7 @@ public class CommonUtils {
 
 	public static String getCurrentSystemDate()
 	{
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDateTime now = LocalDateTime.now();
 		 return  dtf.format(now);
 	}

@@ -4,7 +4,6 @@ import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -241,12 +240,14 @@ public class NewAppointmentPage {
         requestedLanguage.click();
         requestedLanguage.sendKeys(datasheet.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(3000);
-
+        Thread.sleep(10000);
+        BaseClass.goToElementVisibleArea(setAppointmentButton);
+         
         setAppointmentButton.submit();
+       
+        Thread.sleep(10000);
         logger.log(Status.PASS,"Set Appointment clicked");
-        Thread.sleep(4000);
-        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
+        logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
 
         Thread.sleep(4000);
         if(BaseClass.isElementPresent(setAppointmentButton))
@@ -331,14 +332,13 @@ public class NewAppointmentPage {
         requestedLanguage.click();
         requestedLanguage.sendKeys(creationData.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(1000);
-
+       
         Thread.sleep(10000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
          
-        requestedLanguage.submit();
+        setAppointmentButton.submit();
        
-        Thread.sleep(60000);
+        Thread.sleep(10000);
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
      
@@ -590,11 +590,11 @@ public class NewAppointmentPage {
         Thread.sleep(3000);
         logger.addScreenCaptureFromPath(BaseClass.takeScreenshotForStep("Edited Requested Language"));
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
         setAppointmentButton.click();
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         if(BaseClass.isElementPresent(setAppointmentButton))
         {
             logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Recurring Appointment not created"));
