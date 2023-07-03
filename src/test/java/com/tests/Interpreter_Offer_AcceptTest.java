@@ -62,6 +62,7 @@ public class Interpreter_Offer_AcceptTest extends BaseClass {
                     NewAppointmentPage nap = new NewAppointmentPage(driver);
                     appointmentData.put("First Name","Automation_SB");
                     String lastNameOfPatient =  nap.addScheduleAppointment(appointmentData);
+                    logger.log(Status.PASS, lastNameOfPatient);
                     DashBoardPage db = new DashBoardPage(driver);
                     String patientFName = appointmentData.get("First Name");
                     Thread.sleep(4000);

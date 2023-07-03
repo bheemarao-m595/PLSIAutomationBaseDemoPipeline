@@ -4,6 +4,7 @@ import com.aventstack.extentreports.Status;
 import com.base.BaseClass;
 import com.utils.CommonUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -101,7 +102,7 @@ public class NewAppointmentPage {
     @FindBy(xpath = "//label[@id='typo_patientinfo_requestedlanguage']/../following-sibling::div//input")
     private WebElement requestedLanguage;
 
-    @FindBy(xpath= "//button[@id='btn_appointments_setappointment']")
+    @FindBy(xpath= "//*[@id='grid_appointments_setappointment']")
     private WebElement setAppointmentButton;
 
     @FindBy(id = "rad_nonmedical_appt")
@@ -165,7 +166,7 @@ public class NewAppointmentPage {
         }
 
     }
-    public String scheduleAppointment(String appInfo) throws InterruptedException, IOException {
+    public String scheduleAppointment(String appInfo) throws InterruptedException, Exception {
 
         Thread.sleep(3000);
         newAppointment.click();
@@ -177,6 +178,7 @@ public class NewAppointmentPage {
         Thread.sleep(3000);
         appointmentDate.clear();
         appointmentDate.sendKeys(CommonUtils.getCurrentSystemDate());
+       
 
         Thread.sleep(2000);
         appointmentStartTime.click();
@@ -239,9 +241,9 @@ public class NewAppointmentPage {
         requestedLanguage.click();
         requestedLanguage.sendKeys(datasheet.get("Requested Language"));
         requestedLanguage.sendKeys(Keys.TAB);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
-        setAppointmentButton.click();
+        setAppointmentButton.submit();
         logger.log(Status.PASS,"Set Appointment clicked");
         Thread.sleep(4000);
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment created"));
@@ -331,12 +333,15 @@ public class NewAppointmentPage {
         requestedLanguage.sendKeys(Keys.TAB);
         Thread.sleep(1000);
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         BaseClass.goToElementVisibleArea(setAppointmentButton);
-        setAppointmentButton.click();
+         
+        requestedLanguage.submit();
+       
+        Thread.sleep(60000);
         logger.log(Status.PASS,"Set Appointment clicked");
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Set Appointment clicked"));
-        Thread.sleep(1000);
+     
        if(BaseClass.isElementPresent(setAppointmentButton))
         return "NC";
        else

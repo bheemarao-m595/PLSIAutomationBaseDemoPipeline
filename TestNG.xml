@@ -9,7 +9,7 @@
 		<classes>
 
 
-			<!--//every method passed-->
+		<!-- 	
 			<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsNonMedicalAppointment"/>
@@ -17,7 +17,7 @@
 				</methods>
 			</class>
 
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.SetAppointmentTest">
 				<methods>
 					<include name="createRecurringAppointment"/>
@@ -29,7 +29,7 @@
 
 				</methods>
 			</class>
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.ActualInterpreterpayoutTest">
 				<methods>
 					<include name="editActualAfterInterpreter"/>
@@ -38,7 +38,7 @@
 				</methods>
 			</class>
 
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.Interpreter_Offer_AcceptTest">
 				<methods>
 					<include name="makeAnOfferToInterpreter"/>
@@ -59,10 +59,10 @@
 					<include name="selfBookAppointment"/>
 				</methods>
 			</class>
-			<!--//every method passed-->
+			//every method passed
 			<class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
-					<include name="verifyColumnsRequiredAreAvailableInTable"/>  <!--Pass-->
+					<include name="verifyColumnsRequiredAreAvailableInTable"/>  Pass
 					<include name="verifyDefaultSortIsInterpreterName"/>
 					<include name="verifySearchForAllColumnsData"/>
 					<include name="verifyNoResultsFound"/>
@@ -70,7 +70,7 @@
 					<include name="verifyAllAppointmentsAreRelatedToInterpreterByVerifyingLanguage"/>
 					<include name="verifySearchForAllColumnsDataIndividually"/>
 				</methods>
-			</class>
+			</class> -->
 
 			<!--//every method passed-->
 			<class name="com.tests.Interpreter_DetailsTest">

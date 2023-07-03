@@ -7,9 +7,13 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Set-DisplayResolution -Width 1920 -Height 1080 -Force'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -18,5 +22,17 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '**/junitreports/TEST-*.xml'
+    goals: 'clean test -PPLSIAutomationSuiteRegression'
+- script: 
+   echo "$(Pipeline.Workspace)"
+- task: PublishPipelineArtifact@1
+  inputs:
+      targetPath: 'Reports'
+      artifact: 'Extent Reports'
+      publishLocation: 'pipeline'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'ScreenShots'
+    artifact: 'ScreenShots'
+    publishLocation: 'pipeline'
