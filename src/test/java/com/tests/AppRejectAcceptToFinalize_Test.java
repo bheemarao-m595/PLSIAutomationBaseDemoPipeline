@@ -151,7 +151,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
                 String appointment_offer_title = interpreterDb.getTextInterpreterDashboardAppointmentClickTitle();
                 Assert.assertTrue(appointment_offer_title.contains(view_Text));
                 logger.log(Status.PASS, "Verified the title has the view id selected i.e." + view_Text);
-
+                Thread.sleep(3000);
                 interpreterDb.clickDeclineButton();
                 logger.log(Status.PASS, "Clicked Decline Button");
 
@@ -358,7 +358,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
                     String appointment_offer_title = interpreterDb.getTextInterpreterDashboardAppointmentClickTitle();
                     Assert.assertTrue(appointment_offer_title.contains(view_Text));
                     logger.log(Status.PASS, "Verified the title has the view id selected i.e." + view_Text);
-
+                    Thread.sleep(3000);
                     interpreterDb.clickAcceptButton();
                     logger.log(Status.PASS, "could click Accept Appointment");
 
@@ -408,6 +408,8 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
             List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
             logger.log(Status.PASS, "selected the column Language");
+            List<WebElement> column_interpreter = dashboard.get_allAppointmentTableBodyRowsInterpreterColumn();
+            logger.log(Status.PASS, "selected the column Interpreter");
 
             String view_Text = null;
 
@@ -417,9 +419,10 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
                 String status = column_status.get(i).getText();
 
                 String language = column_language.get(i).getText();
+                String interpreter = column_interpreter.get(i).getText();
 
                 if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
+                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))&& interpreter.equalsIgnoreCase("Deepa Pattar")) {
 
                     logger.log(Status.PASS, "found a Confirmed appointment");
 
@@ -539,6 +542,8 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
             List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
             logger.log(Status.PASS, "selected the column Language");
+            List<WebElement> column_interpreter = dashboard.get_allAppointmentTableBodyRowsInterpreterColumn();
+            logger.log(Status.PASS, "selected the column Interpreter");
 
             String view_Text = null;
 
@@ -548,9 +553,11 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
                 String status = column_status.get(i).getText();
 
                 String language = column_language.get(i).getText();
+                String interpreter = column_interpreter.get(i).getText();
+
 
                 if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
+                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))&& interpreter.equalsIgnoreCase("Deepa Pattar")) {
 
                     logger.log(Status.PASS, "found a Confirmed appointment");
 
@@ -659,20 +666,24 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
             List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
             logger.log(Status.PASS, "selected the column Language");
 
+            List<WebElement> column_interpreter = dashboard.get_allAppointmentTableBodyRowsInterpreterColumn();
+            logger.log(Status.PASS, "selected the column Interpreter");
+
             String view_Text = null;
 
-            logger.log(Status.PASS, "looping through all rows in Status column till we find new appointment");
 
             for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
                 String status = column_status.get(i).getText();
+
                 String language = column_language.get(i).getText();
+                String interpreter = column_interpreter.get(i).getText();
+
 
                 if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
+                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))&& interpreter.equalsIgnoreCase("Deepa Pattar")) {
 
                     logger.log(Status.PASS, "found a Confirmed appointment");
-
                     List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
                     WebElement view_id = column_view.get(i);
@@ -731,10 +742,10 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
             List<WebElement> dropdown = interpreterDb.get_FinalizeAppointmentDropdownsList();
 
-            dropdown.get(1).sendKeys(datasheet.get("Requested Language"));
+            /*dropdown.get(1).sendKeys(datasheet.get("Requested Language"));
+            dropdown.get(1).sendKeys(Keys.ENTER);*/
+            dropdown.get(1).sendKeys(datasheet.get("Request Reimbursement"));
             dropdown.get(1).sendKeys(Keys.ENTER);
-            dropdown.get(2).sendKeys(datasheet.get("Request Reimbursement"));
-            dropdown.get(2).sendKeys(Keys.ENTER);
 
             Thread.sleep(3000);
 
@@ -782,21 +793,24 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
             List<WebElement> column_language = dashboard.get_allAppointmentTableBodyRowsLanguageColumn();
             logger.log(Status.PASS, "selected the column Language");
 
-            String view_Text = "";
+            List<WebElement> column_interpreter = dashboard.get_allAppointmentTableBodyRowsInterpreterColumn();
+            logger.log(Status.PASS, "selected the column Interpreter");
 
-            logger.log(Status.PASS, "looping through all rows in Status column till we find new appointment");
+            String view_Text = null;
+
 
             for (int i = 0; i <= allAppRowsSize - 1; i++) {
 
                 String status = column_status.get(i).getText();
 
                 String language = column_language.get(i).getText();
+                String interpreter = column_interpreter.get(i).getText();
+
 
                 if (status.equalsIgnoreCase(datasheet.get("Appointment Status"))
-                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))) {
+                        && language.equalsIgnoreCase(datasheet.get("Requested Language"))&& interpreter.equalsIgnoreCase("Deepa Pattar")) {
 
                     logger.log(Status.PASS, "found a Confirmed appointment");
-
                     List<WebElement> column_view = dashboard.get_allAppointmentTableBodyRowsViewColumn();
 
                     WebElement view_id = column_view.get(i);
@@ -1052,7 +1066,7 @@ public class AppRejectAcceptToFinalize_Test extends BaseClass {
 
                         Assert.assertTrue(appointment_offer_title.contains(appIdText));
                         logger.log(Status.PASS, "Verified the title has the view id selected i.e." + appIdText);
-
+                        Thread.sleep(3000);
                         interpreterDb.clickAcceptButton();
 
                         logger.log(Status.PASS, "Clicked Accept Appointment");
