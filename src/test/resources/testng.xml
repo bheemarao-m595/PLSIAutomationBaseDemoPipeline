@@ -20,9 +20,9 @@
 					<include name="updateAppointmentDetails"/>
 					<include name="quickEditStatus"/>-->
 					<include name="createNonMedicalAppointmentTest"/>
-					<!--<include name="scheduleAppointmentMedicalTest"/>
-					<include name="cancelNewAppointment"/>
--->
+					<include name="scheduleAppointmentMedicalTest"/>
+					<!-- <include name="cancelNewAppointment"/> -->
+
 				</methods>
 			</class>
 
