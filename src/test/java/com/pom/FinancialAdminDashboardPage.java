@@ -150,8 +150,8 @@ public class FinancialAdminDashboardPage {
         Thread.sleep(1000);
         saveEditStatus.click();
 
-        Thread.sleep(1000);
-        closeEditStatus.click();
+        /*Thread.sleep(1000);*/
+        /*closeEditStatus.click();*/
         logger.addScreenCaptureFromPath(b.takeScreenshotForStep("Appointment status Edited"));
     }
 }

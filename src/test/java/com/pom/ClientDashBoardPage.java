@@ -31,7 +31,7 @@ public class ClientDashBoardPage {
     public void clickClientElementWithName(String name) throws InterruptedException {
 
         BaseClass b = new BaseClass();
-        String xpath = "//table[@class='MuiTable-root css-jiyur0']//tr//td/div/div[text()='" + name + "']";
+        String xpath = "//table[@class='MuiTable-root css-v6tz28']//tr//td/div/div[text()='" + name + "']";
         boolean clientPresent = b.isElementByXpath(xpath);
         Assert.assertTrue(clientPresent,"Client not present with name :" + name);
         WebElement clientELe = b.getElementByXpath(wd,xpath);
