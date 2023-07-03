@@ -117,7 +117,7 @@ public class DashBoardPage {
 
     public void updateQuickStatus(String appId) throws InterruptedException {
 
-        WebElement statusLink   =  driver.findElement(By.xpath("//*[text()='"+ appId +"']/../../following-sibling::td[9]//span/span"));
+        WebElement statusLink   =  driver.findElement(By.xpath("//*[text()='"+ appId +"']/../../following-sibling::td[7]//span/span"));
 
         statusLink.click();
         Thread.sleep(2000);
