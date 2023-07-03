@@ -56,7 +56,7 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr[1]/td[12]")
     private WebElement interpreterDashboardAppointmentTableColStatus;
 
-    @FindBy(xpath= "//p[@class='MuiTypography-root MuiTypography-body1 css-16o4yi7']")
+    @FindBy(xpath= "//p[@class='MuiTypography-root MuiTypography-body1 css-1dm1q28']")
     private WebElement interpreterDashboardAppointmentTitle;
 
     @FindBy(xpath= "//button[text()='Decline Appointment']")
@@ -178,7 +178,7 @@ public class InterpreterDashboardPage {
     }
 
     public List<WebElement> get_InterpreterDashboardAppointmentTableColStatus(){
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tr[1]/td[12]"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']//tr[1]/td[15]"));
 
     }
 

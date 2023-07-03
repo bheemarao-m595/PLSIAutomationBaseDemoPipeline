@@ -117,7 +117,7 @@ public class DashBoardPage {
 
     public void updateQuickStatus(String appId) throws InterruptedException {
 
-        WebElement statusLink   =  driver.findElement(By.xpath("//*[text()='"+ appId +"']/../../following-sibling::td[8]//span/span"));
+        WebElement statusLink   =  driver.findElement(By.xpath("//*[text()='"+ appId +"']/../../following-sibling::td[9]//span/span"));
 
         statusLink.click();
         Thread.sleep(2000);
@@ -210,16 +210,19 @@ public class DashBoardPage {
 
     public  List<WebElement> get_allAppointmentTableBodyRowsStatusColumn(){
 
-        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[9]"));
+        return  wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[8]"));
 
     }
 
     public  List<WebElement> get_allAppointmentTableBodyRowsLanguageColumn() {
-        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[8]"));
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[7]"));
     }
 
     public List<WebElement> get_allAppointmentTableBodyRowsViewColumn() {
         return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[1]"));
+    }
+    public List<WebElement> get_allAppointmentTableBodyRowsInterpreterColumn() {
+        return wd.findElements(By.xpath("//table[@class='MuiTable-root css-v6tz28']/tbody/tr/td[9]"));
     }
 
 
