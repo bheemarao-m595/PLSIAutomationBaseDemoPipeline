@@ -160,12 +160,17 @@ public class RequestAppointmentPage {
         Thread.sleep(2000);
         appointmenttype.sendKeys(datasheet.get("Appointment Type"));
         appointmenttype.sendKeys(Keys.TAB);
-        Thread.sleep(3000);
+        Thread.sleep(2000);
+        building.click();
         building.sendKeys(datasheet.get("Building"));
         building.sendKeys(Keys.TAB);
-        Thread.sleep(3000);
+
+        Thread.sleep(2000);
+        department.click();
         department.sendKeys(datasheet.get("Department"));
+        Thread.sleep(2000);
         department.sendKeys(Keys.TAB);
+        
         Thread.sleep(3000);
         patientMRN.sendKeys(datasheet.get("Patient MRN"));
         patientMRN.sendKeys(CommonUtils.getRandomNumberOfLength(3));
@@ -197,11 +202,11 @@ public class RequestAppointmentPage {
         WebDriver d = BaseClass.driver;
         JavascriptExecutor js = (JavascriptExecutor)d;
         js.executeScript("arguments[0].scrollIntoView(true);", addAppointment);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Before Add"));
-        addAppointment.click();
+        addAppointment.submit();
 
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         logger.addScreenCaptureFromPath(takeScreenshotForStep("Add Clicked"));
         if(isElementPresent(addAppointment)){
             logger.log(Status.FAIL,"Appointment not created");
