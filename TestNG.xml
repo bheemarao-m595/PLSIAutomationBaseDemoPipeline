@@ -9,7 +9,7 @@
 	
 		<classes>
 
-		<!-- 	<class name="com.tests.Clients_MedicalTest">
+		 	<class name="com.tests.Clients_MedicalTest">
 				<methods>
 					<include name="requestClientsNonMedicalAppointment"/>
 					<include name="requestClientsMedicalAppointment"/>
@@ -57,9 +57,9 @@
 					<include name="viewFinancialBreakdown"/>
 					<include name="selfBookAppointment"/>
 				</methods>
-			</class> -->
+			</class> 
 			
-			<class name="com.tests.InterpreterAptsTab_Test">
+			<!-- <class name="com.tests.InterpreterAptsTab_Test">
 				<methods>
 					<include name="verifyColumnsRequiredAreAvailableInTable"/>  
 					<include name="verifyDefaultSortIsInterpreterName"/>
@@ -112,7 +112,7 @@
 						<methods>
 							<include name="addRequesterforClient"/>
 						</methods>
-			</class> 
+			</class>  -->
 
 
 		</classes>
