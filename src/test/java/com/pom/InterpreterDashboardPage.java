@@ -107,7 +107,7 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//input[contains(@id,'react-select')]")
     private WebElement finalizeAppointmentDropdownsList;
 
-    @FindBy(xpath= "//span[text()='Can Self-Book for Appointments']")
+    @FindBy(xpath= "//input[@name='SelfBookAppointmnet']")
     private WebElement canSelfBookAppointment;
 
     @FindBy(xpath= "//button[text()='Cancel']")
