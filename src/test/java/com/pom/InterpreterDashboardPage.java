@@ -50,10 +50,10 @@ public class InterpreterDashboardPage {
     @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']/tbody")
     private WebElement tableInterpreterListBody;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr/td[1]/div/div")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']//tr/td[1]/div/div")
     private WebElement firstInterpreterDashboardAppointmentTableColView;
 
-    @FindBy(xpath= "//table[@class='MuiTable-root css-jiyur0']//tr[1]/td[12]")
+    @FindBy(xpath= "//table[@class='MuiTable-root css-v6tz28']//tr[1]/td[12]")
     private WebElement interpreterDashboardAppointmentTableColStatus;
 
     @FindBy(xpath= "//p[@class='MuiTypography-root MuiTypography-body1 css-1dm1q28']")
